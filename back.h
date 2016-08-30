@@ -13,5 +13,10 @@ private:
 
 public:
 	back();
-	void all();
+	void run();
+};
+
+class load {
+public:
+
 };
