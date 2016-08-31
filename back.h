@@ -2,6 +2,7 @@
 #include "DxLib.h"
 
 #define start_point 0
+
 class back {
 private:
 	//À•W
