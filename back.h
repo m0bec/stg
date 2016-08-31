@@ -17,7 +17,3 @@ public:
 	void run();
 };
 
-class load {
-public:
-
-};

@@ -20,5 +20,7 @@ private:
 public:
 	ziki();
 	void pass_load(int loadgraph, int loadwidth, int loadheight);
+	void draw();
+	void run();
 };
 

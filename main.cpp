@@ -18,7 +18,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	// グラフィックの描画先を裏画面にセット
 	SetDrawScreen(DX_SCREEN_BACK);
 
-	
+	main_run->firstrun();
 	// 移動ルーチン
 	while (1)
 	{
