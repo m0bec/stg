@@ -1,9 +1,7 @@
 #pragma once
 
-struct bullet {
+struct base {
 	int graph;
 	int width;
 	int height;
-	int xcenter;
-	int ycenter;
 };

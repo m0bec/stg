@@ -1,10 +1,12 @@
 #pragma once
 #include "DxLib.h"
 #include "structure.h"
+#include "structure.h"
 
 class load {
 private:
-	bullet et1bullet;
+	base et1bullet;
+	base ziki1;
 
 public:
 	load();
