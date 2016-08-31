@@ -1,7 +1,7 @@
 #pragma once
-<<<<<<< Updated upstream
-=======
+
 #include "Dxlib.h"
+#include "load.h"
 
 class ziki {
 private:
@@ -19,5 +19,6 @@ private:
 
 public:
 	ziki();
+	void pass_load(int loadgraph, int loadwidth, int loadheight);
 };
->>>>>>> Stashed changes
+
