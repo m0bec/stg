@@ -13,4 +13,7 @@ public:
 	int ziki1graph_pass();
 	int ziki1height_pass();
 	int ziki1width_pass();
+	int ziki1bulletgraph_pass();
+	int ziki1bulletheight_pass();
+	int ziki1bulletwidth_pass();
 };

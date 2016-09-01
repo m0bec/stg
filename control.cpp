@@ -11,5 +11,5 @@ void control::firstrun() {
 }
 void control::run() {
 	blue_back->run();
-	ziki1->run();
+	ziki1->run(loading->ziki1bulletheight_pass(), loading->ziki1bulletgraph_pass());
 }

@@ -5,6 +5,7 @@ ziki::ziki() {
 	y = 0;
 	presenceflag = true;
 	lifeflag = true; 	
+	count = 0;
 }
 
 void ziki::pass_load(int loadgraph, int loadwidth, int loadheight) {
@@ -14,7 +15,7 @@ void ziki::pass_load(int loadgraph, int loadwidth, int loadheight) {
 }
 
 void ziki::draw() {
-	DrawGraph(x, y, graph, true);
+	DrawGraph(static_cast<int>(x), static_cast<int>(y), graph, true);
 }
 
 void ziki::move() {
@@ -60,7 +61,31 @@ void ziki::move() {
 	if (y + height > upperlimit_joydispheight) y = upperlimit_joydispheight - height;
 }
 
-void ziki::run() {
+void ziki::shot(int bulletheight, int bulletgraph) {
+	input_joypad = GetJoypadInputState(DX_INPUT_KEY_PAD1);
+	if (input_joypad & PAD_INPUT_1 && count % 4 == 0) {
+		zikibullet.push_back(bullet(x, y-bulletheight, true));
+	}
+	
+	auto itr = zikibullet.begin();
+	while (itr != zikibullet.end()) {
+		itr->y -= zikishot_speed;
+		if (itr->y < lowerlimit_joydispheight) {
+			itr = zikibullet.erase(itr);
+		}
+		else {
+			DrawGraph(itr->x, itr->y, bulletgraph, true);
+			++itr;
+		}
+	}
+	
+	zikibullet.shrink_to_fit();
+	
+}
+
+void ziki::run(int bulletheight, int bulletgraph) {
 	draw();
 	move();
+	shot(bulletheight, bulletgraph);
+	count++;
 }

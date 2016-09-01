@@ -5,3 +5,5 @@
 #define upperlimit_joydispheight 984
 #define lowerlimit_joydispwidth 100
 #define lowerlimit_joydispheight 20
+
+#define zikishot_speed 8
