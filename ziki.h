@@ -21,19 +21,20 @@ private:
 	//残機に関するフラグ
 	bool lifeflag;
 	int lifepoint;
-	int xcenter;
-	int ycenter;
-	int range;
 	int input_joypad;
 	std::vector<bullet> zikibullet;
-	int count;
-
+	unsigned int count;
+	int bulletgraph;
+	int bulletwidth;
+	int  bulletheight;
+	int hitrangegraph;
+	base hitrange;
+	
 public:
 	ziki();
-	void pass_load(int loadgraph, int loadwidth, int loadheight);
 	void draw();
-	void run(int bulletheight, int bulletgraph);
+	void run();
 	void move();
-	void shot(int bulletheight, int bulletgraph);
+	void shot();
 };
 

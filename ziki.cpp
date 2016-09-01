@@ -1,21 +1,26 @@
 #include "ziki.h"
 
 ziki::ziki() {
-	x = 0;
-	y = 0;
+	graph = LoadGraph("graph/ziki1.png");
+	GetGraphSize(graph, &width, &height);
+	bulletgraph = LoadGraph("graph/ZTama.png");
+	GetGraphSize(bulletgraph, &bulletwidth, &bulletheight);
+	x = lowerlimit_joydispwidth + (upperlimit_joydispwidth - lowerlimit_joydispwidth)/2- width/2;
+	y = ziki_startposition;
+
+	hitrange.graph = LoadGraph("graph/core.png");
+	GetGraphSize(hitrange.graph, &hitrange.width, &hitrange.height);
+		
 	presenceflag = true;
 	lifeflag = true; 	
 	count = 0;
 }
 
-void ziki::pass_load(int loadgraph, int loadwidth, int loadheight) {
-	graph = loadgraph;
-	width = loadwidth;
-	height = loadheight;
-}
+
 
 void ziki::draw() {
 	DrawGraph(static_cast<int>(x), static_cast<int>(y), graph, true);
+	DrawGraph(static_cast<int>(x + width / 2 - hitrange.width / 2), static_cast<int>(y + height / 2 - hitrange.height / 2), hitrange.graph, true);
 }
 
 void ziki::move() {
@@ -61,10 +66,10 @@ void ziki::move() {
 	if (y + height > upperlimit_joydispheight) y = upperlimit_joydispheight - height;
 }
 
-void ziki::shot(int bulletheight, int bulletgraph) {
+void ziki::shot() {
 	input_joypad = GetJoypadInputState(DX_INPUT_KEY_PAD1);
 	if (input_joypad & PAD_INPUT_1 && count % 4 == 0) {
-		zikibullet.push_back(bullet(x, y-bulletheight, true));
+		zikibullet.push_back(bullet(x + width/2 - bulletwidth/2, y-bulletheight, true));
 	}
 	
 	auto itr = zikibullet.begin();
@@ -74,7 +79,7 @@ void ziki::shot(int bulletheight, int bulletgraph) {
 			itr = zikibullet.erase(itr);
 		}
 		else {
-			DrawGraph(itr->x, itr->y, bulletgraph, true);
+			DrawGraph(static_cast<int>(itr->x), static_cast<int>(itr->y), bulletgraph, true);
 			++itr;
 		}
 	}
@@ -83,9 +88,9 @@ void ziki::shot(int bulletheight, int bulletgraph) {
 	
 }
 
-void ziki::run(int bulletheight, int bulletgraph) {
+void ziki::run() {
 	draw();
 	move();
-	shot(bulletheight, bulletgraph);
+	shot();
 	count++;
 }

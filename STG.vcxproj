@@ -152,8 +152,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Desktop\vc\stg1\ziki.cpp" />
     <ClCompile Include="back.cpp" />
+    <ClCompile Include="bossenemy.cpp" />
     <ClCompile Include="control.cpp" />
     <ClCompile Include="load.cpp" />
     <ClCompile Include="main.cpp" />
@@ -163,6 +163,7 @@
     <ClInclude Include="back.h" />
     <ClInclude Include="control.h" />
     <ClInclude Include="define.h" />
+    <ClInclude Include="enemy.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="load.h" />
     <ClInclude Include="structure.h" />

@@ -6,4 +6,8 @@
 #define lowerlimit_joydispwidth 100
 #define lowerlimit_joydispheight 20
 
-#define zikishot_speed 8
+#define zikishot_speed 10
+#define ziki_startposition 900
+//enemyŠÖ˜A
+#define bossenemy_startpoint_x 320
+#define bossenemy_startpoint_y -300

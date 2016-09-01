@@ -7,12 +7,15 @@
 
 class back {
 private:
-	basegraph blueback;
+	basegraph bluebackleft;
+	basegraph bluebackright;
+	basegraph bluebackup;
+	basegraph bluebackdown;
 	basegraph blackback;
 
 public:
 	back();
-	void draw();
-	void run();
+	void firstrun();
+	void secondrun();
 };
 
