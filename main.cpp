@@ -8,7 +8,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine, int nCmdShow)
 {
 	// 画面モードの設定
-	SetGraphMode(640, 480, 16);
+	SetGraphMode(1280, 1024, 16);
 
 	// ＤＸライブラリ初期化処理
 	if (DxLib_Init() == -1) return -1;
