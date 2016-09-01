@@ -162,6 +162,8 @@
   <ItemGroup>
     <ClInclude Include="back.h" />
     <ClInclude Include="control.h" />
+    <ClInclude Include="define.h" />
+    <ClInclude Include="Header.h" />
     <ClInclude Include="load.h" />
     <ClInclude Include="structure.h" />
     <ClInclude Include="ziki.h" />

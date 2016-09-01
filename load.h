@@ -6,6 +6,7 @@ class load {
 private:
 	base et1bullet;
 	base ziki1;
+	base ziki1bullet;
 
 public:
 	load();

@@ -52,6 +52,12 @@ void ziki::move() {
 			x += normalmove;
 		}
 	}
+
+	//‰æ–ÊŠO‚Éo‚È‚¢—l‚É‚·‚é
+	if (x < lowerlimit_joydispwidth)	x = lowerlimit_joydispwidth;
+	if (x + width > upperlimit_joydispwidth) x = upperlimit_joydispwidth - width;
+	if (y < lowerlimit_joydispheight) y = lowerlimit_joydispheight;
+	if (y + height > upperlimit_joydispheight) y = upperlimit_joydispheight - height;
 }
 
 void ziki::run() {

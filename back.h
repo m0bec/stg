@@ -1,19 +1,18 @@
 #pragma once
 #include "DxLib.h"
+#include "structure.h"
+#include "define.h"
 
 #define start_point 0
 
 class back {
 private:
-	//座標
-	double x, y;
-	//グラフィックハンドル
-	int gh;
-
-	void draw();
+	basegraph blueback;
+	basegraph blackback;
 
 public:
 	back();
+	void draw();
 	void run();
 };
 

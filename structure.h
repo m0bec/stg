@@ -5,3 +5,9 @@ struct base {
 	int width;
 	int height;
 };
+
+struct basegraph {
+	int graph;
+	int x;
+	int y;
+};

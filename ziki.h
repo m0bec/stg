@@ -2,6 +2,7 @@
 
 #include "Dxlib.h"
 #include "load.h"
+#include "define.h"
 
 #define slowmove 3
 #define normalmove 5
