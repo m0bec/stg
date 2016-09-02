@@ -17,8 +17,8 @@ ziki::ziki() {
 }
 
 void ziki::getposition(double *centerx, double *centery) {
-	*centerx = this->x + this->width / 2;
-	*centery = this->y + this->height / 2;
+	*centerx = this->x +this->width / 2;
+	*centery = this->y +this->height / 2;
 }
 
 double ziki::pass_centerx() { return x + width / 2; }

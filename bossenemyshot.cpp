@@ -4,9 +4,9 @@
 void bossenemy::straightaim_player() {
 	control &controling = control::getinstance();
 	double px, py;
-	if (count % 60 < 10) {
+	if (count % 120 < 30 && count % 5 == 0) {
 		controling.get_playerposition(&px, &py);
-		enemybullet1.push_back(enemybullet(x + width/2, y + height, atan2(py - (y + height + bigredbullet.height/2), px - (x + width/2))));
+		enemybullet1.push_back(enemybullet(x + width/2 - bigredbullet.width/2, y + height, atan2(py - (y + height + bigredbullet.height/2), px - (x + width/2))));
 	}
 
 	auto itr = enemybullet1.begin();
@@ -24,4 +24,8 @@ void bossenemy::straightaim_player() {
 		
 	}
 	enemybullet1.shrink_to_fit();
+}
+
+void bossenemy::lavishhandout_shot() {
+
 }

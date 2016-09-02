@@ -18,6 +18,7 @@ private:
 	unsigned int count;
 	base bigredbullet;
 	std::vector<enemybullet> enemybullet1;
+	
 
 public:
 	bossenemy();
@@ -25,6 +26,7 @@ public:
 	void move();
 	void startmove();
 	void straightaim_player();
+	void lavishhandout_shot();
 	void roundtrip_move();
 	void run();
 };
