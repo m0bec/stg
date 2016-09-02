@@ -32,6 +32,9 @@ private:
 	
 public:
 	ziki();
+	void getposition(double *centerx, double *centery);
+	double pass_centerx();
+	double pass_centery();
 	void draw();
 	void run();
 	void move();

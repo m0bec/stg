@@ -22,3 +22,14 @@ struct bullet {
 	double y;
 	bool presenceflag;
 };
+
+struct enemybullet {
+	enemybullet(double anotherx, double anothery, double anotherangle) {
+		x = anotherx;
+		y = anothery;
+		angle = anotherangle;
+	}
+	double x;
+	double y;
+	double angle;
+};

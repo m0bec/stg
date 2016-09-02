@@ -16,3 +16,21 @@ void control::run() {
 	boss->run();
 	background->secondrun();
 }
+
+void control::get_playerposition(double *centerx, double *centery) {
+	double tempx, tempy;
+
+	ziki1->getposition(&tempx, &tempy);
+
+	*centerx = tempx;
+	*centery = tempy;
+}
+
+void control::get_enemyposition(double *centerx, double *centery) {
+	double tempx, tempy;
+
+	boss->getposition(&tempx, &tempy);
+
+	*centerx = tempx;
+	*centery = tempy;
+}

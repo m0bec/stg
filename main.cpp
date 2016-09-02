@@ -13,19 +13,19 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	// ＤＸライブラリ初期化処理
 	if (DxLib_Init() == -1) return -1;
 
-	std::unique_ptr<control> main_run(new control);
+	control &main_run = control::getinstance();
 
 	// グラフィックの描画先を裏画面にセット
 	SetDrawScreen(DX_SCREEN_BACK);
 
-	main_run->firstrun();
+	main_run.firstrun();
 	// 移動ルーチン
 	while (1)
 	{
 		// 画面を初期化(真っ黒にする)
 		ClearDrawScreen();
 
-		main_run->run();
+		main_run.run();
 		// 裏画面の内容を表画面にコピーする
 		ScreenFlip();
 		

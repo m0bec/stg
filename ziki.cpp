@@ -16,7 +16,13 @@ ziki::ziki() {
 	count = 0;
 }
 
+void ziki::getposition(double *centerx, double *centery) {
+	*centerx = this->x + this->width / 2;
+	*centery = this->y + this->height / 2;
+}
 
+double ziki::pass_centerx() { return x + width / 2; }
+double ziki::pass_centery() { return y + height / 2; }
 
 void ziki::draw() {
 	DrawGraph(static_cast<int>(x), static_cast<int>(y), graph, true);
@@ -68,6 +74,7 @@ void ziki::move() {
 
 void ziki::shot() {
 	input_joypad = GetJoypadInputState(DX_INPUT_KEY_PAD1);
+	
 	if (input_joypad & PAD_INPUT_1 && count % 4 == 0) {
 		zikibullet.push_back(bullet(x + width/2 - bulletwidth/2, y-bulletheight, true));
 	}
@@ -80,7 +87,7 @@ void ziki::shot() {
 		}
 		else {
 			DrawGraph(static_cast<int>(itr->x), static_cast<int>(itr->y), bulletgraph, true);
-			++itr;
+			itr++;
 		}
 	}
 	
