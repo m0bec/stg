@@ -110,12 +110,12 @@ void ziki::resortie() {
 
 	if (sortiecounter % 6 < 3) {
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 150);
-		DrawGraph(x, y, graph, TRUE);
-		DrawGraph(x, y, graph, TRUE);
+		DrawGraph(static_cast<int>(x), static_cast<int>(y), graph, TRUE);
+		DrawGraph(static_cast<int>(x), static_cast<int>(y), graph, TRUE);
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	}
 	else {
-		DrawGraph(x, y, graph, true);
+		DrawGraph(static_cast<int>(x), static_cast<int>(y), graph, true);
 	}
 }
 

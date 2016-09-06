@@ -10,6 +10,10 @@ bossenemy::bossenemy() {
 	GetGraphSize(bigbluebullet.graph, &bigbluebullet.width, &bigbluebullet.height);
 	blue_energybullet.graph = LoadGraph("graph/ETama4.png");
 	GetGraphSize(blue_energybullet.graph, &blue_energybullet.width, &blue_energybullet.height);
+	yellow_bullet.graph = LoadGraph("graph/ETama3.png");
+	GetGraphSize(yellow_bullet.graph, &yellow_bullet.width, &yellow_bullet.height);
+	greenbullet.graph = LoadGraph("graph/ETama5.png");
+	GetGraphSize(greenbullet.graph, &greenbullet.width, &greenbullet.height);
 	x = bossenemy_startpoint_x - width / 2;
 	y = bossenemy_startpoint_y;
 	movestate = 0;
@@ -60,8 +64,8 @@ void bossenemy::move() {
 		lavishhandout_shot();
 		controling.get_presenceflag(&get_presence);
 		if (get_presence) {
-			bossenemy::ebullethit_checker(&enemybullet1, bigredbullet);
-			bossenemy::ebullethit_checker(&enemybullet2, bigbluebullet);
+			//bossenemy::ebullethit_checker(&enemybullet1, bigredbullet);
+			//bossenemy::ebullethit_checker(&enemybullet2, bigbluebullet);
 		}
 		break;
 
@@ -78,11 +82,16 @@ void bossenemy::move() {
 
 	case 3:
 		reset_ebullethit();
-		DrawGraph(x, y, graph, true);
+		DrawGraph(static_cast<int>(x), static_cast<int>(y), graph, true);
 		miss_player18();
+		two_straightaim_shots();
+		//lavishhandout_shot2();
+		base_lavishhandout_shot(&enemybullet3, 0.0, 2*DX_PI, DX_PI, 4, greenbullet, bulletspeed_4);
 		controling.get_presenceflag(&get_presence);
 		if (get_presence) {
-			bossenemy::ebullethit_checker(&enemybullet3, blue_energybullet);
+			//bossenemy::ebullethit_checker(&enemybullet1, blue_energybullet);
+			//bossenemy::ebullethit_checker(&enemybullet2, yellow_bullet);
+			//bossenemy::ebullethit_checker(&enemybullet3, greenbullet);
 		}
 		break;
 	}		

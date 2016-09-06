@@ -24,11 +24,14 @@ private:
 	base bigredbullet;
 	base bigbluebullet;
 	base blue_energybullet;
+	base yellow_bullet;
+	base greenbullet;
 	std::vector<enemybullet> enemybullet1;
 	std::vector<enemybullet> enemybullet2;
 	std::vector<enemybullet> enemybullet3;
 	double memoryangle1;
 	double memoryangle2;
+	double memoryangle3;
 	int shotflag1;
 	bool ebullethit;
 	bool get_presence;
@@ -38,6 +41,7 @@ public:
 	void set_enemyhp(int enemyhp);
 	void enemy_damage_counter();
 	void getposition(double *ex, double *ey, int *ewidth, int *eheight);
+	void base_lavishhandout_shot(std::vector<enemybullet> *bullet, double lowrange, double highrange, double centerrange, int hitrange, base bullettype, int bulletspeed);
 	bool ebullethit_pass();
 	void reset_ebullethit();
 	void goto_center();
@@ -46,6 +50,8 @@ public:
 	void straightaim_player();
 	void lavishhandout_shot();
 	void miss_player18();
+	void two_straightaim_shots();
+	void lavishhandout_shot2();
 	void ebullethit_checker(std::vector<enemybullet> *bullet, base bullettype);
 	void roundtrip_move();
 	void run();
