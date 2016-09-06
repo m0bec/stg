@@ -18,8 +18,12 @@ public:
 		static control singleton_control;
 		return singleton_control;
 	}
-	void get_enemyposition(double *x, double *y);
+	void get_enemyposition(double *ex, double *ey, int *ewidtn, int *eheight);
 	void get_playerposition(double *x, double *y);
+	bool hitcheck(std::vector<enemybullet> *bullet, base bullettype);
+	void get_presenceflag(bool *flag);
+	void calculation_enemyhp();
+	void player_lifecheck();
 	void firstrun();
 	void run();
 };

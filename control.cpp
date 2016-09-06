@@ -10,11 +10,17 @@ control::control() {
 void control::firstrun() {
 	
 }
+
 void control::run() {
 	background->firstrun();
 	ziki1->run();
 	boss->run();
+	player_lifecheck();
 	background->secondrun();
+}
+
+void control::calculation_enemyhp() {
+	boss->enemy_damage_counter();
 }
 
 void control::get_playerposition(double *centerx, double *centery) {
@@ -26,11 +32,39 @@ void control::get_playerposition(double *centerx, double *centery) {
 	*centery = tempy;
 }
 
-void control::get_enemyposition(double *centerx, double *centery) {
+void control::get_enemyposition(double *ex, double *ey, int *ewidth, int *eheight) {
 	double tempx, tempy;
+	int tempwidth, tempheight;
 
-	boss->getposition(&tempx, &tempy);
+	boss->getposition(&tempx, &tempy, &tempwidth, &tempheight);
 
-	*centerx = tempx;
-	*centery = tempy;
+	*ex = tempx;
+	*ey = tempy;
+	*ewidth = tempwidth;
+	*eheight = tempheight;
+}
+
+void control::get_presenceflag(bool *flag) {
+	bool get_presence;
+	ziki1->presenceflag_pass(&get_presence);
+	*flag = get_presence;
+}
+
+bool control::hitcheck(std::vector<enemybullet> *bullet, base bullettype) {
+	double zikicx, zikicy, bulletcx, bulletcy;
+	ziki1->getposition(&zikicx, &zikicy);
+	auto itr = (*bullet).begin();
+	while (itr != (*bullet).end()) {
+		if ((zikicx-itr->x)*(zikicx-itr->x) + (zikicy-itr->y)*(zikicy-itr->y) < (itr->range+ziki1->pass_hitdist())*(itr->range+ziki1->pass_hitdist())) {
+			return true;
+		}
+		else {
+			itr++;
+		}
+	}
+	return false;
+}
+
+void control::player_lifecheck() {
+	ziki1->lifecheck(boss->ebullethit_pass());
 }

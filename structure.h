@@ -24,12 +24,16 @@ struct bullet {
 };
 
 struct enemybullet {
-	enemybullet(double anotherx, double anothery, double anotherangle) {
+	enemybullet(double anotherx, double anothery, double anotherangle, double baserange) {
 		x = anotherx;
 		y = anothery;
 		angle = anotherangle;
+		elapsedtime = 0;
+		range = baserange;
 	}
 	double x;
 	double y;
 	double angle;
+	unsigned int elapsedtime;
+	double range;
 };

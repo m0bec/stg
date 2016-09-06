@@ -23,9 +23,9 @@ void back::firstrun() {
 }
 
 void back::secondrun() {
-	DrawGraph(bluebackleft.x, bluebackleft.y, bluebackleft.graph, false);
-	DrawGraph(bluebackup.x, bluebackup.y, bluebackup.graph, false);
+	DrawGraph(static_cast<int>(bluebackleft.x), static_cast<int>(bluebackleft.y), bluebackleft.graph, false);
+	//DrawGraph(static_cast<int>(bluebackup.x), static_cast<int>(bluebackup.y), bluebackup.graph, false);
 
-	DrawGraph(bluebackdown.x, bluebackdown.y, bluebackdown.graph, false);
-	DrawGraph(bluebackright.x, bluebackright.y, bluebackright.graph, false);
+	DrawGraph(static_cast<int>(bluebackdown.x), static_cast<int>(bluebackdown.y), bluebackdown.graph, false);
+	DrawGraph(static_cast<int>(bluebackright.x), static_cast<int>(bluebackright.y), bluebackright.graph, false);
 }

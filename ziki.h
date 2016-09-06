@@ -23,18 +23,25 @@ private:
 	int lifepoint;
 	int input_joypad;
 	std::vector<bullet> zikibullet;
+	unsigned int invincibletime_counter;
+	unsigned int sortiecounter;
 	unsigned int count;
 	int bulletgraph;
 	int bulletwidth;
 	int  bulletheight;
 	int hitrangegraph;
 	base hitrange;
+	double hitdist;
+	bool gameover_flag;
 	
 public:
 	ziki();
 	void getposition(double *centerx, double *centery);
-	double pass_centerx();
-	double pass_centery();
+	void lifecheck(bool cheacker);
+	void sortiecounter_controler();
+	void resortie();
+	void presenceflag_pass(bool *flag);
+	double pass_hitdist();
 	void draw();
 	void run();
 	void move();

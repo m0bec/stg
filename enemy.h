@@ -4,9 +4,14 @@
 #include "structure.h"
 #include <vector>
 #include <math.h>
+#include <random>
+#define number1 0.0
+#define number2 1.5
 
 class bossenemy {
 private:
+	std::random_device rnd;
+	std::mt19937 mt;
 	double x;
 	double y;
 	int graph;
@@ -17,16 +22,31 @@ private:
 	int direct_pattern;
 	unsigned int count;
 	base bigredbullet;
+	base bigbluebullet;
+	base blue_energybullet;
 	std::vector<enemybullet> enemybullet1;
-	
+	std::vector<enemybullet> enemybullet2;
+	std::vector<enemybullet> enemybullet3;
+	double memoryangle1;
+	double memoryangle2;
+	int shotflag1;
+	bool ebullethit;
+	bool get_presence;
 
 public:
 	bossenemy();
-	void getposition(double *cebterx, double *centery);
+	void set_enemyhp(int enemyhp);
+	void enemy_damage_counter();
+	void getposition(double *ex, double *ey, int *ewidth, int *eheight);
+	bool ebullethit_pass();
+	void reset_ebullethit();
+	void goto_center();
 	void move();
 	void startmove();
 	void straightaim_player();
 	void lavishhandout_shot();
+	void miss_player18();
+	void ebullethit_checker(std::vector<enemybullet> *bullet, base bullettype);
 	void roundtrip_move();
 	void run();
 };

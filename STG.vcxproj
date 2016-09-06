@@ -154,6 +154,7 @@
   <ItemGroup>
     <ClCompile Include="back.cpp" />
     <ClCompile Include="bossenemy.cpp" />
+    <ClCompile Include="bossenemymove.cpp" />
     <ClCompile Include="bossenemyshot.cpp" />
     <ClCompile Include="control.cpp" />
     <ClCompile Include="load.cpp" />
