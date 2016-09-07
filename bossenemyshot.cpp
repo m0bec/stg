@@ -102,8 +102,8 @@ void bossenemy::miss_player18() {
 	}
 	
 	if (count % 4 == 0) {
-		for (int i = 0; i < 12; i++) {
-			enemybullet1.push_back(enemybullet(x + width / 2 - blue_energybullet.width / 2, y + height / 2 - blue_energybullet.height / 2, memoryangle1 + DX_PI/18 + i*2*DX_PI/9, 4));
+		for (int i = 0; i < 18; i++) {
+			enemybullet1.push_back(enemybullet(x + width / 2 - blue_energybullet.width / 2, y + height / 2 - blue_energybullet.height / 2, memoryangle1 + i*DX_PI/9, 4));
 		}
 	}
 
@@ -179,6 +179,7 @@ void bossenemy::lavishhandout_shot2() {
 	}
 }
 
+//’†‰›‚©‚çƒoƒ‰ƒ}ƒL
 void bossenemy::base_lavishhandout_shot(std::vector<enemybullet> *bullet, double lowrange, double highrange, double centerrange, int hitrange, base bullettype, int bulletspeed) {
 	std::uniform_real_distribution<> rand(lowrange, highrange);
 	control &controling = control::getinstance();
@@ -201,4 +202,13 @@ void bossenemy::base_lavishhandout_shot(std::vector<enemybullet> *bullet, double
 		}
 
 	}
+}
+
+void bossenemy::laser_aimplayer() {
+	control &controling = control::getinstance();
+	double px, py;
+	controling.get_playerposition(&px, &py);
+
+	enemybullet3.push_back(enemybullet(x + width/3 - laserbeam[0].width/2, y + height/2, atan2(py - (y + height/2), px -(x + width/3)), ));
+
 }

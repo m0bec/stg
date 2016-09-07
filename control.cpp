@@ -53,8 +53,8 @@ void control::get_presenceflag(bool *flag) {
 bool control::hitcheck(std::vector<enemybullet> *bullet, base bullettype) {
 	double zikicx, zikicy;
 	ziki1->getposition(&zikicx, &zikicy);
-	auto itr = (*bullet).begin();
-	while (itr != (*bullet).end()) {
+	auto itr = bullet->begin();
+	while (itr != bullet->end()) {
 		if ((zikicx-itr->x)*(zikicx-itr->x) + (zikicy-itr->y)*(zikicy-itr->y) < (itr->range+ziki1->pass_hitdist())*(itr->range+ziki1->pass_hitdist())) {
 			return true;
 		}

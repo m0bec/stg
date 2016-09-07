@@ -1,4 +1,5 @@
 #include "enemy.h"
+#include "control.h"
 
 //‰æ–Ê‚É“ü‚Á‚Ä‚­‚é
 void bossenemy::startmove() {
@@ -58,4 +59,50 @@ void bossenemy::goto_center() {
 	if (x == (upperlimit_joydispwidth - lowerlimit_joydispwidth) / 2 + lowerlimit_joydispwidth - width / 2 && y == -(height / 3)) {
 		movestate = 3;
 	}
+}
+
+//Ž©‹@‘¤‚ÉˆÚ“®
+void bossenemy::approach() {
+	double px, py;
+	std::uniform_real_distribution<> rand(0.0, 100);
+	control &controling = control::getinstance();
+	controling.get_playerposition(&px, &py);
+	if (direct_pattern == 0) {
+		if (x + width / 2 > px) {
+			directx = x - rand(mt);
+		}
+		else {
+			directx = x + rand(mt);
+		}
+
+		if (roop_count % 2 == 0) {
+			directy = y + rand(mt);
+		}
+		else {
+			directy = y - rand(mt);
+		}
+		if (directx < lowerlimit_joydispwidth) directx = lowerlimit_joydispwidth;
+		if (directy < upperlimit_joydispwidth - width) directx = upperlimit_joydispwidth - width;
+		if (directy > 0) directy = 0;
+		if (directy < -(height / 3)) directy = -(height / 3);
+
+		memory_xspeed = (directx - x) / (movetime - roop_count);
+		memory_yspeed = (directy - y) / (movetime - roop_count);
+		if (roop_count < 10)	roop_count -= 1;
+		memoryx = x;
+		memoryy = y;
+
+		direct_pattern = 1;
+	}
+
+	if (direct_pattern == 1) {
+		memoryx += memory_xspeed;
+		memoryy += memory_yspeed;
+		if (memoryx == directx && memoryy == directy) {
+			direct_pattern = 2;
+		}
+		x = memoryx;
+		y = memoryy;
+	}
+	DrawGraph(static_cast<int>(x), static_cast<int>(y), graph, true);
 }

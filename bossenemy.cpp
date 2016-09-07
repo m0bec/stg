@@ -14,12 +14,30 @@ bossenemy::bossenemy() {
 	GetGraphSize(yellow_bullet.graph, &yellow_bullet.width, &yellow_bullet.height);
 	greenbullet.graph = LoadGraph("graph/ETama5.png");
 	GetGraphSize(greenbullet.graph, &greenbullet.width, &greenbullet.height);
+	laserbeam[0].graph = LoadGraph("graph/laser5.png");
+	GetGraphSize(laserbeam[0].graph, &laserbeam[0].width, &laserbeam[0].height);
+	laserbeam[1].graph = LoadGraph("graph/laser4.png");
+	GetGraphSize(laserbeam[1].graph, &laserbeam[1].width, &laserbeam[1].height);
+	laserbeam[2].graph = LoadGraph("graph/laser3.png");
+	GetGraphSize(laserbeam[2].graph, &laserbeam[2].width, &laserbeam[2].height);
+	laserbeam[3].graph = LoadGraph("graph/laser2.png");
+	GetGraphSize(laserbeam[3].graph, &laserbeam[3].width, &laserbeam[3].height);
+	laserbeam[4].graph = LoadGraph("graph/laser4.png");
+	GetGraphSize(laserbeam[4].graph, &laserbeam[4].width, &laserbeam[4].height);
 	x = bossenemy_startpoint_x - width / 2;
 	y = bossenemy_startpoint_y;
 	movestate = 0;
 	direct_pattern = 0;
+	direct_pattern2 = 0;
+	roop_count = 0;
 	memoryangle1 = 0;
 	memoryangle2 = 0;
+	memoryx = 0.0;
+	memoryy = 0.0;
+	memory_xspeed = 0.0;
+	memory_yspeed = 0.0;
+	directx = 0.0;
+	directy = 0.0;
 	shotflag1 = 0;
 	mt.seed(rnd());
 	count = 0;
@@ -64,8 +82,8 @@ void bossenemy::move() {
 		lavishhandout_shot();
 		controling.get_presenceflag(&get_presence);
 		if (get_presence) {
-			//bossenemy::ebullethit_checker(&enemybullet1, bigredbullet);
-			//bossenemy::ebullethit_checker(&enemybullet2, bigbluebullet);
+			bossenemy::ebullethit_checker(&enemybullet1, bigredbullet);
+			bossenemy::ebullethit_checker(&enemybullet2, bigbluebullet);
 		}
 		break;
 
@@ -78,6 +96,7 @@ void bossenemy::move() {
 		count = 0;
 		memoryangle1 = 0.0;
 		memoryangle2 = 0.0;
+		set_enemyhp(bossenemy_hp1);
 		break;
 
 	case 3:
@@ -85,15 +104,35 @@ void bossenemy::move() {
 		DrawGraph(static_cast<int>(x), static_cast<int>(y), graph, true);
 		miss_player18();
 		two_straightaim_shots();
-		//lavishhandout_shot2();
-		base_lavishhandout_shot(&enemybullet3, 0.0, 2*DX_PI, DX_PI, 4, greenbullet, bulletspeed_4);
+		base_lavishhandout_shot(&enemybullet3, 0.0, 2*DX_PI, DX_PI, 4, greenbullet, bulletspeed_2);
 		controling.get_presenceflag(&get_presence);
 		if (get_presence) {
-			//bossenemy::ebullethit_checker(&enemybullet1, blue_energybullet);
-			//bossenemy::ebullethit_checker(&enemybullet2, yellow_bullet);
-			//bossenemy::ebullethit_checker(&enemybullet3, greenbullet);
+			bossenemy::ebullethit_checker(&enemybullet1, blue_energybullet);
+			bossenemy::ebullethit_checker(&enemybullet2, yellow_bullet);
+			bossenemy::ebullethit_checker(&enemybullet3, greenbullet);
 		}
 		break;
+
+	case 4:
+		enemybullet1.erase(enemybullet1.begin(), enemybullet1.end());
+		enemybullet2.erase(enemybullet2.begin(), enemybullet2.end());
+		enemybullet3.erase(enemybullet3.begin(), enemybullet3.end());
+		count = 0;
+		memoryangle1 = 0.0;
+		memoryangle2 = 0.0;
+		memoryangle3 = 0.0;
+		direct_pattern = 0;
+		movestate = 5;
+		break;
+
+	case 5:
+		reset_ebullethit();
+		approach();
+		if (direct_pattern == 2) {
+
+		}
+		
+
 	}		
 }
 

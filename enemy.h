@@ -5,6 +5,7 @@
 #include <vector>
 #include <math.h>
 #include <random>
+#include <array>
 #define number1 0.0
 #define number2 1.5
 
@@ -19,13 +20,22 @@ private:
 	int height;
 	int hp;
 	int movestate;
+	int roop_count;
 	int direct_pattern;
+	int direct_pattern2;
+	double directx;
+	double directy;
+	double memoryx;
+	double memoryy;
+	double memory_xspeed;
+	double memory_yspeed;
 	unsigned int count;
 	base bigredbullet;
 	base bigbluebullet;
 	base blue_energybullet;
 	base yellow_bullet;
 	base greenbullet;
+	std::array<base, 5> laserbeam;
 	std::vector<enemybullet> enemybullet1;
 	std::vector<enemybullet> enemybullet2;
 	std::vector<enemybullet> enemybullet3;
@@ -45,6 +55,7 @@ public:
 	bool ebullethit_pass();
 	void reset_ebullethit();
 	void goto_center();
+	void approach();
 	void move();
 	void startmove();
 	void straightaim_player();
@@ -53,6 +64,7 @@ public:
 	void two_straightaim_shots();
 	void lavishhandout_shot2();
 	void ebullethit_checker(std::vector<enemybullet> *bullet, base bullettype);
+	void laser_aimplayer();
 	void roundtrip_move();
 	void run();
 };
