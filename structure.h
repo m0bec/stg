@@ -47,18 +47,18 @@ struct laser_vertex {
 	double r;
 };
 
-struct laser {
-	laser(double anotherx, double anothery, double anotherangle, int width, int height) {
+struct laser {//startx, starty‚Í‰ñ“]‚É’†SÀ•W
+	laser(double startx, double starty, double anotherx, double anothery, double anotherangle, int width, int height) {
 		x = anotherx;
 		y = anothery;
 		angle = anotherangle;
 		elapsedtime = 0;
-		vertex[0].x = x;
-		vertex[0].y = y;
-		vertex[1].x = x + width*sin(DX_PI / 2 - anotherangle);
-		vertex[1].y = y - height*cos(DX_PI / 2 - anotherangle);
-		vertex[3].x = x + height*sin(anotherangle);
-		vertex[3].y = y + height*cos(anotherangle);
+		vertex[0].x = (x - startx)*cos(angle) - (y - starty)*sin(angle) + startx;
+		vertex[0].y = (x - startx)*sin(angle) + (y - starty)*cos(angle) + starty;
+		vertex[1].x = (x + width - startx)*cos(angle) - (y - starty)*sin(angle) + startx;
+		vertex[1].y = (x + width - startx)*sin(angle) + (y - starty)*cos(angle) + starty;
+		vertex[3].x = (x - startx)*cos(angle) - (y + height - starty)*sin(angle) + startx;
+		vertex[3].y = (x - startx)*sin(angle) + (y + height - starty)*cos(angle) + starty;
 		vertex[2].x = vertex[1].x + vertex[3].x;
 		vertex[2].y = vertex[1].y + vertex[3].y;
 		for (int i = 0; i < 4; i++) {
@@ -79,6 +79,6 @@ struct vec {
 };
 
 struct dis {
-	double distance;
+	double distance;	
 	int num;
 };

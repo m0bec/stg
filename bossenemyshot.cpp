@@ -8,9 +8,9 @@ void bossenemy::ebullethit_checker(std::vector<enemybullet> *bullet, base bullet
 	}
 }
 
-void bossenemy::elaserthit_checker(std::vector<enemybullet> *bullet, laser bullettype) {
+void bossenemy::elaserthit_checker(std::vector<laser> *bullet) {
 	control &controling = control::getinstance();
-	if (controling.laser_hitcheck(bullet, bullettype)) {
+	if (controling.laser_hitcheck(bullet)) {
 		ebullethit = true;
 	}
 }
@@ -211,11 +211,57 @@ void bossenemy::base_lavishhandout_shot(std::vector<enemybullet> *bullet, double
 	}
 }
 
-void bossenemy::laser_aimplayer() {
+void bossenemy::laser_aimplayer(std::vector<laser> *laserbeam, base *laserbase) {
 	control &controling = control::getinstance();
 	double px, py;
 	controling.get_playerposition(&px, &py);
 
-	enemybullet3.push_back(enemybullet(x + width/3 - laserbeam[0].width/2, y + height/2, atan2(py - (y + height/2), px -(x + width/3)), ));
+	if (direct_pattern == 2) {
+		laserbeam->push_back(laser(x + width / 3, y + height / 2, x + width / 3 - laserbase[0].width/2, y + height / 2, atan2(py - (y + height / 2), px - (x + width / 3)) - DX_PI/4.0, laserbase[0].width, laserbase[0].height));
+		laserbeam->push_back(laser(x + 2 * width / 3 - laserbase[0].width / 2, y + height / 2, x + 2 * width / 3, y + height / 2, atan2(py - (y + height / 2), px - (x + 2 * width / 3)) + DX_PI / 4.0 + DX_PI, laserbase[0].width, laserbase[0].height));
+		direct_pattern = 3;
+	}
+
+	auto itr = laserbeam->begin();
+	while (itr != laserbeam->end()) {
+		if (lasercount < 15) {
+			SetDrawBlendMode(DX_BLENDMODE_ADD, 255);
+			DrawRotaGraph2(itr->x + laserbase[0].width / 2, itr->y, laserbase[0].width / 2, 0, 1.0, itr->angle, laserbase[0].graph, TRUE, FALSE);
+			DrawRotaGraph2(itr->x + laserbase[0].width / 2, itr->y , laserbase[0].width / 2, 0, 1.0, itr->angle, laserbase[0].graph, TRUE, FALSE);
+			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+		}
+		else if (lasercount < 20) {
+			SetDrawBlendMode(DX_BLENDMODE_ADD, 255);
+			DrawRotaGraph2(itr->x + laserbase[1].width / 2, itr->y , laserbase[1].width / 2, 0, 1.0, itr->angle, laserbase[1].graph, TRUE, FALSE);
+			DrawRotaGraph2(itr->x + laserbase[1].width / 2, itr->y , laserbase[1].width / 2, 0, 1.0, itr->angle, laserbase[1].graph, TRUE, FALSE);
+			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+		}
+		else if (lasercount < 25) {
+			SetDrawBlendMode(DX_BLENDMODE_ADD, 255);
+			DrawRotaGraph2(itr->x + laserbase[2].width / 2, itr->y , laserbase[2].width / 2, 0, 1.0, itr->angle, laserbase[2].graph, TRUE, FALSE);
+			DrawRotaGraph2(itr->x + laserbase[2].width / 2, itr->y , laserbase[2].width / 2, 0, 1.0, itr->angle, laserbase[2].graph, TRUE, FALSE);
+			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+		}
+		else if (lasercount < 30) {
+			SetDrawBlendMode(DX_BLENDMODE_ADD, 255);
+			DrawRotaGraph2(itr->x + laserbase[3].width / 2, itr->y, laserbase[3].width / 2, 0, 1.0, itr->angle, laserbase[3].graph, TRUE, FALSE);
+			DrawRotaGraph2(itr->x + laserbase[3].width / 2, itr->y , laserbase[3].width / 2, 0, 1.0, itr->angle, laserbase[3].graph, TRUE, FALSE);
+			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+		}
+		else {
+			SetDrawBlendMode(DX_BLENDMODE_ADD, 255);
+			DrawRotaGraph2(itr->x + laserbase[4].width / 2, itr->y , laserbase[4].width / 2, 0, 1.0, itr->angle, laserbase[4].graph, TRUE, FALSE);
+			DrawRotaGraph2(itr->x + laserbase[4].width / 2, itr->y , laserbase[4].width / 2, 0, 1.0, itr->angle, laserbase[4].graph, TRUE, FALSE);
+			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+		}
+		
+		if (lasercount > 200) {
+			direct_pattern = 0;
+			lasercount = 0;
+		}
+		lasercount += 1;
+		itr++;
+	}
+	
 
 }

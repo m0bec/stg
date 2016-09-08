@@ -64,7 +64,7 @@ void bossenemy::goto_center() {
 //Ž©‹@‘¤‚ÉˆÚ“®
 void bossenemy::approach() {
 	double px, py;
-	std::uniform_real_distribution<> rand(0.0, 100);
+	std::uniform_int_distribution<> rand(0, 100);
 	control &controling = control::getinstance();
 	controling.get_playerposition(&px, &py);
 	if (direct_pattern == 0) {
@@ -82,27 +82,32 @@ void bossenemy::approach() {
 			directy = y - rand(mt);
 		}
 		if (directx < lowerlimit_joydispwidth) directx = lowerlimit_joydispwidth;
-		if (directy < upperlimit_joydispwidth - width) directx = upperlimit_joydispwidth - width;
+		if (directx > upperlimit_joydispwidth - width) directx = upperlimit_joydispwidth - width;
 		if (directy > 0) directy = 0;
 		if (directy < -(height / 3)) directy = -(height / 3);
 
 		memory_xspeed = (directx - x) / (movetime - roop_count);
 		memory_yspeed = (directy - y) / (movetime - roop_count);
-		if (roop_count < 10)	roop_count -= 1;
+		if (roop_count < 30)	roop_count += 1;
 		memoryx = x;
 		memoryy = y;
 
+		lasercount = 0;
+		laserbeam1.erase(laserbeam1.begin(), laserbeam1.end());
 		direct_pattern = 1;
 	}
 
 	if (direct_pattern == 1) {
-		memoryx += memory_xspeed;
-		memoryy += memory_yspeed;
-		if (memoryx == directx && memoryy == directy) {
+		if (x == directx && y == directy) {
 			direct_pattern = 2;
 		}
+		memoryx += memory_xspeed;
+		memoryy += memory_yspeed;
+		if (abs(directx - memoryx) < abs(memory_xspeed) + 1 || abs(directx - memoryx) < memory_xspeed * 2)	memoryx = directx;
+		if (abs(directy - memoryy) < abs(memory_yspeed) + 1 || abs(directy - memoryy) < memory_yspeed * 2)	memoryy = directy;
 		x = memoryx;
 		y = memoryy;
 	}
 	DrawGraph(static_cast<int>(x), static_cast<int>(y), graph, true);
+	
 }

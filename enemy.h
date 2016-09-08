@@ -23,6 +23,8 @@ private:
 	int roop_count;
 	int direct_pattern;
 	int direct_pattern2;
+	int directx_flag;
+	int directy_flag;
 	double directx;
 	double directy;
 	double memoryx;
@@ -30,27 +32,28 @@ private:
 	double memory_xspeed;
 	double memory_yspeed;
 	unsigned int count;
+	unsigned int lasercount;
 	base bigredbullet;
 	base bigbluebullet;
 	base blue_energybullet;
 	base yellow_bullet;
 	base greenbullet;
-	std::array<base, 5> laserbeam;
+	base laserbeam[5];
 	std::vector<enemybullet> enemybullet1;
 	std::vector<enemybullet> enemybullet2;
 	std::vector<enemybullet> enemybullet3;
+	std::vector<laser> laserbeam1;
 	double memoryangle1;
 	double memoryangle2;
 	double memoryangle3;
 	int shotflag1;
 	bool ebullethit;
 	bool get_presence;
-
 public:
 	bossenemy();
 	void set_enemyhp(int enemyhp);
 	void enemy_damage_counter();
-	void elaserthit_checker(std::vector<enemybullet> *bullet, laser bullettype);
+	void elaserthit_checker(std::vector<laser> *bullet);
 	void getposition(double *ex, double *ey, int *ewidth, int *eheight);
 	void base_lavishhandout_shot(std::vector<enemybullet> *bullet, double lowrange, double highrange, double centerrange, int hitrange, base bullettype, int bulletspeed);
 	bool ebullethit_pass();
@@ -65,7 +68,7 @@ public:
 	void two_straightaim_shots();
 	void lavishhandout_shot2();
 	void ebullethit_checker(std::vector<enemybullet> *bullet, base bullettype);
-	void laser_aimplayer();
+	void laser_aimplayer(std::vector<laser> *laserbeam, base *laserbase);
 	void roundtrip_move();
 	void run();
 };

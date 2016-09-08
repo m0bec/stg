@@ -65,21 +65,22 @@ bool control::hitcheck(std::vector<enemybullet> *bullet, base bullettype) {
 	return false;
 }
 
-bool control::laser_hitcheck(std::vector<enemybullet> *bullet, laser laserbeam) {
+bool control::laser_hitcheck(std::vector<laser> *bullet) {
 	vec vector;
 	vec vector2;
 	dis distance;
 	bool flag = false;
-	double nai, gai, kaku, kaku2, dx, dy, distance, zikicx, zikicy, strx, stry, strr;
+	double p_hitdist, nai, gai, kaku, kaku2, dx, dy, zikicx, zikicy, strx, stry, strr;
 	ziki1->getposition(&zikicx, &zikicy);
+	p_hitdist = ziki1->pass_hitdist();
 	auto itr = bullet->begin();
-	while (itr != bullet->end) {
+	while (itr != bullet->end()) {
 		//長方形の中に円が入り込んでないか
 		//ベクトル
-		vector.x = laserbeam.vertex[1].x - laserbeam.vertex[0].x;
-		vector.y = laserbeam.vertex[1].y - laserbeam.vertex[0].y;
-		vector2.x = zikicx - laserbeam.vertex[0].x;
-		vector2.y = zikicy - laserbeam.vertex[0].y;
+		vector.x = itr->vertex[1].x - itr->vertex[0].x;
+		vector.y = itr->vertex[1].y - itr->vertex[0].y;
+		vector2.x = zikicx - itr->vertex[0].x;
+		vector2.y = zikicy - itr->vertex[0].y;
 
 		//内積
 		nai = vector.x*vector2.x + vector.y*vector2.y;
@@ -89,10 +90,10 @@ bool control::laser_hitcheck(std::vector<enemybullet> *bullet, laser laserbeam) 
 		kaku = atan2(gai, nai);
 		kaku = -(kaku * 180 / DX_PI);
 
-		vector.x = laserbeam.vertex[3].x - laserbeam.vertex[2].x;
-		vector.y = laserbeam.vertex[3].y - laserbeam.vertex[2].y;
-		vector2.x = zikicx - laserbeam.vertex[2].x;
-		vector2.y = zikicy - laserbeam.vertex[2].y;
+		vector.x = itr->vertex[3].x - itr->vertex[2].x;
+		vector.y = itr->vertex[3].y - itr->vertex[2].y;
+		vector2.x = zikicx - itr->vertex[2].x;
+		vector2.y = zikicy - itr->vertex[2].y;
 
 		nai = vector.x*vector2.x + vector.y*vector2.y;
 		gai = vector.x*vector2.y + vector.y*vector2.x;
@@ -108,39 +109,39 @@ bool control::laser_hitcheck(std::vector<enemybullet> *bullet, laser laserbeam) 
 
 		//頂点が円の中にあるか
 		for (int i = 0; i < 4; i++) {
-			dx = zikicx - laserbeam.vertex[i].x;
-			dy = zikicy - laserbeam.vertex[i].y;
-			laserbeam.vertex[i].r = dx*dx + dy*dy;
-			if (laserbeam.vertex[i].r < ziki1->pass_hitdist()*ziki1->pass_hitdist) {
+			dx = zikicx - itr->vertex[i].x;
+			dy = zikicy - itr->vertex[i].y;
+			itr->vertex[i].r = dx*dx + dy*dy;
+			if (itr->vertex[i].r < p_hitdist*p_hitdist) {
 				return true;
 			}
 		}
 
 		for (int i = 0; i < 4; i++) {
 			for (int j = i + 1; j < 4; j++) {
-				if (laserbeam.vertex[i].r > laserbeam.vertex[j].r) {
-					strx = laserbeam.vertex[i].x;
-					stry = laserbeam.vertex[i].y;
-					strr = laserbeam.vertex[i].r;
-					laserbeam.vertex[i].x = laserbeam.vertex[j].x;
-					laserbeam.vertex[i].y = laserbeam.vertex[j].y;
-					laserbeam.vertex[i].r = laserbeam.vertex[j].r;
-					laserbeam.vertex[j].x = strx;
-					laserbeam.vertex[j].y = stry;
-					laserbeam.vertex[j].r = strr;
+				if (itr->vertex[i].r > itr->vertex[j].r) {
+					strx = itr->vertex[i].x;
+					stry = itr->vertex[i].y;
+					strr = itr->vertex[i].r;
+					itr->vertex[i].x = itr->vertex[j].x;
+					itr->vertex[i].y = itr->vertex[j].y;
+					itr->vertex[i].r = itr->vertex[j].r;
+					itr->vertex[j].x = strx;
+					itr->vertex[j].y = stry;
+					itr->vertex[j].r = strr;
 				}
 			}
 		}
 
-		vector.x = laserbeam.vertex[1].x - laserbeam.vertex[0].x;
-		vector.y = laserbeam.vertex[1].y - laserbeam.vertex[0].y;
-		vector2.x = zikicx - laserbeam.vertex[0].x;
-		vector2.x = zikicy - laserbeam.vertex[0].y;
+		vector.x = itr->vertex[1].x - itr->vertex[0].x;
+		vector.y = itr->vertex[1].y - itr->vertex[0].y;
+		vector2.x = zikicx - itr->vertex[0].x;
+		vector2.x = zikicy - itr->vertex[0].y;
 		vector.length = sqrt(vector.x*vector.x + vector.y*vector.y);
 		nai = vector.x*vector2.x + vector.y*vector2.y;
 		gai = vector.x*vector2.y + vector.y*vector2.x;
 		distance.distance = fabs(gai / vector.length);
-		if (nai > 0 && distance.distance < ziki1->pass_hitdist) {
+		if (nai > 0 && distance.distance < p_hitdist) {
 			return true;
 		}
 		itr++;

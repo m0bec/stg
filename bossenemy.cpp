@@ -22,7 +22,7 @@ bossenemy::bossenemy() {
 	GetGraphSize(laserbeam[2].graph, &laserbeam[2].width, &laserbeam[2].height);
 	laserbeam[3].graph = LoadGraph("graph/laser2.png");
 	GetGraphSize(laserbeam[3].graph, &laserbeam[3].width, &laserbeam[3].height);
-	laserbeam[4].graph = LoadGraph("graph/laser4.png");
+	laserbeam[4].graph = LoadGraph("graph/laser1.png");
 	GetGraphSize(laserbeam[4].graph, &laserbeam[4].width, &laserbeam[4].height);
 	x = bossenemy_startpoint_x - width / 2;
 	y = bossenemy_startpoint_y;
@@ -38,9 +38,12 @@ bossenemy::bossenemy() {
 	memory_yspeed = 0.0;
 	directx = 0.0;
 	directy = 0.0;
+	directx_flag = 0;
+	directy_flag = 0;
 	shotflag1 = 0;
 	mt.seed(rnd());
 	count = 0;
+	lasercount = 0;
 	ebullethit = false;
 }
 
@@ -75,7 +78,7 @@ void bossenemy::move() {
 		set_enemyhp(bossenemy_hp1);
 		break;
 
-	case 1:
+	/*case 1:
 		reset_ebullethit();
 		roundtrip_move();
 		straightaim_player();
@@ -85,7 +88,7 @@ void bossenemy::move() {
 			bossenemy::ebullethit_checker(&enemybullet1, bigredbullet);
 			bossenemy::ebullethit_checker(&enemybullet2, bigbluebullet);
 		}
-		break;
+		break;*/
 
 	case 2:
 		enemybullet1.erase(enemybullet1.begin(), enemybullet1.end());
@@ -113,7 +116,7 @@ void bossenemy::move() {
 		}
 		break;
 
-	case 4:
+	case 1:
 		enemybullet1.erase(enemybullet1.begin(), enemybullet1.end());
 		enemybullet2.erase(enemybullet2.begin(), enemybullet2.end());
 		enemybullet3.erase(enemybullet3.begin(), enemybullet3.end());
@@ -128,9 +131,11 @@ void bossenemy::move() {
 	case 5:
 		reset_ebullethit();
 		approach();
-		if (direct_pattern == 2) {
-
+		if (direct_pattern >= 2) {
+			laser_aimplayer(&laserbeam1, laserbeam);
+			
 		}
+		bossenemy::elaserthit_checker(&laserbeam1);
 		
 
 	}		
