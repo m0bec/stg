@@ -3,7 +3,7 @@
 #include "ziki.h"
 #include "load.h"
 #include "enemy.h"
-
+#include <math.h>
 #include <memory>
 
 class control {
@@ -22,6 +22,7 @@ public:
 	void get_enemyposition(double *ex, double *ey, int *ewidtn, int *eheight);
 	void get_playerposition(double *x, double *y);
 	bool hitcheck(std::vector<enemybullet> *bullet, base bullettype);
+	bool laser_hitcheck(std::vector<enemybullet> *bullet, laser laserbeam);
 	void get_presenceflag(bool *flag);
 	void calculation_enemyhp();
 	void player_lifecheck();

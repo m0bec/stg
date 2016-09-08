@@ -1,5 +1,6 @@
 #pragma once
 #include <math.h>
+#include <array>
 #include "DxLib.h"
 
 struct base {
@@ -43,6 +44,7 @@ struct enemybullet {
 struct laser_vertex {
 	double x;
 	double y;
+	double r;
 };
 
 struct laser {
@@ -59,12 +61,15 @@ struct laser {
 		vertex[3].y = y + height*cos(anotherangle);
 		vertex[2].x = vertex[1].x + vertex[3].x;
 		vertex[2].y = vertex[1].y + vertex[3].y;
+		for (int i = 0; i < 4; i++) {
+			vertex[i].r = 0.0;
+		}
 	}
 	double x;
 	double y;
 	double angle;
 	unsigned int elapsedtime;
-	laser_vertex vertex[4];
+	std::array<laser_vertex, 4> vertex;
 };
 
 struct vec {
