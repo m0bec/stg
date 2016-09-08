@@ -72,77 +72,79 @@ bool control::laser_hitcheck(std::vector<enemybullet> *bullet, laser laserbeam) 
 	bool flag = false;
 	double nai, gai, kaku, kaku2, dx, dy, distance, zikicx, zikicy, strx, stry, strr;
 	ziki1->getposition(&zikicx, &zikicy);
+	auto itr = bullet->begin();
+	while (itr != bullet->end) {
+		//長方形の中に円が入り込んでないか
+		//ベクトル
+		vector.x = laserbeam.vertex[1].x - laserbeam.vertex[0].x;
+		vector.y = laserbeam.vertex[1].y - laserbeam.vertex[0].y;
+		vector2.x = zikicx - laserbeam.vertex[0].x;
+		vector2.y = zikicy - laserbeam.vertex[0].y;
 
-	//長方形の中に円が入り込んでないか
-	//ベクトル
-	vector.x = laserbeam.vertex[1].x - laserbeam.vertex[0].x;
-	vector.y = laserbeam.vertex[1].y - laserbeam.vertex[0].y;
-	vector2.x = zikicx - laserbeam.vertex[0].x;
-	vector2.y = zikicy - laserbeam.vertex[0].y;
+		//内積
+		nai = vector.x*vector2.x + vector.y*vector2.y;
+		//外積
+		gai = vector.x*vector2.y + vector.y*vector2.x;
 
-	//内積
-	nai = vector.x*vector2.x + vector.y*vector2.y;
-	//外積
-	gai = vector.x*vector2.y + vector.y*vector2.x;
+		kaku = atan2(gai, nai);
+		kaku = -(kaku * 180 / DX_PI);
 
-	kaku = atan2(gai, nai);
-	kaku = -(kaku * 180 / DX_PI);
+		vector.x = laserbeam.vertex[3].x - laserbeam.vertex[2].x;
+		vector.y = laserbeam.vertex[3].y - laserbeam.vertex[2].y;
+		vector2.x = zikicx - laserbeam.vertex[2].x;
+		vector2.y = zikicy - laserbeam.vertex[2].y;
 
-	vector.x = laserbeam.vertex[3].x - laserbeam.vertex[2].x;
-	vector.y = laserbeam.vertex[3].y - laserbeam.vertex[2].y;
-	vector2.x = zikicx - laserbeam.vertex[2].x;
-	vector2.y = zikicy - laserbeam.vertex[2].y;
+		nai = vector.x*vector2.x + vector.y*vector2.y;
+		gai = vector.x*vector2.y + vector.y*vector2.x;
 
-	nai = vector.x*vector2.x + vector.y*vector2.y;
-	gai = vector.x*vector2.y + vector.y*vector2.x;
-
-	if (atan2(gai, nai) != 0) {
-		kaku2 = -(atan2(gai, nai));
-	}
-	else {
-		kaku2 = 0;
-	}
-	kaku2 = kaku2 * 180 / DX_PI;
-	if (0 < kaku && kaku < 90 && 0 < kaku2 && kaku2 < 90)	return true;
-
-	//頂点が円の中にあるか
-	for (int i = 0; i < 4; i++) {
-		dx = zikicx - laserbeam.vertex[i].x;
-		dy = zikicy - laserbeam.vertex[i].y;
-		laserbeam.vertex[i].r = dx*dx + dy*dy;
-		if (laserbeam.vertex[i].r<ziki1->pass_hitdist()*ziki1->pass_hitdist) {
-			return true;
+		if (atan2(gai, nai) != 0) {
+			kaku2 = -(atan2(gai, nai));
 		}
-	}
+		else {
+			kaku2 = 0;
+		}
+		kaku2 = kaku2 * 180 / DX_PI;
+		if (0 < kaku && kaku < 90 && 0 < kaku2 && kaku2 < 90)	return true;
 
-	for (int i = 0; i < 4; i++) {
-		for (int j = i + 1; j < 4; j++) {
-			if (laserbeam.vertex[i].r > laserbeam.vertex[j].r) {
-				strx = laserbeam.vertex[i].x;
-				stry = laserbeam.vertex[i].y;
-				strr = laserbeam.vertex[i].r;
-				laserbeam.vertex[i].x = laserbeam.vertex[j].x;
-				laserbeam.vertex[i].y = laserbeam.vertex[j].y;
-				laserbeam.vertex[i].r = laserbeam.vertex[j].r;
-				laserbeam.vertex[j].x = strx;
-				laserbeam.vertex[j].y = stry;
-				laserbeam.vertex[j].r = strr;
+		//頂点が円の中にあるか
+		for (int i = 0; i < 4; i++) {
+			dx = zikicx - laserbeam.vertex[i].x;
+			dy = zikicy - laserbeam.vertex[i].y;
+			laserbeam.vertex[i].r = dx*dx + dy*dy;
+			if (laserbeam.vertex[i].r < ziki1->pass_hitdist()*ziki1->pass_hitdist) {
+				return true;
 			}
 		}
-	}
 
-	vector.x = laserbeam.vertex[1].x - laserbeam.vertex[0].x;
-	vector.y = laserbeam.vertex[1].y - laserbeam.vertex[0].y;
-	vector2.x = zikicx - laserbeam.vertex[0].x;
-	vector2.x = zikicy - laserbeam.vertex[0].y;
-	vector.length = sqrt(vector.x*vector.x + vector.y*vector.y);
-	nai = vector.x*vector2.x + vector.y*vector2.y;
-	gai = vector.x*vector2.y + vector.y*vector2.x;
-	distance.distance = fabs(gai / vector.length);
-	if (nai > 0 && distance.distance < ziki1->pass_hitdist) {
-		return true;
-	}
+		for (int i = 0; i < 4; i++) {
+			for (int j = i + 1; j < 4; j++) {
+				if (laserbeam.vertex[i].r > laserbeam.vertex[j].r) {
+					strx = laserbeam.vertex[i].x;
+					stry = laserbeam.vertex[i].y;
+					strr = laserbeam.vertex[i].r;
+					laserbeam.vertex[i].x = laserbeam.vertex[j].x;
+					laserbeam.vertex[i].y = laserbeam.vertex[j].y;
+					laserbeam.vertex[i].r = laserbeam.vertex[j].r;
+					laserbeam.vertex[j].x = strx;
+					laserbeam.vertex[j].y = stry;
+					laserbeam.vertex[j].r = strr;
+				}
+			}
+		}
 
+		vector.x = laserbeam.vertex[1].x - laserbeam.vertex[0].x;
+		vector.y = laserbeam.vertex[1].y - laserbeam.vertex[0].y;
+		vector2.x = zikicx - laserbeam.vertex[0].x;
+		vector2.x = zikicy - laserbeam.vertex[0].y;
+		vector.length = sqrt(vector.x*vector.x + vector.y*vector.y);
+		nai = vector.x*vector2.x + vector.y*vector2.y;
+		gai = vector.x*vector2.y + vector.y*vector2.x;
+		distance.distance = fabs(gai / vector.length);
+		if (nai > 0 && distance.distance < ziki1->pass_hitdist) {
+			return true;
+		}
+		itr++;
+	}
 	return false;
 }
 

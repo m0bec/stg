@@ -8,6 +8,13 @@ void bossenemy::ebullethit_checker(std::vector<enemybullet> *bullet, base bullet
 	}
 }
 
+void bossenemy::elaserthit_checker(std::vector<enemybullet> *bullet, laser bullettype) {
+	control &controling = control::getinstance();
+	if (controling.laser_hitcheck(bullet, bullettype)) {
+		ebullethit = true;
+	}
+}
+
 void bossenemy::reset_ebullethit() {
 	ebullethit = false;
 }

@@ -50,6 +50,7 @@ public:
 	bossenemy();
 	void set_enemyhp(int enemyhp);
 	void enemy_damage_counter();
+	void elaserthit_checker(std::vector<enemybullet> *bullet, laser bullettype);
 	void getposition(double *ex, double *ey, int *ewidth, int *eheight);
 	void base_lavishhandout_shot(std::vector<enemybullet> *bullet, double lowrange, double highrange, double centerrange, int hitrange, base bullettype, int bulletspeed);
 	bool ebullethit_pass();
