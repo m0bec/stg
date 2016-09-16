@@ -24,6 +24,8 @@ bossenemy::bossenemy() {
 	GetGraphSize(laserbeam[3].graph, &laserbeam[3].width, &laserbeam[3].height);
 	laserbeam[4].graph = LoadGraph("graph/laser1.png");
 	GetGraphSize(laserbeam[4].graph, &laserbeam[4].width, &laserbeam[4].height);
+	bluericebullet.graph = LoadGraph("graph/ETama6.png");
+	GetGraphSize(bluericebullet.graph, &bluericebullet.width, &bluericebullet.height);
 	x = bossenemy_startpoint_x - width / 2;
 	y = bossenemy_startpoint_y;
 	movestate = 0;
@@ -134,9 +136,16 @@ void bossenemy::move() {
 		if (direct_pattern >= 2) {
 			laser_aimplayer(&laserbeam1, laserbeam);
 			
+			
 		}
-		bossenemy::elaserthit_checker(&laserbeam1);
-		
+		straight_intersection_shot();
+		bossenemy::espinbullet_hitchecker(&spinbullet1, bluericebullet);
+		bossenemy::espinbullet_hitchecker(&spinbullet2, bluericebullet);
+		//bossenemy::elaserthit_checker(&laserbeam1);
+		break;
+
+	case 6:
+		break;
 
 	}		
 }

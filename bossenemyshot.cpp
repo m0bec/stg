@@ -8,6 +8,14 @@ void bossenemy::ebullethit_checker(std::vector<enemybullet> *bullet, base bullet
 	}
 }
 
+void bossenemy::espinbullet_hitchecker(std::vector<rotabullet> *bullet, base bullettype) {
+	control &controling = control::getinstance();
+	if (controling.spinbullet_hitchecker(bullet, bullettype)) {
+		ebullethit = true;
+	}
+}
+
+
 void bossenemy::elaserthit_checker(std::vector<laser> *bullet) {
 	control &controling = control::getinstance();
 	if (controling.laser_hitcheck(bullet)) {
@@ -211,14 +219,17 @@ void bossenemy::base_lavishhandout_shot(std::vector<enemybullet> *bullet, double
 	}
 }
 
+//ÉåÅ[ÉUÅ[
 void bossenemy::laser_aimplayer(std::vector<laser> *laserbeam, base *laserbase) {
 	control &controling = control::getinstance();
 	double px, py;
 	controling.get_playerposition(&px, &py);
 
 	if (direct_pattern == 2) {
-		laserbeam->push_back(laser(x + width / 3, y + height / 2, x + width / 3 - laserbase[0].width/2, y + height / 2, atan2(py - (y + height / 2), px - (x + width / 3)) - DX_PI/4.0, laserbase[0].width, laserbase[0].height));
-		laserbeam->push_back(laser(x + 2 * width / 3 - laserbase[0].width / 2, y + height / 2, x + 2 * width / 3, y + height / 2, atan2(py - (y + height / 2), px - (x + 2 * width / 3)) + DX_PI / 4.0 + DX_PI, laserbase[0].width, laserbase[0].height));
+		memoryangle1 = atan2(py - (y + height / 2), px - (x + width / 3)) - DX_PI / 4.0;
+		memoryangle2 = atan2(py - (y + height / 2), px - (x + 2 * width / 3)) + DX_PI / 4.0 + DX_PI;
+		laserbeam->push_back(laser(x + width / 3, y + height / 2, x + width / 3 - laserbase[0].width/2, y + height / 2, memoryangle1, laserbase[0].width, laserbase[0].height));
+		laserbeam->push_back(laser(x + 2 * width / 3 - laserbase[0].width / 2, y + height / 2, x + 2 * width / 3, y + height / 2,  memoryangle2, laserbase[0].width, laserbase[0].height));
 		direct_pattern = 3;
 	}
 
@@ -226,32 +237,32 @@ void bossenemy::laser_aimplayer(std::vector<laser> *laserbeam, base *laserbase) 
 	while (itr != laserbeam->end()) {
 		if (lasercount < 15) {
 			SetDrawBlendMode(DX_BLENDMODE_ADD, 255);
-			DrawRotaGraph2(itr->x + laserbase[0].width / 2, itr->y, laserbase[0].width / 2, 0, 1.0, itr->angle, laserbase[0].graph, TRUE, FALSE);
-			DrawRotaGraph2(itr->x + laserbase[0].width / 2, itr->y , laserbase[0].width / 2, 0, 1.0, itr->angle, laserbase[0].graph, TRUE, FALSE);
+			DrawRotaGraph2(static_cast<int>(itr->x + laserbase[0].width / 2), static_cast<int>(itr->y), laserbase[0].width / 2, 0, 1.0, itr->angle, laserbase[0].graph, TRUE, FALSE);
+			DrawRotaGraph2(static_cast<int>(itr->x + laserbase[0].width / 2), static_cast<int>(itr->y) , laserbase[0].width / 2, 0, 1.0, itr->angle, laserbase[0].graph, TRUE, FALSE);
 			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 		}
 		else if (lasercount < 20) {
 			SetDrawBlendMode(DX_BLENDMODE_ADD, 255);
-			DrawRotaGraph2(itr->x + laserbase[1].width / 2, itr->y , laserbase[1].width / 2, 0, 1.0, itr->angle, laserbase[1].graph, TRUE, FALSE);
-			DrawRotaGraph2(itr->x + laserbase[1].width / 2, itr->y , laserbase[1].width / 2, 0, 1.0, itr->angle, laserbase[1].graph, TRUE, FALSE);
+			DrawRotaGraph2(static_cast<int>(itr->x + laserbase[1].width / 2), static_cast<int>(itr->y) , laserbase[1].width / 2, 0, 1.0, itr->angle, laserbase[1].graph, TRUE, FALSE);
+			DrawRotaGraph2(static_cast<int>(itr->x + laserbase[1].width / 2), static_cast<int>(itr->y) , laserbase[1].width / 2, 0, 1.0, itr->angle, laserbase[1].graph, TRUE, FALSE);
 			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 		}
 		else if (lasercount < 25) {
 			SetDrawBlendMode(DX_BLENDMODE_ADD, 255);
-			DrawRotaGraph2(itr->x + laserbase[2].width / 2, itr->y , laserbase[2].width / 2, 0, 1.0, itr->angle, laserbase[2].graph, TRUE, FALSE);
-			DrawRotaGraph2(itr->x + laserbase[2].width / 2, itr->y , laserbase[2].width / 2, 0, 1.0, itr->angle, laserbase[2].graph, TRUE, FALSE);
+			DrawRotaGraph2(static_cast<int>(itr->x + laserbase[2].width / 2), static_cast<int>(itr->y) , laserbase[2].width / 2, 0, 1.0, itr->angle, laserbase[2].graph, TRUE, FALSE);
+			DrawRotaGraph2(static_cast<int>(itr->x + laserbase[2].width / 2), static_cast<int>(itr->y) , laserbase[2].width / 2, 0, 1.0, itr->angle, laserbase[2].graph, TRUE, FALSE);
 			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 		}
 		else if (lasercount < 30) {
 			SetDrawBlendMode(DX_BLENDMODE_ADD, 255);
-			DrawRotaGraph2(itr->x + laserbase[3].width / 2, itr->y, laserbase[3].width / 2, 0, 1.0, itr->angle, laserbase[3].graph, TRUE, FALSE);
-			DrawRotaGraph2(itr->x + laserbase[3].width / 2, itr->y , laserbase[3].width / 2, 0, 1.0, itr->angle, laserbase[3].graph, TRUE, FALSE);
+			DrawRotaGraph2(static_cast<int>(itr->x + laserbase[3].width / 2), static_cast<int>(itr->y), laserbase[3].width / 2, 0, 1.0, itr->angle, laserbase[3].graph, TRUE, FALSE);
+			DrawRotaGraph2(static_cast<int>(itr->x + laserbase[3].width / 2), static_cast<int>(itr->y) , laserbase[3].width / 2, 0, 1.0, itr->angle, laserbase[3].graph, TRUE, FALSE);
 			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 		}
 		else {
 			SetDrawBlendMode(DX_BLENDMODE_ADD, 255);
-			DrawRotaGraph2(itr->x + laserbase[4].width / 2, itr->y , laserbase[4].width / 2, 0, 1.0, itr->angle, laserbase[4].graph, TRUE, FALSE);
-			DrawRotaGraph2(itr->x + laserbase[4].width / 2, itr->y , laserbase[4].width / 2, 0, 1.0, itr->angle, laserbase[4].graph, TRUE, FALSE);
+			DrawRotaGraph2(static_cast<int>(itr->x + laserbase[4].width / 2), static_cast<int>(itr->y) , laserbase[4].width / 2, 0, 1.0, itr->angle, laserbase[4].graph, TRUE, FALSE);
+			DrawRotaGraph2(static_cast<int>(itr->x + laserbase[4].width / 2), static_cast<int>(itr->y) , laserbase[4].width / 2, 0, 1.0, itr->angle, laserbase[4].graph, TRUE, FALSE);
 			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 		}
 		
@@ -262,6 +273,46 @@ void bossenemy::laser_aimplayer(std::vector<laser> *laserbeam, base *laserbase) 
 		lasercount += 1;
 		itr++;
 	}
-	
-
 }
+
+//íºê¸åç∑íe(memoryangle1 & memoryangle2)
+void bossenemy::straight_intersection_shot() {
+	control &controling = control::getinstance();
+	double px, py;
+	controling.get_playerposition(&px, &py);
+
+	if (count % 10 == 0 && direct_pattern == 3){
+		for (int i = 0; i > -1000; i -= 100) {
+			spinbullet1.push_back(rotabullet(x + 2 * width / 3 + i * sin(memoryangle2), y + height / 2 + (-1) * i * cos(memoryangle2), memoryangle2 - DX_PI, 3, memoryangle2 + DX_PI / 2));
+			spinbullet2.push_back(rotabullet(x + width / 3 + i * sin(memoryangle1), y + height / 2 + (-1) * i * cos(memoryangle1), memoryangle1, 3, memoryangle1 + DX_PI / 2));
+		}
+	}
+
+	auto itr = spinbullet1.begin();
+	auto itr2 = spinbullet2.begin();
+	while (itr != spinbullet1.end()) {
+		itr->x += cos(itr->angle)* bulletspeed_4;
+		itr->y += sin(itr->angle)* bulletspeed_4;
+		if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - bluericebullet.height
+			|| itr->x < lowerlimit_joydispwidth - bluericebullet.width) {
+			itr = spinbullet1.erase(itr);
+		}
+		else {
+			DrawRotaGraph(static_cast<int>(itr->x), static_cast<int>(itr->y), 1.0, itr->rota, bluericebullet.graph, true);
+			itr++;
+		}
+	}
+	
+	while (itr2 != spinbullet2.end()) {
+		itr2->x += cos(itr2->angle)* bulletspeed_4;
+		itr2->y += sin(itr2->angle)* bulletspeed_4;
+		if (itr2->y > upperlimit_joydispheight || itr2->y < lowerlimit_joydispheight - bluericebullet.height
+			|| itr2->x > upperlimit_joydispwidth) {
+			itr2 = spinbullet2.erase(itr2);
+		}
+		else {
+			DrawRotaGraph(static_cast<int>(itr2->x), static_cast<int>(itr2->y), 1.0, itr2->rota, bluericebullet.graph, true);
+			itr2++;
+		}
+	}
+}	

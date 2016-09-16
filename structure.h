@@ -41,6 +41,24 @@ struct enemybullet {
 	double range;
 };
 
+struct rotabullet {
+	rotabullet(double anotherx, double anothery, double anotherangle, double baserange, double anotherrota) {
+		x = anotherx;
+		y = anothery;
+		angle = anotherangle;
+		elapsedtime = 0;
+		range = baserange;
+		rota = anotherrota;
+	}
+	double x;
+	double y;
+	double angle;
+	unsigned int elapsedtime;
+	double range;
+	double rota;
+};
+
+
 struct laser_vertex {
 	double x;
 	double y;

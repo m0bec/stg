@@ -23,6 +23,7 @@ public:
 	void get_playerposition(double *x, double *y);
 	bool hitcheck(std::vector<enemybullet> *bullet, base bullettype);
 	bool laser_hitcheck(std::vector<laser> *bullet);
+	bool spinbullet_hitchecker(std::vector<rotabullet> *bullet, base bullettype);
 	void get_presenceflag(bool *flag);
 	void calculation_enemyhp();
 	void player_lifecheck();

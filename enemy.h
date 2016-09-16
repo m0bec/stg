@@ -39,10 +39,13 @@ private:
 	base yellow_bullet;
 	base greenbullet;
 	base laserbeam[5];
+	base bluericebullet;
 	std::vector<enemybullet> enemybullet1;
 	std::vector<enemybullet> enemybullet2;
 	std::vector<enemybullet> enemybullet3;
 	std::vector<laser> laserbeam1;
+	std::vector<rotabullet> spinbullet1;
+	std::vector<rotabullet> spinbullet2;
 	double memoryangle1;
 	double memoryangle2;
 	double memoryangle3;
@@ -54,6 +57,7 @@ public:
 	void set_enemyhp(int enemyhp);
 	void enemy_damage_counter();
 	void elaserthit_checker(std::vector<laser> *bullet);
+	void espinbullet_hitchecker(std::vector<rotabullet> *bullet, base bullettype);
 	void getposition(double *ex, double *ey, int *ewidth, int *eheight);
 	void base_lavishhandout_shot(std::vector<enemybullet> *bullet, double lowrange, double highrange, double centerrange, int hitrange, base bullettype, int bulletspeed);
 	bool ebullethit_pass();
@@ -67,6 +71,7 @@ public:
 	void miss_player18();
 	void two_straightaim_shots();
 	void lavishhandout_shot2();
+	void straight_intersection_shot();
 	void ebullethit_checker(std::vector<enemybullet> *bullet, base bullettype);
 	void laser_aimplayer(std::vector<laser> *laserbeam, base *laserbase);
 	void roundtrip_move();
