@@ -135,10 +135,9 @@ void bossenemy::move() {
 		approach();
 		if (direct_pattern >= 2) {
 			laser_aimplayer(&laserbeam1, laserbeam);
-			
-			
 		}
 		straight_intersection_shot();
+		bossenemy::circlemovebullet();
 		bossenemy::espinbullet_hitchecker(&spinbullet1, bluericebullet);
 		bossenemy::espinbullet_hitchecker(&spinbullet2, bluericebullet);
 		//bossenemy::elaserthit_checker(&laserbeam1);

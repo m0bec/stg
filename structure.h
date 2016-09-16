@@ -100,3 +100,22 @@ struct dis {
 	double distance;	
 	int num;
 };
+
+struct spining_center {
+	spining_center(double acx, double acy, double ax, double ay, double aangle, double aspinangle, int arange) {
+		cx = acx;
+		cy = acy;
+		x = ax;
+		y = ay;
+		angle = aangle;
+		spinangle = aspinangle;
+		range = arange;
+	}
+	double cx;
+	double cy;
+	double x;
+	double y;
+	double angle;
+	double spinangle;
+	int range;
+};

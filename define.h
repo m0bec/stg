@@ -24,4 +24,5 @@
 #define bulletspeed_down_003 0.04
 #define bullet_num12 12
 #define bullet_num5 5
+#define bullet_radius20 20
 #define movetime 60

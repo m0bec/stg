@@ -21,6 +21,7 @@ private:
 	int hp;
 	int movestate;
 	int roop_count;
+	int size;
 	int direct_pattern;
 	int direct_pattern2;
 	int directx_flag;
@@ -46,6 +47,7 @@ private:
 	std::vector<laser> laserbeam1;
 	std::vector<rotabullet> spinbullet1;
 	std::vector<rotabullet> spinbullet2;
+	std::vector<spining_center> center1;
 	double memoryangle1;
 	double memoryangle2;
 	double memoryangle3;
@@ -74,6 +76,7 @@ public:
 	void straight_intersection_shot();
 	void ebullethit_checker(std::vector<enemybullet> *bullet, base bullettype);
 	void laser_aimplayer(std::vector<laser> *laserbeam, base *laserbase);
+	void circlemovebullet();
 	void roundtrip_move();
 	void run();
 };

@@ -58,7 +58,7 @@ void bossenemy::lavishhandout_shot() {
 	std::uniform_real_distribution<> rand15(0.0, 1.5);
 	control &controling = control::getinstance();
 	double px, py;
-	if (count % 120 == 0) {
+	if (count % 120 == 1) {
 		controling.get_playerposition(&px, &py);
 		memoryangle1 = atan2(py - (y + height + bigbluebullet.height / 2), px - (x + width / 3));
 		memoryangle2 = atan2(py - (y + height + bigbluebullet.height / 2), px - (x + 2 * width / 3));
@@ -316,3 +316,42 @@ void bossenemy::straight_intersection_shot() {
 		}
 	}
 }	
+
+//memoryangle3
+void bossenemy::circlemovebullet() {
+	std::uniform_real_distribution<> rand(0.0, DX_PI/2);
+	control &controling = control::getinstance();
+	double px, py;
+
+	if (direct_pattern == 2) {
+		controling.get_playerposition(&px, &py);
+		memoryangle3 = atan2(py - (y + height), px - (x + width / 2));
+	}
+
+	if (direct_pattern != 3 && count % 5 == 0) {
+		double randmemory = rand(mt)+DX_PI/4;
+		for (double i = 0; i < 2 * DX_PI; i += DX_PI / 8) {
+			center1.push_back(spining_center(x + width/2, y + height/2, x + width/2 + bullet_radius20*cos(i), y + height/2 + bullet_radius20*sin(i), randmemory, i, 4));
+		}
+	}
+
+	auto itr = center1.begin();
+	while (itr != center1.end()) {
+		itr->cx += bulletspeed_4*cos(itr->angle);
+		itr->cy += bulletspeed_4*sin(itr->angle);
+		itr->spinangle += 0.1;
+		itr->x = itr->cx + bullet_radius20*cos(itr->spinangle);
+		itr->y = itr->cy + bullet_radius20*sin(itr->spinangle);
+
+		if (itr->spinangle > DX_PI * 2)	itr->spinangle -= DX_PI * 2;
+
+		if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - bigredbullet.height
+			|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - bigredbullet.width) {
+			itr = center1.erase(itr);
+		}
+		else {
+			DrawGraph(static_cast<int>(itr->x), static_cast<int>(itr->y), greenbullet.graph, true);
+			itr++;
+		}
+	}
+}
