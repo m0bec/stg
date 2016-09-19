@@ -34,6 +34,8 @@ private:
 	double memory_yspeed;
 	unsigned int count;
 	unsigned int lasercount;
+	unsigned int bullet_directcount;
+	unsigned int bulletcount;
 	base bigredbullet;
 	base bigbluebullet;
 	base blue_energybullet;
@@ -60,6 +62,7 @@ public:
 	void enemy_damage_counter();
 	void elaserthit_checker(std::vector<laser> *bullet);
 	void espinbullet_hitchecker(std::vector<rotabullet> *bullet, base bullettype);
+	void espining_center_hitchecker(std::vector<spining_center> *bullet, base bullettype);
 	void getposition(double *ex, double *ey, int *ewidth, int *eheight);
 	void base_lavishhandout_shot(std::vector<enemybullet> *bullet, double lowrange, double highrange, double centerrange, int hitrange, base bullettype, int bulletspeed);
 	bool ebullethit_pass();

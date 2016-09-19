@@ -110,6 +110,7 @@ struct spining_center {
 		angle = aangle;
 		spinangle = aspinangle;
 		range = arange;
+		count = 0;
 	}
 	double cx;
 	double cy;
@@ -118,4 +119,5 @@ struct spining_center {
 	double angle;
 	double spinangle;
 	int range;
+	unsigned int count;
 };

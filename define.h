@@ -15,6 +15,7 @@
 #define bossenemy_startpoint_x 320
 #define bossenemy_startpoint_y -300
 #define bossenemy_hp1 300
+#define bossenemy_hp2 600
 #define bossenemy_speed1 4
 #define bossenemy_speed2 5
 #define bulletspeed_8 8

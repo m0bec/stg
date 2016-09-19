@@ -15,6 +15,12 @@ void bossenemy::espinbullet_hitchecker(std::vector<rotabullet> *bullet, base bul
 	}
 }
 
+void bossenemy::espining_center_hitchecker(std::vector<spining_center> *bullet, base bullettype) {
+	control &controling = control::getinstance();
+	if (controling.spining_center_hitcheck(bullet, bullettype)) {
+		ebullethit = true;
+	}
+}
 
 void bossenemy::elaserthit_checker(std::vector<laser> *bullet) {
 	control &controling = control::getinstance();
@@ -291,8 +297,8 @@ void bossenemy::straight_intersection_shot() {
 	auto itr = spinbullet1.begin();
 	auto itr2 = spinbullet2.begin();
 	while (itr != spinbullet1.end()) {
-		itr->x += cos(itr->angle)* bulletspeed_4;
-		itr->y += sin(itr->angle)* bulletspeed_4;
+		itr->x += cos(itr->angle)* bulletspeed_2;
+		itr->y += sin(itr->angle)* bulletspeed_2;
 		if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - bluericebullet.height
 			|| itr->x < lowerlimit_joydispwidth - bluericebullet.width) {
 			itr = spinbullet1.erase(itr);
@@ -304,8 +310,8 @@ void bossenemy::straight_intersection_shot() {
 	}
 	
 	while (itr2 != spinbullet2.end()) {
-		itr2->x += cos(itr2->angle)* bulletspeed_4;
-		itr2->y += sin(itr2->angle)* bulletspeed_4;
+		itr2->x += cos(itr2->angle)* bulletspeed_2;
+		itr2->y += sin(itr2->angle)* bulletspeed_2;
 		if (itr2->y > upperlimit_joydispheight || itr2->y < lowerlimit_joydispheight - bluericebullet.height
 			|| itr2->x > upperlimit_joydispwidth) {
 			itr2 = spinbullet2.erase(itr2);
@@ -317,9 +323,9 @@ void bossenemy::straight_intersection_shot() {
 	}
 }	
 
-//memoryangle3
+//memoryangle3 & bullet_directcount
 void bossenemy::circlemovebullet() {
-	std::uniform_real_distribution<> rand(0.0, DX_PI/2);
+	std::uniform_real_distribution<> rand(0.0, DX_PI/32);
 	control &controling = control::getinstance();
 	double px, py;
 
@@ -328,30 +334,52 @@ void bossenemy::circlemovebullet() {
 		memoryangle3 = atan2(py - (y + height), px - (x + width / 2));
 	}
 
-	if (direct_pattern != 3 && count % 5 == 0) {
-		double randmemory = rand(mt)+DX_PI/4;
+	if (direct_pattern != 3 && count % 15 == 0) {
+		double randmemory = rand(mt) - DX_PI/64;
 		for (double i = 0; i < 2 * DX_PI; i += DX_PI / 8) {
-			center1.push_back(spining_center(x + width/2, y + height/2, x + width/2 + bullet_radius20*cos(i), y + height/2 + bullet_radius20*sin(i), randmemory, i, 4));
+			center1.push_back(spining_center(x + width/2, y + height/2, x + width/2 + bullet_radius20*cos(i), y + height/2 + bullet_radius20*sin(i), bulletcount * DX_PI/32 + DX_PI/12, i, 4));
 		}
 	}
 
 	auto itr = center1.begin();
 	while (itr != center1.end()) {
-		itr->cx += bulletspeed_4*cos(itr->angle);
-		itr->cy += bulletspeed_4*sin(itr->angle);
-		itr->spinangle += 0.1;
-		itr->x = itr->cx + bullet_radius20*cos(itr->spinangle);
-		itr->y = itr->cy + bullet_radius20*sin(itr->spinangle);
+		
+		itr->spinangle += 0.01;
+
+		if (bullet_directcount > 100 && bullet_directcount <= 300) {
+			itr->x = itr->cx + (20 + bullet_directcount - 100)*cos(itr->spinangle);
+			itr->y = itr->cy + (20 + bullet_directcount - 100)*sin(itr->spinangle);
+		}
+		else if (bullet_directcount > 300 && bullet_directcount <= 500) {
+			itr->x = itr->cx + (bullet_radius20 + 500 - bullet_directcount)*cos(itr->spinangle);
+			itr->y = itr->cy + (bullet_radius20 + 500 - bullet_directcount)*sin(itr->spinangle);
+		}
+		else if (bullet_directcount > 280) {
+			bullet_directcount = 0;
+		}
+		else {
+			itr->cx += bulletspeed_4*cos(itr->angle);
+			itr->cy += bulletspeed_4*sin(itr->angle);
+			itr->x = itr->cx + bullet_radius20*cos(itr->spinangle);
+			itr->y = itr->cy + bullet_radius20*sin(itr->spinangle);
+		}
 
 		if (itr->spinangle > DX_PI * 2)	itr->spinangle -= DX_PI * 2;
 
-		if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - bigredbullet.height
-			|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - bigredbullet.width) {
+		if (itr->cy > upperlimit_joydispheight || itr->cy < lowerlimit_joydispheight - bigredbullet.height
+			|| itr->cx > upperlimit_joydispwidth || itr->cx < lowerlimit_joydispwidth - bigredbullet.width) {
+			itr->count = 0;
 			itr = center1.erase(itr);
 		}
 		else {
+			itr->count += 1;
 			DrawGraph(static_cast<int>(itr->x), static_cast<int>(itr->y), greenbullet.graph, true);
 			itr++;
 		}
 	}
+	if (bulletcount > 32) {
+		bulletcount = 0;
+	}
+	++bulletcount;
+	++bullet_directcount;
 }

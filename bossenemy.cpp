@@ -45,7 +45,9 @@ bossenemy::bossenemy() {
 	shotflag1 = 0;
 	mt.seed(rnd());
 	count = 0;
+	bulletcount = 0;
 	lasercount = 0;
+	bullet_directcount = 0;
 	ebullethit = false;
 }
 
@@ -128,6 +130,7 @@ void bossenemy::move() {
 		memoryangle3 = 0.0;
 		direct_pattern = 0;
 		movestate = 5;
+		set_enemyhp(bossenemy_hp2);
 		break;
 
 	case 5:
@@ -137,10 +140,13 @@ void bossenemy::move() {
 			laser_aimplayer(&laserbeam1, laserbeam);
 		}
 		straight_intersection_shot();
-		bossenemy::circlemovebullet();
-		bossenemy::espinbullet_hitchecker(&spinbullet1, bluericebullet);
-		bossenemy::espinbullet_hitchecker(&spinbullet2, bluericebullet);
-		//bossenemy::elaserthit_checker(&laserbeam1);
+		if (get_presence) {
+			bossenemy::circlemovebullet();
+			bossenemy::espinbullet_hitchecker(&spinbullet1, bluericebullet);
+			bossenemy::espinbullet_hitchecker(&spinbullet2, bluericebullet);
+			bossenemy::espining_center_hitchecker(&center1, greenbullet);
+			//bossenemy::elaserthit_checker(&laserbeam1);
+		}
 		break;
 
 	case 6:

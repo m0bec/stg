@@ -65,6 +65,21 @@ bool control::hitcheck(std::vector<enemybullet> *bullet, base bullettype) {
 	return false;
 }
 
+bool control::spining_center_hitcheck(std::vector<spining_center> *bullet, base bullettype) {
+	double zikicx, zikicy;
+	ziki1->getposition(&zikicx, &zikicy);
+	auto itr = bullet->begin();
+	while (itr != bullet->end()) {
+		if ((zikicx - itr->x)*(zikicx - itr->x) + (zikicy - itr->y)*(zikicy - itr->y) < (itr->range + ziki1->pass_hitdist())*(itr->range + ziki1->pass_hitdist())) {
+			return true;
+		}
+		else {
+			itr++;
+		}
+	}
+	return false;
+}
+
 bool control::spinbullet_hitchecker(std::vector<rotabullet> *bullet, base bullettype) {
 	double zikicx, zikicy;
 	ziki1->getposition(&zikicx, &zikicy);
