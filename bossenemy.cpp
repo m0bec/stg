@@ -74,6 +74,14 @@ void bossenemy::getposition(double *ex, double *ey, int *ewidth, int *eheight) {
 	*eheight = this->height;
 }
 
+void bossenemy::enemybody_hitcheck(int wid, int heigh, int margin, double positionx, double positiony) {
+	control &controling = control::getinstance();
+	if (controling.body_hitcheck(width, height, bossenemy_bodymargin, x, y)) {
+		ebullethit = true;
+	}
+
+}
+
 void bossenemy::move() {
 	control &controling = control::getinstance();
 	switch (movestate) {
@@ -89,6 +97,7 @@ void bossenemy::move() {
 		lavishhandout_shot();
 		controling.get_presenceflag(&get_presence);
 		if (get_presence) {
+			bossenemy::enemybody_hitcheck(width, height, bossenemy_bodymargin, x, y);
 			bossenemy::ebullethit_checker(&enemybullet1, bigredbullet);
 			bossenemy::ebullethit_checker(&enemybullet2, bigbluebullet);
 		}
@@ -114,6 +123,7 @@ void bossenemy::move() {
 		base_lavishhandout_shot(&enemybullet3, 0.0, 2*DX_PI, DX_PI, 4, greenbullet, bulletspeed_2);
 		controling.get_presenceflag(&get_presence);
 		if (get_presence) {
+			bossenemy::enemybody_hitcheck(width, height, bossenemy_bodymargin, x, y);
 			bossenemy::ebullethit_checker(&enemybullet1, blue_energybullet);
 			bossenemy::ebullethit_checker(&enemybullet2, yellow_bullet);
 			bossenemy::ebullethit_checker(&enemybullet3, greenbullet);
@@ -143,6 +153,7 @@ void bossenemy::move() {
 		bossenemy::circlemovebullet();
 		controling.get_presenceflag(&get_presence);
 		if (get_presence) {
+			bossenemy::enemybody_hitcheck(width, height, bossenemy_bodymargin, x, y);
 			bossenemy::espinbullet_hitchecker(&spinbullet1, bluericebullet);
 			bossenemy::espinbullet_hitchecker(&spinbullet2, bluericebullet);
 			bossenemy::espining_center_hitchecker(&center1, greenbullet);
@@ -151,9 +162,29 @@ void bossenemy::move() {
 		break;
 
 	case 6:
-
+		spinbullet1.erase(spinbullet1.begin(), spinbullet1.end());
+		spinbullet2.erase(spinbullet2.cbegin(), spinbullet2.end());
+		center1.erase(center1.begin(), center1.end());
+		count = 0;
+		memoryangle1 = 0.0;
+		memoryangle2 = 0.0;
+		direct_pattern = 0;
+		bullet_directcount = 0;
+		bulletcount = 0;
+		memoryangle3 = 0.0;
+		movestate = 7;
 		break;
 
+	case 7:
+		controling.get_presenceflag(&get_presence);
+		straightmove();
+		if (get_presence) {
+			bossenemy::enemybody_hitcheck(width, height, bossenemy_bodymargin, x, y);
+		}
+		break;
+
+	case 8:
+		break;
 	}		
 }
 

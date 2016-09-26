@@ -12,6 +12,7 @@
 #define hit_distance 3
 #define shot_margin 90
 //enemyŠÖ˜A
+#define bossenemy_bodymargin 30
 #define bossenemy_startpoint_x 320
 #define bossenemy_startpoint_y -300
 #define bossenemy_hp1 300

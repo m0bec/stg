@@ -55,12 +55,22 @@ bool control::hitcheck(std::vector<enemybullet> *bullet, base bullettype) {
 	ziki1->getposition(&zikicx, &zikicy);
 	auto itr = bullet->begin();
 	while (itr != bullet->end()) {
-		if ((zikicx-itr->x)*(zikicx-itr->x) + (zikicy-itr->y)*(zikicy-itr->y) < (itr->range+ziki1->pass_hitdist())*(itr->range+ziki1->pass_hitdist())) {
+		if ((zikicx - itr->x)*(zikicx - itr->x) + (zikicy - itr->y)*(zikicy - itr->y) < (itr->range+ziki1->pass_hitdist())*(itr->range+ziki1->pass_hitdist())) {
 			return true;
 		}
 		else {
 			itr++;
 		}
+	}
+	return false;
+}
+
+bool control::body_hitcheck(int wid, int heigh, int margin, double positionx, double positiony) {
+	double zikicx, zikicy;
+	ziki1->getposition(&zikicx, &zikicy);
+	if (positionx + margin < zikicx && positionx + wid - margin > zikicx
+		&& positiony + margin < zikicy && positiony + heigh - margin > zikicy) {
+		return true;
 	}
 	return false;
 }

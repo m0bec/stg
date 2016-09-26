@@ -71,6 +71,7 @@ public:
 	void approach();
 	void move();
 	void startmove();
+	void straightmove();
 	void straightaim_player();
 	void lavishhandout_shot();
 	void miss_player18();
@@ -79,6 +80,7 @@ public:
 	void straight_intersection_shot();
 	void ebullethit_checker(std::vector<enemybullet> *bullet, base bullettype);
 	void laser_aimplayer(std::vector<laser> *laserbeam, base *laserbase);
+	void enemybody_hitcheck(int wid, int heigh, int margin, double positionx, double positiony);
 	void circlemovebullet();
 	void roundtrip_move();
 	void run();

@@ -109,5 +109,14 @@ void bossenemy::approach() {
 		y = memoryy;
 	}
 	DrawGraph(static_cast<int>(x), static_cast<int>(y), graph, true);
-	
+}
+
+//‚Ü‚Á‚·‚®ˆÚ“®
+void bossenemy::straightmove() {
+	y += 10;
+	if (y > upperlimit_joydispheight) {
+		movestate = 8;
+		count = 0;
+	}
+	DrawGraph(static_cast<int>(x), static_cast<int>(y), graph, true);
 }
