@@ -140,8 +140,9 @@ void bossenemy::move() {
 			laser_aimplayer(&laserbeam1, laserbeam);
 		}
 		straight_intersection_shot();
+		bossenemy::circlemovebullet();
+		controling.get_presenceflag(&get_presence);
 		if (get_presence) {
-			bossenemy::circlemovebullet();
 			bossenemy::espinbullet_hitchecker(&spinbullet1, bluericebullet);
 			bossenemy::espinbullet_hitchecker(&spinbullet2, bluericebullet);
 			bossenemy::espining_center_hitchecker(&center1, greenbullet);
@@ -150,6 +151,7 @@ void bossenemy::move() {
 		break;
 
 	case 6:
+
 		break;
 
 	}		
