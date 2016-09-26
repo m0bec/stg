@@ -142,3 +142,9 @@ struct enemy_element {
 	int movenum;
 	int hp;
 };
+
+struct enemytype {
+	int graph;
+	int width;
+	int height;
+};

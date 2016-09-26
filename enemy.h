@@ -36,6 +36,7 @@ private:
 	unsigned int lasercount;
 	unsigned int bullet_directcount;
 	unsigned int bulletcount;
+	
 	base bigredbullet;
 	base bigbluebullet;
 	base blue_energybullet;
@@ -50,7 +51,7 @@ private:
 	std::list<rotabullet> spinbullet1;
 	std::list<rotabullet> spinbullet2;
 	std::list<spining_center> center1;
-	std::list<enemy_element> mobenemy;
+	
 	double memoryangle1;
 	double memoryangle2;
 	double memoryangle3;
@@ -85,4 +86,10 @@ public:
 	void circlemovebullet();
 	void roundtrip_move();
 	void run();
+};
+
+class enemy {
+private:
+	std::list<enemy_element> mobenemy;
+	enemytype dartenemy;
 };

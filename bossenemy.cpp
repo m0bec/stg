@@ -26,6 +26,7 @@ bossenemy::bossenemy() {
 	GetGraphSize(laserbeam[4].graph, &laserbeam[4].width, &laserbeam[4].height);
 	bluericebullet.graph = LoadGraph("graph/ETama6.png");
 	GetGraphSize(bluericebullet.graph, &bluericebullet.width, &bluericebullet.height);
+	
 	x = bossenemy_startpoint_x - width / 2;
 	y = bossenemy_startpoint_y;
 	movestate = 0;

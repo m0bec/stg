@@ -159,6 +159,8 @@
     <ClCompile Include="control.cpp" />
     <ClCompile Include="load.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="mobenemy.cpp" />
+    <ClCompile Include="mobenemymove.cpp" />
     <ClCompile Include="ziki.cpp" />
   </ItemGroup>
   <ItemGroup>
