@@ -113,7 +113,7 @@ void bossenemy::approach() {
 
 //‚Ü‚Á‚·‚®ˆÚ“®
 void bossenemy::straightmove() {
-	y += 10;
+	y += 7;
 	if (y > upperlimit_joydispheight) {
 		movestate = 8;
 		count = 0;

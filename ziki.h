@@ -3,7 +3,7 @@
 #include "Dxlib.h"
 #include "load.h"
 #include "define.h"
-#include <vector>
+#include <list>
 #include "structure.h"
 
 #define slowmove 3
@@ -22,7 +22,7 @@ private:
 	bool lifeflag;
 	int lifepoint;
 	int input_joypad;
-	std::vector<bullet> zikibullet;
+	std::list<bullet> zikibullet;
 	unsigned int invincibletime_counter;
 	unsigned int sortiecounter;
 	unsigned int count;

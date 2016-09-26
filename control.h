@@ -21,11 +21,11 @@ public:
 	}
 	void get_enemyposition(double *ex, double *ey, int *ewidtn, int *eheight);
 	void get_playerposition(double *x, double *y);
-	bool hitcheck(std::vector<enemybullet> *bullet, base bullettype);
-	bool laser_hitcheck(std::vector<laser> *bullet);
+	bool hitcheck(std::list<enemybullet> *bullet, base bullettype);
+	bool laser_hitcheck(std::list<laser> *bullet);
 	bool body_hitcheck(int wid, int heigh, int margin, double potisionx, double positiony);
-	bool spining_center_hitcheck(std::vector<spining_center> *bullet, base bullettype);
-	bool spinbullet_hitchecker(std::vector<rotabullet> *bullet, base bullettype);
+	bool spining_center_hitcheck(std::list<spining_center> *bullet, base bullettype);
+	bool spinbullet_hitchecker(std::list<rotabullet> *bullet, base bullettype);
 	void get_presenceflag(bool *flag);
 	void calculation_enemyhp();
 	void player_lifecheck();

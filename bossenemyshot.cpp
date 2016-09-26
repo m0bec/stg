@@ -1,28 +1,28 @@
 #include "enemy.h"
 #include "control.h"
 
-void bossenemy::ebullethit_checker(std::vector<enemybullet> *bullet, base bullettype) {
+void bossenemy::ebullethit_checker(std::list<enemybullet> *bullet, base bullettype) {
 	control &controling = control::getinstance();
 	if (controling.hitcheck(bullet, bullettype)) {
 		ebullethit = true;
 	}
 }
 
-void bossenemy::espinbullet_hitchecker(std::vector<rotabullet> *bullet, base bullettype) {
+void bossenemy::espinbullet_hitchecker(std::list<rotabullet> *bullet, base bullettype) {
 	control &controling = control::getinstance();
 	if (controling.spinbullet_hitchecker(bullet, bullettype)) {
 		ebullethit = true;
 	}
 }
 
-void bossenemy::espining_center_hitchecker(std::vector<spining_center> *bullet, base bullettype) {
+void bossenemy::espining_center_hitchecker(std::list<spining_center> *bullet, base bullettype) {
 	control &controling = control::getinstance();
 	if (controling.spining_center_hitcheck(bullet, bullettype)) {
 		ebullethit = true;
 	}
 }
 
-void bossenemy::elaserthit_checker(std::vector<laser> *bullet) {
+void bossenemy::elaserthit_checker(std::list<laser> *bullet) {
 	control &controling = control::getinstance();
 	if (controling.laser_hitcheck(bullet)) {
 		ebullethit = true;
@@ -201,7 +201,7 @@ void bossenemy::lavishhandout_shot2() {
 }
 
 //中央からバラマキ
-void bossenemy::base_lavishhandout_shot(std::vector<enemybullet> *bullet, double lowrange, double highrange, double centerrange, int hitrange, base bullettype, int bulletspeed) {
+void bossenemy::base_lavishhandout_shot(std::list<enemybullet> *bullet, double lowrange, double highrange, double centerrange, int hitrange, base bullettype, int bulletspeed) {
 	std::uniform_real_distribution<> rand(lowrange, highrange);
 	control &controling = control::getinstance();
 	double px, py;
@@ -226,7 +226,7 @@ void bossenemy::base_lavishhandout_shot(std::vector<enemybullet> *bullet, double
 }
 
 //レーザー
-void bossenemy::laser_aimplayer(std::vector<laser> *laserbeam, base *laserbase) {
+void bossenemy::laser_aimplayer(std::list<laser> *laserbeam, base *laserbase) {
 	control &controling = control::getinstance();
 	double px, py;
 	controling.get_playerposition(&px, &py);

@@ -50,7 +50,7 @@ void control::get_presenceflag(bool *flag) {
 	*flag = get_presence;
 }
 
-bool control::hitcheck(std::vector<enemybullet> *bullet, base bullettype) {
+bool control::hitcheck(std::list<enemybullet> *bullet, base bullettype) {
 	double zikicx, zikicy;
 	ziki1->getposition(&zikicx, &zikicy);
 	auto itr = bullet->begin();
@@ -75,7 +75,7 @@ bool control::body_hitcheck(int wid, int heigh, int margin, double positionx, do
 	return false;
 }
 
-bool control::spining_center_hitcheck(std::vector<spining_center> *bullet, base bullettype) {
+bool control::spining_center_hitcheck(std::list<spining_center> *bullet, base bullettype) {
 	double zikicx, zikicy;
 	ziki1->getposition(&zikicx, &zikicy);
 	auto itr = bullet->begin();
@@ -90,7 +90,7 @@ bool control::spining_center_hitcheck(std::vector<spining_center> *bullet, base 
 	return false;
 }
 
-bool control::spinbullet_hitchecker(std::vector<rotabullet> *bullet, base bullettype) {
+bool control::spinbullet_hitchecker(std::list<rotabullet> *bullet, base bullettype) {
 	double zikicx, zikicy;
 	ziki1->getposition(&zikicx, &zikicy);
 	auto itr = bullet->begin();
@@ -105,9 +105,9 @@ bool control::spinbullet_hitchecker(std::vector<rotabullet> *bullet, base bullet
 	return false;
 }
 
-bool control::laser_hitcheck(std::vector<laser> *bullet) {
-	vec vector;
-	vec vector2;
+bool control::laser_hitcheck(std::list<laser> *bullet) {
+	vec list;
+	vec list2;
 	dis distance;
 	bool flag = false;
 	double p_hitdist, nai, gai, kaku, kaku2, dx, dy, zikicx, zikicy, strx, stry, strr;
@@ -117,26 +117,26 @@ bool control::laser_hitcheck(std::vector<laser> *bullet) {
 	while (itr != bullet->end()) {
 		//長方形の中に円が入り込んでないか
 		//ベクトル
-		vector.x = itr->vertex[1].x - itr->vertex[0].x;
-		vector.y = itr->vertex[1].y - itr->vertex[0].y;
-		vector2.x = zikicx - itr->vertex[0].x;
-		vector2.y = zikicy - itr->vertex[0].y;
+		list.x = itr->vertex[1].x - itr->vertex[0].x;
+		list.y = itr->vertex[1].y - itr->vertex[0].y;
+		list2.x = zikicx - itr->vertex[0].x;
+		list2.y = zikicy - itr->vertex[0].y;
 
 		//内積
-		nai = vector.x*vector2.x + vector.y*vector2.y;
+		nai = list.x*list2.x + list.y*list2.y;
 		//外積
-		gai = vector.x*vector2.y + vector.y*vector2.x;
+		gai = list.x*list2.y + list.y*list2.x;
 
 		kaku = atan2(gai, nai);
 		kaku = -(kaku * 180 / DX_PI);
 
-		vector.x = itr->vertex[3].x - itr->vertex[2].x;
-		vector.y = itr->vertex[3].y - itr->vertex[2].y;
-		vector2.x = zikicx - itr->vertex[2].x;
-		vector2.y = zikicy - itr->vertex[2].y;
+		list.x = itr->vertex[3].x - itr->vertex[2].x;
+		list.y = itr->vertex[3].y - itr->vertex[2].y;
+		list2.x = zikicx - itr->vertex[2].x;
+		list2.y = zikicy - itr->vertex[2].y;
 
-		nai = vector.x*vector2.x + vector.y*vector2.y;
-		gai = vector.x*vector2.y + vector.y*vector2.x;
+		nai = list.x*list2.x + list.y*list2.y;
+		gai = list.x*list2.y + list.y*list2.x;
 
 		if (atan2(gai, nai) != 0) {
 			kaku2 = -(atan2(gai, nai));
@@ -173,14 +173,14 @@ bool control::laser_hitcheck(std::vector<laser> *bullet) {
 			}
 		}
 
-		vector.x = itr->vertex[1].x - itr->vertex[0].x;
-		vector.y = itr->vertex[1].y - itr->vertex[0].y;
-		vector2.x = zikicx - itr->vertex[0].x;
-		vector2.x = zikicy - itr->vertex[0].y;
-		vector.length = sqrt(vector.x*vector.x + vector.y*vector.y);
-		nai = vector.x*vector2.x + vector.y*vector2.y;
-		gai = vector.x*vector2.y + vector.y*vector2.x;
-		distance.distance = fabs(gai / vector.length);
+		list.x = itr->vertex[1].x - itr->vertex[0].x;
+		list.y = itr->vertex[1].y - itr->vertex[0].y;
+		list2.x = zikicx - itr->vertex[0].x;
+		list2.x = zikicy - itr->vertex[0].y;
+		list.length = sqrt(list.x*list.x + list.y*list.y);
+		nai = list.x*list2.x + list.y*list2.y;
+		gai = list.x*list2.y + list.y*list2.x;
+		distance.distance = fabs(gai / list.length);
 		if (nai > 0 && distance.distance < p_hitdist) {
 			return true;
 		}

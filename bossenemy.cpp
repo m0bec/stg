@@ -90,7 +90,7 @@ void bossenemy::move() {
 		set_enemyhp(bossenemy_hp1);
 		break;
 
-	/*case 1:
+	case 1:
 		reset_ebullethit();
 		roundtrip_move();
 		straightaim_player();
@@ -101,13 +101,11 @@ void bossenemy::move() {
 			bossenemy::ebullethit_checker(&enemybullet1, bigredbullet);
 			bossenemy::ebullethit_checker(&enemybullet2, bigbluebullet);
 		}
-		break;*/
+		break;
 
 	case 2:
 		enemybullet1.erase(enemybullet1.begin(), enemybullet1.end());
-		enemybullet1.shrink_to_fit();
 		enemybullet2.erase(enemybullet2.begin(), enemybullet2.end());
-		enemybullet2.shrink_to_fit();
 		goto_center();
 		count = 0;
 		memoryangle1 = 0.0;
@@ -130,7 +128,7 @@ void bossenemy::move() {
 		}
 		break;
 
-	case 1:
+	case 4:
 		enemybullet1.erase(enemybullet1.begin(), enemybullet1.end());
 		enemybullet2.erase(enemybullet2.begin(), enemybullet2.end());
 		enemybullet3.erase(enemybullet3.begin(), enemybullet3.end());
