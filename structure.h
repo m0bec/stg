@@ -121,3 +121,24 @@ struct spining_center {
 	int range;
 	unsigned int count;
 };
+
+struct enemy_element {
+	enemy_element(double anx, double any, int anwidth, int anheight, int angraphnum, int anbulletnum, int anmovenum, int anhp) {
+		x = anx;
+		y = any;
+		width = anwidth;
+		height = anheight;
+		graphnum = angraphnum;
+		bulletnum = anbulletnum;
+		movenum = anmovenum;
+		hp = anhp;
+	}
+	double x;
+	double y;
+	int width;
+	int height;
+	int graphnum;
+	int bulletnum;
+	int movenum;
+	int hp;
+};
