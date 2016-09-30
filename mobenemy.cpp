@@ -1,7 +1,12 @@
 #include "enemy.h"
 #include "control.h"
 
-enemy::enemy() {
-	dartenemy.graph = LoadGraph("graph/dart.png");
-	GetGraphSize(dartenemy.graph, &dartenemy.width, &dartenemy.height);
+void bossenemy::allocation_enemygraph(std::list<enemy_element> *mob) {
+	auto itr = mob->begin();
+	switch (itr->graphnum) {
+	case 0:
+		DrawGraph(static_cast<int>(itr->x), static_cast<int>(itr->y), dartenemy.graph, true);
+		break;
+
+	}
 }

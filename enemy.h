@@ -58,6 +58,10 @@ private:
 	int shotflag1;
 	bool ebullethit;
 	bool get_presence;
+
+	//mobenemy
+	std::list<enemy_element> mobenemy;
+	enemytype dartenemy;
 public:
 	bossenemy();
 	void set_enemyhp(int enemyhp);
@@ -86,10 +90,10 @@ public:
 	void circlemovebullet();
 	void roundtrip_move();
 	void run();
+
+	//mobenemy
+	void allocation_enemygraph(std::list<enemy_element> *mob);
+	void allocation_enemymove(std::list<enemy_element> *mob);
+	void straight_down(double x);
 };
 
-class enemy {
-private:
-	std::list<enemy_element> mobenemy;
-	enemytype dartenemy;
-};

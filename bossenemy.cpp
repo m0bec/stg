@@ -26,6 +26,10 @@ bossenemy::bossenemy() {
 	GetGraphSize(laserbeam[4].graph, &laserbeam[4].width, &laserbeam[4].height);
 	bluericebullet.graph = LoadGraph("graph/ETama6.png");
 	GetGraphSize(bluericebullet.graph, &bluericebullet.width, &bluericebullet.height);
+
+	//mobenemy
+	dartenemy.graph = LoadGraph("graph/dart.png");
+	GetGraphSize(dartenemy.graph, &dartenemy.width, &dartenemy.height);
 	
 	x = bossenemy_startpoint_x - width / 2;
 	y = bossenemy_startpoint_y;
@@ -183,6 +187,11 @@ void bossenemy::move() {
 		break;
 
 	case 8:
+
+		break;
+	case 9:
+		bossenemy::allocation_enemymove(&mobenemy);
+		bossenemy::allocation_enemymove(&mobenemy);
 		break;
 	}		
 }
