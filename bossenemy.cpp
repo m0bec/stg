@@ -95,7 +95,7 @@ void bossenemy::move() {
 		set_enemyhp(bossenemy_hp1);
 		break;
 
-	case 1:
+	/*case 1:
 		reset_ebullethit();
 		roundtrip_move();
 		straightaim_player();
@@ -106,7 +106,7 @@ void bossenemy::move() {
 			bossenemy::ebullethit_checker(&enemybullet1, bigredbullet);
 			bossenemy::ebullethit_checker(&enemybullet2, bigbluebullet);
 		}
-		break;
+		break;*/
 
 	case 2:
 		enemybullet1.erase(enemybullet1.begin(), enemybullet1.end());
@@ -117,7 +117,7 @@ void bossenemy::move() {
 		memoryangle2 = 0.0;
 		set_enemyhp(bossenemy_hp1);
 		break;
-
+		
 	case 3:
 		reset_ebullethit();
 		DrawGraph(static_cast<int>(x), static_cast<int>(y), graph, true);
@@ -178,20 +178,23 @@ void bossenemy::move() {
 		movestate = 7;
 		break;
 
-	case 7:
+	case 1:
 		controling.get_presenceflag(&get_presence);
 		straightmove();
 		if (get_presence) {
 			bossenemy::enemybody_hitcheck(width, height, bossenemy_bodymargin, x, y);
 		}
+		if (y > upperlimit_joydispheight)	movestate = 8;
 		break;
 
 	case 8:
-
+		bossenemy::preparation_case8(&mobenemy, dart_num, 5, 640, -50, aimstraight_3wayshotnum, straight_downnum, 30);
+		movestate = 9;
 		break;
+
 	case 9:
-		bossenemy::allocation_enemymove(&mobenemy);
-		bossenemy::allocation_enemymove(&mobenemy);
+		bossenemy::mobrun(&mobenemy);
+		bossenemy::mobenemy_alivecheck(&mobenemy);
 		break;
 	}		
 }

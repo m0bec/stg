@@ -28,3 +28,11 @@
 #define bullet_num5 5
 #define bullet_radius20 20
 #define movetime 60
+
+//mobenemy
+#define straight_down_speed 4
+#define dart_num 0
+
+#define aimstraight_3wayshotnum 0
+
+#define straight_downnum 0
