@@ -3,6 +3,7 @@
 #include "ziki.h"
 #include "load.h"
 #include "enemy.h"
+#include "system.h"
 #include <math.h>
 #include <memory>
 
@@ -13,6 +14,8 @@ private:
 	std::unique_ptr<ziki> ziki1;
 	std::unique_ptr<load> loading;
 	std::unique_ptr<bossenemy> boss;
+	std::unique_ptr<systemm> sys;
+	int state;
 
 public:
 	static control& getinstance() {
@@ -29,6 +32,7 @@ public:
 	void get_presenceflag(bool *flag);
 	void calculation_enemyhp();
 	void player_lifecheck();
+	int pass_state();
 	void firstrun();
 	void run();
 };

@@ -12,8 +12,10 @@ private:
 	basegraph bluebackup;
 	basegraph bluebackdown;
 	basegraph blackback;
+	
 
 public:
+	
 	back();
 	void firstrun();
 	void secondrun();

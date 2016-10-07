@@ -161,6 +161,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mobenemy.cpp" />
     <ClCompile Include="mobenemymove.cpp" />
+    <ClCompile Include="system.cpp" />
     <ClCompile Include="ziki.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -171,7 +172,11 @@
     <ClInclude Include="Header.h" />
     <ClInclude Include="load.h" />
     <ClInclude Include="structure.h" />
+    <ClInclude Include="system.h" />
     <ClInclude Include="ziki.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

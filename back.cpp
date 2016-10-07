@@ -16,6 +16,8 @@ back::back() {
 	blackback.x = lowerlimit_joydispwidth;
 	blackback.y = lowerlimit_joydispheight;
 
+	
+
 }
 
 void back::firstrun() {

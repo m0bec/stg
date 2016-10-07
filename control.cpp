@@ -5,18 +5,30 @@ control::control() {
 	ziki1.reset(new ziki);
 	loading.reset(new load);
 	boss.reset(new bossenemy);
+	sys.reset(new systemm);
+	state = 0;
 }
 
 void control::firstrun() {
 	
 }
 
+int control::pass_state() {
+	return state;
+}
+
 void control::run() {
-	background->firstrun();
-	ziki1->run();
-	boss->run();
-	player_lifecheck();
-	background->secondrun();
+	if (state == 0) {
+		state = sys->pass_state();
+		sys->startgraphrun();
+	}
+	else if (state == 1) {
+		background->firstrun();
+		ziki1->run();
+		boss->run();
+		player_lifecheck();
+		background->secondrun();
+	}
 }
 
 void control::calculation_enemyhp() {
@@ -66,10 +78,11 @@ bool control::hitcheck(std::list<enemybullet> *bullet, base bullettype) {
 }
 
 bool control::body_hitcheck(int wid, int heigh, int margin, double positionx, double positiony) {
-	double zikicx, zikicy;
+	double zikicx, zikicy, hitdist;
 	ziki1->getposition(&zikicx, &zikicy);
-	if (positionx + margin < zikicx && positionx + wid - margin > zikicx
-		&& positiony + margin < zikicy && positiony + heigh - margin > zikicy) {
+	hitdist = ziki1->pass_hitdist();
+	if (positionx + margin < zikicx +  hitdist && positionx + wid - margin > zikicx - hitdist
+		&& positiony + margin < zikicy + hitdist && positiony + heigh - margin > zikicy - hitdist) {
 		return true;
 	}
 	return false;

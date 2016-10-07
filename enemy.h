@@ -96,7 +96,7 @@ public:
 	void allocation_enemygraph(std::list<enemy_element>::iterator iterate);
 	void allocation_enemymove(std::list<enemy_element>::iterator iterate);
 	void straight_down(std::list<enemy_element>::iterator itrate);
-	void preparation_case8(std::list<enemy_element> *mob, int numenemy, unsigned int enemynum, double anx, double any, int anbulletnum, int anmovenum, int anhp, unsigned int atime);
+	void preparation_case8(std::list<enemy_element> *mob, int numenemy, unsigned int enemynum, double anx, double any, int anbulletnum, int anmovenum, int anhp, unsigned int atime, int rollspeed);
 	void mobenemy_alivecheck(std::list<enemy_element> *mob);
 	void mobenemy_shottypecheck(std::list<enemy_element>::iterator iterate);
 };
