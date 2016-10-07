@@ -4,14 +4,20 @@
 void bossenemy::mobrun(std::list<enemy_element> *mob) {
 	auto itr = mob->begin();
 	while (itr != mob->end()) {
-		bossenemy::allocation_enemygraph(itr);
-		bossenemy::allocation_enemymove(itr);
-		++itr;
+		if (itr->time == 0) {
+			bossenemy::allocation_enemygraph(itr);
+			bossenemy::allocation_enemymove(itr);
+		}
+		else {
+			itr->time -= 1;
+		}
+			++itr;
 	}
 }
 
-void bossenemy::preparation_case8(std::list<enemy_element> *mob, int numenemy, unsigned int enemynum, double anx, double any, int anbulletnum, int anmovenum, int anhp) {
+void bossenemy::preparation_case8(std::list<enemy_element> *mob, int numenemy, unsigned int enemynum, double anx, double any, int anbulletnum, int anmovenum, int anhp, unsigned int atime) {
 	int wid, heigh;
+	unsigned int input_time;
 	switch (numenemy) {
 	case 0:
 		wid = dartenemy.width;
@@ -20,7 +26,8 @@ void bossenemy::preparation_case8(std::list<enemy_element> *mob, int numenemy, u
 	}
 
 	while (enemynum != 0) {
-		mob->push_back(enemy_element(anx, any, wid, heigh, numenemy, anbulletnum, anmovenum, anhp));
+		input_time = 0 + (enemynum-1)*atime;
+		mob->push_back(enemy_element(anx, any, wid, heigh, numenemy, anbulletnum, anmovenum, anhp, input_time));
 		enemynum -= 1;
 	}
 }

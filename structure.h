@@ -123,7 +123,7 @@ struct spining_center {
 };
 
 struct enemy_element {
-	enemy_element(double anx, double any, int anwidth, int anheight, int angraphnum, int anbulletnum, int anmovenum, int anhp) {
+	enemy_element(double anx, double any, int anwidth, int anheight, int angraphnum, int anbulletnum, int anmovenum, int anhp, unsigned int atime) {
 		x = anx;
 		y = any;
 		width = anwidth;
@@ -132,6 +132,7 @@ struct enemy_element {
 		bulletnum = anbulletnum;
 		movenum = anmovenum;
 		hp = anhp;
+		time = atime;
 	}
 	double x;
 	double y;
@@ -141,6 +142,7 @@ struct enemy_element {
 	int bulletnum;
 	int movenum;
 	int hp;
+	unsigned int time;
 };
 
 struct enemytype {
