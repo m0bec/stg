@@ -48,7 +48,7 @@ void bossenemy::mobenemy_alivecheck(std::list<enemy_element> *mob) {
 void bossenemy::allocation_enemygraph(std::list<enemy_element>::iterator iterate) {
 		switch (iterate->graphnum) {
 		case 0:
-			DrawRotaGraph(static_cast<int>(iterate->x), static_cast<int>(iterate->y), 1.0, (iterate->rollingspeed*iterate->pass_time), dartenemy.graph, true, false);
+			DrawRotaGraph(static_cast<int>(iterate->x), static_cast<int>(iterate->y), 1.0, DX_PI/5*iterate->pass_time, dartenemy.graph, true, false);
 			break;
 		}
 }

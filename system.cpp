@@ -9,9 +9,32 @@ systemm::systemm() {
 	GetGraphSize(quitgr.graph, &quitgr.width, &quitgr.width);
 	arrow1.graph = LoadGraph("graph/yazi.png");
 	GetGraphSize(arrow1.graph, &arrow1.width, &arrow1.height);
+	scorenum[0].graph = LoadGraph("graph/number0");
+	GetGraphSize(scorenum[0].graph, &scorenum[0].width, &scorenum[0].height);
+	scorenum[1].graph = LoadGraph("graph/number1");
+	GetGraphSize(scorenum[1].graph, &scorenum[1].width, &scorenum[1].height);
+	scorenum[2].graph = LoadGraph("graph/number2");
+	GetGraphSize(scorenum[2].graph, &scorenum[2].width, &scorenum[2].height);
+	scorenum[3].graph = LoadGraph("graph/number3");
+	GetGraphSize(scorenum[3].graph, &scorenum[3].width, &scorenum[3].height);
+	scorenum[4].graph = LoadGraph("graph/number4");
+	GetGraphSize(scorenum[4].graph, &scorenum[4].width, &scorenum[4].height);
+	scorenum[5].graph = LoadGraph("graph/number5");
+	GetGraphSize(scorenum[5].graph, &scorenum[5].width, &scorenum[5].height);
+	scorenum[6].graph = LoadGraph("graph/number6");
+	GetGraphSize(scorenum[6].graph, &scorenum[6].width, &scorenum[6].height);
+	scorenum[7].graph = LoadGraph("graph/number7");
+	GetGraphSize(scorenum[7].graph, &scorenum[7].width, &scorenum[7].height);
+	scorenum[8].graph = LoadGraph("graph/number8");
+	GetGraphSize(scorenum[8].graph, &scorenum[8].width, &scorenum[8].height);
+	scorenum[9].graph = LoadGraph("graph/number9");
+	GetGraphSize(scorenum[9].graph, &scorenum[9].width, &scorenum[9].height);
 
+
+	kurame_music = LoadSoundMem("music/KURAME_NO_BGM.wav");
 	arrowy = 512 - startgr.height;
 	state = 0;
+	music_time = 0;
 }
 
 void systemm::drawstartmenue() {
@@ -46,10 +69,19 @@ void systemm::checkkey() {
 	}
 }
 
+void systemm::music() {
+	if (music_time % (14*60 + 45) == 0) {
+		PlaySoundMem(kurame_music, DX_PLAYTYPE_BACK);
+		music_time = 0;
+	}
+	++music_time;
+}
+
 void systemm::startgraphrun() {
 	systemm::checkkey();
 	systemm::movearrow(arrowflag);
 	systemm::drawstartmenue();
+	systemm::music();
 }
 
 int systemm::pass_state() {

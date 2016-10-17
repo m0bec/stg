@@ -10,5 +10,8 @@ void bossenemy::allocation_enemymove(std::list<enemy_element>::iterator iterate)
 	case 0:
 		straight_down(iterate);
 		break;
+
+	case 1:
+		break;
 	}
 }
