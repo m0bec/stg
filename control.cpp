@@ -28,6 +28,7 @@ void control::run() {
 		boss->run();
 		player_lifecheck();
 		background->secondrun();
+		sys->scoredisp();
 	}
 }
 

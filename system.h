@@ -2,6 +2,7 @@
 #include "Dxlib.h"
 #include "define.h"
 #include "structure.h"
+#include <math.h>
 
 class systemm {
 private:
@@ -16,6 +17,8 @@ private:
 	int state;
 	int kurame_music;
 	unsigned int music_time;
+	unsigned int score1;
+	unsigned int score2;
 
 public:
 	systemm();
@@ -25,5 +28,6 @@ public:
 	void checkkey();
 	void music();
 	int pass_state();
+	void scoredisp();
 };
 

@@ -35,6 +35,8 @@ systemm::systemm() {
 	arrowy = 512 - startgr.height;
 	state = 0;
 	music_time = 0;
+	score1 = 0;
+	score2 = 0;
 }
 
 void systemm::drawstartmenue() {
@@ -86,4 +88,16 @@ void systemm::startgraphrun() {
 
 int systemm::pass_state() {
 	return state;
+}
+
+void systemm::scoredisp() {
+	unsigned int num = score1;
+	int number;
+	int drawx = upperlimit_width - scorenum[0].width;
+	for (int i = 0; i < 10; i++) {
+		number = num % 10;
+		num = num / 10;
+		DrawGraph(drawx, 920, scorenum[number].graph, true);
+		drawx = drawx - scorenum[0].width;
+	}
 }
