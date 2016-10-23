@@ -7,6 +7,7 @@ control::control() {
 	boss.reset(new bossenemy);
 	sys.reset(new systemm);
 	state = 0;
+	point = 0;
 }
 
 void control::firstrun() {
@@ -15,6 +16,10 @@ void control::firstrun() {
 
 int control::pass_state() {
 	return state;
+}
+
+void control::get_point() {
+	point += ziki1->pass_point();
 }
 
 void control::run() {
@@ -28,7 +33,7 @@ void control::run() {
 		boss->run();
 		player_lifecheck();
 		background->secondrun();
-		sys->scoredisp();
+		sys->scoredisp(point);
 	}
 }
 

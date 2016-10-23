@@ -9,30 +9,31 @@ systemm::systemm() {
 	GetGraphSize(quitgr.graph, &quitgr.width, &quitgr.width);
 	arrow1.graph = LoadGraph("graph/yazi.png");
 	GetGraphSize(arrow1.graph, &arrow1.width, &arrow1.height);
-	scorenum[0].graph = LoadGraph("graph/number0");
+	scorenum[0].graph = LoadGraph("graph/number0.png");
 	GetGraphSize(scorenum[0].graph, &scorenum[0].width, &scorenum[0].height);
-	scorenum[1].graph = LoadGraph("graph/number1");
+	scorenum[1].graph = LoadGraph("graph/number1.png");
 	GetGraphSize(scorenum[1].graph, &scorenum[1].width, &scorenum[1].height);
-	scorenum[2].graph = LoadGraph("graph/number2");
+	scorenum[2].graph = LoadGraph("graph/number2.png");
 	GetGraphSize(scorenum[2].graph, &scorenum[2].width, &scorenum[2].height);
-	scorenum[3].graph = LoadGraph("graph/number3");
+	scorenum[3].graph = LoadGraph("graph/number3.png");
 	GetGraphSize(scorenum[3].graph, &scorenum[3].width, &scorenum[3].height);
-	scorenum[4].graph = LoadGraph("graph/number4");
+	scorenum[4].graph = LoadGraph("graph/number4.png");
 	GetGraphSize(scorenum[4].graph, &scorenum[4].width, &scorenum[4].height);
-	scorenum[5].graph = LoadGraph("graph/number5");
+	scorenum[5].graph = LoadGraph("graph/number5.png");
 	GetGraphSize(scorenum[5].graph, &scorenum[5].width, &scorenum[5].height);
-	scorenum[6].graph = LoadGraph("graph/number6");
+	scorenum[6].graph = LoadGraph("graph/number6.png");
 	GetGraphSize(scorenum[6].graph, &scorenum[6].width, &scorenum[6].height);
-	scorenum[7].graph = LoadGraph("graph/number7");
+	scorenum[7].graph = LoadGraph("graph/number7.png");
 	GetGraphSize(scorenum[7].graph, &scorenum[7].width, &scorenum[7].height);
-	scorenum[8].graph = LoadGraph("graph/number8");
+	scorenum[8].graph = LoadGraph("graph/number8.png");
 	GetGraphSize(scorenum[8].graph, &scorenum[8].width, &scorenum[8].height);
-	scorenum[9].graph = LoadGraph("graph/number9");
+	scorenum[9].graph = LoadGraph("graph/number9.png");
 	GetGraphSize(scorenum[9].graph, &scorenum[9].width, &scorenum[9].height);
 
 
 	kurame_music = LoadSoundMem("music/KURAME_NO_BGM.wav");
 	arrowy = 512 - startgr.height;
+	arrowflag = 0;
 	state = 0;
 	music_time = 0;
 	score1 = 0;
@@ -90,14 +91,14 @@ int systemm::pass_state() {
 	return state;
 }
 
-void systemm::scoredisp() {
-	unsigned int num = score1;
+void systemm::scoredisp(unsigned int point) {
+	score1 = point;
 	int number;
-	int drawx = upperlimit_width - scorenum[0].width;
+	int drawx = upperlimit_width - scorenum[0].width - 50;
 	for (int i = 0; i < 10; i++) {
-		number = num % 10;
-		num = num / 10;
-		DrawGraph(drawx, 920, scorenum[number].graph, true);
+		number = score1 % 10;
+		score1 = score1 / 10;
+		DrawGraph(drawx,50, scorenum[number].graph, true);
 		drawx = drawx - scorenum[0].width;
 	}
 }

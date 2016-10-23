@@ -135,6 +135,7 @@ void ziki::shot() {
 		itr->y -= zikishot_speed;
 		if (itr->y < lowerlimit_joydispheight) {
 			itr = zikibullet.erase(itr);
+			point += 5;
 		}
 		else if (itr->x + bulletwidth > ex && itr->x < ex + ewidth && itr->y + shot_margin < ey + eheight && itr->y + bulletheight > ey) {
 			itr = zikibullet.erase(itr);
@@ -147,6 +148,9 @@ void ziki::shot() {
 	}
 }
 
+unsigned int ziki::pass_point() {
+	return point;
+}
 
 //•œŠˆ‚µ‚Ä‚©‚ç‚ÌŠÔ‚ğŠÇ—
 void ziki::sortiecounter_controler() {

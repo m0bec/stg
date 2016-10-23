@@ -26,6 +26,7 @@ private:
 	unsigned int invincibletime_counter;
 	unsigned int sortiecounter;
 	unsigned int count;
+	unsigned int point;
 	int bulletgraph;
 	int bulletwidth;
 	int  bulletheight;
@@ -46,5 +47,6 @@ public:
 	void run();
 	void move();
 	void shot();
+	unsigned int pass_point();
 };
 

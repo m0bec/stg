@@ -16,6 +16,7 @@ private:
 	std::unique_ptr<bossenemy> boss;
 	std::unique_ptr<systemm> sys;
 	int state;
+	unsigned int point;
 
 public:
 	static control& getinstance() {
@@ -33,6 +34,7 @@ public:
 	void calculation_enemyhp();
 	void player_lifecheck();
 	int pass_state();
+	void get_point();
 	void firstrun();
 	void run();
 };
