@@ -135,11 +135,11 @@ void ziki::shot() {
 		itr->y -= zikishot_speed;
 		if (itr->y < lowerlimit_joydispheight) {
 			itr = zikibullet.erase(itr);
-			point += 5;
 		}
 		else if (itr->x + bulletwidth > ex && itr->x < ex + ewidth && itr->y + shot_margin < ey + eheight && itr->y + bulletheight > ey) {
 			itr = zikibullet.erase(itr);
 			controling.calculation_enemyhp();
+			point += 5;
 		}
 		else {
 			DrawGraph(static_cast<int>(itr->x), static_cast<int>(itr->y), bulletgraph, true);

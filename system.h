@@ -28,6 +28,7 @@ public:
 	void checkkey();
 	void music();
 	int pass_state();
-	void scoredisp(unsigned int point);
+	void scoredisp(unsigned int 
+	);
 };
 

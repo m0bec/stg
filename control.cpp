@@ -19,7 +19,7 @@ int control::pass_state() {
 }
 
 void control::get_point() {
-	point += ziki1->pass_point();
+	point = ziki1->pass_point();
 }
 
 void control::run() {
@@ -33,6 +33,7 @@ void control::run() {
 		boss->run();
 		player_lifecheck();
 		background->secondrun();
+		get_point();
 		sys->scoredisp(point);
 	}
 }
