@@ -26,13 +26,15 @@ private:
 	unsigned int invincibletime_counter;
 	unsigned int sortiecounter;
 	unsigned int count;
-	unsigned int point;
+	unsigned int shotpoint;
+	unsigned int grazepoint;
 	int bulletgraph;
 	int bulletwidth;
 	int  bulletheight;
 	int hitrangegraph;
 	base hitrange;
 	double hitdist;
+	double graze_range;
 	bool gameover_flag;
 	
 public:
@@ -43,10 +45,12 @@ public:
 	void resortie();
 	void presenceflag_pass(bool *flag);
 	double pass_hitdist();
+	double pass_grazedist();
 	void draw();
 	void run();
 	void move();
 	void shot();
 	unsigned int pass_point();
+	void graze_counter();
 };
 

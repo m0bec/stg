@@ -19,8 +19,11 @@ ziki::ziki() {
 	count = 0;
 	invincibletime_counter = 0;
 	sortiecounter = 0;
+	shotpoint = 0;
+	grazepoint = 0;
 
 	hitdist = hit_distance;
+	graze_range = graze_distance;
 }
 
 //’e‚É“–‚½‚Á‚½‚çfalse
@@ -48,6 +51,10 @@ void ziki::getposition(double *centerx, double *centery) {
 
 double ziki::pass_hitdist() {
 	return hitdist;
+}
+
+double ziki::pass_grazedist() {
+	return graze_range;
 }
 
 void ziki::draw() {
@@ -139,7 +146,7 @@ void ziki::shot() {
 		else if (itr->x + bulletwidth > ex && itr->x < ex + ewidth && itr->y + shot_margin < ey + eheight && itr->y + bulletheight > ey) {
 			itr = zikibullet.erase(itr);
 			controling.calculation_enemyhp();
-			point += 5;
+			//shotpoint += 5;
 		}
 		else {
 			DrawGraph(static_cast<int>(itr->x), static_cast<int>(itr->y), bulletgraph, true);
@@ -148,8 +155,12 @@ void ziki::shot() {
 	}
 }
 
+void ziki::graze_counter() {
+	grazepoint += 3;
+}
+
 unsigned int ziki::pass_point() {
-	return point;
+	return (shotpoint + grazepoint);
 }
 
 //•œŠˆ‚µ‚Ä‚©‚ç‚ÌŠÔ‚ğŠÇ—

@@ -74,8 +74,14 @@ bool control::hitcheck(std::list<enemybullet> *bullet, base bullettype) {
 	ziki1->getposition(&zikicx, &zikicy);
 	auto itr = bullet->begin();
 	while (itr != bullet->end()) {
-		if ((zikicx - itr->x)*(zikicx - itr->x) + (zikicy - itr->y)*(zikicy - itr->y) < (itr->range+ziki1->pass_hitdist())*(itr->range+ziki1->pass_hitdist())) {
-			return true;
+		if ((zikicx - itr->x)*(zikicx - itr->x) + (zikicy - itr->y)*(zikicy - itr->y) < (itr->range + ziki1->pass_grazedist())*(itr->range + ziki1->pass_grazedist())) {
+			ziki1->graze_counter();
+			if ((zikicx - itr->x)*(zikicx - itr->x) + (zikicy - itr->y)*(zikicy - itr->y) < (itr->range + ziki1->pass_hitdist())*(itr->range + ziki1->pass_hitdist())) {
+				return true;
+			}
+			else {
+				itr++;
+			}
 		}
 		else {
 			itr++;
@@ -100,8 +106,14 @@ bool control::spining_center_hitcheck(std::list<spining_center> *bullet, base bu
 	ziki1->getposition(&zikicx, &zikicy);
 	auto itr = bullet->begin();
 	while (itr != bullet->end()) {
-		if ((zikicx - itr->x)*(zikicx - itr->x) + (zikicy - itr->y)*(zikicy - itr->y) < (itr->range + ziki1->pass_hitdist())*(itr->range + ziki1->pass_hitdist())) {
-			return true;
+		if ((zikicx - itr->x)*(zikicx - itr->x) + (zikicy - itr->y)*(zikicy - itr->y) < (itr->range + ziki1->pass_grazedist())*(itr->range + ziki1->pass_grazedist())) {
+			ziki1->graze_counter();
+			if ((zikicx - itr->x)*(zikicx - itr->x) + (zikicy - itr->y)*(zikicy - itr->y) < (itr->range + ziki1->pass_hitdist())*(itr->range + ziki1->pass_hitdist())) {
+				return true;
+			}
+			else {
+				itr++;
+			}
 		}
 		else {
 			itr++;
@@ -115,8 +127,14 @@ bool control::spinbullet_hitchecker(std::list<rotabullet> *bullet, base bulletty
 	ziki1->getposition(&zikicx, &zikicy);
 	auto itr = bullet->begin();
 	while (itr != bullet->end()) {
-		if ((zikicx - itr->x)*(zikicx - itr->x) + (zikicy - itr->y)*(zikicy - itr->y) < (itr->range + ziki1->pass_hitdist())*(itr->range + ziki1->pass_hitdist())) {
-			return true;
+		if ((zikicx - itr->x)*(zikicx - itr->x) + (zikicy - itr->y)*(zikicy - itr->y) < (itr->range + ziki1->pass_grazedist())*(itr->range + ziki1->pass_grazedist())) {
+			ziki1->graze_counter();
+			if ((zikicx - itr->x)*(zikicx - itr->x) + (zikicy - itr->y)*(zikicy - itr->y) < (itr->range + ziki1->pass_hitdist())*(itr->range + ziki1->pass_hitdist())) {
+				return true;
+			}
+			else {
+				itr++;
+			}
 		}
 		else {
 			itr++;

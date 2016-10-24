@@ -10,6 +10,7 @@
 #define zikishot_speed 20
 #define ziki_startposition 950
 #define hit_distance 3
+#define graze_distance 15
 #define shot_margin 90
 //enemyŠÖ˜A
 #define bossenemy_bodymargin 30
