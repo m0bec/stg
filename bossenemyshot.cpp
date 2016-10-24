@@ -325,7 +325,6 @@ void bossenemy::straight_intersection_shot() {
 
 //memoryangle3 & bullet_directcount
 void bossenemy::circlemovebullet() {
-	std::uniform_real_distribution<> rand(0.0, DX_PI/32);
 	control &controling = control::getinstance();
 	double px, py;
 
@@ -335,7 +334,6 @@ void bossenemy::circlemovebullet() {
 	}
 
 	if (direct_pattern != 3 && count % 15 == 0) {
-		double randmemory = rand(mt) - DX_PI/64;
 		for (double i = 0; i < 2 * DX_PI; i += DX_PI / 8) {
 			center1.push_back(spining_center(x + width/2, y + height/2, x + width/2 + bullet_radius20*cos(i), y + height/2 + bullet_radius20*sin(i), bulletcount * DX_PI/32 + DX_PI/12, i, 4));
 		}

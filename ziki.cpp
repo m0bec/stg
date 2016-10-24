@@ -146,7 +146,7 @@ void ziki::shot() {
 		else if (itr->x + bulletwidth > ex && itr->x < ex + ewidth && itr->y + shot_margin < ey + eheight && itr->y + bulletheight > ey) {
 			itr = zikibullet.erase(itr);
 			controling.calculation_enemyhp();
-			//shotpoint += 5;
+			shotpoint += 5;
 		}
 		else {
 			DrawGraph(static_cast<int>(itr->x), static_cast<int>(itr->y), bulletgraph, true);
