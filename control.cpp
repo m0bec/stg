@@ -143,6 +143,32 @@ bool control::spinbullet_hitchecker(std::list<rotabullet> *bullet, base bulletty
 	return false;
 }
 
+bool control::mobbullet_hitchecker(std::array<mobbullet, 100> bullet, base bullettype) {
+	double zikicx, zikicy;
+	ziki1->getposition(&zikicx, &zikicy);
+	auto itr = bullet.begin();
+	while (itr != bullet.end()) {
+		if (itr->flag == 1) {
+			if ((zikicx - itr->x)*(zikicx - itr->x) + (zikicy - itr->y)*(zikicy - itr->y) < (itr->range + ziki1->pass_grazedist())*(itr->range + ziki1->pass_grazedist())) {
+				ziki1->graze_counter();
+				if ((zikicx - itr->x)*(zikicx - itr->x) + (zikicy - itr->y)*(zikicy - itr->y) < (itr->range + ziki1->pass_hitdist())*(itr->range + ziki1->pass_hitdist())) {
+					return true;
+				}
+				else {
+					itr++;
+				}
+			}
+			else {
+				itr++;
+			}
+		}
+		else {
+			itr++;
+		}
+	}
+	return false;
+}
+
 bool control::laser_hitcheck(std::list<laser> *bullet) {
 	vec list;
 	vec list2;

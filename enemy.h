@@ -51,6 +51,7 @@ private:
 	std::list<rotabullet> spinbullet1;
 	std::list<rotabullet> spinbullet2;
 	std::list<spining_center> center1;
+	std::list<mobbullet> mobbullet1;
 	
 	double memoryangle1;
 	double memoryangle2;
@@ -62,6 +63,8 @@ private:
 	//mobenemy
 	std::list<enemy_element> mobenemy;
 	enemytype dartenemy;
+	base str_bullettype;
+
 public:
 	bossenemy();
 	void set_enemyhp(int enemyhp);
@@ -95,9 +98,16 @@ public:
 	void mobrun(std::list<enemy_element> *mob);
 	void allocation_enemygraph(std::list<enemy_element>::iterator iterate);
 	void allocation_enemymove(std::list<enemy_element>::iterator iterate);
+	void allocation_enemyshot(std::list<enemy_element>::iterator iterate);
+	void allocation_enemybul(std::list<enemy_element>::iterator iterate, base *bul);
 	void straight_down(std::list<enemy_element>::iterator itrate);
-	void preparation_case8(std::list<enemy_element> *mob, int numenemy, unsigned int enemynum, double anx, double any, int anbulletnum, int anmovenum, int anhp, unsigned int atime, int rollspeed);
+	void preparation_case8(std::list<enemy_element> *mob, int numenemy, unsigned int enemynum, double anx, double any, int anbulletnum, int anmovenum, int anbullettype, int anhp, unsigned int atime, int rollspeed);
 	void mobenemy_alivecheck(std::list<enemy_element> *mob);
 	void mobenemy_shottypecheck(std::list<enemy_element>::iterator iterate);
+	void mobbul_hitcheck(std::array<mobbullet, 100> bullet, base bullettype);
+};
+
+class mob {
+
 };
 

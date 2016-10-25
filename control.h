@@ -30,6 +30,7 @@ public:
 	bool body_hitcheck(int wid, int heigh, int margin, double potisionx, double positiony);
 	bool spining_center_hitcheck(std::list<spining_center> *bullet, base bullettype);
 	bool spinbullet_hitchecker(std::list<rotabullet> *bullet, base bullettype);
+	bool mobbullet_hitchecker(std::array<mobbullet, 100> bullet, base bullettype);
 	void get_presenceflag(bool *flag);
 	void calculation_enemyhp();
 	void player_lifecheck();

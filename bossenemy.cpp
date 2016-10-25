@@ -95,7 +95,7 @@ void bossenemy::move() {
 		set_enemyhp(bossenemy_hp1);
 		break;
 
-	case 1:
+	/*case 1:
 		reset_ebullethit();
 		roundtrip_move();
 		straightaim_player();
@@ -106,7 +106,7 @@ void bossenemy::move() {
 			bossenemy::ebullethit_checker(&enemybullet1, bigredbullet);
 			bossenemy::ebullethit_checker(&enemybullet2, bigbluebullet);
 		}
-		break;
+		break;*/
 
 	case 2:
 		enemybullet1.erase(enemybullet1.begin(), enemybullet1.end());
@@ -178,7 +178,7 @@ void bossenemy::move() {
 		movestate = 7;
 		break;
 
-	case 7:
+	case 1:
 		reset_ebullethit();
 		controling.get_presenceflag(&get_presence);
 		straightmove();
@@ -189,11 +189,12 @@ void bossenemy::move() {
 		break;
 
 	case 8:
-		bossenemy::preparation_case8(&mobenemy, dart_num, 5, 640, -50, aimstraight_3wayshotnum, straight_downnum, 30, 20, static_cast<int>(DX_PI/20));
+		bossenemy::preparation_case8(&mobenemy, dart_num, 5, 640, -50, aimstraight_3wayshotnum, straight_downnum, 0, 30, 20, static_cast<int>(DX_PI/20));
 		movestate = 9;
 		break;
 
 	case 9:
+		controling.get_presenceflag(&get_presence);
 		bossenemy::mobrun(&mobenemy);
 		bossenemy::mobenemy_alivecheck(&mobenemy);
 		break;
