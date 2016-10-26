@@ -59,7 +59,14 @@ struct rotabullet {
 };
 
 struct mobbullet {
-	mobbullet() {
+	mobbullet(double ax, double ay, double aangle, double arange, double arota, int tag) {
+		x = ax;
+		y = ay;
+		angle = aangle;
+		elapsedtime = 0;
+		range = arange;
+		rota = arota;
+		bullettag = tag;
 	}
 	double x;
 	double y;
@@ -67,7 +74,7 @@ struct mobbullet {
 	unsigned int elapsedtime;
 	double range;
 	double rota;
-	double flag;
+	int bullettag;
 };
 
 struct laser_vertex {
@@ -147,10 +154,6 @@ struct enemy_element {
 		time = atime;
 		rollingspeed = arollingspeed;
 		pass_time = 0;
-		for (int i = 0; i < 100; i++) {
-			mobbullet1[i].flag = 0;
-			mobbullet1[i].elapsedtime = 0;
-		}
 	}
 	double x;
 	double y;
@@ -164,7 +167,7 @@ struct enemy_element {
 	int rollingspeed;
 	unsigned int time;
 	unsigned int pass_time;
-	std::array<mobbullet, 100> mobbullet1;
+	
 };
 
 struct enemytype {

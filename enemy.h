@@ -64,7 +64,6 @@ private:
 	std::list<enemy_element> mobenemy;
 	enemytype dartenemy;
 	base str_bullettype;
-
 public:
 	bossenemy();
 	void set_enemyhp(int enemyhp);
@@ -104,7 +103,8 @@ public:
 	void preparation_case8(std::list<enemy_element> *mob, int numenemy, unsigned int enemynum, double anx, double any, int anbulletnum, int anmovenum, int anbullettype, int anhp, unsigned int atime, int rollspeed);
 	void mobenemy_alivecheck(std::list<enemy_element> *mob);
 	void mobenemy_shottypecheck(std::list<enemy_element>::iterator iterate);
-	void mobbul_hitcheck(std::array<mobbullet, 100> bullet, base bullettype);
+	void mobbul_hitcheck(std::list<mobbullet> *bullet, base bullettype);
+	void bullet_move();
 };
 
 class mob {
