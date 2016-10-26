@@ -72,8 +72,8 @@ void bossenemy::lavishhandout_shot() {
 	
 	if (count % 120 < 30) {
 		controling.get_playerposition(&px, &py);
-		enemybullet2.push_back(enemybullet(x + width / 3 - bigbluebullet.width / 2, y + height, memoryangle1 + rand15(mt) - 0.75, 7));
-		enemybullet2.push_back(enemybullet(x + 2 * width / 3 -  bigbluebullet.width / 2, y + height, memoryangle2 + rand15(mt) - 0.75, 7));
+		enemybullet2.push_back(enemybullet(x + width / 3 - bigbluebullet.width / 2, y + height, memoryangle1 + rand15(mt) - 0.75, 6));
+		enemybullet2.push_back(enemybullet(x + 2 * width / 3 -  bigbluebullet.width / 2, y + height, memoryangle2 + rand15(mt) - 0.75, 6));
 	}
 
 	auto itr = enemybullet2.begin();

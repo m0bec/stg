@@ -7,6 +7,7 @@ struct base {
 	int graph;
 	int width;
 	int height;
+	int range;
 };
 
 struct basegraph {

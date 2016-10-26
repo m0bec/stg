@@ -6,14 +6,19 @@ bossenemy::bossenemy() {
 	GetGraphSize(graph, &width, &height);
 	bigredbullet.graph = LoadGraph("graph/ETama1.png");
 	GetGraphSize(bigredbullet.graph, &bigredbullet.width, &bigredbullet.height);
+	bigredbullet.range = 6;
 	bigbluebullet.graph = LoadGraph("graph/ETama2.png");
 	GetGraphSize(bigbluebullet.graph, &bigbluebullet.width, &bigbluebullet.height);
+	bigbluebullet.range = 6;
 	blue_energybullet.graph = LoadGraph("graph/ETama4.png");
 	GetGraphSize(blue_energybullet.graph, &blue_energybullet.width, &blue_energybullet.height);
+	blue_energybullet.range = 4;
 	yellow_bullet.graph = LoadGraph("graph/ETama3.png");
 	GetGraphSize(yellow_bullet.graph, &yellow_bullet.width, &yellow_bullet.height);
+	yellow_bullet.range = 4;
 	greenbullet.graph = LoadGraph("graph/ETama5.png");
 	GetGraphSize(greenbullet.graph, &greenbullet.width, &greenbullet.height);
+	greenbullet.range = 4;
 	laserbeam[0].graph = LoadGraph("graph/laser5.png");
 	GetGraphSize(laserbeam[0].graph, &laserbeam[0].width, &laserbeam[0].height);
 	laserbeam[1].graph = LoadGraph("graph/laser4.png");
@@ -26,8 +31,10 @@ bossenemy::bossenemy() {
 	GetGraphSize(laserbeam[4].graph, &laserbeam[4].width, &laserbeam[4].height);
 	bluericebullet.graph = LoadGraph("graph/ETama6.png");
 	GetGraphSize(bluericebullet.graph, &bluericebullet.width, &bluericebullet.height);
+	bluericebullet.range = 2;
 	big_yellow.graph = LoadGraph("graph/big_yello.png");
 	GetGraphSize(big_yellow.graph, &big_yellow.width, &big_yellow.height);
+	big_yellow.range = 10;
 
 	//mobenemy
 	dartenemy.graph = LoadGraph("graph/dart.png");

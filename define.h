@@ -13,7 +13,6 @@
 #define graze_distance 15
 #define shot_margin 90
 
-#define bigyellow_range 10
 //enemyŠÖ˜A
 #define bossenemy_bodymargin 30
 #define bossenemy_startpoint_x 320
