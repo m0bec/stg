@@ -22,7 +22,9 @@
 #define bossenemy_speed1 4
 #define bossenemy_speed2 5
 #define bulletspeed_8 8
+#define bulletspeed_7 7
 #define bulletspeed_6 6
+#define bulletspeed_5 5
 #define bulletspeed_4 4
 #define bulletspeed_2 2
 #define bulletspeed_down_003 0.04
@@ -46,8 +48,11 @@
 #define aimstraight_3wayshotnum 0
 #define notaim_2way 1
 #define sixteenway 2
+#define randomway 3
 
 #define straight_downnum 0
 #define straight_rightnum 1
 #define straight_leftnum 2
 #define straight_downlsnum 3
+#define quadratic_curvenum 4
+#define stop_and_gonum 5

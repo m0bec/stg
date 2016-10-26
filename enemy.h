@@ -108,9 +108,12 @@ public:
 	void mobenemy_shottypecheck(std::list<enemy_element>::iterator iterate);
 	void mobbul_hitcheck(std::list<mobbullet> *bullet, base bullettype);
 	void get_mobplace(std::list<enemy_element> *iterate);
+
 	void straight_left(std::list<enemy_element>::iterator itr);
 	void straight_right(std::list<enemy_element>::iterator itr);
 	void straight_downls(std::list<enemy_element>::iterator itrate);
+	void quadratic_curve(std::list<enemy_element>::iterator itr);
+	void stop_and_go1(std::list<enemy_element>::iterator itr);
 	void bullet_move();
 };
 

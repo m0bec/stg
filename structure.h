@@ -147,7 +147,9 @@ struct spining_center {
 struct enemy_element {
 	enemy_element(double anx, double any, int anwidth, int anheight, int angraphnum, int anbulletnum, int anmovenum, int anbullettype, int anhp, unsigned int atime, int arollingspeed, unsigned int interval) {
 		x = anx;
+		originx = anx;
 		y = any;
+		originy = any;
 		width = anwidth;
 		height = anheight;
 		graphnum = angraphnum;
@@ -163,6 +165,8 @@ struct enemy_element {
 	}
 	double x;
 	double y;
+	double originx;
+	double originy;
 	int width;
 	int height;
 	int graphnum;

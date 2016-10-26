@@ -136,8 +136,8 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 		case 1:
 			if (iterate->pass_time % 400 < 360 && iterate->pass_time % 5 == 0) {
 				controling.get_playerposition(&px, &py);
-				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, atan2(py - (iterate->y + iterate->height / 2 - str.height / 2), px - (iterate->x + iterate->width / 2 - str.width / 2)) + DX_PI / 16, str.range, 6, iterate->bulletnum, iterate->bullettype));
-				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, atan2(py - (iterate->y + iterate->height / 2 - str.height / 2), px - (iterate->x + iterate->width / 2 - str.width / 2)) - DX_PI / 16, str.range, 6, iterate->bulletnum, iterate->bullettype));
+				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, atan2(py - (iterate->y + iterate->height / 2 - str.height / 2), px - (iterate->x + iterate->width / 2 - str.width / 2)) + DX_PI / 12, str.range, 6, iterate->bulletnum, iterate->bullettype));
+				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, atan2(py - (iterate->y + iterate->height / 2 - str.height / 2), px - (iterate->x + iterate->width / 2 - str.width / 2)) - DX_PI / 12, str.range, 6, iterate->bulletnum, iterate->bullettype));
 			}
 			break;
 
@@ -152,9 +152,7 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 
 			//全周囲バラマキ
 		case 3:
-			if (iterate->pass_time % 2 == 0) {
 				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, rand(mt), str.range, 0, iterate->bulletnum, iterate->bullettype));
-			}
 			break;
 		}
 	}
