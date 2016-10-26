@@ -2,26 +2,28 @@
 #include "control.h"
 
 void bossenemy::mobrun(std::list<enemy_element> *mob) {
-	auto itr = mob->begin();
-	while (itr != mob->end()) {
-		if (itr->time == 0) {
-			bossenemy::mobenemy_alivecheck(&mobenemy);
-			bossenemy::allocation_enemygraph(itr);
-			bossenemy::mobenemy_shottypecheck(itr);
-			bossenemy::allocation_enemymove(itr);
-			bossenemy::allocation_enemybul(itr, &str_bullettype);
-			
-			itr->pass_time += 1;
+	if (mobenemy.size() != 0) {
+		auto itr = mob->begin();
+		while (itr != mob->end()) {
+			if (itr->time == 0) {
+				bossenemy::mobenemy_alivecheck(&mobenemy);
+				bossenemy::allocation_enemygraph(itr);
+				bossenemy::mobenemy_shottypecheck(itr);
+				bossenemy::allocation_enemymove(itr);
+				bossenemy::allocation_enemybul(itr, &str_bullettype);
+
+				itr->pass_time += 1;
+			}
+			else {
+				itr->time -= 1;
+			}
+			++itr;
 		}
-		else {
-			itr->time -= 1;
+		bossenemy::bullet_move();
+		if (get_presence) {
+			DrawGraph(400, 400, bigbluebullet.graph, true);
+			bossenemy::mobbul_hitcheck(&mobbullet1, str_bullettype);
 		}
-		++itr;
-	}
-	bossenemy::bullet_move();
-	if (get_presence) {
-		DrawGraph(400, 400, bigbluebullet.graph, true);
-		bossenemy::mobbul_hitcheck(&mobbullet1, str_bullettype);
 	}
 }
 
@@ -129,4 +131,17 @@ void bossenemy::mob_damage(unsigned int cou) {
 		itr++;
 	}
 	itr->hp -= 1;
+}
+
+int bossenemy::pass_size() {
+	return static_cast<int>(mobenemy.size());
+}
+
+void bossenemy::pass_position(double *ex, double *ey, int *ewidth, int *eheight, int count) {
+	auto itr = mobenemy.begin();
+	for (int i = count; i > 0; i--)	itr++;
+	*ex = itr->x;
+	*ey = itr->y;
+	*ewidth = itr->width;
+	*eheight = itr->height;
 }

@@ -128,45 +128,56 @@ void ziki::resortie() {
 
 void ziki::shot() {
 	control &controling = control::getinstance();
-	double ex, ey;
-	int ewidth, eheight;
-	unsigned int count = 0;
+	double ex, ey, ex1, ey1;
+	int ewidth, eheight, ewidth1, eheight1;
+	int count = 0;
+	int size;
+	bool flag = true;
 	std::list<enemy_element> mob_;
 	
 	input_joypad = GetJoypadInputState(DX_INPUT_KEY_PAD1);
 	controling.get_enemyposition(&ex, &ey, &ewidth, &eheight);
-	controling.get_mobposition(&mob_);
+	size = controling.pass_size();
+	
 
 	if (input_joypad & PAD_INPUT_1 && count % 4 == 0) {
 		zikibullet.push_back(bullet(x + width/2 - bulletwidth/2, y-bulletheight, true));
 	}
-	
 	auto itr = zikibullet.begin();
-	auto mobitr = mob_.begin();
+	
+	auto eitr = controling.boss->mobenemy.begin();
 	while (itr != zikibullet.end()) {
+		flag = true;
 		itr->y -= zikishot_speed;
-		mobitr = mob_.begin();
-		while (mobitr != mob_.end()) {
-			if (itr->x + bulletwidth > mobitr->x && itr->x < mobitr->x + mobitr->width && itr->y + shot_margin < mobitr->y + mobitr->height && itr->y + bulletheight > mobitr->y) {
-				itr = zikibullet.erase(itr);
-				controling.calculation_mobhp(count);
-				shotpoint += 3;
-				DrawGraph(600, 400, graph, true);
+		eitr = controling.boss->mobenemy.begin();
+		if (controling.boss->mobenemy.size() != 0) {
+			while (eitr != controling.boss->mobenemy.end()) {
+				if (itr->x + bulletwidth > eitr->x && itr->x < eitr->x + eitr->width && itr->y < eitr->y + eitr->height && itr->y + bulletheight > eitr->y) {
+					flag = false;
+					eitr->hp -= 1;
+					shotpoint += 3;
+					DrawGraph(600, 400, graph, true);
+					if (flag != true)	break;
+				}
+				eitr++;
 			}
-			mobitr++;
-			count++;
 		}
-		if (itr->y < lowerlimit_joydispheight) {
-			itr = zikibullet.erase(itr);
-		}
-		else if (itr->x + bulletwidth > ex && itr->x < ex + ewidth && itr->y + shot_margin < ey + eheight && itr->y + bulletheight > ey) {
-			itr = zikibullet.erase(itr);
-			controling.calculation_enemyhp();
-			shotpoint += 5;
+		if (flag) {
+			if (itr->y < lowerlimit_joydispheight) {
+				itr = zikibullet.erase(itr);
+			}
+			else if (itr->x + bulletwidth > ex && itr->x < ex + ewidth && itr->y + shot_margin < ey + eheight && itr->y + bulletheight > ey) {
+				itr = zikibullet.erase(itr);
+				controling.calculation_enemyhp();
+				shotpoint += 5;
+			}
+			else {
+				DrawGraph(static_cast<int>(itr->x), static_cast<int>(itr->y), bulletgraph, true);
+				itr++;
+			}
 		}
 		else {
-			DrawGraph(static_cast<int>(itr->x), static_cast<int>(itr->y), bulletgraph, true);
-			itr++;
+			itr = zikibullet.erase(itr);
 		}
 	}
 }

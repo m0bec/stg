@@ -13,7 +13,7 @@ private:
 	std::unique_ptr<back> background;
 	std::unique_ptr<ziki> ziki1;
 	std::unique_ptr<load> loading;
-	std::unique_ptr<bossenemy> boss;
+	
 	std::unique_ptr<systemm> sys;
 	int state;
 	unsigned int point;
@@ -23,6 +23,7 @@ public:
 		static control singleton_control;
 		return singleton_control;
 	}
+	std::unique_ptr<bossenemy> boss;
 	void get_enemyposition(double *ex, double *ey, int *ewidtn, int *eheight);
 	void get_playerposition(double *x, double *y);
 	bool hitcheck(std::list<enemybullet> *bullet, base bullettype);
@@ -35,6 +36,8 @@ public:
 	void get_mobposition(std::list<enemy_element> *mob_);
 	void calculation_enemyhp();
 	void calculation_mobhp(unsigned int count);
+	int pass_size();
+	void get_mobposition(double *ex, double *ey, int *ewidth, int *eheight, int count);
 	void player_lifecheck();
 	int pass_state();
 	void get_point();

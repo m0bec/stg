@@ -54,6 +54,8 @@ bossenemy::bossenemy() {
 	lasercount = 0;
 	bullet_directcount = 0;
 	ebullethit = false;
+
+	mobenemy.push_back(enemy_element(1000, 1000, 0, 0, 99, 99, 99, 99, 99, 99, 0));
 }
 
 

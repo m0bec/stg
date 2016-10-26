@@ -61,11 +61,12 @@ private:
 	bool get_presence;
 
 	//mobenemy
-	std::list<enemy_element> mobenemy;
+	
 	enemytype dartenemy;
 	base str_bullettype;
 public:
 	bossenemy();
+	std::list<enemy_element> mobenemy;
 	void set_enemyhp(int enemyhp);
 	void enemy_damage_counter();
 	void elaserthit_checker(std::list<laser> *bullet);
@@ -106,6 +107,9 @@ public:
 	void mobbul_hitcheck(std::list<mobbullet> *bullet, base bullettype);
 	void get_mobplace(std::list<enemy_element> *iterate);
 	void mob_damage(unsigned int cou);
+
+	int pass_size();
+	void pass_position(double *ex, double *ey, int *ewidth, int *eheight, int count);
 	void bullet_move();
 };
 
