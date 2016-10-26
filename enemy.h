@@ -102,7 +102,7 @@ public:
 	void allocation_enemyshot(std::list<enemy_element>::iterator iterate);
 	void allocation_enemybul(std::list<mobbullet>::iterator iterate, base *bul);
 	void straight_down(std::list<enemy_element>::iterator itrate);
-	void preparation_case8(std::list<enemy_element> *mob, int numenemy, unsigned int enemynum, double anx, double any, int anbulletnum, int anmovenum, int anbullettype, int anhp, unsigned int atime, int rollspeed);
+	void preparation_case8(std::list<enemy_element> *mob, int numenemy, unsigned int enemynum, double anx, double any, int anbulletnum, int anmovenum, int anbullettype, int anhp, unsigned int atime, int rollspeed, unsigned int inter);
 	void mobenemy_alivecheck(std::list<enemy_element> *mob);
 	void mobenemy_shottypecheck(std::list<enemy_element>::iterator iterate);
 	void mobbul_hitcheck(std::list<mobbullet> *bullet, base bullettype);

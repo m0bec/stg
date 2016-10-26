@@ -31,7 +31,7 @@ void bossenemy::mobbul_hitcheck(std::list<mobbullet> *bullet, base bullettype) {
 	}
 }
 
-void bossenemy::preparation_case8(std::list<enemy_element> *mob, int numenemy, unsigned int enemynum, double anx, double any, int anbulletnum, int anmovenum, int anbullettype, int anhp, unsigned int atime, int rollspeed) {
+void bossenemy::preparation_case8(std::list<enemy_element> *mob, int numenemy, unsigned int enemynum, double anx, double any, int anbulletnum, int anmovenum, int anbullettype, int anhp, unsigned int atime, int rollspeed, unsigned int inter) {
 	int wid, heigh;
 	unsigned int input_time;
 	switch (numenemy) {
@@ -42,8 +42,8 @@ void bossenemy::preparation_case8(std::list<enemy_element> *mob, int numenemy, u
 	}
 
 	while (enemynum != 0) {
-		input_time = 0 + (enemynum-1)*atime;
-		mob->push_back(enemy_element(anx, any, wid, heigh, numenemy, anbulletnum, anmovenum, anbullettype, anhp, input_time, rollspeed));
+		input_time = 0 + (enemynum-1)*inter;
+		mob->push_back(enemy_element(anx, any, wid, heigh, numenemy, anbulletnum, anmovenum, anbullettype, anhp, atime + input_time, rollspeed, inter));
 		enemynum -= 1;
 	}
 }
