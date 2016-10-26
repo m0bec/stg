@@ -42,6 +42,10 @@ void control::calculation_enemyhp() {
 	boss->enemy_damage_counter();
 }
 
+void control::calculation_mobhp(unsigned int count) {
+	boss->mob_damage(count);
+}
+
 void control::get_playerposition(double *centerx, double *centery) {
 	double tempx, tempy;
 
@@ -61,6 +65,10 @@ void control::get_enemyposition(double *ex, double *ey, int *ewidth, int *eheigh
 	*ey = tempy;
 	*ewidth = tempwidth;
 	*eheight = tempheight;
+}
+
+void control::get_mobposition(std::list<enemy_element> *mob_) {
+	boss->get_mobplace(mob_);
 }
 
 void control::get_presenceflag(bool *flag) {

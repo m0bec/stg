@@ -5,6 +5,7 @@ void bossenemy::mobrun(std::list<enemy_element> *mob) {
 	auto itr = mob->begin();
 	while (itr != mob->end()) {
 		if (itr->time == 0) {
+			bossenemy::mobenemy_alivecheck(&mobenemy);
 			bossenemy::allocation_enemygraph(itr);
 			bossenemy::mobenemy_shottypecheck(itr);
 			bossenemy::allocation_enemymove(itr);
@@ -118,3 +119,14 @@ void bossenemy::bullet_move() {
 	}
 }
 
+void bossenemy::get_mobplace(std::list<enemy_element> *iterate) {
+	iterate = &mobenemy;
+}
+
+void bossenemy::mob_damage(unsigned int cou) {
+	auto itr = mobenemy.begin();
+	for (unsigned int i = cou; i != 0; i--) {
+		itr++;
+	}
+	itr->hp -= 1;
+}

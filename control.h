@@ -32,7 +32,9 @@ public:
 	bool spinbullet_hitchecker(std::list<rotabullet> *bullet, base bullettype);
 	bool mobbullet_hitchecker(std::list<mobbullet> *bullet, base bullettype);
 	void get_presenceflag(bool *flag);
+	void get_mobposition(std::list<enemy_element> *mob_);
 	void calculation_enemyhp();
+	void calculation_mobhp(unsigned int count);
 	void player_lifecheck();
 	int pass_state();
 	void get_point();

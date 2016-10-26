@@ -130,16 +130,32 @@ void ziki::shot() {
 	control &controling = control::getinstance();
 	double ex, ey;
 	int ewidth, eheight;
+	unsigned int count = 0;
+	std::list<enemy_element> mob_;
+	
 	input_joypad = GetJoypadInputState(DX_INPUT_KEY_PAD1);
 	controling.get_enemyposition(&ex, &ey, &ewidth, &eheight);
+	controling.get_mobposition(&mob_);
 
 	if (input_joypad & PAD_INPUT_1 && count % 4 == 0) {
 		zikibullet.push_back(bullet(x + width/2 - bulletwidth/2, y-bulletheight, true));
 	}
 	
 	auto itr = zikibullet.begin();
+	auto mobitr = mob_.begin();
 	while (itr != zikibullet.end()) {
 		itr->y -= zikishot_speed;
+		mobitr = mob_.begin();
+		while (mobitr != mob_.end()) {
+			if (itr->x + bulletwidth > mobitr->x && itr->x < mobitr->x + mobitr->width && itr->y + shot_margin < mobitr->y + mobitr->height && itr->y + bulletheight > mobitr->y) {
+				itr = zikibullet.erase(itr);
+				controling.calculation_mobhp(count);
+				shotpoint += 3;
+				DrawGraph(600, 400, graph, true);
+			}
+			mobitr++;
+			count++;
+		}
 		if (itr->y < lowerlimit_joydispheight) {
 			itr = zikibullet.erase(itr);
 		}
