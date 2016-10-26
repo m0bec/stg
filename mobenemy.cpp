@@ -79,22 +79,41 @@ void bossenemy::allocation_enemybul(std::list<enemy_element>::iterator iterate, 
 	case 0:
 		*bul = bigredbullet;
 		break;
+
+	case 1:
+		*bul = big_yellow;
+		break;
 	}
 }
 
 void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterate) {
 	control &controling = control::getinstance();
 	switch (iterate->bulletnum) {
+		double px, py;
 		//3way
 	case 0:
-		double px, py;
 		if (iterate->pass_time % 120 < 30 && iterate->pass_time % 5 == 0) {
 			controling.get_playerposition(&px, &py);
 			mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - bigredbullet.width / 2, iterate->y + iterate->height / 2 - bigredbullet.height / 2, atan2(py - (iterate->y + iterate->height / 2 - bigredbullet.height / 2), px - (iterate->x + iterate->width / 2 - bigredbullet.width / 2)), 6, 6, iterate->bullettype));
 			mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - bigredbullet.width / 2, iterate->y + iterate->height / 2 - bigredbullet.height / 2, atan2(py - (iterate->y + iterate->height / 2 - bigredbullet.height / 2), px - (iterate->x + iterate->width / 2 - bigredbullet.width / 2)) + DX_PI / 6, 6, 6, iterate->bullettype));
 			mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - bigredbullet.width / 2, iterate->y + iterate->height / 2 - bigredbullet.height / 2, atan2(py - (iterate->y + iterate->height / 2 - bigredbullet.height / 2), px - (iterate->x + iterate->width / 2 - bigredbullet.width / 2)) - DX_PI / 6, 6, 6, iterate->bullettype));
-			int j = 0;
-			auto itr = mobbullet1.begin();
+		}
+		break;
+
+		//Ž©‹@ŠO‚µ
+	case 1:
+		if (iterate->pass_time % 400 < 360 && iterate->pass_time % 5 == 0) {
+			controling.get_playerposition(&px, &py);
+			mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - bigbluebullet.width / 2, iterate->y + iterate->height / 2 - bigbluebullet.height / 2, atan2(py - (iterate->y + iterate->height / 2 - bigbluebullet.height / 2), px - (iterate->x + iterate->width / 2 - bigredbullet.width / 2)) + DX_PI / 6, 6, 6, iterate->bullettype));
+			mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - bigbluebullet.width / 2, iterate->y + iterate->height / 2 - bigbluebullet.height / 2, atan2(py - (iterate->y + iterate->height / 2 - bigbluebullet.height / 2), px - (iterate->x + iterate->width / 2 - bigredbullet.width / 2)) - DX_PI / 6, 6, 6, iterate->bullettype));
+		}
+		break;
+
+	case 2:
+		for (int i = 0; i < 16; i++) {
+			if (iterate->pass_time % 30 == 0) {
+				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - bigbluebullet.width / 2, iterate->y + iterate->height / 2 - bigbluebullet.height / 2, i * DX_PI / 16, bigyellow_range, 0, iterate->bullettype));
+			}
 		}
 		break;
 	}
@@ -105,6 +124,19 @@ void bossenemy::bullet_move() {
 	while (itr != mobbullet1.end()) {
 		switch (itr->bullettag) {
 		case 0:
+			itr->x += cos(itr->angle)*bulletspeed_8;
+			itr->y += sin(itr->angle)*bulletspeed_8;
+			if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - str_bullettype.height
+				|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - str_bullettype.width) {
+				itr = mobbullet1.erase(itr);
+			}
+			else {
+				DrawGraph(static_cast<int>(itr->x), static_cast<int>(itr->y), bigredbullet.graph, true);
+				itr++;
+			}
+			break;
+
+		case 1:
 			itr->x += cos(itr->angle)*bulletspeed_8;
 			itr->y += sin(itr->angle)*bulletspeed_8;
 			if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - str_bullettype.height

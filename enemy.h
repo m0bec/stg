@@ -41,6 +41,7 @@ private:
 	base bigbluebullet;
 	base blue_energybullet;
 	base yellow_bullet;
+	base big_yellow;
 	base greenbullet;
 	base laserbeam[5];
 	base bluericebullet;

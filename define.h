@@ -12,6 +12,8 @@
 #define hit_distance 3
 #define graze_distance 15
 #define shot_margin 90
+
+#define bigyellow_range 10
 //enemyŠÖ˜A
 #define bossenemy_bodymargin 30
 #define bossenemy_startpoint_x 320
@@ -34,6 +36,11 @@
 #define straight_down_speed 4
 #define dart_num 0
 
+#define big_yellowbul 1
+
 #define aimstraight_3wayshotnum 0
+#define notaim_2way 1
 
 #define straight_downnum 0
+#define straight_rightnum 1
+#define straight_leftnum 2
