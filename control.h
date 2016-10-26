@@ -35,9 +35,6 @@ public:
 	void get_presenceflag(bool *flag);
 	void get_mobposition(std::list<enemy_element> *mob_);
 	void calculation_enemyhp();
-	void calculation_mobhp(unsigned int count);
-	int pass_size();
-	void get_mobposition(double *ex, double *ey, int *ewidth, int *eheight, int count);
 	void player_lifecheck();
 	int pass_state();
 	void get_point();

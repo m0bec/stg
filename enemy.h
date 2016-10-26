@@ -106,10 +106,6 @@ public:
 	void mobenemy_shottypecheck(std::list<enemy_element>::iterator iterate);
 	void mobbul_hitcheck(std::list<mobbullet> *bullet, base bullettype);
 	void get_mobplace(std::list<enemy_element> *iterate);
-	void mob_damage(unsigned int cou);
-
-	int pass_size();
-	void pass_position(double *ex, double *ey, int *ewidth, int *eheight, int count);
 	void bullet_move();
 };
 

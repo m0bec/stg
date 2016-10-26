@@ -21,7 +21,6 @@ void bossenemy::mobrun(std::list<enemy_element> *mob) {
 		}
 		bossenemy::bullet_move();
 		if (get_presence) {
-			DrawGraph(400, 400, bigbluebullet.graph, true);
 			bossenemy::mobbul_hitcheck(&mobbullet1, str_bullettype);
 		}
 	}
@@ -125,23 +124,6 @@ void bossenemy::get_mobplace(std::list<enemy_element> *iterate) {
 	iterate = &mobenemy;
 }
 
-void bossenemy::mob_damage(unsigned int cou) {
-	auto itr = mobenemy.begin();
-	for (unsigned int i = cou; i != 0; i--) {
-		itr++;
-	}
-	itr->hp -= 1;
-}
 
-int bossenemy::pass_size() {
-	return static_cast<int>(mobenemy.size());
-}
 
-void bossenemy::pass_position(double *ex, double *ey, int *ewidth, int *eheight, int count) {
-	auto itr = mobenemy.begin();
-	for (int i = count; i > 0; i--)	itr++;
-	*ex = itr->x;
-	*ey = itr->y;
-	*ewidth = itr->width;
-	*eheight = itr->height;
-}
+

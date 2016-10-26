@@ -42,13 +42,9 @@ void control::calculation_enemyhp() {
 	boss->enemy_damage_counter();
 }
 
-void control::calculation_mobhp(unsigned int count) {
-	boss->mob_damage(count);
-}
 
-int control::pass_size() {
-	return boss->pass_size();
-}
+
+
 
 void control::get_playerposition(double *centerx, double *centery) {
 	double tempx, tempy;
@@ -57,18 +53,6 @@ void control::get_playerposition(double *centerx, double *centery) {
 
 	*centerx = tempx;
 	*centery = tempy;
-}
-
-void control::get_mobposition(double *ex, double *ey, int *ewidth, int *eheight, int count) {
-	double tempx, tempy;
-	int tempwidth, tempheight;
-
-	boss->pass_position(&tempx, &tempy, &tempwidth, &tempheight, count);
-
-	*ex = tempx;
-	*ey = tempy;
-	*ewidth = tempwidth;
-	*eheight = tempheight;
 }
 
 void control::get_enemyposition(double *ex, double *ey, int *ewidth, int *eheight) {

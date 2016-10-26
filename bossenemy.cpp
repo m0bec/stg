@@ -191,11 +191,13 @@ void bossenemy::move() {
 		break;
 
 	case 8:
-		bossenemy::preparation_case8(&mobenemy, dart_num, 5, 640, -50, aimstraight_3wayshotnum, straight_downnum, 0, 30, 20, static_cast<int>(DX_PI/20));
+		bossenemy::preparation_case8(&mobenemy, dart_num, 5, 640, -50, aimstraight_3wayshotnum, straight_downnum, 0, 5, 20, static_cast<int>(DX_PI / 20));
+		bossenemy::preparation_case8(&mobenemy, dart_num, 5, 400, -50, aimstraight_3wayshotnum, straight_downnum, 0, 5, 20, static_cast<int>(DX_PI / 20));
 		movestate = 9;
 		break;
 
 	case 9:
+		reset_ebullethit();
 		controling.get_presenceflag(&get_presence);
 		bossenemy::mobrun(&mobenemy);
 		bossenemy::mobenemy_alivecheck(&mobenemy);

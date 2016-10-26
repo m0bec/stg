@@ -128,18 +128,13 @@ void ziki::resortie() {
 
 void ziki::shot() {
 	control &controling = control::getinstance();
-	double ex, ey, ex1, ey1;
-	int ewidth, eheight, ewidth1, eheight1;
-	int count = 0;
-	int size;
+	double ex, ey;
+	int ewidth, eheight;
 	bool flag = true;
-	std::list<enemy_element> mob_;
 	
 	input_joypad = GetJoypadInputState(DX_INPUT_KEY_PAD1);
 	controling.get_enemyposition(&ex, &ey, &ewidth, &eheight);
-	size = controling.pass_size();
 	
-
 	if (input_joypad & PAD_INPUT_1 && count % 4 == 0) {
 		zikibullet.push_back(bullet(x + width/2 - bulletwidth/2, y-bulletheight, true));
 	}
@@ -156,7 +151,6 @@ void ziki::shot() {
 					flag = false;
 					eitr->hp -= 1;
 					shotpoint += 3;
-					DrawGraph(600, 400, graph, true);
 					if (flag != true)	break;
 				}
 				eitr++;
