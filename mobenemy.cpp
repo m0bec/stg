@@ -55,7 +55,7 @@ void bossenemy::mobenemy_alivecheck(std::list<enemy_element> *mob) {
 			itr = mob->erase(itr);
 		}else if(itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - itr->height
 				|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - itr->width) {
-			itr = mob->erase(itr);
+			itr = mob->erase(itr);	
 		}
 		else {
 			++itr;
@@ -83,6 +83,22 @@ void bossenemy::allocation_enemybul(int bullettype, base *bul) {
 
 	case 1:
 		*bul = big_yellow;
+		break;
+
+	case 2:
+		*bul = blue_energybullet;
+		break;
+
+	case 3:
+		*bul = yellow_bullet;
+		break;
+
+	case 4:
+		*bul = greenbullet;
+		break;
+
+	case 5:
+		*bul = bluericebullet;
 		break;
 	}
 }

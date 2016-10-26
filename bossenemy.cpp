@@ -214,6 +214,12 @@ void bossenemy::move() {
 		controling.get_presenceflag(&get_presence);
 		bossenemy::mobrun(&mobenemy);
 		bossenemy::mobenemy_alivecheck(&mobenemy);
+		++count;
+		if (count > 580)	movestate = 10;
+		break;
+
+	case 10:
+
 		break;
 	}		
 }
