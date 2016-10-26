@@ -53,6 +53,9 @@ void bossenemy::mobenemy_alivecheck(std::list<enemy_element> *mob) {
 	while (itr != mob->end()) {
 		if (itr->hp <= 0) {
 			itr = mob->erase(itr);
+		}else if(itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - itr->height
+				|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - itr->width) {
+			itr = mob->erase(itr);
 		}
 		else {
 			++itr;
@@ -109,6 +112,7 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 		}
 		break;
 
+		//全周16wayショット
 	case 2:
 		for (int i = 0; i < 16; i++) {
 			if (iterate->pass_time % 30 == 0) {
