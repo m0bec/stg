@@ -57,8 +57,8 @@ void bossenemy::mobenemy_alivecheck(std::list<enemy_element> *mob) {
 	while (itr != mob->end()) {
 		if (itr->hp <= 0) {
 			itr = mob->erase(itr);
-		}else if(itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - itr->height
-				|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - itr->width) {
+		}else if(itr->y > upperlimit_joydispheight + 400 || itr->y < lowerlimit_joydispheight - itr->height - 400
+				|| itr->x > upperlimit_joydispwidth + 400 || itr->x < lowerlimit_joydispwidth - itr->width - 400) {
 			itr = mob->erase(itr);	
 		}
 		else {
@@ -115,35 +115,38 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 	base str;
 	allocation_enemybul(iterate->bullettype, &str);
 	control &controling = control::getinstance();
-	switch (iterate->bulletnum) {
-		double px, py;
-		//3way
-	case 0:
-		if (iterate->pass_time % 120 < 30 && iterate->pass_time % 5 == 0) {
-			controling.get_playerposition(&px, &py);
-			mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, atan2(py - (iterate->y + iterate->height / 2 - str.height / 2), px - (iterate->x + iterate->width / 2 - str.width / 2)), str.range, 6, iterate->bulletnum, iterate->bullettype));
-			mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, atan2(py - (iterate->y + iterate->height / 2 - str.height / 2), px - (iterate->x + iterate->width / 2 - str.width / 2)) + DX_PI / 6, str.range, 6,  iterate->bulletnum, iterate->bullettype));
-			mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 -	str.width / 2, iterate->y + iterate->height / 2 - bigredbullet.height / 2, atan2(py - (iterate->y + iterate->height / 2 - bigredbullet.height / 2), px - (iterate->x + iterate->width / 2 - bigredbullet.width / 2)) - DX_PI / 6, str.range, 6, iterate->bulletnum, iterate->bullettype));
-		}
-		break;
-
-		//自機外し
-	case 1:
-		if (iterate->pass_time % 400 < 360 && iterate->pass_time % 5 == 0) {
-			controling.get_playerposition(&px, &py);
-			mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - bigbluebullet.width / 2, iterate->y + iterate->height / 2 - bigbluebullet.height / 2, atan2(py - (iterate->y + iterate->height / 2 - bigbluebullet.height / 2), px - (iterate->x + iterate->width / 2 - bigredbullet.width / 2)) + DX_PI / 16, str.range, 6, iterate->bulletnum, iterate->bullettype));
-			mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - bigbluebullet.width / 2, iterate->y + iterate->height / 2 - bigbluebullet.height / 2, atan2(py - (iterate->y + iterate->height / 2 - bigbluebullet.height / 2), px - (iterate->x + iterate->width / 2 - bigredbullet.width / 2)) - DX_PI / 16, str.range, 6, iterate->bulletnum, iterate->bullettype));
-		}
-		break;
-
-		//全周16wayショット
-	case 2:
-		for (int i = 0; i < 16; i++) {
-			if (iterate->pass_time % 30 == 0) {
-				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - bigbluebullet.width / 2, iterate->y + iterate->height / 2 - bigbluebullet.height / 2, i * DX_PI / 16, str.range, 0, iterate->bulletnum, iterate->bullettype));
+	if (iterate->y < upperlimit_joydispheight || iterate->y > lowerlimit_joydispheight - iterate->height
+		|| iterate->x < upperlimit_joydispwidth || iterate->x > lowerlimit_joydispwidth - iterate->width) {
+		switch (iterate->bulletnum) {
+			double px, py;
+			//3way
+		case 0:
+			if (iterate->pass_time % 120 < 30 && iterate->pass_time % 5 == 0) {
+				controling.get_playerposition(&px, &py);
+				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, atan2(py - (iterate->y + iterate->height / 2 - str.height / 2), px - (iterate->x + iterate->width / 2 - str.width / 2)), str.range, 6, iterate->bulletnum, iterate->bullettype));
+				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, atan2(py - (iterate->y + iterate->height / 2 - str.height / 2), px - (iterate->x + iterate->width / 2 - str.width / 2)) + DX_PI / 6, str.range, 6, iterate->bulletnum, iterate->bullettype));
+				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - bigredbullet.height / 2, atan2(py - (iterate->y + iterate->height / 2 - bigredbullet.height / 2), px - (iterate->x + iterate->width / 2 - bigredbullet.width / 2)) - DX_PI / 6, str.range, 6, iterate->bulletnum, iterate->bullettype));
 			}
+			break;
+
+			//自機外し
+		case 1:
+			if (iterate->pass_time % 400 < 360 && iterate->pass_time % 5 == 0) {
+				controling.get_playerposition(&px, &py);
+				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - bigbluebullet.width / 2, iterate->y + iterate->height / 2 - bigbluebullet.height / 2, atan2(py - (iterate->y + iterate->height / 2 - bigbluebullet.height / 2), px - (iterate->x + iterate->width / 2 - bigredbullet.width / 2)) + DX_PI / 16, str.range, 6, iterate->bulletnum, iterate->bullettype));
+				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - bigbluebullet.width / 2, iterate->y + iterate->height / 2 - bigbluebullet.height / 2, atan2(py - (iterate->y + iterate->height / 2 - bigbluebullet.height / 2), px - (iterate->x + iterate->width / 2 - bigredbullet.width / 2)) - DX_PI / 16, str.range, 6, iterate->bulletnum, iterate->bullettype));
+			}
+			break;
+
+			//全周16wayショット
+		case 2:
+			for (int i = 0; i < 16; i++) {
+				if (iterate->pass_time % 30 == 0) {
+					mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - bigbluebullet.width / 2, iterate->y + iterate->height / 2 - bigbluebullet.height / 2, i * DX_PI / 16, str.range, 0, iterate->bulletnum, iterate->bullettype));
+				}
+			}
+			break;
 		}
-		break;
 	}
 }
 

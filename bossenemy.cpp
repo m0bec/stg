@@ -66,7 +66,7 @@ bossenemy::bossenemy() {
 	bullet_directcount = 0;
 	ebullethit = false;
 
-	mobenemy.push_back(enemy_element(1000, 1000, 0, 0, 99, 99, 99, 99, 99, 99, 0, 0));
+	mobenemy.push_back(enemy_element(upperlimit_joydispwidth+200, upperlimit_joydispheight+200, 0, 0, 99, 99, 99, 99, 99, 99, 0, 0));
 }
 
 
@@ -204,10 +204,10 @@ void bossenemy::move() {
 	case 8:
 		//double anx, double any, int anwidth, int anheight, int angraphnum, int anbulletnum, int anmovenum, int anbullettype, int anhp, unsigned int atime, int arollingspeed)
 		//std::list<enemy_element> *mob, int numenemy, unsigned int enemynum, double anx, double any, int anbulletnum, int anmovenum, int anbullettype, int anhp, unsigned int atime, int rollspeed, unsigned int inter) 
-		bossenemy::preparation_case8(&mobenemy, dart_num, 5, 640, -50, aimstraight_3wayshotnum, straight_downnum, 0, 5, 20, static_cast<int>(DX_PI / 20), 20);
-		bossenemy::preparation_case8(&mobenemy, dart_num, 5, 400, -50, aimstraight_3wayshotnum, straight_downnum, 0, 5, 20, static_cast<int>(DX_PI / 20), 20);
-		bossenemy::preparation_case8(&mobenemy, dart_num, 6, upperlimit_joydispwidth + 50 , lowerlimit_joydispheight + 150, notaim_2way, straight_leftnum, big_yellowbul, 5, 120, static_cast<int>(DX_PI / 20), 20);
-		bossenemy::preparation_case8(&mobenemy, dart_num, 6, lowerlimit_joydispwidth - 50, lowerlimit_joydispheight + 100, notaim_2way, straight_rightnum, big_yellowbul, 5, 120, static_cast<int>(DX_PI / 20), 20);
+		bossenemy::preparation_case8(&mobenemy, dart_num, 5, 640, -dartenemy.height, aimstraight_3wayshotnum, straight_downnum, 0, 5, 20, static_cast<int>(DX_PI / 20), 20);
+		bossenemy::preparation_case8(&mobenemy, dart_num, 5, 400, -dartenemy.height, aimstraight_3wayshotnum, straight_downnum, 0, 5, 20, static_cast<int>(DX_PI / 20), 20);
+		bossenemy::preparation_case8(&mobenemy, dart_num, 6, upperlimit_joydispwidth + dartenemy.width , lowerlimit_joydispheight + 150, notaim_2way, straight_leftnum, big_yellowbul, 5, 120, static_cast<int>(DX_PI / 20), 20);
+		bossenemy::preparation_case8(&mobenemy, dart_num, 6, lowerlimit_joydispwidth - dartenemy.width, lowerlimit_joydispheight + 100, notaim_2way, straight_rightnum, big_yellowbul, 5, 120, static_cast<int>(DX_PI / 20), 20);
 		movestate = 9;
 		break;
 
@@ -221,9 +221,9 @@ void bossenemy::move() {
 		break;
 
 	case 10:
-		bossenemy::preparation_case8(&mobenemy, aplane_num, 5, 400 - aplane_enemy.width / 2, -50, sixteenway, straight_downnum, big_yellowbul, 20, 20, 0, 1);
-		bossenemy::preparation_case8(&mobenemy, aplane_num, 5, 250 - aplane_enemy.width / 2, -50, sixteenway, straight_downnum, big_yellowbul, 20, 80, 0, 1);
-		bossenemy::preparation_case8(&mobenemy, aplane_num, 5, 550 - aplane_enemy.width / 2, -50, sixteenway, straight_downnum, big_yellowbul, 20, 80, 0, 1);
+		bossenemy::preparation_case8(&mobenemy, aplane_num, 5, 400 - aplane_enemy.width / 2, -50, sixteenway, straight_downnum, yel_bul, 20, 20, 0, 1);
+		bossenemy::preparation_case8(&mobenemy, aplane_num, 5, 250 - aplane_enemy.width / 2, -50, sixteenway, straight_downnum, yel_bul, 20, 80, 0, 1);
+		bossenemy::preparation_case8(&mobenemy, aplane_num, 5, 550 - aplane_enemy.width / 2, -50, sixteenway, straight_downnum, yel_bul, 20, 80, 0, 1);
 		count = 0;
 		movestate = 11;
 		break;

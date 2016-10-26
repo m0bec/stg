@@ -147,14 +147,21 @@ void ziki::shot() {
 		eitr = controling.boss->mobenemy.begin();
 		if (controling.boss->mobenemy.size() != 0) {
 			while (eitr != controling.boss->mobenemy.end()) {
-				if (itr->x + bulletwidth > eitr->x && itr->x < eitr->x + eitr->width && itr->y < eitr->y + eitr->height && itr->y + bulletheight > eitr->y) {
-					flag = false;
-					eitr->hp -= 1;
-					shotpoint += 3;
-					if (flag != true)	break;
+				if (itr->y < upperlimit_joydispheight || itr->y > lowerlimit_joydispheight - 10
+					|| itr->x < upperlimit_joydispwidth || itr->x > lowerlimit_joydispwidth - 10) {
+					if (itr->x + bulletwidth > eitr->x && itr->x < eitr->x + eitr->width && itr->y < eitr->y + eitr->height && itr->y + bulletheight > eitr->y) {
+						flag = false;
+						eitr->hp -= 1;
+						shotpoint += 3;
+						if (flag != true)	break;
+					}
+					eitr++;
 				}
-				eitr++;
+				else {
+					eitr++;
+				}
 			}
+		
 		}
 		if (flag) {
 			if (itr->y < lowerlimit_joydispheight) {
