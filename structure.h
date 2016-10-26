@@ -155,6 +155,7 @@ struct enemy_element {
 		movenum = anmovenum;
 		bullettype = anbullettype;
 		hp = anhp;
+		origin_hp = anhp;
 		time = atime;
 		rollingspeed = arollingspeed;
 		pass_time = 0;
@@ -169,6 +170,7 @@ struct enemy_element {
 	int movenum;
 	int bullettype;
 	int hp;
+	int origin_hp;
 	int rollingspeed;
 	unsigned int time;
 	unsigned int pass_time;
