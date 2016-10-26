@@ -39,6 +39,8 @@ bossenemy::bossenemy() {
 	//mobenemy
 	dartenemy.graph = LoadGraph("graph/dart.png");
 	GetGraphSize(dartenemy.graph, &dartenemy.width, &dartenemy.height);
+	aplane_enemy.graph = LoadGraph("graph/ene2.png");
+	GetGraphSize(aplane_enemy.graph, &aplane_enemy.width, &aplane_enemy.height);
 	
 	x = bossenemy_startpoint_x - width / 2;
 	y = bossenemy_startpoint_y;

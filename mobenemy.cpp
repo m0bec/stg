@@ -68,6 +68,10 @@ void bossenemy::allocation_enemygraph(std::list<enemy_element>::iterator iterate
 		case 0:
 			DrawRotaGraph(static_cast<int>(iterate->x), static_cast<int>(iterate->y), 1.0, DX_PI/5*iterate->pass_time, dartenemy.graph, true, false);
 			break;
+
+		case 1:
+			DrawGraph(static_cast<int>(iterate->x), static_cast<int>(iterate->y), aplane_enemy.graph, true);
+			break;
 		}
 }
 
@@ -158,6 +162,19 @@ void bossenemy::bullet_move() {
 			break;
 
 		case 1:
+			itr->x += cos(itr->angle)*bulletspeed_8;
+			itr->y += sin(itr->angle)*bulletspeed_8;
+			if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - str_bullettype.height
+				|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - str_bullettype.width) {
+				itr = mobbullet1.erase(itr);
+			}
+			else {
+				DrawGraph(static_cast<int>(itr->x), static_cast<int>(itr->y), str_bullettype.graph, true);
+				itr++;
+			}
+			break;
+
+		case 2:
 			itr->x += cos(itr->angle)*bulletspeed_8;
 			itr->y += sin(itr->angle)*bulletspeed_8;
 			if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - str_bullettype.height

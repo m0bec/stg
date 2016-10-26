@@ -34,13 +34,14 @@
 //mobenemy
 #define straight_down_speed 4
 #define dart_num 0
+#define aplane_num 1
 
 #define big_redbul 0
 #define big_yellowbul 1
 #define blue_energybul 2
 #define yel_bul 3
 #define green_bul 4
-#defineblue_ricebul 5
+#define blue_ricebul 5
 
 #define aimstraight_3wayshotnum 0
 #define notaim_2way 1

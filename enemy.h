@@ -64,6 +64,7 @@ private:
 	//mobenemy
 	
 	enemytype dartenemy;
+	enemytype aplane_enemy;
 	base str_bullettype;
 public:
 	bossenemy();
