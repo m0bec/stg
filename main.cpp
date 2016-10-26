@@ -7,6 +7,7 @@
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine, int nCmdShow)
 {
+	ChangeWindowMode(TRUE);
 	// âÊñ ÉÇÅ[ÉhÇÃê›íË
 	SetGraphMode(1280, 1024, 16);
 

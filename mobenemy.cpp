@@ -39,6 +39,10 @@ void bossenemy::preparation_case8(std::list<enemy_element> *mob, int numenemy, u
 		wid = dartenemy.width;
 		heigh = dartenemy.height;
 		break;
+		
+	case 1:
+		wid = aplane_enemy.width;
+		heigh = aplane_enemy.height;
 	}
 
 	while (enemynum != 0) {

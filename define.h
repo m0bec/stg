@@ -45,6 +45,7 @@
 
 #define aimstraight_3wayshotnum 0
 #define notaim_2way 1
+#define sixteenway 2
 
 #define straight_downnum 0
 #define straight_rightnum 1
