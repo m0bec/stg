@@ -6,10 +6,10 @@ void bossenemy::mobrun(std::list<enemy_element> *mob) {
 		auto itr = mob->begin();
 		while (itr != mob->end()) {
 			if (itr->time == 0) {
-				bossenemy::mobenemy_alivecheck(&mobenemy);
+				//bossenemy::mobenemy_alivecheck(&mobenemy);
 				bossenemy::allocation_enemygraph(itr);
 				bossenemy::allocation_enemymove(itr);
-				bossenemy::mobenemy_shottypecheck(itr);
+				if(itr->shotflag)	bossenemy::mobenemy_shottypecheck(itr);
 				itr->pass_time += 1;
 			}
 			else {
@@ -47,7 +47,7 @@ void bossenemy::preparation_case8(std::list<enemy_element> *mob, int numenemy, u
 
 	while (enemynum != 0) {
 		input_time = 0 + (enemynum-1)*inter;
-		mob->push_back(enemy_element(anx, any, wid, heigh, numenemy, anbulletnum, anmovenum, anbullettype, anhp, atime + input_time, rollspeed, inter));
+		mob->push_back(enemy_element(anx, any, wid, heigh, numenemy, anbulletnum, anmovenum, anbullettype, anhp, atime + input_time, rollspeed, inter, false));
 		enemynum -= 1;
 	}
 }

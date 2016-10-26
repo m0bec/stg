@@ -145,7 +145,7 @@ struct spining_center {
 
 //bullettype‚Í’e‚ÌŽí—Þ,bulletnum‚Í’e‚Ì‹O“¹‚ÌŽí—Þ
 struct enemy_element {
-	enemy_element(double anx, double any, int anwidth, int anheight, int angraphnum, int anbulletnum, int anmovenum, int anbullettype, int anhp, unsigned int atime, int arollingspeed, unsigned int interval) {
+	enemy_element(double anx, double any, int anwidth, int anheight, int angraphnum, int anbulletnum, int anmovenum, int anbullettype, int anhp, unsigned int atime, int arollingspeed, unsigned int interval, bool aflag) {
 		x = anx;
 		originx = anx;
 		y = any;
@@ -162,6 +162,7 @@ struct enemy_element {
 		rollingspeed = arollingspeed;
 		pass_time = 0;
 		interval_time = interval;
+		shotflag = aflag;
 	}
 	double x;
 	double y;
@@ -179,6 +180,7 @@ struct enemy_element {
 	unsigned int time;
 	unsigned int pass_time;
 	unsigned int interval_time;
+	bool shotflag;
 	
 };
 

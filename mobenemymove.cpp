@@ -3,30 +3,38 @@
 
 void bossenemy::straight_down(std::list<enemy_element>::iterator itr) {
 	itr->y += straight_down_speed;
+	itr->shotflag = true;
 }
 
 void bossenemy::straight_downls(std::list<enemy_element>::iterator itr) {
 	itr->y += 2;
+	itr->shotflag = true;
 }
 
 void bossenemy::straight_left(std::list<enemy_element>::iterator itr) {
 	itr->x -= 3;
+	itr->shotflag = true;
 }
 
 void bossenemy::straight_right(std::list<enemy_element>::iterator itr) {
 	itr->x += 3;
+	itr->shotflag = true;
 }
 
 void bossenemy::quadratic_curve(std::list<enemy_element>::iterator itr) {
 	itr->x += 3;
 	itr->y = (itr->x - itr->originx) * (itr->x - itr->originx);
+	itr->shotflag = true;
 }
 
 void bossenemy::stop_and_go1(std::list<enemy_element>::iterator itr) {
 	if (itr->pass_time < 60) {
 		itr->y += 3;
 	}
-	else if (itr->pass_time > 360) {
+	else if(itr->pass_time == 60){
+		itr->shotflag = true;
+	}
+	else if (itr->pass_time > 720) {
 		itr->y -= 3;
 	}
 }
