@@ -197,8 +197,8 @@ void bossenemy::move() {
 		//std::list<enemy_element> *mob, int numenemy, unsigned int enemynum, double anx, double any, int anbulletnum, int anmovenum, int anbullettype, int anhp, unsigned int atime, int rollspeed) 
 		bossenemy::preparation_case8(&mobenemy, dart_num, 5, 640, -50, aimstraight_3wayshotnum, straight_downnum, 0, 5, 20, static_cast<int>(DX_PI / 20));
 		bossenemy::preparation_case8(&mobenemy, dart_num, 5, 400, -50, aimstraight_3wayshotnum, straight_downnum, 0, 5, 20, static_cast<int>(DX_PI / 20));
-		bossenemy::preparation_case8(&mobenemy, dart_num, 6, upperlimit_joydispwidth + 50 , lowerlimit_joydispheight + 150, notaim_2way, straight_leftnum, big_yellowbul, 5, 80, static_cast<int>(DX_PI / 20));
-		bossenemy::preparation_case8(&mobenemy, dart_num, 6, lowerlimit_joydispwidth - 50, lowerlimit_joydispheight + 100, notaim_2way, straight_rightnum, big_yellowbul, 5, 80, static_cast<int>(DX_PI / 20));
+		bossenemy::preparation_case8(&mobenemy, dart_num, 6, upperlimit_joydispwidth + 50 , lowerlimit_joydispheight + 150, notaim_2way, straight_leftnum, big_yellowbul, 5, 120, static_cast<int>(DX_PI / 20));
+		bossenemy::preparation_case8(&mobenemy, dart_num, 6, lowerlimit_joydispwidth - 50, lowerlimit_joydispheight + 100, notaim_2way, straight_rightnum, big_yellowbul, 5, 120, static_cast<int>(DX_PI / 20));
 		movestate = 9;
 		break;
 

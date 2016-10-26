@@ -59,7 +59,7 @@ struct rotabullet {
 };
 
 struct mobbullet {
-	mobbullet(double ax, double ay, double aangle, double arange, double arota, int tag) {
+	mobbullet(double ax, double ay, double aangle, double arange, double arota, int tag, int abullettype) {
 		x = ax;
 		y = ay;
 		angle = aangle;
@@ -67,6 +67,7 @@ struct mobbullet {
 		range = arange;
 		rota = arota;
 		bullettag = tag;
+		bullettype = abullettype;
 	}
 	double x;
 	double y;
@@ -75,6 +76,7 @@ struct mobbullet {
 	double range;
 	double rota;
 	int bullettag;
+	int bullettype;
 };
 
 struct laser_vertex {
@@ -140,6 +142,7 @@ struct spining_center {
 	unsigned int count;
 };
 
+//bullettype‚Í’e‚ÌŽí—Þ,bulletnum‚Í’e‚Ì‹O“¹‚ÌŽí—Þ
 struct enemy_element {
 	enemy_element(double anx, double any, int anwidth, int anheight, int angraphnum, int anbulletnum, int anmovenum, int anbullettype, int anhp, unsigned int atime, int arollingspeed) {
 		x = anx;

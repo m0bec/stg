@@ -8,10 +8,8 @@ void bossenemy::mobrun(std::list<enemy_element> *mob) {
 			if (itr->time == 0) {
 				bossenemy::mobenemy_alivecheck(&mobenemy);
 				bossenemy::allocation_enemygraph(itr);
-				bossenemy::mobenemy_shottypecheck(itr);
 				bossenemy::allocation_enemymove(itr);
-				bossenemy::allocation_enemybul(itr, &str_bullettype);
-
+				bossenemy::mobenemy_shottypecheck(itr);
 				itr->pass_time += 1;
 			}
 			else {
@@ -74,7 +72,7 @@ void bossenemy::allocation_enemyshot(std::list<enemy_element>::iterator iterate)
 	mobenemy_shottypecheck(iterate);
 }
 
-void bossenemy::allocation_enemybul(std::list<enemy_element>::iterator iterate, base *bul) {
+void bossenemy::allocation_enemybul(std::list<mobbullet>::iterator iterate, base *bul) {
 	switch (iterate->bullettype) {
 	case 0:
 		*bul = bigredbullet;
@@ -94,9 +92,9 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 	case 0:
 		if (iterate->pass_time % 120 < 30 && iterate->pass_time % 5 == 0) {
 			controling.get_playerposition(&px, &py);
-			mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - bigredbullet.width / 2, iterate->y + iterate->height / 2 - bigredbullet.height / 2, atan2(py - (iterate->y + iterate->height / 2 - bigredbullet.height / 2), px - (iterate->x + iterate->width / 2 - bigredbullet.width / 2)), 6, 6, iterate->bullettype));
-			mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - bigredbullet.width / 2, iterate->y + iterate->height / 2 - bigredbullet.height / 2, atan2(py - (iterate->y + iterate->height / 2 - bigredbullet.height / 2), px - (iterate->x + iterate->width / 2 - bigredbullet.width / 2)) + DX_PI / 6, 6, 6, iterate->bullettype));
-			mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - bigredbullet.width / 2, iterate->y + iterate->height / 2 - bigredbullet.height / 2, atan2(py - (iterate->y + iterate->height / 2 - bigredbullet.height / 2), px - (iterate->x + iterate->width / 2 - bigredbullet.width / 2)) - DX_PI / 6, 6, 6, iterate->bullettype));
+			mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - bigredbullet.width / 2, iterate->y + iterate->height / 2 - bigredbullet.height / 2, atan2(py - (iterate->y + iterate->height / 2 - bigredbullet.height / 2), px - (iterate->x + iterate->width / 2 - bigredbullet.width / 2)), 6, 6, iterate->bulletnum, iterate->bullettype));
+			mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - bigredbullet.width / 2, iterate->y + iterate->height / 2 - bigredbullet.height / 2, atan2(py - (iterate->y + iterate->height / 2 - bigredbullet.height / 2), px - (iterate->x + iterate->width / 2 - bigredbullet.width / 2)) + DX_PI / 6, 6, 6,  iterate->bulletnum, iterate->bullettype));
+			mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - bigredbullet.width / 2, iterate->y + iterate->height / 2 - bigredbullet.height / 2, atan2(py - (iterate->y + iterate->height / 2 - bigredbullet.height / 2), px - (iterate->x + iterate->width / 2 - bigredbullet.width / 2)) - DX_PI / 6, 6, 6, iterate->bulletnum, iterate->bullettype));
 		}
 		break;
 
@@ -104,15 +102,15 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 	case 1:
 		if (iterate->pass_time % 400 < 360 && iterate->pass_time % 5 == 0) {
 			controling.get_playerposition(&px, &py);
-			mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - bigbluebullet.width / 2, iterate->y + iterate->height / 2 - bigbluebullet.height / 2, atan2(py - (iterate->y + iterate->height / 2 - bigbluebullet.height / 2), px - (iterate->x + iterate->width / 2 - bigredbullet.width / 2)) + DX_PI / 6, 6, 6, iterate->bullettype));
-			mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - bigbluebullet.width / 2, iterate->y + iterate->height / 2 - bigbluebullet.height / 2, atan2(py - (iterate->y + iterate->height / 2 - bigbluebullet.height / 2), px - (iterate->x + iterate->width / 2 - bigredbullet.width / 2)) - DX_PI / 6, 6, 6, iterate->bullettype));
+			mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - bigbluebullet.width / 2, iterate->y + iterate->height / 2 - bigbluebullet.height / 2, atan2(py - (iterate->y + iterate->height / 2 - bigbluebullet.height / 2), px - (iterate->x + iterate->width / 2 - bigredbullet.width / 2)) + DX_PI / 6, 6, 6, iterate->bulletnum, iterate->bullettype));
+			mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - bigbluebullet.width / 2, iterate->y + iterate->height / 2 - bigbluebullet.height / 2, atan2(py - (iterate->y + iterate->height / 2 - bigbluebullet.height / 2), px - (iterate->x + iterate->width / 2 - bigredbullet.width / 2)) - DX_PI / 6, 6, 6, iterate->bulletnum, iterate->bullettype));
 		}
 		break;
 
 	case 2:
 		for (int i = 0; i < 16; i++) {
 			if (iterate->pass_time % 30 == 0) {
-				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - bigbluebullet.width / 2, iterate->y + iterate->height / 2 - bigbluebullet.height / 2, i * DX_PI / 16, bigyellow_range, 0, iterate->bullettype));
+				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - bigbluebullet.width / 2, iterate->y + iterate->height / 2 - bigbluebullet.height / 2, i * DX_PI / 16, bigyellow_range, 0, iterate->bulletnum, iterate->bullettype));
 			}
 		}
 		break;
@@ -122,6 +120,7 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 void bossenemy::bullet_move() {
 	auto itr = mobbullet1.begin();
 	while (itr != mobbullet1.end()) {
+		allocation_enemybul(itr, &str_bullettype);
 		switch (itr->bullettag) {
 		case 0:
 			itr->x += cos(itr->angle)*bulletspeed_8;
@@ -131,7 +130,7 @@ void bossenemy::bullet_move() {
 				itr = mobbullet1.erase(itr);
 			}
 			else {
-				DrawGraph(static_cast<int>(itr->x), static_cast<int>(itr->y), bigredbullet.graph, true);
+				DrawGraph(static_cast<int>(itr->x), static_cast<int>(itr->y), str_bullettype.graph, true);
 				itr++;
 			}
 			break;
@@ -144,7 +143,7 @@ void bossenemy::bullet_move() {
 				itr = mobbullet1.erase(itr);
 			}
 			else {
-				DrawGraph(static_cast<int>(itr->x), static_cast<int>(itr->y), bigredbullet.graph, true);
+				DrawGraph(static_cast<int>(itr->x), static_cast<int>(itr->y), str_bullettype.graph, true);
 				itr++;
 			}
 			break;
