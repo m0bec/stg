@@ -50,3 +50,4 @@
 #define straight_downnum 0
 #define straight_rightnum 1
 #define straight_leftnum 2
+#define straight_downlsnum 3

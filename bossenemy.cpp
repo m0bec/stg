@@ -221,9 +221,9 @@ void bossenemy::move() {
 		break;
 
 	case 10:
-		bossenemy::preparation_case8(&mobenemy, aplane_num, 5, 400 - aplane_enemy.width / 2, -50, sixteenway, straight_downnum, yel_bul, 20, 20, 0, 1);
-		bossenemy::preparation_case8(&mobenemy, aplane_num, 5, 250 - aplane_enemy.width / 2, -50, sixteenway, straight_downnum, yel_bul, 20, 80, 0, 1);
-		bossenemy::preparation_case8(&mobenemy, aplane_num, 5, 550 - aplane_enemy.width / 2, -50, sixteenway, straight_downnum, yel_bul, 20, 80, 0, 1);
+		bossenemy::preparation_case8(&mobenemy, aplane_num, 1, 500 - aplane_enemy.width / 2, -50, sixteenway, straight_downlsnum, yel_bul, 20, 20, 0, 1);
+		bossenemy::preparation_case8(&mobenemy, aplane_num, 1, 300 - aplane_enemy.width / 2, -50, sixteenway, straight_downlsnum, yel_bul, 20, 120, 0, 1);
+		bossenemy::preparation_case8(&mobenemy, aplane_num, 1, 700 - aplane_enemy.width / 2, -50, sixteenway, straight_downlsnum, yel_bul, 20, 120, 0, 1);
 		count = 0;
 		movestate = 11;
 		break;

@@ -110,6 +110,7 @@ public:
 	void get_mobplace(std::list<enemy_element> *iterate);
 	void straight_left(std::list<enemy_element>::iterator itr);
 	void straight_right(std::list<enemy_element>::iterator itr);
+	void straight_downls(std::list<enemy_element>::iterator itrate);
 	void bullet_move();
 };
 

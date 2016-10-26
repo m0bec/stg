@@ -55,11 +55,9 @@ void bossenemy::preparation_case8(std::list<enemy_element> *mob, int numenemy, u
 void bossenemy::mobenemy_alivecheck(std::list<enemy_element> *mob) {
 	auto itr = mob->begin();
 	while (itr != mob->end()) {
-		if (itr->hp <= 0) {
+		if (itr->hp <= 0 || itr->y > upperlimit_joydispheight + 400 || itr->y < lowerlimit_joydispheight - itr->height - 400
+			|| itr->x > upperlimit_joydispwidth + 400 || itr->x < lowerlimit_joydispwidth - itr->width - 400) {
 			itr = mob->erase(itr);
-		}else if(itr->y > upperlimit_joydispheight + 400 || itr->y < lowerlimit_joydispheight - itr->height - 400
-				|| itr->x > upperlimit_joydispwidth + 400 || itr->x < lowerlimit_joydispwidth - itr->width - 400) {
-			itr = mob->erase(itr);	
 		}
 		else {
 			++itr;
@@ -142,7 +140,7 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 		case 2:
 			for (int i = 0; i < 16; i++) {
 				if (iterate->pass_time % 30 == 0) {
-					mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - bigbluebullet.width / 2, iterate->y + iterate->height / 2 - bigbluebullet.height / 2, i * DX_PI / 16, str.range, 0, iterate->bulletnum, iterate->bullettype));
+					mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - bigbluebullet.width / 2, iterate->y + iterate->height / 2 - bigbluebullet.height / 2, i *  2* DX_PI / 16, str.range, 0, iterate->bulletnum, iterate->bullettype));
 				}
 			}
 			break;
@@ -182,8 +180,8 @@ void bossenemy::bullet_move() {
 			break;
 
 		case 2:
-			itr->x += cos(itr->angle)*bulletspeed_8;
-			itr->y += sin(itr->angle)*bulletspeed_8;
+			itr->x += cos(itr->angle)*bulletspeed_4;
+			itr->y += sin(itr->angle)*bulletspeed_4;
 			if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - str_bullettype.height
 				|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - str_bullettype.width) {
 				itr = mobbullet1.erase(itr);
