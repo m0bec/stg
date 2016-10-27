@@ -15,6 +15,7 @@ void bossenemy::mobrun(std::list<enemy_element> *mob) {
 			else {
 				itr->time -= 1;
 			}
+			bossenemy::pre_flag_judge(itr);
 			++itr;
 		}
 
@@ -56,13 +57,17 @@ void bossenemy::preparation_case8(std::list<enemy_element> *mob, int numenemy, u
 void bossenemy::mobenemy_alivecheck(std::list<enemy_element> *mob) {
 	auto itr = mob->begin();
 	while (itr != mob->end()) {
-		if ((itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - itr->height
-			|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - itr->width) && itr->pass_time < 400) {
-			itr->hp = itr->origin_hp;
+		if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - itr->height
+			|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - itr->width) {
+			if (!itr->pre_flag) {
+				itr->hp = itr->origin_hp;
+			}
 		}
-		if ((itr->hp <= 0 || itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - itr->height
-			|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - itr->width) && itr->pass_time > 400) {
-			itr = mob->erase(itr);
+		if (itr->hp <= 0 || itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - itr->height
+			|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - itr->width) {
+			if (itr->pre_flag) {
+				itr = mob->erase(itr);
+			}
 		}
 		else {
 			++itr;
@@ -84,6 +89,13 @@ void bossenemy::allocation_enemygraph(std::list<enemy_element>::iterator iterate
 
 void bossenemy::allocation_enemyshot(std::list<enemy_element>::iterator iterate) {
 	mobenemy_shottypecheck(iterate);
+}
+
+void bossenemy::pre_flag_judge(std::list<enemy_element>::iterator itr) {
+	if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - itr->height
+		|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - itr->width) {
+		itr->pre_flag = true;
+	}
 }
 
 void bossenemy::allocation_enemybul(int bullettype, base *bul) {
