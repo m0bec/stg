@@ -38,6 +38,7 @@
 #define straight_down_speed 4
 #define dart_num 0
 #define aplane_num 1
+#define lase_num 2
 
 #define big_redbul 0
 #define big_yellowbul 1

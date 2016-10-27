@@ -45,6 +45,12 @@ void bossenemy::preparation_case8(std::list<enemy_element> *mob, int numenemy, u
 	case 1:
 		wid = aplane_enemy.width;
 		heigh = aplane_enemy.height;
+		break;
+
+	case 2:
+		wid = lase_enemy.width;
+		heigh = lase_enemy.height;
+		break;
 	}
 
 	while (enemynum != 0) {
@@ -87,6 +93,10 @@ void bossenemy::allocation_enemygraph(std::list<enemy_element>::iterator iterate
 
 		case 1:
 			DrawGraph(static_cast<int>(iterate->x), static_cast<int>(iterate->y), aplane_enemy.graph, true);
+			break;
+
+		case 2:
+			DrawRotaGraph(static_cast<int>(iterate->x), static_cast<int>(iterate->y), 1.0, DX_PI / 2 ,lase_enemy.graph, true, false);
 			break;
 		}
 }

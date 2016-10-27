@@ -64,7 +64,7 @@ void bossenemy::quadratic_curve3(std::list<enemy_element>::iterator itr) {
 		itr->y += 1;
 	}
 }
-//‘È‰~H
+//U“®‚µ‚È‚ª‚ç~‚è‚é
 void bossenemy::quadratic_curve4(std::list<enemy_element>::iterator itr) {
 	itr->shotflag = true;
 	if (itr->time == 0) {
@@ -79,6 +79,11 @@ void bossenemy::quadratic_curve5(std::list<enemy_element>::iterator itr) {
 		itr->x = 100 * sin(itr->pass_time * 2 * DX_PI / 300) + itr->originx;
 		itr->y = 100 * sin(itr->pass_time * 2 * DX_PI / 300) + itr->originy + itr->pass_time;
 	}
+}
+
+void bossenemy::straight_up(std::list<enemy_element>::iterator itr) {
+	itr->y -= straight_down_speed;
+	itr->shotflag = true;
 }
 
 void bossenemy::allocation_enemymove(std::list<enemy_element>::iterator iterate) {
@@ -125,6 +130,10 @@ void bossenemy::allocation_enemymove(std::list<enemy_element>::iterator iterate)
 
 	case 10:
 		quadratic_curve5(iterate);
+		break;
+
+	case 11:
+		straight_up(iterate);
 		break;
 
 	case 99:
