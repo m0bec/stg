@@ -45,7 +45,7 @@ void bossenemy::quadratic_curve1(std::list<enemy_element>::iterator itr) {
 	itr->shotflag = true;
 	if (itr->time == 0) {
 		itr->x -= 3;
-		itr->y += 6 * cos(itr->pass_time * 2 * DX_PI / 300);
+		itr->y += 6 * cos(itr->pass_time * 2 * DX_PI / 400);
 	}
 }
 //‰º‚É‰º‚ª‚è‚È‚ª‚ç‰E‚Écos
