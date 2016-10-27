@@ -43,6 +43,10 @@ bossenemy::bossenemy() {
 	GetGraphSize(aplane_enemy.graph, &aplane_enemy.width, &aplane_enemy.height);
 	lase_enemy.graph = LoadGraph("graph/ene3.png");
 	GetGraphSize(lase_enemy.graph, &lase_enemy.width, &lase_enemy.height);
+	lase_enemyr.graph = LoadGraph("graph/ene3r.png");
+	GetGraphSize(lase_enemyr.graph, &lase_enemyr.width, &lase_enemyr.height);
+	lase_enemyl.graph = LoadGraph("graph/ene3l.png");
+	GetGraphSize(lase_enemyl.graph, &lase_enemyl.width, &lase_enemyl.height);
 	
 	x = bossenemy_startpoint_x - width / 2;
 	y = bossenemy_startpoint_y;
@@ -104,6 +108,7 @@ void bossenemy::enemybody_hitcheck(int wid, int heigh, int margin, double positi
 
 void bossenemy::move() {
 	control &controling = control::getinstance();
+	std::uniform_real_distribution<> rand2(0, 20);
 	switch (movestate) {
 	case 0:
 		startmove();
@@ -263,12 +268,20 @@ void bossenemy::move() {
 		bossenemy::mobrun(&mobenemy);
 		bossenemy::mobenemy_alivecheck(&mobenemy);
 		count++;
-		if (count > 2000)	movestate = 14;
+		if (count > 1600)	movestate = 14;
 		break;
 
 	case 14:
 		bossenemy::preparation_case8(&mobenemy, lase_numl, 10, 800 - aplane_enemy.width / 2, -50, left_way, straight_downlsnum, yel_bul, 20, 50, 0, 60);
 		bossenemy::preparation_case8(&mobenemy, lase_numr, 10, 200 - aplane_enemy.width / 2, upperlimit_joydispheight + 50, right_way, straight_upnum, yel_bul, 20, 50, 0, 60);
+		bossenemy::preparation_case8(&mobenemy, lase_numc, 2, 50 - aplane_enemy.width / 2, 100, down_way, stop_and_gonumr, blue_energybul, 20, 50, 0, 60 + static_cast<unsigned int>(rand2(mt)));
+		bossenemy::preparation_case8(&mobenemy, lase_numc, 2, 950 - aplane_enemy.width / 2, 100, down_way, stop_and_gonumr, blue_energybul, 20, 40, 0, 60 + static_cast<unsigned int>(rand2(mt)));
+		bossenemy::preparation_case8(&mobenemy, lase_numc, 2, 50 - aplane_enemy.width / 2, 100, down_way, stop_and_gonumr, blue_energybul, 20, 150, 0, 60 + static_cast<unsigned int>(rand2(mt)));
+		bossenemy::preparation_case8(&mobenemy, lase_numc, 2, 950 - aplane_enemy.width / 2, 100, down_way, stop_and_gonumr, blue_energybul, 20, 155, 0, 60 + static_cast<unsigned int>(rand2(mt)));
+		bossenemy::preparation_case8(&mobenemy, lase_numc, 2, 50 - aplane_enemy.width / 2, 100, down_way, stop_and_gonumr, blue_energybul, 20, 250, 0, 60 + static_cast<unsigned int>(rand2(mt)));
+		bossenemy::preparation_case8(&mobenemy, lase_numc, 2, 950 - aplane_enemy.width / 2, 100, down_way, stop_and_gonumr, blue_energybul, 20, 230, 0, 60 + static_cast<unsigned int>(rand2(mt)));
+		bossenemy::preparation_case8(&mobenemy, lase_numc, 2, 50 - aplane_enemy.width / 2, 100, down_way, stop_and_gonumr, blue_energybul, 20, 350, 0, 60 + static_cast<unsigned int>(rand2(mt)));
+		bossenemy::preparation_case8(&mobenemy, lase_numc, 2, 950 - aplane_enemy.width / 2, 100, down_way, stop_and_gonumr, blue_energybul, 20, 340, 0, 60 + static_cast<unsigned int>(rand2(mt)));
 		count = 0;
 		movestate = 15;
 		break;

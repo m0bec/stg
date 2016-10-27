@@ -66,6 +66,8 @@ private:
 	enemytype dartenemy;
 	enemytype aplane_enemy;
 	enemytype lase_enemy;
+	enemytype lase_enemyr;
+	enemytype lase_enemyl;
 	base str_bullettype;
 public:
 	bossenemy();

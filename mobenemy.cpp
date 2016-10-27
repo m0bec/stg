@@ -50,11 +50,16 @@ void bossenemy::preparation_case8(std::list<enemy_element> *mob, int numenemy, u
 		break;
 
 	case 2:
-		wid = lase_enemy.width;
-		heigh = lase_enemy.height;
+		wid = lase_enemyl.width;
+		heigh = lase_enemyl.height;
 		break;
 
 	case 3:
+		wid = lase_enemyr.width;
+		heigh = lase_enemyr.height;
+		break;
+
+	case 4:
 		wid = lase_enemy.width;
 		heigh = lase_enemy.height;
 		break;
@@ -78,7 +83,7 @@ void bossenemy::mobenemy_alivecheck(std::list<enemy_element> *mob) {
 		}
 
 		if (itr->hp <= 0 || itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - itr->height
-			|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - itr->width) {
+			|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth -  itr->width) {
 			if (itr->pre_flag) {
 				itr = mob->erase(itr);
 			}
@@ -103,11 +108,15 @@ void bossenemy::allocation_enemygraph(std::list<enemy_element>::iterator iterate
 			break;
 
 		case 2:
-			DrawRotaGraph(static_cast<int>(iterate->x), static_cast<int>(iterate->y), 1.0, DX_PI / 2 ,lase_enemy.graph, true, false);
+			DrawGraph(static_cast<int>(iterate->x), static_cast<int>(iterate->y), lase_enemyl.graph, true);
 			break;
 
 		case 3:
-			DrawRotaGraph(static_cast<int>(iterate->x), static_cast<int>(iterate->y), 1.0, 3 * DX_PI / 2, lase_enemy.graph, true, false);
+			DrawGraph(static_cast<int>(iterate->x), static_cast<int>(iterate->y), lase_enemyr.graph, true);
+			break;
+
+		case 4:
+			DrawGraph(static_cast<int>(iterate->x), static_cast<int>(iterate->y), lase_enemy.graph, true);
 			break;
 		}
 }
@@ -334,8 +343,9 @@ void bossenemy::bullet_move() {
 			break;
 
 		case 7:
+			itr->elapsedtime++;
 			if (itr->elapsedtime > 60) {
-				itr->y -= bulletspeed_6;
+				itr->y += bulletspeed_6;
 				if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - itr->bul.height
 					|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - itr->bul.width) {
 					itr = mobbullet1.erase(itr);
@@ -348,6 +358,8 @@ void bossenemy::bullet_move() {
 			else {
 				++itr;
 			}
+			break;
+
 		}
 	}
 }

@@ -40,6 +40,7 @@
 #define aplane_num 1
 #define lase_numl 2
 #define lase_numr 3
+#define lase_numc 4
 
 #define big_redbul 0
 #define big_yellowbul 1
@@ -55,6 +56,7 @@
 #define put_pway 4
 #define right_way 5
 #define left_way 6
+#define down_way 7
 
 #define straight_downnum 0
 #define straight_rightnum 1
