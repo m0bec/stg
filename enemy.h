@@ -126,6 +126,8 @@ public:
 	void quadratic_curve9(std::list<enemy_element>::iterator itr);
 	void straight_up(std::list<enemy_element>::iterator itr);
 	void stop_and_go1(std::list<enemy_element>::iterator itr);
+	void stop_and_go2(std::list<enemy_element>::iterator itr);
+	void stop_and_go3(std::list<enemy_element>::iterator itr);
 	void bullet_move();
 };
 

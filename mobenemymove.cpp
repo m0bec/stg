@@ -86,6 +86,20 @@ void bossenemy::straight_up(std::list<enemy_element>::iterator itr) {
 	itr->shotflag = true;
 }
 
+void bossenemy::stop_and_go2(std::list<enemy_element>::iterator itr) {
+	itr->shotflag = true;
+	if (itr->pass_time % 60 >= 40) {
+		itr->x += 8;
+	}
+}
+
+void bossenemy::stop_and_go3(std::list<enemy_element>::iterator itr) {
+	itr->shotflag = true;
+	if (itr->pass_time % 60 >= 40) {
+		itr->x -= 8;
+	}
+}
+
 void bossenemy::allocation_enemymove(std::list<enemy_element>::iterator iterate) {
 	switch (iterate->movenum) {
 	case 0:
@@ -134,6 +148,14 @@ void bossenemy::allocation_enemymove(std::list<enemy_element>::iterator iterate)
 
 	case 11:
 		straight_up(iterate);
+		break;
+
+	case 12:
+		stop_and_go2(iterate);
+		break;
+
+	case 13:
+		stop_and_go2(iterate);
 		break;
 
 	case 99:

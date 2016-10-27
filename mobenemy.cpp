@@ -156,6 +156,7 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 	allocation_enemybul(iterate->bullettype, &str);
 	control &controling = control::getinstance();
 	std::uniform_real_distribution<> rand(0, 2 * DX_PI);
+	std::uniform_real_distribution<> rand2(0, 2 * DX_PI);
 	if (iterate->y < upperlimit_joydispheight && iterate->y > lowerlimit_joydispheight - iterate->height
 		&& iterate->x < upperlimit_joydispwidth && iterate->x > lowerlimit_joydispwidth - iterate->width) {
 		switch (iterate->bulletnum) {
@@ -200,18 +201,27 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 			}
 			break;
 
-			//‰¡‚É”ò‚Ô’e
+			//‰E‚É”ò‚Ô’e
 		case 5:
 			if (iterate->pass_time % 4 == 0 && iterate->pass_time % 120 < 90) {
 				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, 0, str.range, 0, iterate->bulletnum, iterate->bullettype, str, 0));
 			}
 			break;
 
+			//¶‚É”ò‚Ô’e
 		case 6:
 			if (iterate->pass_time % 4 == 0 && iterate->pass_time % 120 < 90) {
 				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, 0, str.range, 0, iterate->bulletnum, iterate->bullettype, str, 0));
-				break;
 			}
+			break;
+			
+			//‰º‚É—Ž‰º‚·‚é’e
+		case 7:
+			if (iterate->pass_time % 4 == 0 && iterate->pass_time % 60 < 40) {
+				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, 0, str.range, 0, iterate->bulletnum, iterate->bullettype, str, 0));
+			}
+			break;
+			
 		}
 	}
 }
@@ -322,6 +332,22 @@ void bossenemy::bullet_move() {
 				itr++;
 			}
 			break;
+
+		case 7:
+			if (itr->elapsedtime > 60) {
+				itr->y -= bulletspeed_6;
+				if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - itr->bul.height
+					|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - itr->bul.width) {
+					itr = mobbullet1.erase(itr);
+				}
+				else {
+					DrawGraph(static_cast<int>(itr->x), static_cast<int>(itr->y), itr->bul.graph, true);
+					++itr;
+				}
+			}
+			else {
+				++itr;
+			}
 		}
 	}
 }

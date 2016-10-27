@@ -68,6 +68,8 @@
 #define quadratic_curvenum4 9
 #define quadratic_curvenum5 10
 #define straight_upnum 11
+#define stop_and_gonuml 12
+#define stop_and_gonumr 13
 
 
 
