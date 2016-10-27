@@ -32,7 +32,8 @@
 #define bullet_num5 5
 #define bullet_radius20 20
 #define movetime 60
-
+#define player_h 43
+#define player_w 47
 //mobenemy
 #define straight_down_speed 4
 #define dart_num 0
@@ -49,6 +50,7 @@
 #define notaim_2way 1
 #define sixteenway 2
 #define randomway 3
+#define put_pway 4
 
 #define straight_downnum 0
 #define straight_rightnum 1

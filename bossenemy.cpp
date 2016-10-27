@@ -198,7 +198,7 @@ void bossenemy::move() {
 		if (get_presence) {
 			bossenemy::enemybody_hitcheck(width, height, bossenemy_bodymargin, x, y);
 		}
-		if (y > upperlimit_joydispheight)	movestate = 8;
+		if (y > upperlimit_joydispheight)	movestate = 12;
 		break;
 
 	case 8:
@@ -227,6 +227,8 @@ void bossenemy::move() {
 		bossenemy::preparation_case8(&mobenemy, dart_num, 1, 500 - dartenemy.width / 2, -50, randomway, stop_and_gonum, green_bul, 50, 480, static_cast<int>(DX_PI / 20), 1);
 		bossenemy::preparation_case8(&mobenemy, dart_num, 1, 300 - dartenemy.width / 2, -50, randomway, stop_and_gonum, green_bul, 50, 600, static_cast<int>(DX_PI / 20), 1);
 		bossenemy::preparation_case8(&mobenemy, dart_num, 1, 700 - dartenemy.width / 2, -50, randomway, stop_and_gonum, green_bul, 50, 730, static_cast<int>(DX_PI / 20), 1);
+		bossenemy::mobrun(&mobenemy);
+		bossenemy::mobenemy_alivecheck(&mobenemy);
 		count = 0;
 		movestate = 11;
 		break;
@@ -236,6 +238,25 @@ void bossenemy::move() {
 		controling.get_presenceflag(&get_presence);
 		bossenemy::mobrun(&mobenemy);
 		bossenemy::mobenemy_alivecheck(&mobenemy);
+		++count;
+		if (count > 2000)	movestate = 12;
+		break;
+
+	case 12:
+		bossenemy::preparation_case8(&mobenemy, dart_num, 1, 200 - dartenemy.width / 2, -50, put_pway, quadratic_curvenum, green_bul, 5, 10, static_cast<int>(DX_PI / 20), 20);
+
+		bossenemy::mobrun(&mobenemy);
+		bossenemy::mobenemy_alivecheck(&mobenemy);
+		count = 0;
+		movestate = 13;
+		break;
+
+	case 13:
+		reset_ebullethit();
+		controling.get_presenceflag(&get_presence);
+		bossenemy::mobrun(&mobenemy);
+		bossenemy::mobenemy_alivecheck(&mobenemy);
+		count++;
 		break;
 	}		
 }

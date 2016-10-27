@@ -62,7 +62,9 @@ struct rotabullet {
 struct mobbullet {
 	mobbullet(double ax, double ay, double aangle, double arange, double arota, int tag, int abullettype) {
 		x = ax;
+		originx = ax;
 		y = ay;
+		originy = ay;
 		angle = aangle;
 		elapsedtime = 0;
 		range = arange;
@@ -71,7 +73,9 @@ struct mobbullet {
 		bullettype = abullettype;
 	}
 	double x;
+	double originx;
 	double y;
+	double originy;
 	double angle;
 	unsigned int elapsedtime;
 	double range;

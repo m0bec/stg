@@ -55,12 +55,12 @@ void bossenemy::preparation_case8(std::list<enemy_element> *mob, int numenemy, u
 void bossenemy::mobenemy_alivecheck(std::list<enemy_element> *mob) {
 	auto itr = mob->begin();
 	while (itr != mob->end()) {
-		if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - itr->height
-			|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - itr->width) {
+		if ((itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - itr->height
+			|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - itr->width) && itr->pass_time < 400) {
 			itr->hp = itr->origin_hp;
 		}
-		if (itr->hp <= 0 || itr->y > upperlimit_joydispheight + 400 || itr->y < lowerlimit_joydispheight - itr->height - 400
-			|| itr->x > upperlimit_joydispwidth + 400 || itr->x < lowerlimit_joydispwidth - itr->width - 400) {
+		if ((itr->hp <= 0 || itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - itr->height
+			|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - itr->width) && itr->pass_time > 500) {
 			itr = mob->erase(itr);
 		}
 		else {
@@ -118,8 +118,8 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 	allocation_enemybul(iterate->bullettype, &str);
 	control &controling = control::getinstance();
 	std::uniform_real_distribution<> rand(0, 2 * DX_PI);
-	if (iterate->y < upperlimit_joydispheight || iterate->y > lowerlimit_joydispheight - iterate->height
-		|| iterate->x < upperlimit_joydispwidth || iterate->x > lowerlimit_joydispwidth - iterate->width) {
+	if (iterate->y < upperlimit_joydispheight && iterate->y > lowerlimit_joydispheight - iterate->height
+		&& iterate->x < upperlimit_joydispwidth && iterate->x > lowerlimit_joydispwidth - iterate->width) {
 		switch (iterate->bulletnum) {
 			double px, py;
 			//3way
@@ -152,13 +152,22 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 
 			//全周囲バラマキ
 		case 3:
-				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, rand(mt), str.range, 0, iterate->bulletnum, iterate->bullettype));
+			mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, rand(mt), str.range, 0, iterate->bulletnum, iterate->bullettype));
+			break;
+
+			//設置自機狙い
+		case 4:
+			if (iterate->pass_time % 5 == 0) {
+				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, 0, str.range, 0, iterate->bulletnum, iterate->bullettype));
+			}
 			break;
 		}
 	}
 }
 
 void bossenemy::bullet_move() {
+	double px, py;
+	control &controling = control::getinstance();
 	auto itr = mobbullet1.begin();
 	while (itr != mobbullet1.end()) {
 		allocation_enemybul(itr->bullettype, &str_bullettype);
@@ -205,6 +214,30 @@ void bossenemy::bullet_move() {
 		case 3:
 			itr->x += cos(itr->angle)*bulletspeed_5;
 			itr->y += sin(itr->angle)*bulletspeed_5;
+			if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - str_bullettype.height
+				|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - str_bullettype.width) {
+				itr = mobbullet1.erase(itr);
+			}
+			else {
+				DrawGraph(static_cast<int>(itr->x), static_cast<int>(itr->y), str_bullettype.graph, true);
+				itr++;
+			}
+			break;
+
+		case 4:
+			itr->elapsedtime++;
+			if(itr->elapsedtime == 60){
+				controling.get_playerposition(&px, &py);
+				itr->angle = atan2(py - (itr->y + str_bullettype.height / 2), px - (itr->x + str_bullettype.width / 2));
+			}
+			else if (itr->elapsedtime > 60 && itr->elapsedtime < 80) {
+				itr->x += cos(itr->angle)*bulletspeed_5*sin(DX_PI/(2*20) * itr->elapsedtime);
+				itr->y += sin(itr->angle)*bulletspeed_5*sin(DX_PI / (2 * 20) * itr->elapsedtime);
+			}
+			else if (itr->elapsedtime >= 81) {
+				itr->x += cos(itr->angle)*bulletspeed_5;
+				itr->y += sin(itr->angle)*bulletspeed_5;
+			}
 			if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - str_bullettype.height
 				|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - str_bullettype.width) {
 				itr = mobbullet1.erase(itr);

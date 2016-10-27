@@ -22,9 +22,11 @@ void bossenemy::straight_right(std::list<enemy_element>::iterator itr) {
 }
 
 void bossenemy::quadratic_curve(std::list<enemy_element>::iterator itr) {
-	itr->x += 3;
-	itr->y = (itr->x - itr->originx) * (itr->x - itr->originx);
 	itr->shotflag = true;
+	if (itr->time == 0) {
+		itr->x += 3;
+		itr->y = 400*(-cos(itr->pass_time * 2 * DX_PI / 300) + 1) - 50;
+	}
 }
 
 void bossenemy::stop_and_go1(std::list<enemy_element>::iterator itr) {
@@ -64,6 +66,7 @@ void bossenemy::allocation_enemymove(std::list<enemy_element>::iterator iterate)
 	case 5:
 		stop_and_go1(iterate);
 		break;
+
 
 	case 99:
 		break;
