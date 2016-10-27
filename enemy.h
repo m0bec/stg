@@ -113,6 +113,15 @@ public:
 	void straight_right(std::list<enemy_element>::iterator itr);
 	void straight_downls(std::list<enemy_element>::iterator itrate);
 	void quadratic_curve(std::list<enemy_element>::iterator itr);
+	void quadratic_curve1(std::list<enemy_element>::iterator itr);
+	void quadratic_curve2(std::list<enemy_element>::iterator itr);
+	void quadratic_curve3(std::list<enemy_element>::iterator itr);
+	void quadratic_curve4(std::list<enemy_element>::iterator itr);
+	void quadratic_curve5(std::list<enemy_element>::iterator itr);
+	void quadratic_curve6(std::list<enemy_element>::iterator itr);
+	void quadratic_curve7(std::list<enemy_element>::iterator itr);
+	void quadratic_curve8(std::list<enemy_element>::iterator itr);
+	void quadratic_curve9(std::list<enemy_element>::iterator itr);
 	void stop_and_go1(std::list<enemy_element>::iterator itr);
 	void bullet_move();
 };

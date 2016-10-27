@@ -157,7 +157,7 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 
 			//Ý’uŽ©‹@‘_‚¢
 		case 4:
-			if (iterate->pass_time % 5 == 0) {
+			if (iterate->pass_time % 2 == 0) {
 				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, 0, str.range, 0, iterate->bulletnum, iterate->bullettype));
 			}
 			break;
@@ -231,12 +231,12 @@ void bossenemy::bullet_move() {
 				itr->angle = atan2(py - (itr->y + str_bullettype.height / 2), px - (itr->x + str_bullettype.width / 2));
 			}
 			else if (itr->elapsedtime > 60 && itr->elapsedtime < 80) {
-				itr->x += cos(itr->angle)*bulletspeed_5*sin(DX_PI/(2*20) * itr->elapsedtime);
-				itr->y += sin(itr->angle)*bulletspeed_5*sin(DX_PI / (2 * 20) * itr->elapsedtime);
+				itr->x += cos(itr->angle)*bulletspeed_8*sin(DX_PI/(2*20) * itr->elapsedtime);
+				itr->y += sin(itr->angle)*bulletspeed_8*sin(DX_PI / (2 * 20) * itr->elapsedtime);
 			}
 			else if (itr->elapsedtime >= 81) {
-				itr->x += cos(itr->angle)*bulletspeed_5;
-				itr->y += sin(itr->angle)*bulletspeed_5;
+				itr->x += cos(itr->angle)*bulletspeed_8;
+				itr->y += sin(itr->angle)*bulletspeed_8;
 			}
 			if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - str_bullettype.height
 				|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - str_bullettype.width) {

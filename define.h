@@ -58,3 +58,13 @@
 #define straight_downlsnum 3
 #define quadratic_curvenum 4
 #define stop_and_gonum 5
+#define quadratic_curvenum1 6
+#define quadratic_curvenum2 7
+#define quadratic_curvenum3 8
+#define quadratic_curvenum4 9
+#define quadratic_curvenum5 10
+
+
+
+
+
