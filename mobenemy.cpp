@@ -63,10 +63,14 @@ void bossenemy::mobenemy_alivecheck(std::list<enemy_element> *mob) {
 				itr->hp = itr->origin_hp;
 			}
 		}
+
 		if (itr->hp <= 0 || itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - itr->height
 			|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - itr->width) {
 			if (itr->pre_flag) {
 				itr = mob->erase(itr);
+			}
+			else {
+				++itr;
 			}
 		}
 		else {
@@ -92,8 +96,8 @@ void bossenemy::allocation_enemyshot(std::list<enemy_element>::iterator iterate)
 }
 
 void bossenemy::pre_flag_judge(std::list<enemy_element>::iterator itr) {
-	if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - itr->height
-		|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - itr->width) {
+	if (itr->y < upperlimit_joydispheight && itr->y > lowerlimit_joydispheight - itr->height
+		&& itr->x < upperlimit_joydispwidth && itr->x > lowerlimit_joydispwidth - itr->width) {
 		itr->pre_flag = true;
 	}
 }

@@ -41,6 +41,8 @@ bossenemy::bossenemy() {
 	GetGraphSize(dartenemy.graph, &dartenemy.width, &dartenemy.height);
 	aplane_enemy.graph = LoadGraph("graph/ene2.png");
 	GetGraphSize(aplane_enemy.graph, &aplane_enemy.width, &aplane_enemy.height);
+	lase_enemy.graph = LoadGraph("graph/ene3.png");
+	GetGraphSize(lase_enemy.graph, &lase_enemy.width, &lase_enemy.height);
 	
 	x = bossenemy_startpoint_x - width / 2;
 	y = bossenemy_startpoint_y;
@@ -108,7 +110,7 @@ void bossenemy::move() {
 		set_enemyhp(bossenemy_hp1);
 		break;
 
-	case 1:
+	/*case 1:
 		reset_ebullethit();
 		roundtrip_move();
 		straightaim_player();
@@ -119,7 +121,7 @@ void bossenemy::move() {
 			bossenemy::ebullethit_checker(&enemybullet1, bigredbullet);
 			bossenemy::ebullethit_checker(&enemybullet2, bigbluebullet);
 		}
-		break;
+		break;*/
 
 	case 2:
 		enemybullet1.erase(enemybullet1.begin(), enemybullet1.end());
@@ -191,7 +193,7 @@ void bossenemy::move() {
 		movestate = 7;
 		break;
 
-	case 7:
+	case 1:
 		reset_ebullethit();
 		controling.get_presenceflag(&get_presence);
 		straightmove();
@@ -261,6 +263,17 @@ void bossenemy::move() {
 		bossenemy::mobrun(&mobenemy);
 		bossenemy::mobenemy_alivecheck(&mobenemy);
 		count++;
+		if (count > 2000)	movestate = 14;
+		break;
+
+	case 14:
+		reset_ebullethit();
+		controling.get_presenceflag(&get_presence);
+		count = 0;
+		movestate = 15;
+		break;
+	case 15:
+
 		break;
 	}		
 }
