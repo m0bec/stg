@@ -156,17 +156,19 @@ bool control::mobbullet_hitchecker(std::list<mobbullet> *bullet, base bullettype
 	ziki1->getposition(&zikicx, &zikicy);
 	auto itr = bullet->begin();
 	while (itr != bullet->end()) {
-		if ((zikicx - itr->x)*(zikicx - itr->x) + (zikicy - itr->y)*(zikicy - itr->y) < (itr->range + ziki1->pass_grazedist())*(itr->range + ziki1->pass_grazedist())) {
-			ziki1->graze_counter();
-			if ((zikicx - itr->x)*(zikicx - itr->x) + (zikicy - itr->y)*(zikicy - itr->y) < (itr->range + ziki1->pass_hitdist())*(itr->range + ziki1->pass_hitdist())) {
-				return true;
+		if (itr->hit_type == 0) {
+			if ((zikicx - itr->x)*(zikicx - itr->x) + (zikicy - itr->y)*(zikicy - itr->y) < (itr->range + ziki1->pass_grazedist())*(itr->range + ziki1->pass_grazedist())) {
+				ziki1->graze_counter();
+				if ((zikicx - itr->x)*(zikicx - itr->x) + (zikicy - itr->y)*(zikicy - itr->y) < (itr->range + ziki1->pass_hitdist())*(itr->range + ziki1->pass_hitdist())) {
+					return true;
+				}
+				else {
+					itr++;
+				}
 			}
 			else {
 				itr++;
 			}
-		}
-		else {
-			itr++;
 		}
 	}
 	return false;

@@ -28,9 +28,11 @@ void bossenemy::mobrun(std::list<enemy_element> *mob) {
 
 void bossenemy::mobbul_hitcheck(std::list<mobbullet> *bullet, base bullettype) {
 	control &controling = control::getinstance();
+	
 	if (controling.mobbullet_hitchecker(bullet, bullettype)) {
 		ebullethit = true;
 	}
+	
 }
 
 void bossenemy::preparation_case8(std::list<enemy_element> *mob, int numenemy, unsigned int enemynum, double anx, double any, int anbulletnum, int anmovenum, int anbullettype, int anhp, unsigned int atime, int rollspeed, unsigned int inter) {
@@ -153,9 +155,9 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 		case 0:
 			if (iterate->pass_time % 120 < 30 && iterate->pass_time % 5 == 0) {
 				controling.get_playerposition(&px, &py);
-				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, atan2(py - (iterate->y + iterate->height / 2 - str.height / 2), px - (iterate->x + iterate->width / 2 - str.width / 2)), str.range, 6, iterate->bulletnum, iterate->bullettype, str));
-				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, atan2(py - (iterate->y + iterate->height / 2 - str.height / 2), px - (iterate->x + iterate->width / 2 - str.width / 2)) + DX_PI / 6, str.range, 6, iterate->bulletnum, iterate->bullettype, str));
-				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - bigredbullet.height / 2, atan2(py - (iterate->y + iterate->height / 2 - bigredbullet.height / 2), px - (iterate->x + iterate->width / 2 - bigredbullet.width / 2)) - DX_PI / 6, str.range, 6, iterate->bulletnum, iterate->bullettype, str));
+				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, atan2(py - (iterate->y + iterate->height / 2 - str.height / 2), px - (iterate->x + iterate->width / 2 - str.width / 2)), str.range, 6, iterate->bulletnum, iterate->bullettype, str, 0));
+				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, atan2(py - (iterate->y + iterate->height / 2 - str.height / 2), px - (iterate->x + iterate->width / 2 - str.width / 2)) + DX_PI / 6, str.range, 6, iterate->bulletnum, iterate->bullettype, str, 0));
+				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - bigredbullet.height / 2, atan2(py - (iterate->y + iterate->height / 2 - bigredbullet.height / 2), px - (iterate->x + iterate->width / 2 - bigredbullet.width / 2)) - DX_PI / 6, str.range, 6, iterate->bulletnum, iterate->bullettype, str, 0));
 			}
 			break;
 
@@ -163,8 +165,8 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 		case 1:
 			if (iterate->pass_time % 400 < 360 && iterate->pass_time % 5 == 0) {
 				controling.get_playerposition(&px, &py);
-				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, atan2(py - (iterate->y + iterate->height / 2 - str.height / 2), px - (iterate->x + iterate->width / 2 - str.width / 2)) + DX_PI / 12, str.range, 6, iterate->bulletnum, iterate->bullettype, str));
-				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, atan2(py - (iterate->y + iterate->height / 2 - str.height / 2), px - (iterate->x + iterate->width / 2 - str.width / 2)) - DX_PI / 12, str.range, 6, iterate->bulletnum, iterate->bullettype, str));
+				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, atan2(py - (iterate->y + iterate->height / 2 - str.height / 2), px - (iterate->x + iterate->width / 2 - str.width / 2)) + DX_PI / 12, str.range, 6, iterate->bulletnum, iterate->bullettype, str, 0));
+				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, atan2(py - (iterate->y + iterate->height / 2 - str.height / 2), px - (iterate->x + iterate->width / 2 - str.width / 2)) - DX_PI / 12, str.range, 6, iterate->bulletnum, iterate->bullettype, str, 0));
 			}
 			break;
 
@@ -172,20 +174,20 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 		case 2:
 			for (int i = 0; i < 16; i++) {
 				if (iterate->pass_time % 30 == 0) {
-					mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, i *  2* DX_PI / 16, str.range, 0, iterate->bulletnum, iterate->bullettype, str));
+					mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, i *  2* DX_PI / 16, str.range, 0, iterate->bulletnum, iterate->bullettype, str, 0));
 				}
 			}
 			break;
 
 			//全周囲バラマキ
 		case 3:
-			mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, rand(mt), str.range, 0, iterate->bulletnum, iterate->bullettype, str));
+			mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, rand(mt), str.range, 0, iterate->bulletnum, iterate->bullettype, str, 0));
 			break;
 
 			//設置自機狙い
 		case 4:
 			if (iterate->pass_time % 2 == 0) {
-				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, 0, str.range, 0, iterate->bulletnum, iterate->bullettype, str));
+				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, 0, str.range, 0, iterate->bulletnum, iterate->bullettype, str, 0));
 			}
 			break;
 		}

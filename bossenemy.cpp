@@ -272,6 +272,7 @@ void bossenemy::move() {
 		count = 0;
 		movestate = 15;
 		break;
+
 	case 15:
 
 		break;
