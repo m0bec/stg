@@ -199,11 +199,7 @@ struct enemytype {
 	int height;
 };
 
-struct vec {
-	vec(double dx, double dy) {
-		x = dx;
-		y = dy;
-	}
+struct square {
 	double x;
 	double y;
 };
