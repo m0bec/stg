@@ -267,14 +267,18 @@ void bossenemy::move() {
 		break;
 
 	case 14:
-		reset_ebullethit();
-		controling.get_presenceflag(&get_presence);
+		bossenemy::preparation_case8(&mobenemy, lase_numl, 10, 800 - aplane_enemy.width / 2, -50, left_way, straight_downlsnum, yel_bul, 20, 50, 0, 60);
+		bossenemy::preparation_case8(&mobenemy, lase_numr, 10, 200 - aplane_enemy.width / 2, upperlimit_joydispheight + 50, right_way, straight_upnum, yel_bul, 20, 50, 0, 60);
 		count = 0;
 		movestate = 15;
 		break;
 
 	case 15:
-
+		reset_ebullethit();
+		controling.get_presenceflag(&get_presence);
+		bossenemy::mobrun(&mobenemy);
+		bossenemy::mobenemy_alivecheck(&mobenemy);
+	
 		break;
 	}		
 }

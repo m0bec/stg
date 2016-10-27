@@ -53,6 +53,11 @@ void bossenemy::preparation_case8(std::list<enemy_element> *mob, int numenemy, u
 		wid = lase_enemy.width;
 		heigh = lase_enemy.height;
 		break;
+
+	case 3:
+		wid = lase_enemy.width;
+		heigh = lase_enemy.height;
+		break;
 	}
 
 	while (enemynum != 0) {
@@ -99,6 +104,10 @@ void bossenemy::allocation_enemygraph(std::list<enemy_element>::iterator iterate
 
 		case 2:
 			DrawRotaGraph(static_cast<int>(iterate->x), static_cast<int>(iterate->y), 1.0, DX_PI / 2 ,lase_enemy.graph, true, false);
+			break;
+
+		case 3:
+			DrawRotaGraph(static_cast<int>(iterate->x), static_cast<int>(iterate->y), 1.0, 3 * DX_PI / 2, lase_enemy.graph, true, false);
 			break;
 		}
 }
@@ -193,13 +202,13 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 
 			//‰¡‚É”ò‚Ô’e
 		case 5:
-			if (iterate->pass_time % 4 == 0) {
+			if (iterate->pass_time % 4 == 0 && iterate->pass_time % 120 < 90) {
 				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, 0, str.range, 0, iterate->bulletnum, iterate->bullettype, str, 0));
 			}
 			break;
 
 		case 6:
-			if (iterate->pass_time % 4 == 0) {
+			if (iterate->pass_time % 4 == 0 && iterate->pass_time % 120 < 90) {
 				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, 0, str.range, 0, iterate->bulletnum, iterate->bullettype, str, 0));
 				break;
 			}

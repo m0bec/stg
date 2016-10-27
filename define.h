@@ -38,7 +38,8 @@
 #define straight_down_speed 4
 #define dart_num 0
 #define aplane_num 1
-#define lase_num 2
+#define lase_numl 2
+#define lase_numr 3
 
 #define big_redbul 0
 #define big_yellowbul 1
@@ -52,6 +53,8 @@
 #define sixteenway 2
 #define randomway 3
 #define put_pway 4
+#define right_way 5
+#define left_way 6
 
 #define straight_downnum 0
 #define straight_rightnum 1
@@ -64,6 +67,7 @@
 #define quadratic_curvenum3 8
 #define quadratic_curvenum4 9
 #define quadratic_curvenum5 10
+#define straight_upnum 11
 
 
 
