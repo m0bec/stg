@@ -198,3 +198,12 @@ struct enemytype {
 	int width;
 	int height;
 };
+
+struct vec {
+	vec(double dx, double dy) {
+		x = dx;
+		y = dy;
+	}
+	double x;
+	double y;
+};

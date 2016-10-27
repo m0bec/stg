@@ -152,7 +152,12 @@ bool control::spinbullet_hitchecker(std::list<rotabullet> *bullet, base bulletty
 }
 
 bool control::mobbullet_hitchecker(std::list<mobbullet> *bullet, base bullettype) {
-	double zikicx, zikicy;
+	double zikicx, zikicy, str;
+	bool flag = false;
+	int count = 0;
+	std::array<vec, 5> vect;	//target
+	std::array<vec, 5> vecs;
+	std::array<square, 5> squ;
 	ziki1->getposition(&zikicx, &zikicy);
 	auto itr = bullet->begin();
 	while (itr != bullet->end()) {
@@ -168,6 +173,43 @@ bool control::mobbullet_hitchecker(std::list<mobbullet> *bullet, base bullettype
 			}
 			else {
 				itr++;
+			}
+		}
+		else if (itr->hit_type == 1) {
+			squ[0].x = itr->x;	squ[1].x = itr->x + itr->bul.width * cos(itr->angle);	squ[3].x = itr->x - itr->bul.height*sin(itr->angle);	squ[2].x = squ[1].x + squ[3].x;	squ[4].x = squ[0].x;
+			squ[0].y = itr->y;	squ[1].y = itr->y - itr->bul.width * sin(itr->angle);	squ[3].y = itr->y + itr->bul.height*cos(itr->angle);	squ[2].y = squ[1].y + squ[3].y;	squ[4].y = squ[0].y;
+			for (int i = 0 ; i < 4; i++) {
+				vecs[i].x = squ[i + 1].x - squ[i].x;	vecs[i].y = squ[i + 1].y - squ[i].y;
+				vect[i].x = zikicx - squ[i].x;	vect[i].y = zikicy - squ[i].y;
+			}	vect[4].x = zikicx - squ[4].x; vect[4].y = zikicy - squ[4].y;
+
+			for (int i = 0; i < 4; i++) {
+				if (vecs[i].x * vect[i].y - vecs[i].y * vect[i].x <= 0) {
+					++count;
+					if(count == 4)	flag = true;
+				}
+			}
+
+			if (!flag) {
+				for (int i = 0; i < 4; i++) {
+					str = (vect[i].x * vecs[i].y - vecs[i].x * vect[i].y) * (vect[i].x * vecs[i].y - vecs[i].x * vect[i].y);
+					if (str <= (vecs[i].x * vecs[i].x + vecs[i].y * vecs[i].y)* ziki1->pass_grazedist()) {
+						if ((vecs[i].x * vect[i].x + vecs[i].y * vect[i].y) * (vecs[i].x * vect[i + 1].x + vecs[i].y * vect[i + 1].y) <= 0) {
+							ziki1->graze_counter();
+							if (str <= (vecs[i].x * vecs[i].x + vecs[i].y * vecs[i].y)* ziki1->pass_hitdist()) {
+								flag = true;
+								break;
+							}
+						}
+					}
+				}
+			}
+
+			if (flag) {
+				return true;
+			}
+			else {
+				++itr;
 			}
 		}
 	}
