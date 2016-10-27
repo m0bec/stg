@@ -60,7 +60,7 @@ struct rotabullet {
 };
 
 struct mobbullet {
-	mobbullet(double ax, double ay, double aangle, double arange, double arota, int tag, int abullettype) {
+	mobbullet(double ax, double ay, double aangle, double arange, double arota, int tag, int abullettype, base str) {
 		x = ax;
 		originx = ax;
 		y = ay;
@@ -71,6 +71,7 @@ struct mobbullet {
 		rota = arota;
 		bullettag = tag;
 		bullettype = abullettype;
+		bul = str;
 	}
 	double x;
 	double originx;
@@ -82,6 +83,7 @@ struct mobbullet {
 	double rota;
 	int bullettag;
 	int bullettype;
+	base bul;
 };
 
 struct laser_vertex {
