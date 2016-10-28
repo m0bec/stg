@@ -21,6 +21,7 @@ ziki::ziki() {
 	sortiecounter = 0;
 	shotpoint = 0;
 	grazepoint = 0;
+	grase_count = 0;
 
 	hitdist = hit_distance;
 	graze_range = graze_distance;
@@ -184,11 +185,16 @@ void ziki::shot() {
 }
 
 void ziki::graze_counter() {
+	++grase_count;
 	grazepoint += 3;
 }
 
 unsigned int ziki::pass_point() {
 	return (shotpoint + grazepoint);
+}
+
+unsigned int ziki::pass_grazenum() {
+	return grase_count;
 }
 
 //•œŠˆ‚µ‚Ä‚©‚ç‚ÌŠÔ‚ğŠÇ—

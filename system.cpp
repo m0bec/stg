@@ -102,3 +102,15 @@ void systemm::scoredisp(unsigned int point) {
 		drawx = drawx - scorenum[0].width;
 	}
 }
+
+void systemm::grasedisp(unsigned int gnum) {
+	grazen = gnum;
+	int number;
+	int drawx = upperlimit_width - scorenum[0].width - 50;
+	for (int i = 0; i < 10; i++) {
+		number = grazen % 10;
+		grazen = grazen / 10;
+		DrawGraph(drawx, 200, scorenum[number].graph, true);
+		drawx = drawx - scorenum[0].width;
+	}
+}

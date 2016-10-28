@@ -36,7 +36,8 @@ private:
 	double hitdist;
 	double graze_range;
 	bool gameover_flag;
-	
+	unsigned int grase_count;
+
 public:
 	ziki();
 	void getposition(double *centerx, double *centery);
@@ -51,6 +52,7 @@ public:
 	void move();
 	void shot();
 	unsigned int pass_point();
+	unsigned int pass_grazenum();
 	void graze_counter();
 };
 

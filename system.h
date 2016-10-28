@@ -19,6 +19,7 @@ private:
 	unsigned int music_time;
 	unsigned int score1;
 	unsigned int score2;
+	unsigned int grazen;
 
 public:
 	systemm();
@@ -28,6 +29,7 @@ public:
 	void checkkey();
 	void music();
 	int pass_state();
-	void scoredisp(unsigned int);
+	void scoredisp(unsigned int score);
+	void grasedisp(unsigned int gnum);
 };
 

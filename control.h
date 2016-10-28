@@ -17,6 +17,7 @@ private:
 	std::unique_ptr<systemm> sys;
 	int state;
 	unsigned int point;
+	unsigned int graze;
 
 public:
 	static control& getinstance() {
@@ -38,6 +39,7 @@ public:
 	void player_lifecheck();
 	int pass_state();
 	void get_point();
+	void get_graze();
 	void firstrun();
 	void run();
 };

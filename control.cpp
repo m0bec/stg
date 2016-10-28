@@ -7,7 +7,8 @@ control::control() {
 	boss.reset(new bossenemy);
 	sys.reset(new systemm);
 	state = 0;
-	point = 0;
+	point = 0; 
+	graze = 0;
 }
 
 void control::firstrun() {
@@ -22,6 +23,10 @@ void control::get_point() {
 	point = ziki1->pass_point();
 }
 
+void control::get_graze() {
+	graze = ziki1->pass_grazenum();
+}
+
 void control::run() {
 	if (state == 0) {
 		state = sys->pass_state();
@@ -34,7 +39,9 @@ void control::run() {
 		player_lifecheck();
 		background->secondrun();
 		get_point();
+		get_graze();
 		sys->scoredisp(point);
+		sys->grasedisp(graze);
 	}
 }
 
