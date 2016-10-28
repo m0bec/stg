@@ -213,7 +213,7 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 		case 2:
 			if (iterate->pass_time % 30 == 0) {
 				for (int i = 0; i < 16; i++) {
-					mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, i *  2* DX_PI / 16, str.range, 0, iterate->bulletnum, iterate->bullettype, str, 0));
+					mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, i * 2 * DX_PI / 16, str.range, 0, iterate->bulletnum, iterate->bullettype, str, 0));
 				}
 			}
 			break;
@@ -243,7 +243,7 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, 0, str.range, 0, iterate->bulletnum, iterate->bullettype, str, 0));
 			}
 			break;
-			
+
 			//‰º‚É—Ž‰º‚·‚é’e
 		case 7:
 			if (iterate->pass_time % 4 == 0 && iterate->pass_time % 60 < 40) {
@@ -267,6 +267,17 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 					mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, i * 2 * DX_PI / 16 + iterate->pass_time * DX_PI / (343 * 7), str.range, 1, iterate->bulletnum, iterate->bullettype, str, 0));
 					mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, i * 2 * DX_PI / 16 - iterate->pass_time * DX_PI / (343 * 7), str.range, -1, iterate->bulletnum, iterate->bullettype, str, 0));
 				}
+			}
+			break;
+
+		case 10:
+			if (iterate->pass_time % 300) {
+				bossenemy::preparation_case8(&mobenemy, dart_num, 1, iterate->x + str.width / 2 - dartenemy.width / 2, iterate->y + str.height / 2 - dartenemy.height / 2, rota_sixteenway, aim_num, green_bul, 10, 50, 0, 30);
+				bossenemy::preparation_case8(&mobenemy, dart_num, 1, iterate->x + str.width / 2 - dartenemy.width / 2, iterate->y + str.height / 2 - dartenemy.height / 2, rota_sixteenway, aim_num, green_bul, 40, 50, 0, 30);
+				bossenemy::preparation_case8(&mobenemy, dart_num, 1, iterate->x + str.width / 2 - dartenemy.width / 2, iterate->y + str.height / 2 - dartenemy.height / 2, rota_sixteenway, aim_num, green_bul, 70, 50, 0, 30);
+			}
+			if (iterate->pass_time % 12 == 0) {
+				
 			}
 			break;
 		}
@@ -438,6 +449,17 @@ void bossenemy::bullet_move() {
 					DrawGraph(static_cast<int>(itr->x), static_cast<int>(itr->y), itr->bul.graph, true);
 					itr++;
 				}
+			}
+			break;
+
+		case 10:
+
+			break;
+
+		case 11:
+			if (itr->elapsedtime % 30 == 0) {
+				controling.get_playerposition(&px, &py);
+				itr->angle = atan2(py - (itr->y + dartenemy.height / 2), px - (iterate->x + iterate->width / 2 - str.width / 2));
 			}
 			break;
 		}

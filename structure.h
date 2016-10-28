@@ -172,6 +172,7 @@ struct enemy_element {
 		interval_time = interval;
 		shotflag = aflag;
 		pre_flag = false;
+		angle = 0;
 	}
 	double x;
 	double y;
@@ -191,6 +192,7 @@ struct enemy_element {
 	unsigned int interval_time;
 	bool shotflag;
 	bool pre_flag;
+	double angle;
 };
 
 struct enemytype {

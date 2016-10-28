@@ -137,6 +137,7 @@ public:
 	void stop_and_go3(std::list<enemy_element>::iterator itr);
 	void app_straight(std::list<enemy_element>::iterator itr);
 	void stop(std::list<enemy_element>::iterator itr);
+	void aim(std::list<enemy_element>::iterator itr);
 	void bullet_move();
 };
 

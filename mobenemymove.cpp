@@ -120,7 +120,22 @@ void bossenemy::app_straight(std::list<enemy_element>::iterator itr) {
 
 void bossenemy::stop(std::list<enemy_element>::iterator itr) {
 	itr->shotflag = true;
-	if (itr->hp < 600)	itr->movenum = stop2_num;
+	if (itr->hp < 600) {
+		itr->movenum = stop2_num;
+		//itr->graphnum = 
+	}
+}
+
+void bossenemy::aim(std::list<enemy_element>::iterator itr) {
+	itr->shotflag = true;
+	if (itr->pass_time % 30 == 0) {
+		double px, py;
+		control &controling = control::getinstance();
+		controling.get_playerposition(&px, &py);
+		itr->angle = atan2(py - (itr->y + dartenemy.height / 2), px - (itr->x + itr->width / 2 - dartenemy.width / 2));
+	}
+	itr->x += cos(itr->angle)*bulletspeed_6;
+	itr->y += sin(itr->angle)*bulletspeed_6;
 }
 
 void bossenemy::allocation_enemymove(std::list<enemy_element>::iterator iterate) {
@@ -198,6 +213,7 @@ void bossenemy::allocation_enemymove(std::list<enemy_element>::iterator iterate)
 		break;
 
 	case 18:
+		aim(iterate);
 		break;
 
 	case 99:
