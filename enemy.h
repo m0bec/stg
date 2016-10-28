@@ -117,6 +117,8 @@ public:
 
 	void straight_left(std::list<enemy_element>::iterator itr);
 	void straight_right(std::list<enemy_element>::iterator itr);
+	void straight_leftl(std::list<enemy_element>::iterator itr);
+	void straight_rightl(std::list<enemy_element>::iterator itr);
 	void straight_downls(std::list<enemy_element>::iterator itrate);
 	void quadratic_curve(std::list<enemy_element>::iterator itr);
 	void quadratic_curve1(std::list<enemy_element>::iterator itr);

@@ -74,6 +74,8 @@
 #define straight_upnum 11
 #define stop_and_gonuml 12
 #define stop_and_gonumr 13
+#define straight_leftnuml 14
+#define straight_rightnuml 15
 
 
 
