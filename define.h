@@ -60,6 +60,7 @@
 #define left_way 6
 #define down_way 7
 #define forward_eightway 8
+#define rota_sixteenway 9
 
 #define straight_downnum 0
 #define straight_rightnum 1
@@ -78,6 +79,7 @@
 #define straight_leftnuml 14
 #define straight_rightnuml 15
 #define app_straightnum 16
+#define stop_num 17
 
 
 

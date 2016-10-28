@@ -114,12 +114,12 @@ void bossenemy::move() {
 	control &controling = control::getinstance();
 	std::uniform_real_distribution<> rand2(0, 20);
 	switch (movestate) {
-	case 0:
+	/*case 0:
 		startmove();
 		set_enemyhp(bossenemy_hp1);
-		break;
+		break;*/
 
-	/*case 1:
+	case 1:
 		reset_ebullethit();
 		roundtrip_move();
 		straightaim_player();
@@ -130,7 +130,7 @@ void bossenemy::move() {
 			bossenemy::ebullethit_checker(&enemybullet1, bigredbullet);
 			bossenemy::ebullethit_checker(&enemybullet2, bigbluebullet);
 		}
-		break;*/
+		break;
 
 	case 2:
 		enemybullet1.erase(enemybullet1.begin(), enemybullet1.end());
@@ -202,14 +202,14 @@ void bossenemy::move() {
 		movestate = 7;
 		break;
 
-	case 1:
+	case 7:
 		reset_ebullethit();
 		controling.get_presenceflag(&get_presence);
 		straightmove();
 		if (get_presence) {
 			bossenemy::enemybody_hitcheck(width, height, bossenemy_bodymargin, x, y);
 		}
-		if (y > upperlimit_joydispheight)	movestate = 12;
+		if (y > upperlimit_joydispheight)	movestate = 8;
 		break;
 
 	case 8:
@@ -275,7 +275,7 @@ void bossenemy::move() {
 		if (count > 1700)	movestate = 14;
 		break;
 
-	case 14:
+	case 0:
 		bossenemy::preparation_case8(&mobenemy, lase_numl, 10, upperlimit_joydispwidth - aplane_enemy.width, -50, left_way, straight_downlsnum, yel_bul, 15, 50, 0, 60);
 		bossenemy::preparation_case8(&mobenemy, lase_numr, 10, lowerlimit_joydispwidth + 5, upperlimit_joydispheight + 50, right_way, straight_upnum, yel_bul, 20, 50, 0, 60);
 		bossenemy::preparation_case8(&mobenemy, lase_numc, 2, 50 - aplane_enemy.width / 2, 100, down_way, stop_and_gonumr, blue_energybul, 15, 50, 0, 60 + static_cast<unsigned int>(rand2(mt)));
@@ -298,19 +298,25 @@ void bossenemy::move() {
 		bossenemy::mobrun(&mobenemy);
 		bossenemy::mobenemy_alivecheck(&mobenemy);
 		count++;
-		if (count > 3000)	movestate = 16;
+		if (count > 1000)	movestate = 16;
 		break;
 
 	case 16:
 		reset_ebullethit();
 		controling.get_presenceflag(&get_presence);
+		bossenemy::preparation_case8(&mobenemy, boss2_num, 1, 500 - boss2.width / 2, lowerlimit_joydispheight - boss2.height, rota_sixteenway, 0, yel_bul, 9999, 50, 0, 60);
 		bossenemy::mobrun(&mobenemy);
 		bossenemy::mobenemy_alivecheck(&mobenemy);
+		count = 0;
 		movestate = 17;
 		break;
 
 	case 17:
-
+		reset_ebullethit();
+		controling.get_presenceflag(&get_presence);
+		bossenemy::mobrun(&mobenemy);
+		bossenemy::mobenemy_alivecheck(&mobenemy);
+		
 		break;
 	}		
 }

@@ -110,12 +110,12 @@ void bossenemy::straight_rightl(std::list<enemy_element>::iterator itr) {
 }
 
 void bossenemy::app_straight(std::list<enemy_element>::iterator itr) {
-	if (itr->x < 200 && itr->pass_time < 300) {
-		itr->x += 6 * cos(itr->pass_time * DX_PI / 600);
-	}
-	else {
-		itr->shotflag = true;
-	}
+	itr->x += 6;
+	if (itr->x > 200)	itr->movenum = stop_num;
+}
+
+void bossenemy::stop(std::list<enemy_element>::iterator itr) {
+	itr->shotflag = true;
 }
 
 void bossenemy::allocation_enemymove(std::list<enemy_element>::iterator iterate) {
@@ -186,6 +186,10 @@ void bossenemy::allocation_enemymove(std::list<enemy_element>::iterator iterate)
 
 	case 16:
 		app_straight(iterate);
+		break;
+
+	case 17:
+		stop(iterate);
 		break;
 
 	case 99:
