@@ -68,7 +68,9 @@ private:
 	enemytype lase_enemy;
 	enemytype lase_enemyr;
 	enemytype lase_enemyl;
+	enemytype big_enemy;
 	base str_bullettype;
+
 public:
 	bossenemy();
 	std::list<enemy_element> mobenemy;
