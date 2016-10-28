@@ -49,6 +49,7 @@
 #define yel_bul 3
 #define green_bul 4
 #define blue_ricebul 5
+#define boss2_num 6
 
 #define aimstraight_3wayshotnum 0
 #define notaim_2way 1
