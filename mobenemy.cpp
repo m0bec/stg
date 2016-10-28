@@ -35,6 +35,7 @@ void bossenemy::mobbul_hitcheck(std::list<mobbullet> *bullet, base bullettype) {
 	
 }
 
+//wid‚Æheight‚Ì‘ã“ü
 void bossenemy::preparation_case8(std::list<enemy_element> *mob, int numenemy, unsigned int enemynum, double anx, double any, int anbulletnum, int anmovenum, int anbullettype, int anhp, unsigned int atime, int rollspeed, unsigned int inter) {
 	int wid, heigh;
 	unsigned int input_time;
@@ -102,6 +103,7 @@ void bossenemy::mobenemy_alivecheck(std::list<enemy_element> *mob) {
 	}
 }
 
+//graph‚ÌŠ„‚è“–‚Ä
 void bossenemy::allocation_enemygraph(std::list<enemy_element>::iterator iterate) {
 		switch (iterate->graphnum) {
 		case 0:
