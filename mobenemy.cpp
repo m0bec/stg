@@ -69,6 +69,11 @@ void bossenemy::preparation_case8(std::list<enemy_element> *mob, int numenemy, u
 		wid = big_enemy.width;
 		heigh = big_enemy.height;
 		break;
+
+	case 6:
+		wid = boss2.width;
+		heigh = boss2.height;
+		break;
 	}
 
 	while (enemynum != 0) {
@@ -128,6 +133,10 @@ void bossenemy::allocation_enemygraph(std::list<enemy_element>::iterator iterate
 
 		case 5:
 			DrawGraph(static_cast<int>(iterate->x), static_cast<int>(iterate->y), big_enemy.graph, true);
+			break;
+
+		case 6:
+			DrawGraph(static_cast<int>(iterate->x), static_cast<int>(iterate->y), boss2.graph, true);
 			break;
 		}
 }
