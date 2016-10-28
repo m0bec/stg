@@ -37,6 +37,9 @@ private:
 	double graze_range;
 	bool gameover_flag;
 	unsigned int grase_count;
+	unsigned int graze_stock;
+	bool bomb_flag;
+	int bomb_count;
 
 public:
 	ziki();
@@ -54,5 +57,9 @@ public:
 	unsigned int pass_point();
 	unsigned int pass_grazenum();
 	void graze_counter();
+	void invalid();
+	bool bomb();
+	void bomb_start();
+	unsigned int pass_grazestock();
 };
 

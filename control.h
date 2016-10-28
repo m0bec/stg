@@ -18,6 +18,8 @@ private:
 	int state;
 	unsigned int point;
 	unsigned int graze;
+	unsigned int graze_stock;
+	bool bomb_flag;
 
 public:
 	static control& getinstance() {
@@ -40,6 +42,7 @@ public:
 	int pass_state();
 	void get_point();
 	void get_graze();
+	void get_bombflag();
 	void firstrun();
 	void run();
 };

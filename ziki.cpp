@@ -22,6 +22,9 @@ ziki::ziki() {
 	shotpoint = 0;
 	grazepoint = 0;
 	grase_count = 0;
+	graze_stock = 0;
+	bomb_count = 0;
+	bomb_flag = false;
 
 	hitdist = hit_distance;
 	graze_range = graze_distance;
@@ -56,6 +59,10 @@ double ziki::pass_hitdist() {
 
 double ziki::pass_grazedist() {
 	return graze_range;
+}
+
+unsigned int ziki::pass_grazestock() {
+	return graze_stock;
 }
 
 void ziki::draw() {
@@ -186,6 +193,7 @@ void ziki::shot() {
 
 void ziki::graze_counter() {
 	++grase_count;
+	++graze_stock;
 	grazepoint += 3;
 }
 
@@ -207,9 +215,33 @@ void ziki::sortiecounter_controler() {
 	}
 }
 
+void ziki::bomb_start() {
+	if (graze_stock > 100 && PAD_INPUT_5) {
+		bomb_flag = true;
+		graze_stock = 0;
+		bomb_count = 200;
+	}
+}
+
+bool ziki::bomb() {
+	return bomb_flag;
+}
+
+void ziki::invalid() {
+	if (bomb_count > 0) {
+		bomb_flag = true;
+		bomb_count--;
+	}
+	else {
+		bomb_flag = false;
+	}
+}
+
 void ziki::run() {
 	if (presenceflag) {
 		move();
+		bomb_start();
+		invalid();
 		draw();
 	}
 	else {

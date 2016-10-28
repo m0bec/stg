@@ -9,6 +9,8 @@ control::control() {
 	state = 0;
 	point = 0; 
 	graze = 0;
+	graze_stock = 0;
+	bomb_flag = false;
 }
 
 void control::firstrun() {
@@ -25,6 +27,7 @@ void control::get_point() {
 
 void control::get_graze() {
 	graze = ziki1->pass_grazenum();
+	graze_stock = ziki1->pass_grazestock();
 }
 
 void control::run() {
@@ -51,7 +54,9 @@ void control::calculation_enemyhp() {
 
 
 
-
+void control::get_bombflag() {
+	bomb_flag = ziki1->bomb();
+}
 
 void control::get_playerposition(double *centerx, double *centery) {
 	double tempx, tempy;
@@ -82,6 +87,9 @@ void control::get_presenceflag(bool *flag) {
 	bool get_presence;
 	ziki1->presenceflag_pass(&get_presence);
 	*flag = get_presence;
+	if (bomb_flag) {
+		*flag = false;
+	}
 }
 
 bool control::hitcheck(std::list<enemybullet> *bullet, base bullettype) {
