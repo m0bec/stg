@@ -69,6 +69,7 @@ private:
 	enemytype lase_enemyr;
 	enemytype lase_enemyl;
 	enemytype big_enemy;
+	enemytype boss2;
 	base str_bullettype;
 
 public:
@@ -134,6 +135,7 @@ public:
 	void stop_and_go1(std::list<enemy_element>::iterator itr);
 	void stop_and_go2(std::list<enemy_element>::iterator itr);
 	void stop_and_go3(std::list<enemy_element>::iterator itr);
+	void app_straight(std::list<enemy_element>::iterator itr);
 	void bullet_move();
 };
 

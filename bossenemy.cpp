@@ -49,6 +49,8 @@ bossenemy::bossenemy() {
 	GetGraphSize(lase_enemyl.graph, &lase_enemyl.width, &lase_enemyl.height);
 	big_enemy.graph = LoadGraph("graph/ene4.png");
 	GetGraphSize(big_enemy.graph, &big_enemy.width, &big_enemy.height);
+	boss2.graph = LoadGraph("graph/ene4_.png");
+	GetGraphSize(boss2.graph, &boss2.width, &boss2.height);
 
 	x = bossenemy_startpoint_x - width / 2;
 	y = bossenemy_startpoint_y;

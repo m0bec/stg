@@ -76,6 +76,7 @@
 #define stop_and_gonumr 13
 #define straight_leftnuml 14
 #define straight_rightnuml 15
+#define app_straightnum 16
 
 
 
