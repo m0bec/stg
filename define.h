@@ -80,6 +80,7 @@
 #define straight_rightnuml 15
 #define app_straightnum 16
 #define stop_num 17
+#define stop2_num 18
 
 
 

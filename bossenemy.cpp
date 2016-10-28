@@ -304,7 +304,7 @@ void bossenemy::move() {
 	case 0:
 		reset_ebullethit();
 		controling.get_presenceflag(&get_presence);
-		bossenemy::preparation_case8(&mobenemy, boss2_num, 1, 500 - boss2.width / 2, lowerlimit_joydispheight - boss2.height, rota_sixteenway, app_straightnum, yel_bul, 9999, 50, 0, 60);
+		bossenemy::preparation_case8(&mobenemy, boss2_num, 1, 500 - boss2.width / 2, lowerlimit_joydispheight - boss2.height, rota_sixteenway, app_straightnum, yel_bul, 1800, 50, 0, 60);
 		bossenemy::mobrun(&mobenemy);
 		bossenemy::mobenemy_alivecheck(&mobenemy);
 		count = 0;

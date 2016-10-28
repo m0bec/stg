@@ -120,6 +120,7 @@ void bossenemy::app_straight(std::list<enemy_element>::iterator itr) {
 
 void bossenemy::stop(std::list<enemy_element>::iterator itr) {
 	itr->shotflag = true;
+	if (itr->hp < 600)	itr->movenum = stop2_num;
 }
 
 void bossenemy::allocation_enemymove(std::list<enemy_element>::iterator iterate) {
@@ -194,6 +195,9 @@ void bossenemy::allocation_enemymove(std::list<enemy_element>::iterator iterate)
 
 	case 17:
 		stop(iterate);
+		break;
+
+	case 18:
 		break;
 
 	case 99:
