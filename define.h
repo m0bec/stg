@@ -58,7 +58,7 @@
 #define right_way 5
 #define left_way 6
 #define down_way 7
-#define forward_8way 8
+#define forward_eightway 8
 
 #define straight_downnum 0
 #define straight_rightnum 1

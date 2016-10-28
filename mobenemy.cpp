@@ -379,7 +379,7 @@ void bossenemy::bullet_move() {
 			}
 			break;
 
-		case 5:
+		case 8:
 			itr->x += bulletspeed_8;
 			if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - itr->bul.height
 				|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - itr->bul.width) {
