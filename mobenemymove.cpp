@@ -168,7 +168,7 @@ void bossenemy::allocation_enemymove(std::list<enemy_element>::iterator iterate)
 		break;
 
 	case 14:
-		straight_rightl(iterate);
+		straight_leftl(iterate);
 		break;
 
 	case 15:

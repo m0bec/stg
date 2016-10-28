@@ -284,8 +284,8 @@ void bossenemy::move() {
 		bossenemy::preparation_case8(&mobenemy, lase_numc, 2, 950 - aplane_enemy.width / 2, 100, down_way, stop_and_gonumr, blue_energybul, 15, 230, 0, 60 + static_cast<unsigned int>(rand2(mt)));
 		bossenemy::preparation_case8(&mobenemy, lase_numc, 2, 50 - aplane_enemy.width / 2, 100, down_way, stop_and_gonumr, blue_energybul, 15, 350, 0, 60 + static_cast<unsigned int>(rand2(mt)));
 		bossenemy::preparation_case8(&mobenemy, lase_numc, 2, 950 - aplane_enemy.width / 2, 100, down_way, stop_and_gonumr, blue_energybul, 15, 340, 0, 60 + static_cast<unsigned int>(rand2(mt)));
-		bossenemy::preparation_case8(&mobenemy, big_num, 4, upperlimit_joydispwidth, lowerlimit_joydispheight + 50, forward_eightway, straight_leftnum, big_yellowbul, 20, 800, 0, 100);
-		bossenemy::preparation_case8(&mobenemy, big_num, 4, lowerlimit_joydispwidth - big_enemy.width / 2, lowerlimit_joydispheight + big_enemy.height + 50, forward_eightway, straight_rightnum, green_bul, 20, 800, 0, 100);
+		bossenemy::preparation_case8(&mobenemy, big_num, 4, upperlimit_joydispwidth, lowerlimit_joydispheight + 50, forward_eightway, straight_leftnuml, big_yellowbul, 20, 800, 0, 100);
+		bossenemy::preparation_case8(&mobenemy, big_num, 4, lowerlimit_joydispwidth - big_enemy.width / 2, lowerlimit_joydispheight + big_enemy.height + 10, forward_eightway, straight_rightnuml, green_bul, 20, 800, 0, 100);
 		count = 0;
 		movestate = 15;
 		break;

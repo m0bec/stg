@@ -245,7 +245,7 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 			if (iterate->pass_time % 10 == 0) {
 				for (int i = 0; i < 5; i++) {
 					mobbullet1.push_back(mobbullet(iterate->x + 2 * iterate->width / 3 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, i * DX_PI / 8, str.range, 0, iterate->bulletnum, iterate->bullettype, str, 0));
-					mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 3 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, (-1) * i * DX_PI / 8, str.range, 0, iterate->bulletnum, iterate->bullettype, str, 0));
+					mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 3 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, i * DX_PI / 8 + DX_PI / 2, str.range, 0, iterate->bulletnum, iterate->bullettype, str, 0));
 				}
 			}
 			break;
@@ -380,7 +380,8 @@ void bossenemy::bullet_move() {
 			break;
 
 		case 8:
-			itr->x += bulletspeed_8;
+			itr->x += cos(itr->angle)*bulletspeed_8;
+			itr->y += sin(itr->angle)*bulletspeed_8;
 			if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - itr->bul.height
 				|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - itr->bul.width) {
 				itr = mobbullet1.erase(itr);
