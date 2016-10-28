@@ -14,6 +14,7 @@ private:
 	int graph;
 	int width;
 	int height;
+	int bgraph;
 	double x;
 	double y;
 	//自機が画面に存在しているか（弾にあたっていない&&出撃モーション中でない）
@@ -40,6 +41,7 @@ private:
 	unsigned int graze_stock;
 	bool bomb_flag;
 	int bomb_count;
+	
 
 public:
 	ziki();

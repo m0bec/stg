@@ -38,6 +38,11 @@ systemm::systemm() {
 	music_time = 0;
 	score1 = 0;
 	score2 = 0;
+
+	gage_color1 = GetColor(23, 96, 16);
+	gage_color2 = GetColor(59, 241, 41);
+	gage_color3 = GetColor(248, 110, 114);
+	gage_color4 = GetColor(0, 0, 0);
 }
 
 void systemm::drawstartmenue() {
@@ -112,5 +117,16 @@ void systemm::grasedisp(unsigned int gnum) {
 		grazen = grazen / 10;
 		DrawGraph(drawx, 200, scorenum[number].graph, true);
 		drawx = drawx - scorenum[0].width;
+	}
+}
+
+void systemm::gage(unsigned int stock) {
+	DrawBox(upperlimit_joydispwidth + 40, 290, upperlimit_joydispwidth + 260, 370, gage_color3, true);
+	DrawBox(upperlimit_joydispwidth + 50, 300, upperlimit_joydispwidth + 250, 360, gage_color4, true);
+	if (stock < 100) {
+		DrawBoxAA(upperlimit_joydispwidth + 50, 300, upperlimit_joydispwidth + 50 + 200 * static_cast<float>(stock) / 100, 360, gage_color1, true);
+	}
+	else {
+		DrawBoxAA(upperlimit_joydispwidth + 50, 300, upperlimit_joydispwidth + 250, 360, gage_color2, true);
 	}
 }

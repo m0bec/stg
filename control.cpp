@@ -43,8 +43,10 @@ void control::run() {
 		background->secondrun();
 		get_point();
 		get_graze();
+		get_bombflag();
 		sys->scoredisp(point);
 		sys->grasedisp(graze);
+		sys->gage(graze_stock);
 	}
 }
 

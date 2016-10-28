@@ -6,6 +6,7 @@ ziki::ziki() {
 	GetGraphSize(graph, &width, &height);
 	bulletgraph = LoadGraph("graph/ZTama.png");
 	GetGraphSize(bulletgraph, &bulletwidth, &bulletheight);
+	bgraph = LoadGraph("graph/ziki1_.png");
 	x = lowerlimit_joydispwidth + (upperlimit_joydispwidth - lowerlimit_joydispwidth)/2- width/2;
 	y = ziki_startposition;
 
@@ -25,6 +26,8 @@ ziki::ziki() {
 	graze_stock = 0;
 	bomb_count = 0;
 	bomb_flag = false;
+
+	
 
 	hitdist = hit_distance;
 	graze_range = graze_distance;
@@ -66,8 +69,14 @@ unsigned int ziki::pass_grazestock() {
 }
 
 void ziki::draw() {
-	DrawGraph(static_cast<int>(x), static_cast<int>(y), graph, true);
-	DrawGraph(static_cast<int>(x + width / 2 - hitrange.width / 2), static_cast<int>(y + height / 2 - hitrange.height / 2), hitrange.graph, true);
+	if (!bomb_flag) {
+		DrawGraph(static_cast<int>(x), static_cast<int>(y), graph, true);
+		DrawGraph(static_cast<int>(x + width / 2 - hitrange.width / 2), static_cast<int>(y + height / 2 - hitrange.height / 2), hitrange.graph, true);
+	}
+	else {
+		DrawGraph(static_cast<int>(x), static_cast<int>(y), bgraph, true);
+		DrawGraph(static_cast<int>(x + width / 2 - hitrange.width / 2), static_cast<int>(y + height / 2 - hitrange.height / 2), hitrange.graph, true);
+	}
 }
 
 void ziki::move() {
@@ -216,10 +225,12 @@ void ziki::sortiecounter_controler() {
 }
 
 void ziki::bomb_start() {
-	if (graze_stock > 100 && PAD_INPUT_5) {
-		bomb_flag = true;
-		graze_stock = 0;
-		bomb_count = 200;
+	if (graze_stock > 100) {
+		if (input_joypad & PAD_INPUT_5) {
+			bomb_flag = true;
+			graze_stock = 0;
+			bomb_count = 200;
+		}
 	}
 }
 

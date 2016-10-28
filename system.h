@@ -20,6 +20,10 @@ private:
 	unsigned int score1;
 	unsigned int score2;
 	unsigned int grazen;
+	unsigned int gage_color1;
+	unsigned int gage_color2;
+	unsigned int gage_color3;
+	unsigned int gage_color4;
 
 public:
 	systemm();
@@ -31,5 +35,6 @@ public:
 	int pass_state();
 	void scoredisp(unsigned int score);
 	void grasedisp(unsigned int gnum);
+	void gage(unsigned int stock);
 };
 
