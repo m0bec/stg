@@ -110,8 +110,12 @@ void bossenemy::straight_rightl(std::list<enemy_element>::iterator itr) {
 }
 
 void bossenemy::app_straight(std::list<enemy_element>::iterator itr) {
-	itr->x += 6;
-	if (itr->x > 200)	itr->movenum = stop_num;
+	if (itr->pass_time < 60) {
+		itr->y += 6;
+	}
+	else {
+		itr->movenum = stop_num;
+	}
 }
 
 void bossenemy::stop(std::list<enemy_element>::iterator itr) {

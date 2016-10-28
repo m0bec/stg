@@ -275,7 +275,7 @@ void bossenemy::move() {
 		if (count > 1700)	movestate = 14;
 		break;
 
-	case 0:
+	case 14:
 		bossenemy::preparation_case8(&mobenemy, lase_numl, 10, upperlimit_joydispwidth - aplane_enemy.width, -50, left_way, straight_downlsnum, yel_bul, 15, 50, 0, 60);
 		bossenemy::preparation_case8(&mobenemy, lase_numr, 10, lowerlimit_joydispwidth + 5, upperlimit_joydispheight + 50, right_way, straight_upnum, yel_bul, 20, 50, 0, 60);
 		bossenemy::preparation_case8(&mobenemy, lase_numc, 2, 50 - aplane_enemy.width / 2, 100, down_way, stop_and_gonumr, blue_energybul, 15, 50, 0, 60 + static_cast<unsigned int>(rand2(mt)));
@@ -301,10 +301,10 @@ void bossenemy::move() {
 		if (count > 1000)	movestate = 16;
 		break;
 
-	case 16:
+	case 0:
 		reset_ebullethit();
 		controling.get_presenceflag(&get_presence);
-		bossenemy::preparation_case8(&mobenemy, boss2_num, 1, 500 - boss2.width / 2, lowerlimit_joydispheight - boss2.height, rota_sixteenway, 0, yel_bul, 9999, 50, 0, 60);
+		bossenemy::preparation_case8(&mobenemy, boss2_num, 1, 500 - boss2.width / 2, lowerlimit_joydispheight - boss2.height, rota_sixteenway, app_straightnum, yel_bul, 9999, 50, 0, 60);
 		bossenemy::mobrun(&mobenemy);
 		bossenemy::mobenemy_alivecheck(&mobenemy);
 		count = 0;
