@@ -61,6 +61,8 @@
 #define down_way 7
 #define forward_eightway 8
 #define rota_sixteenway 9
+#define rota_sixteenway2 10
+#define bullet_line 11
 
 #define straight_downnum 0
 #define straight_rightnum 1

@@ -261,6 +261,7 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 			}
 			break;
 
+			//boss2—p
 		case 9:
 			if (iterate->pass_time % 12 == 0) {
 				for (int i = 0; i < 16; i++) {
@@ -268,13 +269,17 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 					mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, i * 2 * DX_PI / 16 - iterate->pass_time * DX_PI / (343 * 7), str.range, -1, iterate->bulletnum, iterate->bullettype, str, 0));
 				}
 			}
+
+			if (iterate->hp < 800) {
+				boss2_switch1(iterate);
+			}
 			break;
 
 		case 10:
-			if (iterate->pass_time % 300) {
-				bossenemy::preparation_case8(&mobenemy, dart_num, 1, iterate->x + str.width / 2 - dartenemy.width / 2, iterate->y + str.height / 2 - dartenemy.height / 2, rota_sixteenway, aim_num, green_bul, 10, 50, 0, 30);
-				bossenemy::preparation_case8(&mobenemy, dart_num, 1, iterate->x + str.width / 2 - dartenemy.width / 2, iterate->y + str.height / 2 - dartenemy.height / 2, rota_sixteenway, aim_num, green_bul, 40, 50, 0, 30);
-				bossenemy::preparation_case8(&mobenemy, dart_num, 1, iterate->x + str.width / 2 - dartenemy.width / 2, iterate->y + str.height / 2 - dartenemy.height / 2, rota_sixteenway, aim_num, green_bul, 70, 50, 0, 30);
+			if (iterate->pass_time % 300 == 0) {
+				preparation_case8(&mobenemy, dart_num, 1, iterate->x + str.width / 2 - dartenemy.width / 2, iterate->y + str.height / 2 - dartenemy.height / 2, bullet_line, aim_num, green_bul, 10, 50, 0, 30);
+				preparation_case8(&mobenemy, dart_num, 1, iterate->x + str.width / 2 - dartenemy.width / 2, iterate->y + str.height / 2 - dartenemy.height / 2, bullet_line, aim_num, green_bul, 40, 50, 0, 30);
+				preparation_case8(&mobenemy, dart_num, 1, iterate->x + str.width / 2 - dartenemy.width / 2, iterate->y + str.height / 2 - dartenemy.height / 2, bullet_line, aim_num, green_bul, 70, 50, 0, 30);
 			}
 			if (iterate->pass_time % 12 == 0) {
 				for (int i = 0; i < 16; i++) {
@@ -284,8 +289,12 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 			break;
 
 		case 11:
-			if (iterate->pass_time % 2 == 0) {
+			if (iterate->pass_time % 10 == 0) {
 				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, 0, str.range, 0, iterate->bulletnum, iterate->bullettype, str, 0));
+			}
+			if (iterate->pass_time > 300) {
+				iterate->x = 0;
+				iterate->y = 0;
 			}
 			break;
 		}
@@ -465,9 +474,14 @@ void bossenemy::bullet_move() {
 			itr->x += cos(itr->angle) * 10;
 			itr->y += sin(itr->angle) * 10;
 			itr->angle += 0.008;
+
 			if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - itr->bul.height
 				|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - itr->bul.width) {
 				itr = mobbullet1.erase(itr);
+			}
+			else {
+				DrawGraph(static_cast<int>(itr->x), static_cast<int>(itr->y), itr->bul.graph, true);
+				itr++;
 			}
 			break;
 
@@ -476,9 +490,24 @@ void bossenemy::bullet_move() {
 			if (itr->elapsedtime == 300) {
 				itr = mobbullet1.erase(itr);
 			}
+
+			if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - itr->bul.height
+				|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - itr->bul.width) {
+				itr = mobbullet1.erase(itr);
+			}
+			else {
+				DrawGraph(static_cast<int>(itr->x), static_cast<int>(itr->y), itr->bul.graph, true);
+				itr++;
+			}
 			break;
 		}
 	}
+}
+
+void bossenemy::boss2_switch1(std::list<enemy_element>::iterator iterate) {
+	iterate->bulletnum = rota_sixteenway2;
+	iterate->movenum = stop2_num;
+	iterate->bullettype = green_bul;
 }
 
 void bossenemy::get_mobplace(std::list<enemy_element> *iterate) {
