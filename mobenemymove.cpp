@@ -140,6 +140,12 @@ void bossenemy::aim(std::list<enemy_element>::iterator itr) {
 
 void bossenemy::stop2(std::list<enemy_element>::iterator itr) {
 	itr->shotflag = true;
+	if (itr->x + itr->width / 2 < ((upperlimit_joydispwidth - lowerlimit_joydispwidth) / 2 + lowerlimit_joydispwidth)) {
+		itr->x += 4;
+	}
+	if (itr->y + itr->height / 2 < ((upperlimit_joydispheight - lowerlimit_joydispheight) / 2 + lowerlimit_joydispheight)) {
+		itr->y += 4;
+	}
 }
 
 void bossenemy::allocation_enemymove(std::list<enemy_element>::iterator iterate) {
@@ -221,6 +227,7 @@ void bossenemy::allocation_enemymove(std::list<enemy_element>::iterator iterate)
 		break;
 
 	case 19:
+		stop2(iterate);
 		break;
 
 	case 99:
