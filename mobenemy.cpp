@@ -277,11 +277,11 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 
 		case 10:
 			if (iterate->pass_time % 300 == 0) {
-				preparation_case8(&mobenemy, dart_num, 1, iterate->x + str.width, iterate->y + str.height / 2 - dartenemy.height / 2, bullet_line, aim_num, green_bul, 10, 10, 0, 30);
+				preparation_case8(&mobenemy, dart_num, 1, iterate->x + iterate->width / 2 + dartenemy.width / 2, iterate->y + iterate->height / 2 - dartenemy.height / 2, bullet_line, aim_num, green_bul, 10, 10, 0, 30);
 			}
 			if (iterate->pass_time % 6 == 0) {
 				for (int i = 0; i < 8; i++) {
-					mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, i * 2 * DX_PI / 8 + 3 * iterate->pass_time * DX_PI / (343 * 7), str.range, 0, iterate->bulletnum, iterate->bullettype, str, 0));
+					mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, i * 2 * DX_PI / 8 + 2 * iterate->pass_time * DX_PI / (343 * 7), str.range, 0, iterate->bulletnum, iterate->bullettype, str, 0));
 				}
 			}
 			break;

@@ -134,8 +134,8 @@ void bossenemy::aim(std::list<enemy_element>::iterator itr) {
 		controling.get_playerposition(&px, &py);
 		itr->angle = atan2(py - (itr->y + dartenemy.height / 2), px - (itr->x + itr->width / 2 - dartenemy.width / 2));
 	}
-	itr->x += cos(itr->angle)*bulletspeed_3;
-	itr->y += sin(itr->angle)*bulletspeed_3;
+	itr->x += cos(itr->angle)*bulletspeed_2;
+	itr->y += sin(itr->angle)*bulletspeed_2;
 }
 
 void bossenemy::stop2(std::list<enemy_element>::iterator itr) {
