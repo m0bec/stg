@@ -26,6 +26,7 @@
 #define bulletspeed_6 6
 #define bulletspeed_5 5
 #define bulletspeed_4 4
+#define bulletspeed_3 3
 #define bulletspeed_2 2
 #define bulletspeed_down_003 0.04
 #define bullet_num12 12
