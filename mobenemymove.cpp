@@ -138,6 +138,10 @@ void bossenemy::aim(std::list<enemy_element>::iterator itr) {
 	itr->y += sin(itr->angle)*bulletspeed_6;
 }
 
+void bossenemy::stop2(std::list<enemy_element>::iterator itr) {
+	itr->shotflag = true;
+}
+
 void bossenemy::allocation_enemymove(std::list<enemy_element>::iterator iterate) {
 	switch (iterate->movenum) {
 	case 0:
@@ -214,6 +218,9 @@ void bossenemy::allocation_enemymove(std::list<enemy_element>::iterator iterate)
 
 	case 18:
 		aim(iterate);
+		break;
+
+	case 19:
 		break;
 
 	case 99:

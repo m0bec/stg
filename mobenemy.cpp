@@ -277,7 +277,15 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 				bossenemy::preparation_case8(&mobenemy, dart_num, 1, iterate->x + str.width / 2 - dartenemy.width / 2, iterate->y + str.height / 2 - dartenemy.height / 2, rota_sixteenway, aim_num, green_bul, 70, 50, 0, 30);
 			}
 			if (iterate->pass_time % 12 == 0) {
-				
+				for (int i = 0; i < 16; i++) {
+					mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, i * 2 * DX_PI / 16 + iterate->pass_time * DX_PI / (343 * 7), str.range, 0, iterate->bulletnum, iterate->bullettype, str, 0));
+				}
+			}
+			break;
+
+		case 11:
+			if (iterate->pass_time % 2 == 0) {
+				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, 0, str.range, 0, iterate->bulletnum, iterate->bullettype, str, 0));
 			}
 			break;
 		}
@@ -453,13 +461,20 @@ void bossenemy::bullet_move() {
 			break;
 
 		case 10:
-
+			itr->elapsedtime += 1;
+			itr->x += cos(itr->angle) * 10;
+			itr->y += sin(itr->angle) * 10;
+			itr->angle += 0.008;
+			if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - itr->bul.height
+				|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - itr->bul.width) {
+				itr = mobbullet1.erase(itr);
+			}
 			break;
 
 		case 11:
-			if (itr->elapsedtime % 30 == 0) {
-				controling.get_playerposition(&px, &py);
-				itr->angle = atan2(py - (itr->y + dartenemy.height / 2), px - (iterate->x + iterate->width / 2 - str.width / 2));
+			itr->elapsedtime += 1;
+			if (itr->elapsedtime == 300) {
+				itr = mobbullet1.erase(itr);
 			}
 			break;
 		}
