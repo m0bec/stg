@@ -173,6 +173,7 @@ struct enemy_element {
 		shotflag = aflag;
 		pre_flag = false;
 		angle = 0;
+		direct_flag = 0;
 	}
 	double x;
 	double y;
@@ -193,6 +194,7 @@ struct enemy_element {
 	bool shotflag;
 	bool pre_flag;
 	double angle;
+	int direct_flag;
 };
 
 struct enemytype {

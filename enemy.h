@@ -49,6 +49,7 @@ private:
 	base purplebullet;
 	base lightblue_bullet;
 	base grassgreen_bullet;
+	base bigred_bullet;
 	std::list<enemybullet> enemybullet1;
 	std::list<enemybullet> enemybullet2;
 	std::list<enemybullet> enemybullet3;

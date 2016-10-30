@@ -193,6 +193,10 @@ void bossenemy::allocation_enemybul(int bullettype, base *bul) {
 	case 9:
 		*bul = grassgreen_bullet;
 		break;
+
+	case 10:
+		*bul = bigred_bullet;
+		break;
 	}
 }
 
@@ -323,12 +327,17 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 				}
 			}
 
-			if (iterate->pass_time % 600 == 100) {
-				iterate->bulletnum = 13;
-				iterate->bullettype = big_yellowbul;
+			if (iterate->pass_time % 30 == 0) {
+				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - big_yellow.width / 2, iterate->y + iterate->height / 2 - big_yellow.height / 2, 0, big_yellow.range, 0, 13, big_yellowbul, big_yellow, 0));
+			}
+
+			if (iterate->pass_time % 1000 == 200) {
+				iterate->bulletnum = 14;
+				iterate->bullettype = grassgreen_num;
 			}
 			break;
 
+			//Žg‚í‚È‚¢
 		case 13:
 			for (int i = 0; i < 12; i++) {
 				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2 + 100 * cos(i * DX_PI / 11), iterate->y + iterate->height / 2 - str.height / 2 + 100 * sin(i * DX_PI / 11), 0, str.range, 3, iterate->bulletnum, iterate->bullettype, str, 0));
@@ -338,14 +347,18 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 			break;
 
 		case 14:
-			if (iterate->pass_time % 600 > 150 && iterate->pass_time % 60 < 20 && iterate->pass_time % 5 == 0) {
+			if (iterate->pass_time % 1000 > 200 && iterate->pass_time % 60 < 20 && iterate->pass_time % 5 == 0) {
 				controling.get_playerposition(&px, &py);
 				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, atan2(py - (iterate->y + iterate->height / 2 - str.height / 2), px - (iterate->x + iterate->width / 2 - str.width / 2)), str.range, 4, iterate->bulletnum, iterate->bullettype, str, 0));
 				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, atan2(py - (iterate->y + iterate->height / 2 - str.height / 2), px - (iterate->x + iterate->width / 2 - str.width / 2)) + DX_PI / 6, str.range, 4, iterate->bulletnum, iterate->bullettype, str, 0));
 				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - bigredbullet.height / 2, atan2(py - (iterate->y + iterate->height / 2 - bigredbullet.height / 2), px - (iterate->x + iterate->width / 2 - bigredbullet.width / 2)) - DX_PI / 6, str.range, 4, iterate->bulletnum, iterate->bullettype, str, 0));
 			}
 
-			if (iterate->pass_time % 600 == 300) {
+			if (iterate->pass_time % 30 == 0) {
+				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - big_yellow.width / 2, iterate->y + iterate->height / 2 - big_yellow.height / 2, 0, big_yellow.range, 0, 13, big_yellowbul, big_yellow, 0));
+			}
+
+			if (iterate->pass_time % 1000 == 400) {
 				iterate->bulletnum = 15;
 				iterate->bullettype = lightblue_num;
 			}
@@ -357,9 +370,14 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 					mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, i * 2 * DX_PI / 23 + atan2(py - (iterate->y + iterate->height / 2 - str.height / 2), px - (iterate->x + iterate->width / 2 - str.width / 2)), str.range, 2, iterate->bulletnum, iterate->bullettype, str, 0));
 				}
 			}
-			if (iterate->pass_time % 600 == 400) {
-				iterate->bulletnum = 16;
-				iterate->bullettype = big_yellowbul;
+
+			if (iterate->pass_time % 30 == 0) {
+				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - big_yellow.width / 2, iterate->y + iterate->height / 2 - big_yellow.height / 2, 0, big_yellow.range, 0, 13, big_yellowbul, big_yellow, 0));
+			}
+
+			if (iterate->pass_time % 1000 == 600) {
+				iterate->bulletnum = 17;
+				iterate->bullettype = grassgreen_num;
 			}
 			break;
 
@@ -379,7 +397,7 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - bigredbullet.height / 2, atan2(py - (iterate->y + iterate->height / 2 - bigredbullet.height / 2), px - (iterate->x + iterate->width / 2 - bigredbullet.width / 2)) - DX_PI / 6, str.range, 4, iterate->bulletnum, iterate->bullettype, str, 0));
 			}
 
-			if (iterate->pass_time % 600 == 0) {
+			if (iterate->pass_time % 1000 == 0) {
 				iterate->bulletnum = 12;
 				iterate->bullettype = lightblue_num;
 			}
@@ -391,7 +409,7 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 void bossenemy::bullet_move() {
 	double px, py;
 	control &controling = control::getinstance();
-	std::uniform_real_distribution<> rand(0,DX_PI/2);
+	std::uniform_real_distribution<> rand(0,DX_PI/16);
 	auto itr = mobbullet1.begin();
 	while (itr != mobbullet1.end()) {
 		switch (itr->bullettag) {
@@ -608,13 +626,13 @@ void bossenemy::bullet_move() {
 			itr->elapsedtime += 1;
 			if (itr->elapsedtime == 30) {
 				controling.get_playerposition(&px, &py);
-				itr->angle =  atan2(py - (itr->y + itr->bul.height), px - (itr->x + itr->bul.width)) + rand(mt) - DX_PI / 4;
+				itr->angle =  atan2(py - (itr->y + itr->bul.height), px - (itr->x + itr->bul.width)) + rand(mt) - DX_PI / 32;
 
 			}
 
 			if (itr->elapsedtime % 60 < 30) {
-				itr->x += cos(itr->angle) * bulletspeed_6;
-				itr->y += sin(itr->angle) * bulletspeed_6;
+				itr->x += cos(itr->angle) * bulletspeed_3;
+				itr->y += sin(itr->angle) * bulletspeed_3;
 			}
 
 			if (itr->elapsedtime == 200) {
@@ -670,13 +688,13 @@ void bossenemy::bullet_move() {
 			itr->elapsedtime += 1;
 			if (itr->elapsedtime == 30) {
 				controling.get_playerposition(&px, &py);
-				itr->angle = atan2(py - (itr->y + itr->bul.height), px - (itr->x + itr->bul.width)) + rand(mt) - DX_PI / 4;
+				itr->angle = atan2(py - (itr->y + itr->bul.height), px - (itr->x + itr->bul.width)) + rand(mt) - DX_PI / 32;
 
 			}
 
 			if (itr->elapsedtime % 60 < 30) {
-				itr->x += cos(itr->angle) * bulletspeed_6;
-				itr->y += sin(itr->angle) * bulletspeed_6;
+				itr->x += cos(itr->angle) * bulletspeed_2;
+				itr->y += sin(itr->angle) * bulletspeed_2;
 			}
 
 			if (itr->elapsedtime == 200) {
