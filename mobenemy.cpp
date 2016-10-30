@@ -324,10 +324,17 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 			}
 			else if (iterate->pass_time % 600 > 300  && iterate->pass_time % 600 < 400  && iterate->pass_time % 10 == 0) {
 				for (int i = 0; i < 23; i++) {
-					mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, i * 2 * DX_PI / 23 + atan2(py - (iterate->y + iterate->height / 2 - str.height / 2), px - (iterate->x + iterate->width / 2 - str.width / 2)), str.range, -1, iterate->bulletnum, iterate->bullettype, str, 0));
+					mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, i * 2 * DX_PI / 23 + atan2(py - (iterate->y + iterate->height / 2 - str.height / 2), px - (iterate->x + iterate->width / 2 - str.width / 2)), str.range, 2, iterate->bulletnum, iterate->bullettype, str, 0));
 				}
 			}
+			else if (iterate->pass_time % 600 == 100) {
+				for (int i = 0; i < 12; i++) {
+					mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2 + 100 * cos(i * DX_PI/11), iterate->y + iterate->height / 2 - str.height / 2 + 100 * sin(i * DX_PI/11), 0, str.range, 3, iterate->bulletnum, iterate->bullettype, str, 0));
+				}
+			}
+			else if (iterate->pass_time % 600 > 200 && iterate->pass_time % 600 < 300 && iterate->pass_time % 5 == 0) {
 
+			}
 			break;
 		}
 	}
