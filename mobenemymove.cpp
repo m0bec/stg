@@ -255,6 +255,10 @@ void bossenemy::allocation_enemymove(std::list<enemy_element>::iterator iterate)
 		stop2(iterate);
 		break;
 
+	case 20:
+		slide_move(iterate);
+		break;
+
 	case 99:
 		break;
 	}

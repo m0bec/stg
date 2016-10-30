@@ -91,6 +91,7 @@
 #define stop_num 17
 #define aim_num 18
 #define stop2_num 19
+#define slide_num 20
 
 
 

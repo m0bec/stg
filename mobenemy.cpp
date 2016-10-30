@@ -302,7 +302,7 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 			}
 
 			if (iterate->hp < 700) {
-
+				boss2_switch2(iterate);
 			}
 			break;
 
@@ -742,7 +742,7 @@ void bossenemy::boss2_switch1(std::list<enemy_element>::iterator iterate) {
 
 void bossenemy::boss2_switch2(std::list<enemy_element>::iterator iterate) {
 	iterate->bulletnum = boss2_lastshot;
-	iterate->movenum = stop2_num;
+	iterate->movenum = slide_num;
 	iterate->bullettype = lightblue_num;
 }
 
