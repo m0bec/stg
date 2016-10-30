@@ -177,6 +177,22 @@ void bossenemy::allocation_enemybul(int bullettype, base *bul) {
 	case 5:
 		*bul = bluericebullet;
 		break;
+
+	case 6:
+		*bul = redbullet;
+		break;
+
+	case 7:
+		*bul = lightblue_bullet;
+		break;
+
+	case 8:
+		*bul = purplebullet;
+		break;
+
+	case 9:
+		*bul = grassgreen_bullet;
+		break;
 	}
 }
 
@@ -284,6 +300,10 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 					mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, i * 2 * DX_PI / 8 + 2 * iterate->pass_time * DX_PI / (343 * 7), str.range, 0, iterate->bulletnum, iterate->bullettype, str, 0));
 				}
 			}
+
+			if (iterate->hp < 700) {
+
+			}
 			break;
 
 		case 11:
@@ -294,6 +314,20 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 				iterate->x = 0;
 				iterate->y = 0;
 			}
+			break;
+
+		case 12:
+			if (iterate->pass_time % 600 < 100 && iterate->pass_time % 10 == 0) {
+				for (int i = 0; i < 23; i++) {
+					mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, i * 2 * DX_PI / 23 + atan2(py - (iterate->y + iterate->height / 2 - str.height / 2), px - (iterate->x + iterate->width / 2 - str.width / 2)), str.range, 1, iterate->bulletnum, iterate->bullettype, str, 0));
+				}
+			}
+			else if (iterate->pass_time % 600 > 300  && iterate->pass_time % 600 < 400  && iterate->pass_time % 10 == 0) {
+				for (int i = 0; i < 23; i++) {
+					mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2, iterate->y + iterate->height / 2 - str.height / 2, i * 2 * DX_PI / 23 + atan2(py - (iterate->y + iterate->height / 2 - str.height / 2), px - (iterate->x + iterate->width / 2 - str.width / 2)), str.range, -1, iterate->bulletnum, iterate->bullettype, str, 0));
+				}
+			}
+
 			break;
 		}
 	}
