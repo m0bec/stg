@@ -380,7 +380,7 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 				iterate->bullettype = grassgreen_num;
 			}
 			break;
-
+			//Žg‚í‚È‚¢
 		case 16:
 			for (int i = 0; i < 12; i++) {
 				mobbullet1.push_back(mobbullet(iterate->x + iterate->width / 2 - str.width / 2 + 100 * cos(i * DX_PI / 11), iterate->y + iterate->height / 2 - str.height / 2 + 100 * sin(i * DX_PI / 11), 0, str.range, 3, iterate->bulletnum, iterate->bullettype, str, 0));
@@ -624,7 +624,7 @@ void bossenemy::bullet_move() {
 
 		case 13:
 			itr->elapsedtime += 1;
-			if (itr->elapsedtime == 30) {
+			if (itr->elapsedtime % 60 == 30) {
 				controling.get_playerposition(&px, &py);
 				itr->angle =  atan2(py - (itr->y + itr->bul.height), px - (itr->x + itr->bul.width)) + rand(mt) - DX_PI / 32;
 
@@ -635,12 +635,13 @@ void bossenemy::bullet_move() {
 				itr->y += sin(itr->angle) * bulletspeed_3;
 			}
 
-			if (itr->elapsedtime == 200) {
-				itr->bullettype = big_rednum;
+			if (itr->elapsedtime > 300) {
+				itr->bul = bigred_bullet;
 			}
-			else if (itr->elapsedtime > 400) {
+			if (itr->elapsedtime > 400) {
 				for (int i = 0; i < 5; i++) {
-					mobbullet1.push_back(mobbullet((itr->x + itr->bul.width / 2 - greenbullet.width / 2) + 10 * cos(i * 2 * DX_PI / 5), (itr->y + itr->bul.height / 2 - greenbullet.height / 2) * sin(i * 2 * DX_PI / 5), i * 2 * DX_PI / 5, itr->bul.range, 0, 18, green_bul, greenbullet, 0));
+					controling.get_playerposition(&px, &py);
+					mobbullet1.push_back(mobbullet((itr->x + itr->bul.width / 2 - greenbullet.width / 2), (itr->y + itr->bul.height / 2 - greenbullet.height / 2), atan2(py - (itr->y + itr->bul.height / 2), px - (itr->x + itr->bul.width / 2)) + i * 2 * DX_PI / 5, itr->bul.range, 0, 18, green_bul, greenbullet, 0));
 				}
 				itr->x = 0;
 				itr->y = 0;
@@ -686,7 +687,7 @@ void bossenemy::bullet_move() {
 
 		case 16:
 			itr->elapsedtime += 1;
-			if (itr->elapsedtime == 30) {
+			if (itr->elapsedtime % 60 == 30) {
 				controling.get_playerposition(&px, &py);
 				itr->angle = atan2(py - (itr->y + itr->bul.height), px - (itr->x + itr->bul.width)) + rand(mt) - DX_PI / 32;
 
@@ -733,10 +734,6 @@ void bossenemy::bullet_move() {
 
 		case 18:
 			itr->elapsedtime += 1;
-			if (itr->elapsedtime == 30) {
-				itr->x = 0;
-				itr->y = 0;
-			}
 			itr->x += cos(itr->angle)*bulletspeed_5;
 			itr->y += sin(itr->angle)*bulletspeed_5;
 			if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - itr->bul.height
