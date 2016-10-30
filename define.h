@@ -43,6 +43,7 @@
 #define lase_numr 3
 #define lase_numc 4
 #define big_num 5
+#define boss2_num 6
 
 #define big_redbul 0
 #define big_yellowbul 1
@@ -50,7 +51,10 @@
 #define yel_bul 3
 #define green_bul 4
 #define blue_ricebul 5
-#define boss2_num 6
+#define red_num 6
+#define lightblue_num 7
+#define purple_num 8
+#define grassgreen_num 9
 
 #define aimstraight_3wayshotnum 0
 #define notaim_2way 1

@@ -45,6 +45,10 @@ private:
 	base greenbullet;
 	base laserbeam[5];
 	base bluericebullet;
+	base redbullet;
+	base purplebullet;
+	base lightblue_bullet;
+	base grassgreen_bullet;
 	std::list<enemybullet> enemybullet1;
 	std::list<enemybullet> enemybullet2;
 	std::list<enemybullet> enemybullet3;

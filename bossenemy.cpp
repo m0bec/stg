@@ -35,7 +35,18 @@ bossenemy::bossenemy() {
 	big_yellow.graph = LoadGraph("graph/big_yello.png");
 	GetGraphSize(big_yellow.graph, &big_yellow.width, &big_yellow.height);
 	big_yellow.range = 10;
-
+	redbullet.graph = LoadGraph("graph/ETama7.png");
+	GetGraphSize(redbullet.graph, &redbullet.width, &redbullet.height);
+	redbullet.range = 4;
+	lightblue_bullet.graph = LoadGraph("graph/ETama8.png");
+	GetGraphSize(lightblue_bullet.graph, &lightblue_bullet.width, &lightblue_bullet.height);
+	lightblue_bullet.range = 4;
+	purplebullet.graph = LoadGraph("graph/ETama9.png");
+	GetGraphSize(purplebullet.graph, &purplebullet.width, &purplebullet.height);
+	purplebullet.range = 4;
+	grassgreen_bullet.graph = LoadGraph("graph/ETama10.png");
+	GetGraphSize(grassgreen_bullet.graph, &grassgreen_bullet.width, &grassgreen_bullet.height);
+	grassgreen_bullet.range = 4;
 	//mobenemy
 	dartenemy.graph = LoadGraph("graph/dart.png");
 	GetGraphSize(dartenemy.graph, &dartenemy.width, &dartenemy.height);
