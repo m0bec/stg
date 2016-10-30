@@ -358,7 +358,8 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 				}
 			}
 			if (iterate->pass_time % 600 == 400) {
-				iterate->bulletnum = 12;
+				iterate->bulletnum = 16;
+				iterate->bullettype = big_yellowbul;
 			}
 			break;
 
@@ -390,6 +391,7 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 void bossenemy::bullet_move() {
 	double px, py;
 	control &controling = control::getinstance();
+	std::uniform_real_distribution<> rand(0,DX_PI/2);
 	auto itr = mobbullet1.begin();
 	while (itr != mobbullet1.end()) {
 		switch (itr->bullettag) {
@@ -577,6 +579,148 @@ void bossenemy::bullet_move() {
 				itr = mobbullet1.erase(itr);
 			}
 
+			if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - itr->bul.height
+				|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - itr->bul.width) {
+				itr = mobbullet1.erase(itr);
+			}
+			else {
+				DrawGraph(static_cast<int>(itr->x), static_cast<int>(itr->y), itr->bul.graph, true);
+				itr++;
+			}
+			break;
+
+		case 12:
+			itr->elapsedtime += 1;
+			itr->x += cos(itr->angle) * bulletspeed_6;
+			itr->y += sin(itr->angle) * bulletspeed_6;
+			itr->angle += 0.005;
+			if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - itr->bul.height
+				|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - itr->bul.width) {
+				itr = mobbullet1.erase(itr);
+			}
+			else {
+				DrawGraph(static_cast<int>(itr->x), static_cast<int>(itr->y), itr->bul.graph, true);
+				itr++;
+			}
+			break;
+
+		case 13:
+			itr->elapsedtime += 1;
+			if (itr->elapsedtime == 30) {
+				controling.get_playerposition(&px, &py);
+				itr->angle =  atan2(py - (itr->y + itr->bul.height), px - (itr->x + itr->bul.width)) + rand(mt) - DX_PI / 4;
+
+			}
+
+			if (itr->elapsedtime % 60 < 30) {
+				itr->x += cos(itr->angle) * bulletspeed_6;
+				itr->y += sin(itr->angle) * bulletspeed_6;
+			}
+
+			if (itr->elapsedtime == 200) {
+				itr->bullettype = big_rednum;
+			}
+			else if (itr->elapsedtime > 400) {
+				for (int i = 0; i < 5; i++) {
+					mobbullet1.push_back(mobbullet((itr->x + itr->bul.width / 2 - greenbullet.width / 2) + 10 * cos(i * 2 * DX_PI / 5), (itr->y + itr->bul.height / 2 - greenbullet.height / 2) * sin(i * 2 * DX_PI / 5), i * 2 * DX_PI / 5, itr->bul.range, 0, 18, green_bul, greenbullet, 0));
+				}
+				itr->x = 0;
+				itr->y = 0;
+			}
+
+			if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - itr->bul.height
+				|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - itr->bul.width) {
+				itr = mobbullet1.erase(itr);
+			}
+			else {
+				DrawGraph(static_cast<int>(itr->x), static_cast<int>(itr->y), itr->bul.graph, true);
+				itr++;
+			}
+			break;
+
+		case 14:
+			itr->x += cos(itr->angle)*bulletspeed_6;
+			itr->y += sin(itr->angle)*bulletspeed_6;
+			if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - itr->bul.height
+				|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - itr->bul.width) {
+				itr = mobbullet1.erase(itr);
+			}
+			else {
+				DrawGraph(static_cast<int>(itr->x), static_cast<int>(itr->y), itr->bul.graph, true);
+				itr++;
+			}
+			break;
+
+		case 15:
+			itr->elapsedtime += 1;
+			itr->x += cos(itr->angle) * bulletspeed_6;
+			itr->y += sin(itr->angle) * bulletspeed_6;
+			itr->angle -= 0.005;
+			if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - itr->bul.height
+				|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - itr->bul.width) {
+				itr = mobbullet1.erase(itr);
+			}
+			else {
+				DrawGraph(static_cast<int>(itr->x), static_cast<int>(itr->y), itr->bul.graph, true);
+				itr++;
+			}
+			break;
+
+		case 16:
+			itr->elapsedtime += 1;
+			if (itr->elapsedtime == 30) {
+				controling.get_playerposition(&px, &py);
+				itr->angle = atan2(py - (itr->y + itr->bul.height), px - (itr->x + itr->bul.width)) + rand(mt) - DX_PI / 4;
+
+			}
+
+			if (itr->elapsedtime % 60 < 30) {
+				itr->x += cos(itr->angle) * bulletspeed_6;
+				itr->y += sin(itr->angle) * bulletspeed_6;
+			}
+
+			if (itr->elapsedtime == 200) {
+				itr->bullettype = big_rednum;
+			}
+			else if (itr->elapsedtime > 400) {
+				for (int i = 0; i < 5; i++) {
+					mobbullet1.push_back(mobbullet((itr->x + itr->bul.width / 2 - greenbullet.width / 2) + 10 * cos(i * 2 * DX_PI / 5), (itr->y + itr->bul.height / 2 - greenbullet.height / 2) * sin(i * 2 * DX_PI / 5), i * 2 * DX_PI / 5, itr->bul.range, 0, 18, green_bul, greenbullet, 0));
+				}
+				itr->x = 0;
+				itr->y = 0;
+			}
+
+			if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - itr->bul.height
+				|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - itr->bul.width) {
+				itr = mobbullet1.erase(itr);
+			}
+			else {
+				DrawGraph(static_cast<int>(itr->x), static_cast<int>(itr->y), itr->bul.graph, true);
+				itr++;
+			}
+			break;
+
+		case 17:
+			itr->x += cos(itr->angle)*bulletspeed_6;
+			itr->y += sin(itr->angle)*bulletspeed_6;
+			if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - itr->bul.height
+				|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - itr->bul.width) {
+				itr = mobbullet1.erase(itr);
+			}
+			else {
+				DrawGraph(static_cast<int>(itr->x), static_cast<int>(itr->y), itr->bul.graph, true);
+				itr++;
+			}
+			break;
+
+		case 18:
+			itr->elapsedtime += 1;
+			if (itr->elapsedtime == 30) {
+				itr->x = 0;
+				itr->y = 0;
+			}
+			itr->x += cos(itr->angle)*bulletspeed_5;
+			itr->y += sin(itr->angle)*bulletspeed_5;
 			if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - itr->bul.height
 				|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth - itr->bul.width) {
 				itr = mobbullet1.erase(itr);

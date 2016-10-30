@@ -55,6 +55,7 @@
 #define lightblue_num 7
 #define purple_num 8
 #define grassgreen_num 9
+#define big_rednum 10
 
 #define aimstraight_3wayshotnum 0
 #define notaim_2way 1
