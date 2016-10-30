@@ -120,6 +120,7 @@ public:
 	void get_mobplace(std::list<enemy_element> *iterate);
 	void pre_flag_judge(std::list<enemy_element>::iterator iterate);
 	void boss2_switch1(std::list<enemy_element>::iterator iterate);
+	void boss2_switch2(std::list<enemy_element>::iterator iterate);
 
 	void straight_left(std::list<enemy_element>::iterator itr);
 	void straight_right(std::list<enemy_element>::iterator itr);
@@ -144,6 +145,7 @@ public:
 	void stop(std::list<enemy_element>::iterator itr);
 	void aim(std::list<enemy_element>::iterator itr);
 	void stop2(std::list<enemy_element>::iterator itr);
+	void slide_move(std::list<enemy_element>::iterator itr);
 	void bullet_move();
 };
 

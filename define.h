@@ -69,6 +69,7 @@
 #define rota_sixteenway 9
 #define rota_sixteenway2 10
 #define bullet_line 11
+#define boss2_lastshot 12
 
 #define straight_downnum 0
 #define straight_rightnum 1

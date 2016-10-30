@@ -740,6 +740,12 @@ void bossenemy::boss2_switch1(std::list<enemy_element>::iterator iterate) {
 	iterate->bullettype = green_bul;
 }
 
+void bossenemy::boss2_switch2(std::list<enemy_element>::iterator iterate) {
+	iterate->bulletnum = boss2_lastshot;
+	iterate->movenum = stop2_num;
+	iterate->bullettype = lightblue_num;
+}
+
 void bossenemy::get_mobplace(std::list<enemy_element> *iterate) {
 	iterate = &mobenemy;
 }

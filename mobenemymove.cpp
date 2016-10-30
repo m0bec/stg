@@ -148,6 +148,31 @@ void bossenemy::stop2(std::list<enemy_element>::iterator itr) {
 	}
 }
 
+void bossenemy::slide_move(std::list<enemy_element>::iterator itr) {
+	double px, py;
+	control &controling = control::getinstance();
+	controling.get_playerposition(&px, &py);
+	if (itr->y > lowerlimit_joydispheight + 100) {
+		itr->y -= 5;
+	}
+
+	if (itr->pass_time % 100 < 30) {
+		if (itr->x + itr->width / 2 < px) {
+			itr->x += 3;
+		}
+		else {
+			itr->x -= 3;
+		}
+	}
+
+	if (itr->x > upperlimit_joydispwidth) {
+		itr->x = upperlimit_joydispwidth - 1;
+	}
+	else if (itr->x < lowerlimit_joydispwidth - itr->width) {
+		itr->x = lowerlimit_joydispwidth + 1;
+	}
+}
+
 void bossenemy::allocation_enemymove(std::list<enemy_element>::iterator iterate) {
 	switch (iterate->movenum) {
 	case 0:
