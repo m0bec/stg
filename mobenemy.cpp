@@ -15,10 +15,11 @@ void bossenemy::mobrun(std::list<enemy_element> *mob) {
 			else {
 				itr->time -= 1;
 			}
+
 			bossenemy::pre_flag_judge(itr);
 			++itr;
 		}
-
+		bossenemy::body_hitcheck(itr);
 		bossenemy::bullet_move();
 		if (get_presence) {
 			bossenemy::mobbul_hitcheck(&mobbullet1, str_bullettype);
@@ -33,6 +34,14 @@ void bossenemy::mobbul_hitcheck(std::list<mobbullet> *bullet, base bullettype) {
 		ebullethit = true;
 	}
 	
+}
+
+void bossenemy::body_hitcheck(std::list<enemy_element>::iterator itr) {
+	control &controling = control::getinstance();
+
+	if (controling.body_hitcheck(itr->width, itr->height, itr->margine, itr->x, itr->y)) {
+		ebullethit = true;
+	}
 }
 
 //wid‚Æheight‚Ì‘ã“ü

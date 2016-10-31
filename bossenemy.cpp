@@ -129,10 +129,10 @@ void bossenemy::move() {
 	control &controling = control::getinstance();
 	std::uniform_real_distribution<> rand2(0, 20);
 	switch (movestate) {
-	/*case 0:
+	case 0:
 		startmove();
 		set_enemyhp(bossenemy_hp1);
-		break;*/
+		break;
 
 	case 1:
 		reset_ebullethit();
@@ -316,7 +316,7 @@ void bossenemy::move() {
 		if (count > 1000)	movestate = 16;
 		break;
 
-	case 0:
+	case 16:
 		reset_ebullethit();
 		controling.get_presenceflag(&get_presence);
 		bossenemy::preparation_case8(&mobenemy, boss2_num, 1, 500 - boss2.width / 2, lowerlimit_joydispheight - boss2.height, rota_sixteenway, app_straightnum, yel_bul, 900, 50, 0, 60, boss2_margine);
