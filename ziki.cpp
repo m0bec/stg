@@ -26,7 +26,6 @@ ziki::ziki() {
 	graze_stock = 0;
 	bomb_count = 0;
 	bomb_flag = false;
-
 	
 
 	hitdist = hit_distance;
@@ -36,8 +35,8 @@ ziki::ziki() {
 //’e‚É“–‚½‚Á‚½‚çfalse
 void ziki::lifecheck(bool checker) {
 	if (checker) {
-		//lifepoint -= 1;
-		if (lifepoint > 0) {
+		lifepoint -= 1;
+		if (lifepoint > 1) {
 			lifeflag = true;
 			presenceflag = false;
 		}
@@ -214,6 +213,10 @@ unsigned int ziki::pass_grazenum() {
 	return grase_count;
 }
 
+int ziki::pass_zanki() {
+	return lifepoint;
+}
+
 //•œŠˆ‚µ‚Ä‚©‚ç‚ÌŠÔ‚ğŠÇ—
 void ziki::sortiecounter_controler() {
 	sortiecounter++;
@@ -245,6 +248,16 @@ void ziki::invalid() {
 	}
 	else {
 		bomb_flag = false;
+	}
+}
+
+int ziki::life_damage() {
+	lifepoint -= 1;
+	if (lifepoint < 0) {
+		return -1;
+	}
+	else {
+		return 0;
 	}
 }
 

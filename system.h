@@ -24,6 +24,7 @@ private:
 	unsigned int gage_color2;
 	unsigned int gage_color3;
 	unsigned int gage_color4;
+	bool gameover;
 
 public:
 	systemm();
@@ -36,5 +37,7 @@ public:
 	void scoredisp(unsigned int score);
 	void grasedisp(unsigned int gnum);
 	void gage(unsigned int stock);
+	void zanki_disp(int zanki);
+	void p_state(int pas);
 };
 

@@ -157,6 +157,7 @@
     <ClCompile Include="bossenemymove.cpp" />
     <ClCompile Include="bossenemyshot.cpp" />
     <ClCompile Include="control.cpp" />
+    <ClCompile Include="eraser.cpp" />
     <ClCompile Include="load.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mobenemy.cpp" />

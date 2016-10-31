@@ -1,4 +1,5 @@
 #include "system.h"
+#include "control.h"
 
 systemm::systemm() {
 	startdisp.graph = LoadGraph("graph/startdisp.png");
@@ -38,6 +39,7 @@ systemm::systemm() {
 	music_time = 0;
 	score1 = 0;
 	score2 = 0;
+	gameover = false;
 
 	gage_color1 = GetColor(23, 96, 16);
 	gage_color2 = GetColor(59, 241, 41);
@@ -96,6 +98,10 @@ int systemm::pass_state() {
 	return state;
 }
 
+void systemm::p_state(int pas) {
+	state = pas;
+}
+
 void systemm::scoredisp(unsigned int point) {
 	score1 = point;
 	int number;
@@ -118,6 +124,20 @@ void systemm::grasedisp(unsigned int gnum) {
 		DrawGraph(drawx, 200, scorenum[number].graph, true);
 		drawx = drawx - scorenum[0].width;
 	}
+}
+
+void systemm::zanki_disp(int life) {
+	int zanki;
+	int str;
+	int drawx = upperlimit_width - scorenum[0].width - 50;
+	zanki = life - 1;
+	/*for (int i = 0; i < 2; i++) {
+		str = zanki % 10;
+		zanki = zanki / 10;
+		DrawGraph(drawx, 400, scorenum[str].graph, true);
+		drawx = drawx - scorenum[0].width;
+	}*/
+
 }
 
 void systemm::gage(unsigned int stock) {

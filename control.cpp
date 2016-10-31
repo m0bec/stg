@@ -10,7 +10,10 @@ control::control() {
 	point = 0; 
 	graze = 0;
 	graze_stock = 0;
+	zanki = 10;
 	bomb_flag = false;
+	are.graph = LoadGraph("graph/ziki1.png");
+	
 }
 
 void control::firstrun() {
@@ -44,9 +47,16 @@ void control::run() {
 		get_point();
 		get_graze();
 		get_bombflag();
+		get_ziki();
 		sys->scoredisp(point);
 		sys->grasedisp(graze);
 		sys->gage(graze_stock);
+		sys->zanki_disp(zanki);
+	}
+	else if (state == 2) {
+		state = 0;
+		sys->p_state(state);
+		boss->first_set();
 	}
 }
 
@@ -54,10 +64,17 @@ void control::calculation_enemyhp() {
 	boss->enemy_damage_counter();
 }
 
-
+int control::pass_zanki() {
+	int str = ziki1->pass_zanki();
+	return str;
+}
 
 void control::get_bombflag() {
 	bomb_flag = ziki1->bomb();
+}
+
+void control::get_ziki() {
+	zanki = ziki1->pass_zanki();
 }
 
 void control::get_playerposition(double *centerx, double *centery) {
@@ -96,12 +113,18 @@ void control::get_presenceflag(bool *flag) {
 
 bool control::hitcheck(std::list<enemybullet> *bullet, base bullettype) {
 	double zikicx, zikicy;
+	int check;
 	ziki1->getposition(&zikicx, &zikicy);
 	auto itr = bullet->begin();
 	while (itr != bullet->end()) {
 		if ((zikicx - itr->x)*(zikicx - itr->x) + (zikicy - itr->y)*(zikicy - itr->y) < (itr->range + ziki1->pass_grazedist())*(itr->range + ziki1->pass_grazedist())) {
 			ziki1->graze_counter();
 			if ((zikicx - itr->x)*(zikicx - itr->x) + (zikicy - itr->y)*(zikicy - itr->y) < (itr->range + ziki1->pass_hitdist())*(itr->range + ziki1->pass_hitdist())) {
+				check = ziki1->life_damage();
+				if (check == -1) {
+					state = 2;
+					//DrawGraph(600, 600, are.graph, true);
+				}
 				return true;
 			}
 			else {
@@ -170,6 +193,7 @@ bool control::spinbullet_hitchecker(std::list<rotabullet> *bullet, base bulletty
 
 bool control::mobbullet_hitchecker(std::list<mobbullet> *bullet, base bullettype) {
 	double zikicx, zikicy, str;
+	int check;
 	bool flag = false;
 	int count = 0;
 	std::array<vec, 5> vect;	//target
@@ -182,6 +206,10 @@ bool control::mobbullet_hitchecker(std::list<mobbullet> *bullet, base bullettype
 			if ((zikicx - itr->x)*(zikicx - itr->x) + (zikicy - itr->y)*(zikicy - itr->y) < (itr->range + ziki1->pass_grazedist())*(itr->range + ziki1->pass_grazedist())) {
 				ziki1->graze_counter();
 				if ((zikicx - itr->x)*(zikicx - itr->x) + (zikicy - itr->y)*(zikicy - itr->y) < (itr->range + ziki1->pass_hitdist())*(itr->range + ziki1->pass_hitdist())) {
+					check = ziki1->life_damage();
+					if (check == -1) {
+						state = 2;
+					}
 					return true;
 				}
 				else {

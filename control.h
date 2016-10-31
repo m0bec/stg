@@ -20,6 +20,8 @@ private:
 	unsigned int graze;
 	unsigned int graze_stock;
 	bool bomb_flag;
+	int zanki;
+	base are;
 
 public:
 	static control& getinstance() {
@@ -39,9 +41,11 @@ public:
 	void get_mobposition(std::list<enemy_element> *mob_);
 	void calculation_enemyhp();
 	void player_lifecheck();
+	int pass_zanki();
 	int pass_state();
 	void get_point();
 	void get_graze();
+	void get_ziki();
 	void get_bombflag();
 	void firstrun();
 	void run();

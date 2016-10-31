@@ -148,6 +148,7 @@ public:
 	void stop2(std::list<enemy_element>::iterator itr);
 	void slide_move(std::list<enemy_element>::iterator itr);
 	void bullet_move();
+	void first_set();
 };
 
 class mob {
