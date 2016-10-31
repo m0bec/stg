@@ -133,7 +133,6 @@ bool control::hitcheck(std::list<enemybullet> *bullet, base bullettype) {
 				check = ziki1->life_damage();
 				if (check == -1) {
 					state = 2;
-					//DrawGraph(600, 600, are.graph, true);
 				}
 				return true;
 			}
@@ -150,10 +149,15 @@ bool control::hitcheck(std::list<enemybullet> *bullet, base bullettype) {
 
 bool control::body_hitcheck(int wid, int heigh, int margin, double positionx, double positiony) {
 	double zikicx, zikicy, hitdist;
+	int check;
 	ziki1->getposition(&zikicx, &zikicy);
 	hitdist = ziki1->pass_hitdist();
 	if (positionx + margin < zikicx +  hitdist && positionx + wid - margin > zikicx - hitdist
 		&& positiony + margin < zikicy + hitdist && positiony + heigh - margin > zikicy - hitdist) {
+		check = ziki1->life_damage();
+		if (check == -1) {
+			state = 2;
+		}
 		return true;
 	}
 	return false;
@@ -161,12 +165,17 @@ bool control::body_hitcheck(int wid, int heigh, int margin, double positionx, do
 
 bool control::spining_center_hitcheck(std::list<spining_center> *bullet, base bullettype) {
 	double zikicx, zikicy;
+	int check;
 	ziki1->getposition(&zikicx, &zikicy);
 	auto itr = bullet->begin();
 	while (itr != bullet->end()) {
 		if ((zikicx - itr->x)*(zikicx - itr->x) + (zikicy - itr->y)*(zikicy - itr->y) < (itr->range + ziki1->pass_grazedist())*(itr->range + ziki1->pass_grazedist())) {
 			ziki1->graze_counter();
 			if ((zikicx - itr->x)*(zikicx - itr->x) + (zikicy - itr->y)*(zikicy - itr->y) < (itr->range + ziki1->pass_hitdist())*(itr->range + ziki1->pass_hitdist())) {
+				check = ziki1->life_damage();
+				if (check == -1) {
+					state = 2;
+				}
 				return true;
 			}
 			else {
@@ -182,12 +191,17 @@ bool control::spining_center_hitcheck(std::list<spining_center> *bullet, base bu
 
 bool control::spinbullet_hitchecker(std::list<rotabullet> *bullet, base bullettype) {
 	double zikicx, zikicy;
+	int check;
 	ziki1->getposition(&zikicx, &zikicy);
 	auto itr = bullet->begin();
 	while (itr != bullet->end()) {
 		if ((zikicx - itr->x)*(zikicx - itr->x) + (zikicy - itr->y)*(zikicy - itr->y) < (itr->range + ziki1->pass_grazedist())*(itr->range + ziki1->pass_grazedist())) {
 			ziki1->graze_counter();
 			if ((zikicx - itr->x)*(zikicx - itr->x) + (zikicy - itr->y)*(zikicy - itr->y) < (itr->range + ziki1->pass_hitdist())*(itr->range + ziki1->pass_hitdist())) {
+				check = ziki1->life_damage();
+				if (check == -1) {
+					state = 2;
+				}
 				return true;
 			}
 			else {
