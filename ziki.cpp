@@ -16,7 +16,7 @@ ziki::ziki() {
 	presenceflag = true;
 	lifeflag = true; 	
 	gameover_flag = false;
-	lifepoint = 3;
+	lifepoint = 10;
 	count = 0;
 	invincibletime_counter = 0;
 	sortiecounter = 0;
@@ -35,8 +35,8 @@ ziki::ziki() {
 //’e‚É“–‚½‚Á‚½‚çfalse
 void ziki::lifecheck(bool checker) {
 	if (checker) {
-		lifepoint -= 1;
-		if (lifepoint > 1) {
+		//lifepoint -= 1;
+		if (lifepoint > 0) {
 			lifeflag = true;
 			presenceflag = false;
 		}

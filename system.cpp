@@ -30,6 +30,8 @@ systemm::systemm() {
 	GetGraphSize(scorenum[8].graph, &scorenum[8].width, &scorenum[8].height);
 	scorenum[9].graph = LoadGraph("graph/number9.png");
 	GetGraphSize(scorenum[9].graph, &scorenum[9].width, &scorenum[9].height);
+	icon.graph = LoadGraph("graph/zanki.png");
+	GetGraphSize(icon.graph, &icon.width, &icon.width);
 
 
 	kurame_music = LoadSoundMem("music/KURAME_NO_BGM.wav");
@@ -74,7 +76,7 @@ void systemm::checkkey() {
 			state = 1;
 		}
 		else if(arrowflag = 1){
-			state = 2;
+			state = 99;
 		}
 	}
 }
@@ -130,13 +132,12 @@ void systemm::zanki_disp(int life) {
 	int zanki;
 	int str;
 	int drawx = upperlimit_width - scorenum[0].width - 50;
-	zanki = life;
+	zanki = life - 1;
 	for (int i = 0; i < zanki; i++) {
-		str = zanki % 10;
-		zanki = zanki / 10;
-		DrawGraph(drawx, 400, scorenum[1].graph, true);
-		drawx = drawx - scorenum[0].width;
+		DrawGraph(drawx, 400, icon.graph, true);
+		drawx -= icon.width;
 	}
+	
 
 }
 

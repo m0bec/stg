@@ -42,7 +42,7 @@ void ziki::first_p() {
 	presenceflag = true;
 	lifeflag = true;
 	gameover_flag = false;
-	lifepoint = 3;
+	lifepoint = 10;
 	count = 0;
 	invincibletime_counter = 0;
 	sortiecounter = 0;

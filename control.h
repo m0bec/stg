@@ -45,7 +45,8 @@ public:
 	int pass_state();
 	void get_point();
 	void get_graze();
-	void get_ziki();
+	void get_ziki(int *zik);
+	void first_p();
 	void get_bombflag();
 	void firstrun();
 	void run();

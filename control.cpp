@@ -47,7 +47,7 @@ void control::run() {
 		get_point();
 		get_graze();
 		get_bombflag();
-		get_ziki();
+		get_ziki(&zanki);
 		sys->scoredisp(point);
 		sys->grasedisp(graze);
 		sys->gage(graze_stock);
@@ -57,6 +57,7 @@ void control::run() {
 		state = 0;
 		sys->p_state(state);
 		boss->first_set();
+		ziki1->first_p();
 	}
 }
 
@@ -69,12 +70,21 @@ int control::pass_zanki() {
 	return str;
 }
 
+void control::first_p() {
+	state = 0;
+	point = 0;
+	graze = 0;
+	graze_stock = 0;
+	zanki = 10;
+	bomb_flag = false;
+}
+
 void control::get_bombflag() {
 	bomb_flag = ziki1->bomb();
 }
 
-void control::get_ziki() {
-	zanki = ziki1->pass_zanki();
+void control::get_ziki(int *zik) {
+	*zik = ziki1->pass_zanki();
 }
 
 void control::get_playerposition(double *centerx, double *centery) {

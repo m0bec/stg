@@ -25,6 +25,7 @@ private:
 	unsigned int gage_color3;
 	unsigned int gage_color4;
 	bool gameover;
+	base icon;
 
 public:
 	systemm();

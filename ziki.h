@@ -41,6 +41,7 @@ private:
 	unsigned int graze_stock;
 	bool bomb_flag;
 	int bomb_count;
+	int zan_num;
 
 public:
 	ziki();
