@@ -36,49 +36,56 @@ void bossenemy::mobbul_hitcheck(std::list<mobbullet> *bullet, base bullettype) {
 }
 
 //wid‚Æheight‚Ì‘ã“ü
-void bossenemy::preparation_case8(std::list<enemy_element> *mob, int numenemy, unsigned int enemynum, double anx, double any, int anbulletnum, int anmovenum, int anbullettype, int anhp, unsigned int atime, int rollspeed, unsigned int inter) {
-	int wid, heigh;
+void bossenemy::preparation_case8(std::list<enemy_element> *mob, int numenemy, unsigned int enemynum, double anx, double any, int anbulletnum, int anmovenum, int anbullettype, int anhp, unsigned int atime, int rollspeed, unsigned int inter, int marg) {
+	int wid, heigh, margine;
 	unsigned int input_time;
 	switch (numenemy) {
 	case 0:
 		wid = dartenemy.width;
 		heigh = dartenemy.height;
+		margine = normal_margine;
 		break;
 		
 	case 1:
 		wid = aplane_enemy.width;
 		heigh = aplane_enemy.height;
+		margine = normal_margine;
 		break;
 
 	case 2:
 		wid = lase_enemyl.width;
 		heigh = lase_enemyl.height;
+		margine = normal_margine;
 		break;
 
 	case 3:
 		wid = lase_enemyr.width;
 		heigh = lase_enemyr.height;
+		margine = normal_margine;
 		break;
 
 	case 4:
 		wid = lase_enemy.width;
 		heigh = lase_enemy.height;
+		margine = normal_margine;
 		break;
 
 	case 5:
 		wid = big_enemy.width;
 		heigh = big_enemy.height;
+		margine = boss2_margine;
 		break;
 
 	case 6:
 		wid = boss2.width;
 		heigh = boss2.height;
+		margine = boss2_margine;
 		break;
 	}
 
 	while (enemynum != 0) {
 		input_time = 0 + (enemynum-1)*inter;
-		mob->push_back(enemy_element(anx, any, wid, heigh, numenemy, anbulletnum, anmovenum, anbullettype, anhp, atime + input_time, rollspeed, inter, false));
+		mob->push_back(enemy_element(anx, any, wid, heigh, numenemy, anbulletnum, anmovenum, anbullettype, anhp, atime + input_time, rollspeed, inter, false, margine));
 		enemynum -= 1;
 	}
 }
@@ -297,7 +304,7 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 
 		case 10:
 			if (iterate->pass_time % 300 == 0) {
-				preparation_case8(&mobenemy, dart_num, 1, iterate->x + iterate->width / 2 + dartenemy.width / 2, iterate->y + iterate->height / 2 - dartenemy.height / 2, bullet_line, aim_num, green_bul, 10, 10, 0, 30);
+				preparation_case8(&mobenemy, dart_num, 1, iterate->x + iterate->width / 2 + dartenemy.width / 2, iterate->y + iterate->height / 2 - dartenemy.height / 2, bullet_line, aim_num, green_bul, 10, 10, 0, 30, normal_margine);
 			}
 			if (iterate->pass_time % 6 == 0) {
 				for (int i = 0; i < 8; i++) {

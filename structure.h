@@ -153,7 +153,7 @@ struct spining_center {
 
 //bullettype‚Í’e‚ÌŽí—Þ,bulletnum‚Í’e‚Ì‹O“¹‚ÌŽí—Þ
 struct enemy_element {
-	enemy_element(double anx, double any, int anwidth, int anheight, int angraphnum, int anbulletnum, int anmovenum, int anbullettype, int anhp, unsigned int atime, int arollingspeed, unsigned int interval, bool aflag) {
+	enemy_element(double anx, double any, int anwidth, int anheight, int angraphnum, int anbulletnum, int anmovenum, int anbullettype, int anhp, unsigned int atime, int arollingspeed, unsigned int interval, bool aflag, int marg) {
 		x = anx;
 		originx = anx;
 		y = any;
@@ -174,6 +174,7 @@ struct enemy_element {
 		pre_flag = false;
 		angle = 0;
 		direct_flag = 0;
+		margine = marg;
 	}
 	double x;
 	double y;
@@ -195,6 +196,7 @@ struct enemy_element {
 	bool pre_flag;
 	double angle;
 	int direct_flag;
+	int margine;
 };
 
 struct enemytype {

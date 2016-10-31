@@ -93,6 +93,9 @@
 #define stop2_num 19
 #define slide_num 20
 
+#define normal_margine 15
+#define boss2_margine 30
+
 
 
 
