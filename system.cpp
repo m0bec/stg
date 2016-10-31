@@ -130,13 +130,13 @@ void systemm::zanki_disp(int life) {
 	int zanki;
 	int str;
 	int drawx = upperlimit_width - scorenum[0].width - 50;
-	zanki = life - 1;
-	/*for (int i = 0; i < 2; i++) {
+	zanki = life;
+	for (int i = 0; i < zanki; i++) {
 		str = zanki % 10;
 		zanki = zanki / 10;
-		DrawGraph(drawx, 400, scorenum[str].graph, true);
+		DrawGraph(drawx, 400, scorenum[1].graph, true);
 		drawx = drawx - scorenum[0].width;
-	}*/
+	}
 
 }
 

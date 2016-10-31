@@ -1,6 +1,4 @@
 #include "enemy.h"
-#include "ziki.h"
-#include "system.h"
 
 void bossenemy::first_set() {
 	x = bossenemy_startpoint_x - width / 2;
@@ -36,31 +34,4 @@ void bossenemy::first_set() {
 	spinbullet2.clear();
 	center1.clear();
 	mobbullet1.clear();
-}
-
-void ziki::first_p() {
-	presenceflag = true;
-	lifeflag = true;
-	gameover_flag = false;
-	lifepoint = 3;
-	count = 0;
-	invincibletime_counter = 0;
-	sortiecounter = 0;
-	shotpoint = 0;
-	grazepoint = 0;
-	grase_count = 0;
-	graze_stock = 0;
-	bomb_count = 0;
-	bomb_flag = false;
-	zikibullet.clear();
-}
-
-void systemm::first_p() {
-	arrowy = 512 - startgr.height;
-	arrowflag = 0;
-	state = 0;
-	music_time = 0;
-	score1 = 0;
-	score2 = 0;
-	gameover = false;
 }

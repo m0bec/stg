@@ -39,5 +39,6 @@ public:
 	void gage(unsigned int stock);
 	void zanki_disp(int zanki);
 	void p_state(int pas);
+	void first_p();
 };
 

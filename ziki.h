@@ -63,7 +63,7 @@ public:
 	void bomb_start();
 	unsigned int pass_grazestock();
 	int life_damage();
-
+	void first_p();
 	int pass_zanki();
 };
 

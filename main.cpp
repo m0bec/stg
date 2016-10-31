@@ -37,7 +37,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 		// もしＥＳＣキーが押されていたらループから抜ける
 		if (CheckHitKey(KEY_INPUT_ESCAPE)) break;
-		//if (main_run.pass_state() == 2) break;
 	}
 
 	DxLib_End();				// ＤＸライブラリ使用の終了処理
