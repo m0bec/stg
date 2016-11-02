@@ -1,5 +1,6 @@
 #include "system.h"
 #include "control.h"
+#include <fstream>
 
 systemm::systemm() {
 	startdisp.graph = LoadGraph("graph/startdisp.png");
@@ -130,7 +131,6 @@ void systemm::grasedisp(unsigned int gnum) {
 
 void systemm::zanki_disp(int life) {
 	int zanki;
-	int str;
 	int drawx = upperlimit_width - scorenum[0].width - 50;
 	zanki = life - 1;
 	for (int i = 0; i < zanki; i++) {
@@ -150,4 +150,10 @@ void systemm::gage(unsigned int stock) {
 	else {
 		DrawBoxAA(upperlimit_joydispwidth + 50, 300, upperlimit_joydispwidth + 250, 360, gage_color2, true);
 	}
+}
+
+void systemm::save_score(unsigned int sco) {
+	score1 = sco;
+	std::ofstream ofs("score.txt", std::ios::out | std::ios::app | std::ios::binary);
+	ofs << score1 << std::endl;
 }

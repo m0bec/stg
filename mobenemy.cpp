@@ -306,7 +306,7 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 				}
 			}
 
-			if (iterate->hp < 800) {
+			if (iterate->hp < 600) {
 				boss2_switch1(iterate);
 			}
 			break;
@@ -321,7 +321,7 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 				}
 			}
 
-			if (iterate->hp < 700) {
+			if (iterate->hp < 300) {
 				boss2_switch2(iterate);
 			}
 			break;

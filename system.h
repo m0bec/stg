@@ -26,6 +26,7 @@ private:
 	unsigned int gage_color4;
 	bool gameover;
 	base icon;
+	char str_score[10];
 
 public:
 	systemm();
@@ -41,5 +42,6 @@ public:
 	void zanki_disp(int zanki);
 	void p_state(int pas);
 	void first_p();
+	void save_score(unsigned int score);
 };
 

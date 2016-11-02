@@ -55,6 +55,7 @@ void control::run() {
 	}
 	else if (state == 2) {
 		state = 0;
+		sys->save_score(point);
 		sys->p_state(state);
 		boss->first_set();
 		ziki1->first_p();
