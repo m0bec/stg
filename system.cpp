@@ -118,6 +118,19 @@ void systemm::scoredisp(unsigned int point) {
 	}
 }
 
+void systemm::disp_highscore() {
+	unsigned int number;
+	unsigned int str_high = str_scorenum[0];
+	int drawx = upperlimit_width - scorenum[0].width - 50;
+	for (int i = 0; i < 10; i++)
+	{
+		number = str_high % 10;
+		str_high = str_high / 10;
+		DrawGraph(drawx, 10, scorenum[number].graph, true);
+		drawx = drawx - scorenum[0].width;
+	}
+}
+
 void systemm::grasedisp(unsigned int gnum) {
 	grazen = gnum;
 	int number;
@@ -155,6 +168,10 @@ void systemm::gage(unsigned int stock) {
 
 void systemm::save_score(unsigned int sco) {
 	score1 = sco;
+	FILE *fp;
+	errno_t error;
+	error = fopen_s(&fp, "score.txt", "wb");
+	if (error != 0)	return;
 	std::ofstream ofs("score.txt", std::ios::out);
 	for (int i = 0; i < 10; i++) {
 		if (score1 > str_scorenum[i]) {
@@ -162,18 +179,25 @@ void systemm::save_score(unsigned int sco) {
 			str_scorenum[i] = score1;
 			score1 = str;
 		}
-		strin[i] = std::to_string(str_scorenum[i]);
-		ofs << strin[i] << std::endl;
+		fwrite(&str_scorenum[i], sizeof(unsigned int), 1, fp);
+		
 	}
+	fclose(fp);
 
 }
 
 void systemm::instal_score() {
-	std::ifstream ifs("score.txt", std::ios::in);
-	for (int i = 0; i < 10; i++) {
-		ifs.getline(str_score[i], 11);
-		for (int j = 0; j < 10; j++) {
-			str_scorenum[i] = static_cast<unsigned int>(str_score[i][j] - '0') * 10 * j;
+	FILE *fp;
+	errno_t error;
+	error = fopen_s(&fp, "score.txt", "rb");
+	if (error != 0) {
+		str_scorenum[0] = 10;
+	}
+	else {
+		for (int i = 0; i < 10; i++) {
+			fread(&str_scorenum[i], sizeof(str_scorenum[0]), 1, fp);
 		}
 	}
+	
+	fclose(fp);
 }

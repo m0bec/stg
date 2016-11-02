@@ -49,6 +49,7 @@ void control::run() {
 		get_graze();
 		get_bombflag();
 		get_ziki(&zanki);
+		sys->disp_highscore();
 		sys->scoredisp(point);
 		sys->grasedisp(graze);
 		sys->gage(graze_stock);

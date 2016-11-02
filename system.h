@@ -46,5 +46,6 @@ public:
 	void first_p();
 	void save_score(unsigned int score);
 	void instal_score();
+	void disp_highscore();
 };
 
