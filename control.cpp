@@ -37,6 +37,7 @@ void control::run() {
 	if (state == 0) {
 		state = sys->pass_state();
 		sys->startgraphrun();
+		sys->instal_score();
 	}
 	else if (state == 1) {
 		background->firstrun();

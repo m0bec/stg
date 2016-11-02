@@ -26,7 +26,9 @@ private:
 	unsigned int gage_color4;
 	bool gameover;
 	base icon;
-	char str_score[10][20];
+	char str_score[10][11];
+	unsigned int str_scorenum[10];
+	std::array<std::string, 10> strin;
 
 public:
 	systemm();

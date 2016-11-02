@@ -155,33 +155,25 @@ void systemm::gage(unsigned int stock) {
 
 void systemm::save_score(unsigned int sco) {
 	score1 = sco;
-	char num[20];
-	char str;
+	std::ofstream ofs("score.txt", std::ios::out);
 	for (int i = 0; i < 10; i++) {
-		str = num[19 - i];
-		num[19 - i] = num[i];
-		num[i] = str;
-	}
-	FILE *fp;
-	fp = fopen("score.txt", "w");
-	for (int i = 0; i < 10; i++) {
-		if (strcmp(num, str_score[i]) >= 0) {
-
+		if (score1 > str_scorenum[i]) {
+			unsigned int str = str_scorenum[i];
+			str_scorenum[i] = score1;
+			score1 = str;
 		}
+		strin[i] = std::to_string(str_scorenum[i]);
+		ofs << strin[i] << std::endl;
 	}
+
 }
 
 void systemm::instal_score() {
-	FILE *fp;
-	char str;
-	fp = fopen("score.txt", "r");
+	std::ifstream ifs("score.txt", std::ios::in);
 	for (int i = 0; i < 10; i++) {
-		fgets(str_score[i], sizeof(unsigned int), fp);
+		ifs.getline(str_score[i], 11);
 		for (int j = 0; j < 10; j++) {
-			str = str_score[i][19 - j];
-			str_score[i][19 - j] = str_score[i][j];
-			str_score[i][j] = str;
+			str_scorenum[i] = static_cast<unsigned int>(str_score[i][j] - '0') * 10 * j;
 		}
 	}
-	fclose(fp);
 }
