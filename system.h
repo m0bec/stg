@@ -26,7 +26,7 @@ private:
 	unsigned int gage_color4;
 	bool gameover;
 	base icon;
-	char str_score[10];
+	char str_score[10][20];
 
 public:
 	systemm();
@@ -43,5 +43,6 @@ public:
 	void p_state(int pas);
 	void first_p();
 	void save_score(unsigned int score);
+	void instal_score();
 };
 

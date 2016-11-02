@@ -1,6 +1,7 @@
 #include "system.h"
 #include "control.h"
 #include <fstream>
+#include <string>
 
 systemm::systemm() {
 	startdisp.graph = LoadGraph("graph/startdisp.png");
@@ -154,6 +155,33 @@ void systemm::gage(unsigned int stock) {
 
 void systemm::save_score(unsigned int sco) {
 	score1 = sco;
-	std::ofstream ofs("score.txt", std::ios::out | std::ios::app | std::ios::binary);
-	ofs << score1 << std::endl;
+	char num[20];
+	char str;
+	for (int i = 0; i < 10; i++) {
+		str = num[19 - i];
+		num[19 - i] = num[i];
+		num[i] = str;
+	}
+	FILE *fp;
+	fp = fopen("score.txt", "w");
+	for (int i = 0; i < 10; i++) {
+		if (strcmp(num, str_score[i]) >= 0) {
+
+		}
+	}
+}
+
+void systemm::instal_score() {
+	FILE *fp;
+	char str;
+	fp = fopen("score.txt", "r");
+	for (int i = 0; i < 10; i++) {
+		fgets(str_score[i], sizeof(unsigned int), fp);
+		for (int j = 0; j < 10; j++) {
+			str = str_score[i][19 - j];
+			str_score[i][19 - j] = str_score[i][j];
+			str_score[i][j] = str;
+		}
+	}
+	fclose(fp);
 }
