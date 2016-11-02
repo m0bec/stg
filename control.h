@@ -34,6 +34,7 @@ public:
 	bool hitcheck(std::list<enemybullet> *bullet, base bullettype);
 	bool laser_hitcheck(std::list<laser> *bullet);
 	bool body_hitcheck(int wid, int heigh, int margin, double potisionx, double positiony);
+	bool body_hitcheck2(std::list<enemy_element> *mobe);
 	bool spining_center_hitcheck(std::list<spining_center> *bullet, base bullettype);
 	bool spinbullet_hitchecker(std::list<rotabullet> *bullet, base bullettype);
 	bool mobbullet_hitchecker(std::list<mobbullet> *bullet, base bullettype);

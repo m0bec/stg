@@ -150,6 +150,28 @@ bool control::hitcheck(std::list<enemybullet> *bullet, base bullettype) {
 	return false;
 }
 
+bool control::body_hitcheck2(std::list<enemy_element> *mobe) {
+	double zikicx, zikicy, hitdist;
+	int check;
+	ziki1->getposition(&zikicx, &zikicy);
+	hitdist = ziki1->pass_hitdist();
+	auto itr = mobe->begin();
+	while (itr != mobe->end()) {
+		if (itr->x + itr->margine < zikicx + hitdist && itr->x + itr->width - itr->margine > zikicx - hitdist
+			&& itr->y + itr->margine < zikicy + hitdist && itr->y + itr->height - itr->margine > zikicy - hitdist) {
+			check = ziki1->life_damage();
+			if (check == -1) {
+				state = 2;
+			}
+			return true;
+		}
+		else {
+			++itr;
+		}
+	}
+	return false;
+}
+
 bool control::body_hitcheck(int wid, int heigh, int margin, double positionx, double positiony) {
 	double zikicx, zikicy, hitdist;
 	int check;

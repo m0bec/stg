@@ -147,7 +147,7 @@ public:
 	void aim(std::list<enemy_element>::iterator itr);
 	void stop2(std::list<enemy_element>::iterator itr);
 	void slide_move(std::list<enemy_element>::iterator itr);
-	void body_hitcheck(std::list<enemy_element>::iterator itr);
+	void body_hitcheck(std::list<enemy_element> *mobe);
 	void bullet_move();
 	void first_set();
 };

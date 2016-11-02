@@ -91,7 +91,7 @@ bossenemy::bossenemy() {
 	bullet_directcount = 0;
 	ebullethit = false;
 
-	mobenemy.push_back(enemy_element(upperlimit_joydispwidth+200, upperlimit_joydispheight+200, 0, 0, 99, 99, 99, 99, 99, 99, 0, 0, true, 0));
+	mobenemy.push_back(enemy_element(0, 0, 0, 0, 99, 99, 99, 99, 99, 99, 0, 0, true, 0));
 }
 
 
@@ -225,6 +225,7 @@ void bossenemy::move() {
 			bossenemy::enemybody_hitcheck(width, height, bossenemy_bodymargin, x, y);
 		}
 		if (y > upperlimit_joydispheight)	movestate = 8;
+
 		break;
 
 	case 8:

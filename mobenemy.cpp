@@ -19,9 +19,9 @@ void bossenemy::mobrun(std::list<enemy_element> *mob) {
 			bossenemy::pre_flag_judge(itr);
 			++itr;
 		}
-		bossenemy::body_hitcheck(itr);
 		bossenemy::bullet_move();
 		if (get_presence) {
+			bossenemy::body_hitcheck(&mobenemy);
 			bossenemy::mobbul_hitcheck(&mobbullet1, str_bullettype);
 		}
 	}
@@ -36,11 +36,12 @@ void bossenemy::mobbul_hitcheck(std::list<mobbullet> *bullet, base bullettype) {
 	
 }
 
-void bossenemy::body_hitcheck(std::list<enemy_element>::iterator itr) {
+void bossenemy::body_hitcheck(std::list<enemy_element> *mobe) {
 	control &controling = control::getinstance();
-
-	if (controling.body_hitcheck(itr->width, itr->height, itr->margine, itr->x, itr->y)) {
-		ebullethit = true;
+	if (get_presence) {
+		if (controling.body_hitcheck2(mobe)) {
+			ebullethit = true;
+		}
 	}
 }
 
