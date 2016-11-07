@@ -86,6 +86,10 @@ void control::get_bombflag() {
 	bomb_flag = ziki1->bomb();
 }
 
+void control::pass_bombflag(bool *flag) {
+	*flag = bomb_flag;
+}
+
 void control::get_ziki(int *zik) {
 	*zik = ziki1->pass_zanki();
 }

@@ -51,4 +51,5 @@ public:
 	void get_bombflag();
 	void firstrun();
 	void run();
+	void pass_bombflag(bool *flag);
 };

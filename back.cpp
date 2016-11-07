@@ -1,4 +1,5 @@
 #include "back.h"
+#include "control.h"
 
 back::back() {
 	bluebackleft.graph = LoadGraph("graph/haikeiL.png");
@@ -41,9 +42,17 @@ back::back() {
 }
 
 void back::firstrun() {
-	//DrawGraph(blackback.x, blackback.y, blackback.graph, false);
-	DrawGraph(random03.x, random03.y, random03.graph, false);
-	DrawGraph(random03r.x, random03.y+random03r.height, random03r.graph, false);
+	bool flag;
+	control &controling = control::getinstance();
+	controling.pass_bombflag(&flag);
+	if (flag) {
+
+	}
+	else {
+		//DrawGraph(blackback.x, blackback.y, blackback.graph, false);
+		DrawGraph(random03.x, random03.y, random03.graph, false);
+		DrawGraph(random03r.x, random03.y + random03r.height, random03r.graph, false);
+	}
 }
 
 void back::secondrun() {
