@@ -12,6 +12,12 @@ private:
 	basegraph bluebackup;
 	basegraph bluebackdown;
 	basegraph blackback;
+	basegraph random03;
+	basegraph random03r;
+	basegraph random14;
+	basegraph random08;
+	basegraph back1781;
+	basegraph back1765;
 	
 
 public:

@@ -14,6 +14,8 @@ struct basegraph {
 	int graph;
 	int x;
 	int y;
+	int width;
+	int height;
 };
 
 struct bullet {

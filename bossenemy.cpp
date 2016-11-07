@@ -314,7 +314,7 @@ void bossenemy::move() {
 		bossenemy::mobrun(&mobenemy);
 		bossenemy::mobenemy_alivecheck(&mobenemy);
 		count++;
-		if (count > 1000)	movestate = 16;
+		if (count > 2000)	movestate = 16;
 		break;
 
 	case 16:
