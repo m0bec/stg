@@ -1,5 +1,6 @@
 #include "enemy.h"
 #include "control.h"
+#include "back.h"
 
 bossenemy::bossenemy() {
 	graph = LoadGraph("graph/enemy.png");
@@ -225,7 +226,7 @@ void bossenemy::move() {
 			bossenemy::enemybody_hitcheck(width, height, bossenemy_bodymargin, x, y);
 		}
 		if (y > upperlimit_joydispheight)	movestate = 8;
-
+		controling.pass_bstate(1);
 		break;
 
 	case 8:
@@ -314,7 +315,7 @@ void bossenemy::move() {
 		bossenemy::mobrun(&mobenemy);
 		bossenemy::mobenemy_alivecheck(&mobenemy);
 		count++;
-		if (count > 3000)	movestate = 16;
+		if (count > 4000)	movestate = 16;
 		break;
 
 	case 16:

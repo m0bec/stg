@@ -61,6 +61,7 @@ void control::run() {
 		sys->p_state(state);
 		boss->first_set();
 		ziki1->first_p();
+		background->set_state() = 0;
 	}
 }
 
@@ -88,6 +89,10 @@ void control::get_bombflag() {
 
 void control::pass_bombflag(bool *flag) {
 	*flag = bomb_flag;
+}
+
+void control::pass_bstate(int sta) {
+	background->set_state() = sta;
 }
 
 void control::get_ziki(int *zik) {
