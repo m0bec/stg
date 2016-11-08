@@ -31,7 +31,7 @@ back::back() {
 	random14.graph = LoadGraph("graph/B_Random14.png");
 	random14.x = start_point;
 	random14.y = 0;
-	random08.graph = LoadGraph("graph/B_Random08.png");
+	random08.graph = LoadGraph("graph/tb_random08_.png");
 	random08.x = start_point;
 	random08.y = 0;
 	back1781.graph = LoadGraph("graph/17_8_1.png");
@@ -59,8 +59,10 @@ void back::firstrun() {
 	controling.pass_bombflag(&flag);
 	if (flag) {
 		if (state == 0 || state == 1) {
-			DrawGraph(drowx, drowy, random03r.graph, false);
-			DrawGraph(drowx2, drowy2, random03r.graph, false);
+			DrawGraph(drowx, drowy, random03.graph, false);
+			DrawGraph(drowx2, drowy2, random03.graph, false);
+			DrawGraph(drowx, drowy, random08.graph, false);
+			DrawGraph(drowx2, drowy2, random08.graph, false);
 		}
 	}
 	else {
