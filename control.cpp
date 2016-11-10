@@ -54,6 +54,7 @@ void control::run() {
 		sys->grasedisp(graze);
 		sys->gage(graze_stock);
 		sys->zanki_disp(zanki);
+		sys->music2();
 	}
 	else if (state == 2) {
 		state = 0;

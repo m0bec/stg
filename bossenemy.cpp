@@ -238,6 +238,7 @@ void bossenemy::move() {
 		bossenemy::preparation_case8(&mobenemy, dart_num, 5, 400, -dartenemy.height, aimstraight_3wayshotnum, straight_downnum, 0, 5, 20, static_cast<int>(DX_PI / 20), 20, normal_margine);
 		bossenemy::preparation_case8(&mobenemy, dart_num, 6, upperlimit_joydispwidth + dartenemy.width , lowerlimit_joydispheight + 150, notaim_2way, straight_leftnum, big_yellowbul, 5, 120, static_cast<int>(DX_PI / 20), 20, normal_margine);
 		bossenemy::preparation_case8(&mobenemy, dart_num, 6, lowerlimit_joydispwidth - dartenemy.width, lowerlimit_joydispheight + 100, notaim_2way, straight_rightnum, big_yellowbul, 5, 120, static_cast<int>(DX_PI / 20), 20, normal_margine);
+		controling.pass_musicfla(2);
 		movestate = 9;
 		break;
 
@@ -320,6 +321,7 @@ void bossenemy::move() {
 		if (count > 4200) {
 			movestate = 16;
 			controling.pass_bstate(2);
+			controling.pass_musicfla(3);
 		}
 		break;
 
