@@ -95,6 +95,10 @@ void control::pass_bstate(int sta) {
 	background->set_state() = sta;
 }
 
+void control::pass_musicfla(int fla) {
+	sys->set_musicflag() = fla;
+}
+
 void control::get_ziki(int *zik) {
 	*zik = ziki1->pass_zanki();
 }

@@ -46,6 +46,7 @@ systemm::systemm() {
 	music_time = 0;
 	score1 = 0;
 	score2 = 0;
+	music_flag = 0;
 	gameover = false;
 
 	gage_color1 = GetColor(23, 96, 16);
@@ -96,7 +97,15 @@ void systemm::music() {
 }
 
 void systemm::music2() {
-
+	if (music_flag == 1) {
+		PlaySoundMem(boss1_music, DX_PLAYTYPE_LOOP);
+	}
+	else if (music_flag == 2) {
+		PlaySoundMem(dotyu_music, DX_PLAYTYPE_LOOP);
+	}
+	else if (music_flag == 3) {
+		PlaySoundMem(boss2_music, DX_PLAYTYPE_LOOP);
+	}
 }
 
 void systemm::startgraphrun() {

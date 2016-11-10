@@ -53,4 +53,5 @@ public:
 	void run();
 	void pass_bombflag(bool *flag);
 	void pass_bstate(int sta);
+	void pass_musicfla(int fla);
 };

@@ -1,6 +1,7 @@
 #include "enemy.h"
 #include "control.h"
 #include "back.h"
+#include "system.h"
 
 bossenemy::bossenemy() {
 	graph = LoadGraph("graph/enemy.png");
