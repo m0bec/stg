@@ -37,6 +37,9 @@ systemm::systemm() {
 
 
 	kurame_music = LoadSoundMem("music/KURAME_NO_BGM.wav");
+	boss1_music = LoadSoundMem("music/bgm_boss1.ogg");
+	boss2_music = LoadSoundMem("music/bgm_boss2.ogg");
+	dotyu_music = LoadSoundMem("music/bgm_doutyu.ogg");
 	arrowy = 512 - startgr.height;
 	arrowflag = 0;
 	state = 0;
@@ -75,6 +78,7 @@ void systemm::checkkey() {
 	if (input_joypad & PAD_INPUT_DOWN)	arrowflag = 1;
 	if (input_joypad & PAD_INPUT_1) {
 		if (arrowflag == 0) {
+			StopSoundMem(kurame_music);
 			state = 1;
 		}
 		else if(arrowflag = 1){
@@ -89,6 +93,10 @@ void systemm::music() {
 		music_time = 0;
 	}
 	++music_time;
+}
+
+void systemm::music2() {
+
 }
 
 void systemm::startgraphrun() {
@@ -200,4 +208,8 @@ void systemm::instal_score() {
 	}
 	
 	fclose(fp);
+}
+
+int& systemm::set_musicflag() {
+	return this->music_flag;
 }
