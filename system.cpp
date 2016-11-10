@@ -97,14 +97,32 @@ void systemm::music() {
 }
 
 void systemm::music2() {
-	if (music_flag == 1) {
+	switch (music_flag) {
+	case 0:
+		break;
+
+	case 1:
+		StopSoundMem(kurame_music);
 		PlaySoundMem(boss1_music, DX_PLAYTYPE_LOOP);
-	}
-	else if (music_flag == 2) {
+		music_flag = 0;
+		break;
+
+	case 2:
+		StopSoundMem(boss1_music);
 		PlaySoundMem(dotyu_music, DX_PLAYTYPE_LOOP);
-	}
-	else if (music_flag == 3) {
+		music_flag = 0;
+		break;
+
+	case 3:
+		StopSoundMem(dotyu_music);
 		PlaySoundMem(boss2_music, DX_PLAYTYPE_LOOP);
+		music_flag = 0;
+		break;
+
+	case 4:
+		StopSoundMem(boss2_music);
+		music_flag = 0;
+		break;
 	}
 }
 

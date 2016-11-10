@@ -134,6 +134,7 @@ void bossenemy::move() {
 	case 0:
 		startmove();
 		set_enemyhp(bossenemy_hp1);
+		controling.pass_musicfla(1);
 		break;
 
 	case 1:
