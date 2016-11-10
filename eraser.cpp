@@ -40,6 +40,8 @@ void bossenemy::first_set() {
 }
 
 void ziki::first_p() {
+	x = lowerlimit_joydispwidth + (upperlimit_joydispwidth - lowerlimit_joydispwidth) / 2 - width / 2;
+	y = ziki_startposition;
 	presenceflag = true;
 	lifeflag = true;
 	gameover_flag = false;
