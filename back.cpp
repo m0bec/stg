@@ -58,7 +58,7 @@ void back::firstrun() {
 	control &controling = control::getinstance();
 	controling.pass_bombflag(&flag);
 	if (flag) {
-		if (state == 0 || state == 1) {
+		if (state == 0 || state == 1 || state == 2) {
 			DrawGraph(drowx, drowy, random03.graph, false);
 			DrawGraph(drowx2, drowy2, random03.graph, false);
 			DrawGraph(drowx, drowy, random08.graph, false);
@@ -66,7 +66,7 @@ void back::firstrun() {
 		}
 	}
 	else {
-		if (state == 0 || state == 1) {
+		if (state == 0 || state == 1 || state == 2) {
 			DrawGraph(drowx, drowy, random03.graph, false);
 			DrawGraph(drowx2, drowy2, random03.graph, false);
 		}
@@ -75,6 +75,17 @@ void back::firstrun() {
 	if (state == 1) {
 		drowy += 8;
 		drowy2 += 8;
+
+		if (drowy > upperlimit_joydispheight - 10) {
+			drowy = drowy2 - random03.height;
+		}
+		else if (drowy2 > upperlimit_joydispheight - 10) {
+			drowy2 = drowy - random03.height;
+		}
+	}
+	else if (state == 2) {
+		drowy += 4;
+		drowy2 += 4;
 
 		if (drowy > upperlimit_joydispheight - 10) {
 			drowy = drowy2 - random03.height;
