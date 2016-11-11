@@ -11,6 +11,9 @@ private:
 	base startgr;
 	base quitgr;
 	base arrow1;
+	base stop_graph;
+	base stop_continue;
+	base stop_escape;
 	std::array<base, 10> scorenum;
 	int arrowy;
 	int arrowflag;
@@ -29,6 +32,7 @@ private:
 	unsigned int gage_color2;
 	unsigned int gage_color3;
 	unsigned int gage_color4;
+	unsigned int stop_count;
 	bool gameover;
 	base icon;
 	char str_score[10][11];
@@ -41,6 +45,7 @@ private:
 public:
 	systemm();
 	void drawstartmenue();
+	void stop_menue();
 	void movearrow(int flag);
 	void startgraphrun();
 	void checkkey();

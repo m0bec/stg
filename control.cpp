@@ -74,6 +74,7 @@ void control::run() {
 
 	case 3:
 		state = 0;
+		sys->stop_music();
 		sys->save_score(point);
 		sys->p_state(state);
 		boss->first_set();
@@ -85,7 +86,8 @@ void control::run() {
 		break;
 
 	case 90:
-		ziki1->stop_draw();
+		state = sys->pass_state();
+		sys->stop_menue();
 		break;
 	}
 }

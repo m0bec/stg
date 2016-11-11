@@ -68,6 +68,7 @@ void systemm::first_p() {
 	arrowflag = 0;
 	state = 0;
 	music_time = 0;
+	stop_count = 0;
 	score1 = 0;
 	score2 = 0;
 	music_flag = 0;

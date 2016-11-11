@@ -4,6 +4,11 @@
 #include <string>
 
 systemm::systemm() {
+	stop_graph.graph = LoadGraph("graph/haikei.png");
+	stop_continue.graph = LoadGraph("graph/continue.png");
+	GetGraphSize(stop_continue.graph, &stop_continue.width, &stop_continue.height);
+	stop_escape.graph = LoadGraph("graph/escape2.png");
+	GetGraphSize(stop_escape.graph, &stop_escape.width, &stop_escape.height);
 	startdisp.graph = LoadGraph("graph/startdisp.png");
 	GetGraphSize(startdisp.graph, &startdisp.width, &startdisp.height);
 	gameoverdisp.graph = LoadGraph("graph/gameover.png");
@@ -50,6 +55,7 @@ systemm::systemm() {
 	score1 = 0;
 	score2 = 0;
 	music_flag = 0;
+	stop_count = 0;
 	gameover = false;
 	str_keyflag = true;
 
@@ -259,6 +265,46 @@ void systemm::stop_run() {
 	//Aƒ{ƒ^ƒ“
 	if (input_joypad & PAD_INPUT_4) {
 		state = 90;
+		arrowflag = 0;
+		str_keyflag = false;
+	}
+}
+
+void systemm::stop_menue() {
+	input_joypad = GetJoypadInputState(DX_INPUT_KEY_PAD1);
+	input_joypad = GetJoypadInputState(DX_INPUT_KEY_PAD1);
+	if (!(input_joypad & PAD_INPUT_1))	str_keyflag = true;
+	if (input_joypad & PAD_INPUT_UP)	arrowflag = 0;
+	if (input_joypad & PAD_INPUT_DOWN)	arrowflag = 1;
+	DrawGraph(0, 0, stop_graph.graph, true);
+	if (arrowflag == 0) {
+		DrawGraph(upperlimit_joydispwidth / 2 - stop_continue.width / 2, upperlimit_joydispheight / 2 - stop_continue.height, stop_continue.graph, true);
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);
+		DrawGraph(upperlimit_joydispwidth / 2 - stop_escape.width / 2, upperlimit_joydispheight / 2 + stop_escape.height, stop_escape.graph, true);
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+	}
+	else if (arrowflag == 1) {
+		DrawGraph(upperlimit_joydispwidth / 2 - stop_escape.width / 2, upperlimit_joydispheight / 2 + stop_escape.height, stop_escape.graph, true);
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);
+		DrawGraph(upperlimit_joydispwidth / 2 - stop_continue.width / 2, upperlimit_joydispheight / 2 - stop_continue.height, stop_continue.graph, true);
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+	}
+	if (stop_count > 10) {
+		if (input_joypad & PAD_INPUT_1) {
+			if (arrowflag == 0) {
+				state = 1;
+				stop_count = 0;
+				str_keyflag = false;
+			}
+			else if (arrowflag = 1) {
+				stop_count = 0;
+				state = 3;
+				str_keyflag = false;
+			}
+		}
+	}
+	else {
+		++stop_count;
 	}
 }
 
