@@ -7,6 +7,7 @@
 class systemm {
 private:
 	base startdisp;
+	base gameoverdisp;
 	base startgr;
 	base quitgr;
 	base arrow1;
@@ -55,8 +56,11 @@ public:
 	void save_score(unsigned int score);
 	void instal_score();
 	void disp_highscore();
+	void disp_gameover();
+	void stop_music();
 
 	int& set_musicflag();
 	bool& set_str_keyflag();
+	int& set_state();
 };
 

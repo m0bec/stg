@@ -34,12 +34,14 @@ void control::get_graze() {
 }
 
 void control::run() {
-	if (state == 0) {
+	switch (state) {
+	case 0:
 		state = sys->pass_state();
 		sys->startgraphrun();
 		sys->instal_score();
-	}
-	else if (state == 1) {
+		break;
+		
+	case 1:
 		background->firstrun();
 		ziki1->run();
 		boss->run();
@@ -55,8 +57,14 @@ void control::run() {
 		sys->gage(graze_stock);
 		sys->zanki_disp(zanki);
 		sys->music2();
-	}
-	else if (state == 2) {
+		break;
+	
+	case 2:
+		state = sys->pass_state();
+		sys->disp_gameover();
+		break;
+
+	case 3:
 		state = 0;
 		sys->save_score(point);
 		sys->p_state(state);
@@ -64,6 +72,7 @@ void control::run() {
 		ziki1->first_p();
 		background->set_state() = 0;
 		sys->set_str_keyflag() = false;
+		break;
 	}
 }
 
@@ -139,6 +148,7 @@ void control::get_presenceflag(bool *flag) {
 	}
 }
 
+//‚±‚±‚Åstate‚ð2‚É‚µ‚Ä‚¢‚é
 bool control::hitcheck(std::list<enemybullet> *bullet, base bullettype) {
 	double zikicx, zikicy;
 	int check;
@@ -150,6 +160,7 @@ bool control::hitcheck(std::list<enemybullet> *bullet, base bullettype) {
 			if ((zikicx - itr->x)*(zikicx - itr->x) + (zikicy - itr->y)*(zikicy - itr->y) < (itr->range + ziki1->pass_hitdist())*(itr->range + ziki1->pass_hitdist())) {
 				check = ziki1->life_damage();
 				if (check == -1) {
+					sys->set_state() = 2;
 					state = 2;
 				}
 				return true;
@@ -176,6 +187,7 @@ bool control::body_hitcheck2(std::list<enemy_element> *mobe) {
 			&& itr->y + itr->margine < zikicy + hitdist && itr->y + itr->height - itr->margine > zikicy - hitdist) {
 			check = ziki1->life_damage();
 			if (check == -1) {
+				sys->set_state() = 2;
 				state = 2;
 			}
 			return true;
@@ -196,6 +208,7 @@ bool control::body_hitcheck(int wid, int heigh, int margin, double positionx, do
 		&& positiony + margin < zikicy + hitdist && positiony + heigh - margin > zikicy - hitdist) {
 		check = ziki1->life_damage();
 		if (check == -1) {
+			sys->set_state() = 2;
 			state = 2;
 		}
 		return true;
@@ -214,6 +227,7 @@ bool control::spining_center_hitcheck(std::list<spining_center> *bullet, base bu
 			if ((zikicx - itr->x)*(zikicx - itr->x) + (zikicy - itr->y)*(zikicy - itr->y) < (itr->range + ziki1->pass_hitdist())*(itr->range + ziki1->pass_hitdist())) {
 				check = ziki1->life_damage();
 				if (check == -1) {
+					sys->set_state() = 2;
 					state = 2;
 				}
 				return true;
@@ -240,6 +254,7 @@ bool control::spinbullet_hitchecker(std::list<rotabullet> *bullet, base bulletty
 			if ((zikicx - itr->x)*(zikicx - itr->x) + (zikicy - itr->y)*(zikicy - itr->y) < (itr->range + ziki1->pass_hitdist())*(itr->range + ziki1->pass_hitdist())) {
 				check = ziki1->life_damage();
 				if (check == -1) {
+					sys->set_state() = 2;
 					state = 2;
 				}
 				return true;
@@ -272,6 +287,7 @@ bool control::mobbullet_hitchecker(std::list<mobbullet> *bullet, base bullettype
 				if ((zikicx - itr->x)*(zikicx - itr->x) + (zikicy - itr->y)*(zikicy - itr->y) < (itr->range + ziki1->pass_hitdist())*(itr->range + ziki1->pass_hitdist())) {
 					check = ziki1->life_damage();
 					if (check == -1) {
+						sys->set_state() = 2;
 						state = 2;
 					}
 					return true;

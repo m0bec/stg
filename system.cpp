@@ -6,6 +6,7 @@
 systemm::systemm() {
 	startdisp.graph = LoadGraph("graph/startdisp.png");
 	GetGraphSize(startdisp.graph, &startdisp.width, &startdisp.height);
+	gameoverdisp.graph = LoadGraph("graph/gameover.png");
 	startgr.graph = LoadGraph("graph/selectstart.png");
 	GetGraphSize(startgr.graph, &startgr.width, &startgr.height);
 	quitgr.graph = LoadGraph("graph/escape.png");
@@ -86,6 +87,7 @@ void systemm::checkkey() {
 			if (arrowflag == 0) {
 				StopSoundMem(kurame_music);
 				state = 1;
+				str_keyflag = false;
 			}
 			else if (arrowflag = 1) {
 				state = 99;
@@ -132,11 +134,29 @@ void systemm::music2() {
 	}
 }
 
+void systemm::stop_music() {
+	StopSoundMem(kurame_music);
+	StopSoundMem(boss1_music);
+	StopSoundMem(boss2_music);
+}
+
 void systemm::startgraphrun() {
 	systemm::checkkey();
 	systemm::movearrow(arrowflag);
 	systemm::drawstartmenue();
 	systemm::music();
+}
+
+void systemm::disp_gameover() {
+	input_joypad = GetJoypadInputState(DX_INPUT_KEY_PAD1);
+	DrawGraph(0, 0, gameoverdisp.graph, false);
+	if (!(input_joypad & PAD_INPUT_1))	str_keyflag = true;
+	if (str_keyflag) {
+		if (input_joypad & PAD_INPUT_1) {
+			state = 3;
+		}
+	}
+
 }
 
 int systemm::pass_state() {
@@ -249,4 +269,8 @@ int& systemm::set_musicflag() {
 
 bool& systemm::set_str_keyflag() {
 	return this->str_keyflag;
+}
+
+int& systemm::set_state() {
+	return this->state;
 }
