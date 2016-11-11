@@ -96,6 +96,8 @@ bossenemy::bossenemy() {
 
 	set_explosion_gr();
 	mobenemy.push_back(enemy_element(0, 0, 0, 0, 99, 99, 99, 99, 99, 99, 0, 0, true, 0));
+
+	explosion_sound = LoadSoundMem("music/se_explosion.ogg");
 }
 
 

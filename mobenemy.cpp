@@ -115,6 +115,7 @@ void bossenemy::mobenemy_alivecheck(std::list<enemy_element> *mob) {
 		if(itr->hp <= 0){
 			if (itr->pre_flag) {
 				effects.push_back(effect(0, itr->x + itr->width / 2 - explosion_effect_width / 2, itr->y + itr->height / 2 - explosion_effect_height / 2));
+				PlaySoundMem(explosion_sound, DX_PLAYTYPE_BACK);
 				itr = mob->erase(itr);
 			}
 			else {

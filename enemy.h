@@ -84,6 +84,8 @@ private:
 	int explosion_effect_width;
 	int explosion_effect_height;
 
+	int explosion_sound;
+
 public:
 	bossenemy();
 	std::list<enemy_element> mobenemy;
