@@ -10,6 +10,23 @@ struct base {
 	int range;
 };
 
+struct effect {
+	effect(int num, int ax, int ay) {
+		number = num;
+		x = ax;
+		y = ay;
+		flag = false;
+		state = 0;
+		count = 0;
+	}
+	bool flag;
+	int state;
+	unsigned int count;
+	int number;
+	int x;
+	int y;
+};
+
 struct basegraph {
 	int graph;
 	int x;

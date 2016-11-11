@@ -59,6 +59,7 @@ private:
 	std::list<rotabullet> spinbullet2;
 	std::list<spining_center> center1;
 	std::list<mobbullet> mobbullet1;
+	std::list<effect> effects;
 	
 	double memoryangle1;
 	double memoryangle2;
@@ -109,6 +110,9 @@ public:
 	void circlemovebullet();
 	void roundtrip_move();
 	void run();
+
+	void effect_cont();
+	void effec_num(int num);
 
 	//mobenemy
 	void mobrun(std::list<enemy_element> *mob);

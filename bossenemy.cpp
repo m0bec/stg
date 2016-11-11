@@ -93,6 +93,7 @@ bossenemy::bossenemy() {
 	bullet_directcount = 0;
 	ebullethit = false;
 
+	set_explosion_gr();
 	mobenemy.push_back(enemy_element(0, 0, 0, 0, 99, 99, 99, 99, 99, 99, 0, 0, true, 0));
 }
 
@@ -123,6 +124,27 @@ void bossenemy::set_explosion_gr() {
 	explosion_gr[22] = LoadGraph("exp_00022.png");
 	explosion_gr[23] = LoadGraph("exp_00023.png");
 	explosion_gr[24] = LoadGraph("exp_00024.png");
+}
+
+void bossenemy::effect_cont() {
+	auto itr = effects.begin();
+	while (itr != effects.end()) {
+		if (itr->flag) {
+			switch (itr->number) {
+			case 0:
+				DrawGraph(itr->x, itr->y, explosion_gr[itr->count], true);
+				if (itr->count >= 24) {
+					itr->flag = false;
+				}
+				break;
+			}
+			itr->count += 1;
+			++itr;
+		}
+		else {
+			itr = effects.erase(itr);
+		}
+	}
 }
 
 void bossenemy::set_enemyhp(int enemyhp) {
