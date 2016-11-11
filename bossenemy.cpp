@@ -97,6 +97,34 @@ bossenemy::bossenemy() {
 }
 
 
+void bossenemy::set_explosion_gr() {
+	explosion_gr[0] = LoadGraph("exp_00000.png");
+	explosion_gr[1] = LoadGraph("exp_00001.png");
+	explosion_gr[2] = LoadGraph("exp_00002.png");
+	explosion_gr[3] = LoadGraph("exp_00003.png");
+	explosion_gr[4] = LoadGraph("exp_00004.png");
+	explosion_gr[5] = LoadGraph("exp_00005.png");
+	explosion_gr[6] = LoadGraph("exp_00006.png");
+	explosion_gr[7] = LoadGraph("exp_00007.png");
+	explosion_gr[8] = LoadGraph("exp_00008.png");
+	explosion_gr[9] = LoadGraph("exp_00009.png");
+	explosion_gr[10] = LoadGraph("exp_00010.png");
+	explosion_gr[11] = LoadGraph("exp_00011.png");
+	explosion_gr[12] = LoadGraph("exp_00012.png");
+	explosion_gr[13] = LoadGraph("exp_00013.png");
+	explosion_gr[14] = LoadGraph("exp_00014.png");
+	explosion_gr[15] = LoadGraph("exp_00015.png");
+	explosion_gr[16] = LoadGraph("exp_00016.png");
+	explosion_gr[17] = LoadGraph("exp_00017.png");
+	explosion_gr[18] = LoadGraph("exp_00018.png");
+	explosion_gr[19] = LoadGraph("exp_00019.png");
+	explosion_gr[20] = LoadGraph("exp_00020.png");
+	explosion_gr[21] = LoadGraph("exp_00021.png");
+	explosion_gr[22] = LoadGraph("exp_00022.png");
+	explosion_gr[23] = LoadGraph("exp_00023.png");
+	explosion_gr[24] = LoadGraph("exp_00024.png");
+}
+
 void bossenemy::set_enemyhp(int enemyhp) {
 	hp = enemyhp;
 }

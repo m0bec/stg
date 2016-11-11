@@ -36,6 +36,7 @@ private:
 	unsigned int lasercount;
 	unsigned int bullet_directcount;
 	unsigned int bulletcount;
+	std::array<int, 25> explosion_gr;
 	
 	base bigredbullet;
 	base bigbluebullet;
@@ -76,6 +77,8 @@ private:
 	enemytype big_enemy;
 	enemytype boss2;
 	base str_bullettype;
+
+	void set_explosion_gr();
 
 public:
 	bossenemy();
