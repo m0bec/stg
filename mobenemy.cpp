@@ -20,6 +20,7 @@ void bossenemy::mobrun(std::list<enemy_element> *mob) {
 			++itr;
 		}
 		bossenemy::bullet_move();
+		bossenemy::effect_cont();
 		if (get_presence) {
 			bossenemy::body_hitcheck(&mobenemy);
 			bossenemy::mobbul_hitcheck(&mobbullet1, str_bullettype);
