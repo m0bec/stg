@@ -28,6 +28,7 @@ ziki::ziki() {
 	bomb_flag = false;
 	
 	zbullet_erase_sound = LoadSoundMem("music/se_zshot_erase.ogg");
+	ChangeVolumeSoundMem(255 * 50 / 100, zbullet_erase_sound);
 
 	hitdist = hit_distance;
 	graze_range = graze_distance;
