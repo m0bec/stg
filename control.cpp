@@ -11,6 +11,7 @@ control::control() {
 	graze = 0;
 	graze_stock = 0;
 	zanki = 10;
+	str_flag = true;
 	bomb_flag = false;
 	are.graph = LoadGraph("graph/ziki1.png");
 	
@@ -62,6 +63,10 @@ void control::run() {
 	case 2:
 		state = sys->pass_state();
 		sys->disp_gameover();
+		if (str_flag) {
+			sys->stop_music();
+			str_flag = false;
+		}
 		break;
 
 	case 3:
@@ -72,6 +77,7 @@ void control::run() {
 		ziki1->first_p();
 		background->set_state() = 0;
 		sys->set_str_keyflag() = false;
+		first_p();
 		break;
 	}
 }
@@ -92,6 +98,7 @@ void control::first_p() {
 	graze_stock = 0;
 	zanki = 10;
 	bomb_flag = false;
+	str_flag = true;
 }
 
 void control::get_bombflag() {

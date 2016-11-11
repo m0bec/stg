@@ -20,6 +20,7 @@ private:
 	unsigned int graze;
 	unsigned int graze_stock;
 	bool bomb_flag;
+	bool str_flag;
 	int zanki;
 	base are;
 

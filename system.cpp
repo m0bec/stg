@@ -138,6 +138,7 @@ void systemm::stop_music() {
 	StopSoundMem(kurame_music);
 	StopSoundMem(boss1_music);
 	StopSoundMem(boss2_music);
+	StopSoundMem(dotyu_music);
 }
 
 void systemm::startgraphrun() {
