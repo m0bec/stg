@@ -44,6 +44,9 @@ private:
 	int zan_num;
 
 	int zbullet_erase_sound;
+	int finish_charge_sound;
+	int invalid_sound;
+	int grazestock_sound;
 
 public:
 	ziki();

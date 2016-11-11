@@ -19,6 +19,7 @@ private:
 	int boss1_music;
 	int dotyu_music;
 	int boss2_music;
+
 	unsigned int music_time;
 	unsigned int score1;
 	unsigned int score2;
@@ -33,6 +34,7 @@ private:
 	unsigned int str_scorenum[10];
 	std::array<std::string, 10> strin;
 	int music_flag;
+	
 
 public:
 	systemm();

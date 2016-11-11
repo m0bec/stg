@@ -37,9 +37,11 @@ systemm::systemm() {
 
 
 	kurame_music = LoadSoundMem("music/KURAME_NO_BGM.wav");
+	ChangeVolumeSoundMem(255 * 80 / 100, kurame_music);
 	boss1_music = LoadSoundMem("music/bgm_boss1.ogg");
 	boss2_music = LoadSoundMem("music/bgm_boss2.ogg");
 	dotyu_music = LoadSoundMem("music/bgm_doutyu.ogg");
+	
 	arrowy = 512 - startgr.height;
 	arrowflag = 0;
 	state = 0;

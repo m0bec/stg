@@ -29,6 +29,10 @@ ziki::ziki() {
 	
 	zbullet_erase_sound = LoadSoundMem("music/se_zshot_erase.ogg");
 	ChangeVolumeSoundMem(255 * 50 / 100, zbullet_erase_sound);
+	finish_charge_sound = LoadSoundMem("music/se_finish_charge.ogg");
+	invalid_sound = LoadSoundMem("music/se_invalid.ogg");
+	grazestock_sound = LoadSoundMem("music/se_grazestock.ogg");
+	ChangeVolumeSoundMem(255 * 70 / 100, grazestock_sound);
 
 	hitdist = hit_distance;
 	graze_range = graze_distance;
@@ -207,6 +211,10 @@ void ziki::graze_counter() {
 	++grase_count;
 	++graze_stock;
 	grazepoint += 3;
+	PlaySoundMem(grazestock_sound, DX_PLAYTYPE_BACK);
+	if (graze_stock == 100) {
+		PlaySoundMem(finish_charge_sound, DX_PLAYTYPE_BACK);
+	}
 }
 
 unsigned int ziki::pass_point() {
@@ -232,11 +240,12 @@ void ziki::sortiecounter_controler() {
 }
 
 void ziki::bomb_start() {
-	if (graze_stock > 100) {
+	if (graze_stock >= 100) {
 		if (input_joypad & PAD_INPUT_5) {
 			bomb_flag = true;
 			graze_stock = 0;
 			bomb_count = 200;
+			PlaySoundMem(invalid_sound, DX_PLAYTYPE_BACK);
 		}
 	}
 }
