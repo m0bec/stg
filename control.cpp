@@ -63,6 +63,7 @@ void control::run() {
 		boss->first_set();
 		ziki1->first_p();
 		background->set_state() = 0;
+		sys->set_str_keyflag() = false;
 	}
 }
 

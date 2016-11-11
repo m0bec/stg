@@ -50,6 +50,7 @@ systemm::systemm() {
 	score2 = 0;
 	music_flag = 0;
 	gameover = false;
+	str_keyflag = true;
 
 	gage_color1 = GetColor(23, 96, 16);
 	gage_color2 = GetColor(59, 241, 41);
@@ -77,15 +78,18 @@ void systemm::movearrow(int arrowflag) {
 
 void systemm::checkkey() {
 	input_joypad = GetJoypadInputState(DX_INPUT_KEY_PAD1);
+	if (!(input_joypad & PAD_INPUT_1))	str_keyflag = true;
 	if (input_joypad & PAD_INPUT_UP)	arrowflag = 0;
 	if (input_joypad & PAD_INPUT_DOWN)	arrowflag = 1;
-	if (input_joypad & PAD_INPUT_1) {
-		if (arrowflag == 0) {
-			StopSoundMem(kurame_music);
-			state = 1;
-		}
-		else if(arrowflag = 1){
-			state = 99;
+	if (str_keyflag) {
+		if (input_joypad & PAD_INPUT_1) {
+			if (arrowflag == 0) {
+				StopSoundMem(kurame_music);
+				state = 1;
+			}
+			else if (arrowflag = 1) {
+				state = 99;
+			}
 		}
 	}
 }
@@ -241,4 +245,8 @@ void systemm::instal_score() {
 
 int& systemm::set_musicflag() {
 	return this->music_flag;
+}
+
+bool& systemm::set_str_keyflag() {
+	return this->str_keyflag;
 }

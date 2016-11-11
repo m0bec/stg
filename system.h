@@ -35,6 +35,7 @@ private:
 	std::array<std::string, 10> strin;
 	int music_flag;
 	
+	bool str_keyflag;
 
 public:
 	systemm();
@@ -56,5 +57,6 @@ public:
 	void disp_highscore();
 
 	int& set_musicflag();
+	bool& set_str_keyflag();
 };
 
