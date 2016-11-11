@@ -27,6 +27,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		ClearDrawScreen();
 
 		main_run.run();
+		if (CheckHitKey(KEY_INPUT_P) == 1) {
+			SaveDrawScreen(0, 0, 1280, 1024, "Save.bmp");
+		}
 		// 裏画面の内容を表画面にコピーする
 		ScreenFlip();
 		

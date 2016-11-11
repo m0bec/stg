@@ -238,7 +238,7 @@ void systemm::save_score(unsigned int sco) {
 	score1 = sco;
 	FILE *fp;
 	errno_t error;
-	error = fopen_s(&fp, "score.txt", "wb");
+	error = fopen_s(&fp, "score.dat", "wb");
 	if (error != 0)	return;
 	std::ofstream ofs("score.txt", std::ios::out);
 	for (int i = 0; i < 10; i++) {
@@ -257,7 +257,7 @@ void systemm::save_score(unsigned int sco) {
 void systemm::instal_score() {
 	FILE *fp;
 	errno_t error;
-	error = fopen_s(&fp, "score.txt", "rb");
+	error = fopen_s(&fp, "score.dat", "rb");
 	if (error != 0) {
 		str_scorenum[0] = 10;
 	}
