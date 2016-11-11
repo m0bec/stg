@@ -40,6 +40,7 @@ void control::run() {
 		state = sys->pass_state();
 		sys->startgraphrun();
 		sys->instal_score();
+		sys->music();
 		break;
 		
 	case 1:
@@ -74,6 +75,7 @@ void control::run() {
 		sys->save_score(point);
 		sys->p_state(state);
 		boss->first_set();
+		sys->first_p();
 		ziki1->first_p();
 		background->set_state() = 0;
 		sys->set_str_keyflag() = false;

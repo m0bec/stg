@@ -37,7 +37,7 @@ systemm::systemm() {
 	GetGraphSize(icon.graph, &icon.width, &icon.width);
 
 
-	kurame_music = LoadSoundMem("music/KURAME_NO_BGM.wav");
+	kurame_music = LoadSoundMem("music/KURAME_NO_BGM.ogg");
 	ChangeVolumeSoundMem(255 * 80 / 100, kurame_music);
 	boss1_music = LoadSoundMem("music/bgm_boss1.ogg");
 	boss2_music = LoadSoundMem("music/bgm_boss2.ogg");
@@ -87,6 +87,7 @@ void systemm::checkkey() {
 			if (arrowflag == 0) {
 				StopSoundMem(kurame_music);
 				state = 1;
+				music_flag = 1;
 				str_keyflag = false;
 			}
 			else if (arrowflag = 1) {
@@ -110,7 +111,6 @@ void systemm::music2() {
 		break;
 
 	case 1:
-		StopSoundMem(kurame_music);
 		PlaySoundMem(boss1_music, DX_PLAYTYPE_LOOP);
 		music_flag = 0;
 		break;
@@ -131,6 +131,11 @@ void systemm::music2() {
 		StopSoundMem(boss2_music);
 		music_flag = 0;
 		break;
+
+	case 5:
+		PlaySoundMem(kurame_music, DX_PLAYTYPE_LOOP);
+		music_flag = 0;
+		break;
 	}
 }
 
@@ -145,7 +150,8 @@ void systemm::startgraphrun() {
 	systemm::checkkey();
 	systemm::movearrow(arrowflag);
 	systemm::drawstartmenue();
-	systemm::music();
+	//systemm::music2();
+	//systemm::music();
 }
 
 void systemm::disp_gameover() {

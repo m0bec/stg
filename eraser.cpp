@@ -26,6 +26,7 @@ void bossenemy::first_set() {
 	lasercount = 0;
 	bullet_directcount = 0;
 	ebullethit = false;
+	str_mflag = true;
 	mobbullet1.clear();
 	mobenemy.clear();
 	enemybullet1.clear();
@@ -59,6 +60,7 @@ void ziki::first_p() {
 	zikibullet.clear();
 	effects.flag = false;
 	effects.count = 0;
+
 }
 
 void systemm::first_p() {
@@ -68,5 +70,7 @@ void systemm::first_p() {
 	music_time = 0;
 	score1 = 0;
 	score2 = 0;
+	music_flag = 0;
 	gameover = false;
+	str_keyflag = true;
 }
