@@ -78,5 +78,6 @@ public:
 	int pass_zanki();
 	void set_explosion_gr();
 	void draw_effect();
+	void stop_draw();
 };
 

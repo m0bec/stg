@@ -58,7 +58,9 @@ void control::run() {
 		sys->grasedisp(graze);
 		sys->gage(graze_stock);
 		sys->zanki_disp(zanki);
+		sys->stop_run();
 		sys->music2();
+		state = sys->pass_state();
 		break;
 	
 	case 2:
@@ -80,6 +82,10 @@ void control::run() {
 		background->set_state() = 0;
 		sys->set_str_keyflag() = false;
 		first_p();
+		break;
+
+	case 90:
+		ziki1->stop_draw();
 		break;
 	}
 }

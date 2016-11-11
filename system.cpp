@@ -254,6 +254,14 @@ void systemm::save_score(unsigned int sco) {
 
 }
 
+void systemm::stop_run() {
+	input_joypad = GetJoypadInputState(DX_INPUT_KEY_PAD1);
+	//Aƒ{ƒ^ƒ“
+	if (input_joypad & PAD_INPUT_4) {
+		state = 90;
+	}
+}
+
 void systemm::instal_score() {
 	FILE *fp;
 	errno_t error;

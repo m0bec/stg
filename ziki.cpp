@@ -320,6 +320,15 @@ void ziki::draw_effect() {
 	}
 }
 
+void ziki::stop_draw() {
+	draw();
+	auto itr = zikibullet.begin();
+	while (itr != zikibullet.end()) {
+		DrawGraph(static_cast<int>(itr->x), static_cast<int>(itr->y), bulletgraph, true);
+		++itr;
+	}
+}
+
 void ziki::run() {
 	if (presenceflag) {
 		move();

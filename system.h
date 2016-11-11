@@ -58,6 +58,7 @@ public:
 	void disp_highscore();
 	void disp_gameover();
 	void stop_music();
+	void stop_run();
 
 	int& set_musicflag();
 	bool& set_str_keyflag();

@@ -398,6 +398,10 @@ void bossenemy::move() {
 		bossenemy::mobrun(&mobenemy);
 		bossenemy::mobenemy_alivecheck(&mobenemy);
 		break;
+
+	case 18:
+
+		break;
 	}		
 }
 
