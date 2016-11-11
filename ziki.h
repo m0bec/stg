@@ -43,6 +43,8 @@ private:
 	int bomb_count;
 	int zan_num;
 
+	int zbullet_erase_sound;
+
 public:
 	ziki();
 	void getposition(double *centerx, double *centery);

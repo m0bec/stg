@@ -27,6 +27,7 @@ ziki::ziki() {
 	bomb_count = 0;
 	bomb_flag = false;
 	
+	zbullet_erase_sound = LoadSoundMem("music/se_zshot_erase.ogg");
 
 	hitdist = hit_distance;
 	graze_range = graze_distance;
@@ -166,6 +167,7 @@ void ziki::shot() {
 				if (itr->y < upperlimit_joydispheight || itr->y > lowerlimit_joydispheight - 10
 					|| itr->x < upperlimit_joydispwidth || itr->x > lowerlimit_joydispwidth - 10) {
 					if (itr->x + bulletwidth > eitr->x && itr->x < eitr->x + eitr->width && itr->y < eitr->y + eitr->height && itr->y + bulletheight > eitr->y) {
+						PlaySoundMem(zbullet_erase_sound, DX_PLAYTYPE_BACK);
 						flag = false;
 						eitr->hp -= 1;
 						shotpoint += 3;
@@ -184,6 +186,7 @@ void ziki::shot() {
 				itr = zikibullet.erase(itr);
 			}
 			else if (itr->x + bulletwidth > ex && itr->x < ex + ewidth && itr->y + shot_margin < ey + eheight && itr->y + bulletheight > ey) {
+				PlaySoundMem(zbullet_erase_sound, DX_PLAYTYPE_BACK);
 				itr = zikibullet.erase(itr);
 				controling.calculation_enemyhp();
 				shotpoint += 5;
