@@ -36,6 +36,7 @@ void bossenemy::first_set() {
 	spinbullet2.clear();
 	center1.clear();
 	mobbullet1.clear();
+	effects.clear();
 	mobenemy.push_back(enemy_element(upperlimit_joydispwidth + 200, upperlimit_joydispheight + 200, 0, 0, 99, 99, 99, 99, 99, 99, 0, 0, true, 0));
 }
 
@@ -56,6 +57,8 @@ void ziki::first_p() {
 	bomb_count = 0;
 	bomb_flag = false;
 	zikibullet.clear();
+	effects.flag = false;
+	effects.count = 0;
 }
 
 void systemm::first_p() {
