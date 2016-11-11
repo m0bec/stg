@@ -110,7 +110,17 @@ void bossenemy::mobenemy_alivecheck(std::list<enemy_element> *mob) {
 			}
 		}
 
-		if (itr->hp <= 0 || itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - itr->height
+		if(itr->hp <= 0){
+			if (itr->pre_flag) {
+				effects.push_back(effect(0, itr->x + itr->width / 2 - explosion_effect_width / 2, itr->y + itr->height / 2 - explosion_effect_height / 2));
+				itr = mob->erase(itr);
+				
+			}
+			else {
+				++itr;
+			}
+		}
+		else if (itr->y > upperlimit_joydispheight || itr->y < lowerlimit_joydispheight - itr->height
 			|| itr->x > upperlimit_joydispwidth || itr->x < lowerlimit_joydispwidth -  itr->width) {
 			if (itr->pre_flag) {
 				itr = mob->erase(itr);

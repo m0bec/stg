@@ -124,6 +124,7 @@ void bossenemy::set_explosion_gr() {
 	explosion_gr[22] = LoadGraph("exp_00022.png");
 	explosion_gr[23] = LoadGraph("exp_00023.png");
 	explosion_gr[24] = LoadGraph("exp_00024.png");
+	GetGraphSize(explosion_gr[0], &explosion_effect_width, &explosion_effect_height);
 }
 
 void bossenemy::effect_cont() {

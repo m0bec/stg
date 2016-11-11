@@ -80,6 +80,8 @@ private:
 	base str_bullettype;
 
 	void set_explosion_gr();
+	int explosion_effect_width;
+	int explosion_effect_height;
 
 public:
 	bossenemy();
@@ -112,7 +114,6 @@ public:
 	void run();
 
 	void effect_cont();
-	void effec_num(int num);
 
 	//mobenemy
 	void mobrun(std::list<enemy_element> *mob);
