@@ -27,6 +27,15 @@ struct effect {
 	double y;
 };
 
+struct effect_z {
+	bool flag;
+	int state;
+	unsigned int count;
+	int number;
+	double x;
+	double y;
+};
+
 struct basegraph {
 	int graph;
 	int x;

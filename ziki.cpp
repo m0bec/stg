@@ -36,6 +36,9 @@ ziki::ziki() {
 
 	hitdist = hit_distance;
 	graze_range = graze_distance;
+
+	set_explosion_gr();
+	effects.flag = false;
 }
 
 //’e‚É“–‚½‚Á‚½‚çfalse
@@ -270,7 +273,50 @@ int ziki::life_damage() {
 		return -1;
 	}
 	else {
+		effects.x = x + width / 2 - explosion_effect_width / 2;
+		effects.y = y + height / 2 - explosion_effect_height / 2;
+		effects.flag = true;
 		return 0;
+	}
+}
+
+void ziki::set_explosion_gr() {
+	explosion_gr[0] = LoadGraph("graph/exp_00000.png");
+	explosion_gr[1] = LoadGraph("graph/exp_00001.png");
+	explosion_gr[2] = LoadGraph("graph/exp_00002.png");
+	explosion_gr[3] = LoadGraph("graph/exp_00003.png");
+	explosion_gr[4] = LoadGraph("graph/exp_00004.png");
+	explosion_gr[5] = LoadGraph("graph/exp_00005.png");
+	explosion_gr[6] = LoadGraph("graph/exp_00006.png");
+	explosion_gr[7] = LoadGraph("graph/exp_00007.png");
+	explosion_gr[8] = LoadGraph("graph/exp_00008.png");
+	explosion_gr[9] = LoadGraph("graph/exp_00009.png");
+	explosion_gr[10] = LoadGraph("graph/exp_00010.png");
+	explosion_gr[11] = LoadGraph("graph/exp_00011.png");
+	explosion_gr[12] = LoadGraph("graph/exp_00012.png");
+	explosion_gr[13] = LoadGraph("graph/exp_00013.png");
+	explosion_gr[14] = LoadGraph("graph/exp_00014.png");
+	explosion_gr[15] = LoadGraph("graph/exp_00015.png");
+	explosion_gr[16] = LoadGraph("graph/exp_00016.png");
+	explosion_gr[17] = LoadGraph("graph/exp_00017.png");
+	explosion_gr[18] = LoadGraph("graph/exp_00018.png");
+	explosion_gr[19] = LoadGraph("graph/exp_00019.png");
+	explosion_gr[20] = LoadGraph("graph/exp_00020.png");
+	explosion_gr[21] = LoadGraph("graph/exp_00021.png");
+	explosion_gr[22] = LoadGraph("graph/exp_00022.png");
+	explosion_gr[23] = LoadGraph("graph/exp_00023.png");
+	explosion_gr[24] = LoadGraph("graph/exp_00024.png");
+	GetGraphSize(explosion_gr[0], &explosion_effect_width, &explosion_effect_height);
+}
+
+void ziki::draw_effect() {
+	if (effects.flag) {
+		DrawGraph(static_cast<int>(effects.x), static_cast<int>(effects.y), explosion_gr[effects.count / 4], true);
+		if (effects.count >= 99) {
+			effects.flag = false;
+			effects.count = 0;
+		}
+		effects.count += 1;
 	}
 }
 
@@ -287,5 +333,6 @@ void ziki::run() {
 	}
 	draw();
 	shot();
+	draw_effect();
 	count++;
 }

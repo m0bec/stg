@@ -48,6 +48,11 @@ private:
 	int invalid_sound;
 	int grazestock_sound;
 
+	std::array<int, 25> explosion_gr;
+	effect_z effects;
+	int explosion_effect_width;
+	int explosion_effect_height;
+
 public:
 	ziki();
 	void getposition(double *centerx, double *centery);
@@ -71,5 +76,7 @@ public:
 	int life_damage();
 	void first_p();
 	int pass_zanki();
+	void set_explosion_gr();
+	void draw_effect();
 };
 
