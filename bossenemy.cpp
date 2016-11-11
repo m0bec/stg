@@ -71,6 +71,7 @@ bossenemy::bossenemy() {
 
 	x = bossenemy_startpoint_x - width / 2;
 	y = bossenemy_startpoint_y;
+	str_mflag = true;
 	movestate = 0;
 	direct_pattern = 0;
 	direct_pattern2 = 0;
@@ -99,31 +100,31 @@ bossenemy::bossenemy() {
 
 
 void bossenemy::set_explosion_gr() {
-	explosion_gr[0] = LoadGraph("exp_00000.png");
-	explosion_gr[1] = LoadGraph("exp_00001.png");
-	explosion_gr[2] = LoadGraph("exp_00002.png");
-	explosion_gr[3] = LoadGraph("exp_00003.png");
-	explosion_gr[4] = LoadGraph("exp_00004.png");
-	explosion_gr[5] = LoadGraph("exp_00005.png");
-	explosion_gr[6] = LoadGraph("exp_00006.png");
-	explosion_gr[7] = LoadGraph("exp_00007.png");
-	explosion_gr[8] = LoadGraph("exp_00008.png");
-	explosion_gr[9] = LoadGraph("exp_00009.png");
-	explosion_gr[10] = LoadGraph("exp_00010.png");
-	explosion_gr[11] = LoadGraph("exp_00011.png");
-	explosion_gr[12] = LoadGraph("exp_00012.png");
-	explosion_gr[13] = LoadGraph("exp_00013.png");
-	explosion_gr[14] = LoadGraph("exp_00014.png");
-	explosion_gr[15] = LoadGraph("exp_00015.png");
-	explosion_gr[16] = LoadGraph("exp_00016.png");
-	explosion_gr[17] = LoadGraph("exp_00017.png");
-	explosion_gr[18] = LoadGraph("exp_00018.png");
-	explosion_gr[19] = LoadGraph("exp_00019.png");
-	explosion_gr[20] = LoadGraph("exp_00020.png");
-	explosion_gr[21] = LoadGraph("exp_00021.png");
-	explosion_gr[22] = LoadGraph("exp_00022.png");
-	explosion_gr[23] = LoadGraph("exp_00023.png");
-	explosion_gr[24] = LoadGraph("exp_00024.png");
+	explosion_gr[0] = LoadGraph("graph/exp_00000.png");
+	explosion_gr[1] = LoadGraph("graph/exp_00001.png");
+	explosion_gr[2] = LoadGraph("graph/exp_00002.png");
+	explosion_gr[3] = LoadGraph("graph/exp_00003.png");
+	explosion_gr[4] = LoadGraph("graph/exp_00004.png");
+	explosion_gr[5] = LoadGraph("graph/exp_00005.png");
+	explosion_gr[6] = LoadGraph("graph/exp_00006.png");
+	explosion_gr[7] = LoadGraph("graph/exp_00007.png");
+	explosion_gr[8] = LoadGraph("graph/exp_00008.png");
+	explosion_gr[9] = LoadGraph("graph/exp_00009.png");
+	explosion_gr[10] = LoadGraph("graph/exp_00010.png");
+	explosion_gr[11] = LoadGraph("graph/exp_00011.png");
+	explosion_gr[12] = LoadGraph("graph/exp_00012.png");
+	explosion_gr[13] = LoadGraph("graph/exp_00013.png");
+	explosion_gr[14] = LoadGraph("graph/exp_00014.png");
+	explosion_gr[15] = LoadGraph("graph/exp_00015.png");
+	explosion_gr[16] = LoadGraph("graph/exp_00016.png");
+	explosion_gr[17] = LoadGraph("graph/exp_00017.png");
+	explosion_gr[18] = LoadGraph("graph/exp_00018.png");
+	explosion_gr[19] = LoadGraph("graph/exp_00019.png");
+	explosion_gr[20] = LoadGraph("graph/exp_00020.png");
+	explosion_gr[21] = LoadGraph("graph/exp_00021.png");
+	explosion_gr[22] = LoadGraph("graph/exp_00022.png");
+	explosion_gr[23] = LoadGraph("graph/exp_00023.png");
+	explosion_gr[24] = LoadGraph("graph/exp_00024.png");
 	GetGraphSize(explosion_gr[0], &explosion_effect_width, &explosion_effect_height);
 }
 
@@ -133,8 +134,8 @@ void bossenemy::effect_cont() {
 		if (itr->flag) {
 			switch (itr->number) {
 			case 0:
-				DrawGraph(itr->x, itr->y, explosion_gr[itr->count], true);
-				if (itr->count >= 24) {
+				DrawGraph(static_cast<int>(itr->x), static_cast<int>(itr->y), explosion_gr[itr->count/4], true);
+				if (itr->count >= 99) {
 					itr->flag = false;
 				}
 				break;
@@ -185,10 +186,13 @@ void bossenemy::move() {
 	case 0:
 		startmove();
 		set_enemyhp(bossenemy_hp1);
-		controling.pass_musicfla(1);
+		if (str_mflag) {
+			controling.pass_musicfla(1);
+			str_mflag = false;
+		}
 		break;
 
-	case 1:
+	/*case 1:
 		reset_ebullethit();
 		roundtrip_move();
 		straightaim_player();
@@ -199,7 +203,7 @@ void bossenemy::move() {
 			bossenemy::ebullethit_checker(&enemybullet1, bigredbullet);
 			bossenemy::ebullethit_checker(&enemybullet2, bigbluebullet);
 		}
-		break;
+		break;*/
 
 	case 2:
 		enemybullet1.erase(enemybullet1.begin(), enemybullet1.end());
@@ -271,7 +275,7 @@ void bossenemy::move() {
 		movestate = 7;
 		break;
 
-	case 7:
+	case 1:
 		reset_ebullethit();
 		controling.get_presenceflag(&get_presence);
 		straightmove();

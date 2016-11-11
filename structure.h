@@ -11,11 +11,11 @@ struct base {
 };
 
 struct effect {
-	effect(int num, int ax, int ay) {
+	effect(int num, double ax, double ay) {
 		number = num;
 		x = ax;
 		y = ay;
-		flag = false;
+		flag = true;
 		state = 0;
 		count = 0;
 	}
@@ -23,8 +23,8 @@ struct effect {
 	int state;
 	unsigned int count;
 	int number;
-	int x;
-	int y;
+	double x;
+	double y;
 };
 
 struct basegraph {

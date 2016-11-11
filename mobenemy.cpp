@@ -20,12 +20,13 @@ void bossenemy::mobrun(std::list<enemy_element> *mob) {
 			++itr;
 		}
 		bossenemy::bullet_move();
-		bossenemy::effect_cont();
+		
 		if (get_presence) {
 			bossenemy::body_hitcheck(&mobenemy);
 			bossenemy::mobbul_hitcheck(&mobbullet1, str_bullettype);
 		}
 	}
+	bossenemy::effect_cont();
 }
 
 void bossenemy::mobbul_hitcheck(std::list<mobbullet> *bullet, base bullettype) {
@@ -115,7 +116,6 @@ void bossenemy::mobenemy_alivecheck(std::list<enemy_element> *mob) {
 			if (itr->pre_flag) {
 				effects.push_back(effect(0, itr->x + itr->width / 2 - explosion_effect_width / 2, itr->y + itr->height / 2 - explosion_effect_height / 2));
 				itr = mob->erase(itr);
-				
 			}
 			else {
 				++itr;

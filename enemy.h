@@ -36,6 +36,7 @@ private:
 	unsigned int lasercount;
 	unsigned int bullet_directcount;
 	unsigned int bulletcount;
+	bool str_mflag;
 	std::array<int, 25> explosion_gr;
 	
 	base bigredbullet;
