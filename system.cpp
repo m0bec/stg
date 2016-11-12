@@ -221,7 +221,6 @@ void systemm::allscore_disp() {
 	for (int j = 0; j < 10; j++) {
 		str_high = str_scorenum[j];
 		drawx = upperlimit_width / 2 + scorenum[0].width * 10;
-		str_high = str_high / 10;
 		for (int i = 0; i < 10; i++) {
 			number = str_high % 10;
 			str_high = str_high / 10;
