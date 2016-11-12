@@ -14,6 +14,7 @@ private:
 	base stop_graph;
 	base stop_continue;
 	base stop_escape;
+	base score_backgraph;
 	std::array<base, 10> scorenum;
 	int arrowy;
 	int arrowflag;
@@ -62,6 +63,7 @@ public:
 	void instal_score();
 	void disp_highscore();
 	void disp_gameover();
+	void allscore_disp();
 	void stop_music();
 	void stop_run();
 

@@ -67,6 +67,7 @@ void control::run() {
 		state = sys->pass_state();
 		sys->disp_gameover();
 		if (str_flag) {
+			sys->save_score(point);
 			sys->stop_music();
 			str_flag = false;
 		}
@@ -83,6 +84,11 @@ void control::run() {
 		background->set_state() = 0;
 		sys->set_str_keyflag() = false;
 		first_p();
+		break;
+
+	case 4:
+		state = sys->pass_state();
+		sys->allscore_disp();
 		break;
 
 	case 90:

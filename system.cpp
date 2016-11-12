@@ -5,6 +5,7 @@
 
 systemm::systemm() {
 	stop_graph.graph = LoadGraph("graph/haikei.png");
+	score_backgraph.graph = LoadGraph("graph/haikei_score.png");
 	stop_continue.graph = LoadGraph("graph/continue.png");
 	GetGraphSize(stop_continue.graph, &stop_continue.width, &stop_continue.height);
 	stop_escape.graph = LoadGraph("graph/escape2.png");
@@ -57,7 +58,7 @@ systemm::systemm() {
 	music_flag = 0;
 	stop_count = 0;
 	gameover = false;
-	str_keyflag = true;
+	str_keyflag = false;
 
 	gage_color1 = GetColor(23, 96, 16);
 	gage_color2 = GetColor(59, 241, 41);
@@ -166,7 +167,9 @@ void systemm::disp_gameover() {
 	if (!(input_joypad & PAD_INPUT_1))	str_keyflag = true;
 	if (str_keyflag) {
 		if (input_joypad & PAD_INPUT_1) {
-			state = 3;
+			str_keyflag = false;
+			stop_count = 0;
+			state = 4;
 		}
 	}
 
@@ -196,12 +199,45 @@ void systemm::disp_highscore() {
 	unsigned int number;
 	unsigned int str_high = str_scorenum[0];
 	int drawx = upperlimit_width - scorenum[0].width - 50;
-	for (int i = 0; i < 10; i++)
-	{
+	for (int i = 0; i < 10; i++) {
 		number = str_high % 10;
 		str_high = str_high / 10;
 		DrawGraph(drawx, 10, scorenum[number].graph, true);
 		drawx = drawx - scorenum[0].width;
+	}
+}
+
+void systemm::allscore_disp() {
+	input_joypad = GetJoypadInputState(DX_INPUT_KEY_PAD1);
+	if (!(input_joypad & PAD_INPUT_1))	str_keyflag = true;
+	DrawGraph(0, 0, score_backgraph.graph, false);
+
+	unsigned int number;
+	unsigned int str_high;
+	int drawx;
+	for (int j = 0; j < 10; j++) {
+		str_high = str_scorenum[j];
+		drawx = upperlimit_width / 2 - scorenum[0].width * 10;
+		str_high = str_high / 10;
+		for (int i = 0; i < 10; i++) {
+			number = str_high % 10;
+			str_high = str_high / 10;
+			DrawGraph(drawx, 100 * j, scorenum[number].graph, true);
+			drawx = drawx - scorenum[0].width;
+		}
+	}
+
+	if (stop_count > 10) {
+		if (str_keyflag) {
+			if (input_joypad & PAD_INPUT_1) {
+				str_keyflag = false;
+				stop_count = 0;
+				state = 3;
+			}
+		}
+	}
+	else {
+		++stop_count;
 	}
 }
 
@@ -246,7 +282,7 @@ void systemm::save_score(unsigned int sco) {
 	errno_t error;
 	error = fopen_s(&fp, "score.dat", "wb");
 	if (error != 0)	return;
-	std::ofstream ofs("score.txt", std::ios::out);
+	//std::ofstream ofs("score.txt", std::ios::out);
 	for (int i = 0; i < 10; i++) {
 		if (score1 > str_scorenum[i]) {
 			unsigned int str = str_scorenum[i];
