@@ -219,12 +219,12 @@ void systemm::allscore_disp() {
 	int drawx;
 	for (int j = 0; j < 10; j++) {
 		str_high = str_scorenum[j];
-		drawx = upperlimit_width / 2 - scorenum[0].width * 10;
+		drawx = upperlimit_width / 2 + scorenum[0].width * 10;
 		str_high = str_high / 10;
 		for (int i = 0; i < 10; i++) {
 			number = str_high % 10;
 			str_high = str_high / 10;
-			DrawGraph(drawx, 100 * j, scorenum[number].graph, true);
+			DrawGraph(drawx, scorenum[0].height * j + 20 + 300, scorenum[number].graph, true);
 			drawx = drawx - scorenum[0].width;
 		}
 	}

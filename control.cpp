@@ -76,7 +76,6 @@ void control::run() {
 	case 3:
 		state = 0;
 		sys->stop_music();
-		sys->save_score(point);
 		sys->p_state(state);
 		boss->first_set();
 		sys->first_p();
