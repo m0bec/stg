@@ -308,7 +308,6 @@ void systemm::stop_run() {
 
 void systemm::stop_menue() {
 	input_joypad = GetJoypadInputState(DX_INPUT_KEY_PAD1);
-	input_joypad = GetJoypadInputState(DX_INPUT_KEY_PAD1);
 	if (!(input_joypad & PAD_INPUT_1))	str_keyflag = true;
 	if (input_joypad & PAD_INPUT_UP)	arrowflag = 0;
 	if (input_joypad & PAD_INPUT_DOWN)	arrowflag = 1;
@@ -326,16 +325,18 @@ void systemm::stop_menue() {
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	}
 	if (stop_count > 10) {
-		if (input_joypad & PAD_INPUT_1) {
-			if (arrowflag == 0) {
-				state = 1;
-				stop_count = 0;
-				str_keyflag = false;
-			}
-			else if (arrowflag = 1) {
-				stop_count = 0;
-				state = 3;
-				str_keyflag = false;
+		if (str_keyflag) {
+			if (input_joypad & PAD_INPUT_1) {
+				if (arrowflag == 0) {
+					state = 1;
+					stop_count = 0;
+					str_keyflag = false;
+				}
+				else if (arrowflag = 1) {
+					stop_count = 0;
+					state = 3;
+					str_keyflag = false;
+				}
 			}
 		}
 	}
