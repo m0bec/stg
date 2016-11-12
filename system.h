@@ -16,6 +16,7 @@ private:
 	base stop_escape;
 	base score_backgraph;
 	std::array<base, 10> scorenum;
+	std::array<base, 26> word;
 	int arrowy;
 	int arrowflag;
 	int input_joypad;
@@ -71,5 +72,7 @@ public:
 	int& set_musicflag();
 	bool& set_str_keyflag();
 	int& set_state();
+
+	void set_word();
 };
 

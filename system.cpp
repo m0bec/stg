@@ -41,6 +41,7 @@ systemm::systemm() {
 	GetGraphSize(scorenum[9].graph, &scorenum[9].width, &scorenum[9].height);
 	icon.graph = LoadGraph("graph/zanki.png");
 	GetGraphSize(icon.graph, &icon.width, &icon.width);
+	set_word();
 
 
 	kurame_music = LoadSoundMem("music/KURAME_NO_BGM.ogg");
@@ -377,4 +378,34 @@ bool& systemm::set_str_keyflag() {
 
 int& systemm::set_state() {
 	return this->state;
+}
+
+void systemm::set_word() {
+	word[0].graph = LoadGraph("graph/wA.png");
+	GetGraphSize(word[0].graph, &word[0].width, &word[0].height);
+	word[1].graph = LoadGraph("graph/wB.png");
+	word[2].graph = LoadGraph("graph/wC.png");
+	word[3].graph = LoadGraph("graph/wd.png");
+	word[4].graph = LoadGraph("graph/we.png");
+	word[5].graph = LoadGraph("graph/wf.png");
+	word[6].graph = LoadGraph("graph/wg.png");
+	word[7].graph = LoadGraph("graph/wh.png");
+	word[8].graph = LoadGraph("graph/wi.png");
+	word[9].graph = LoadGraph("graph/wj.png");
+	word[10].graph = LoadGraph("graph/wk.png");
+	word[11].graph = LoadGraph("graph/wl.png");
+	word[12].graph = LoadGraph("graph/wm.png");
+	word[13].graph = LoadGraph("graph/wn.png");
+	word[14].graph = LoadGraph("graph/wo.png");
+	word[15].graph = LoadGraph("graph/wp.png");
+	word[16].graph = LoadGraph("graph/wq.png");
+	word[17].graph = LoadGraph("graph/wr.png");
+	word[18].graph = LoadGraph("graph/ws.png");
+	word[19].graph = LoadGraph("graph/wt.png");
+	word[20].graph = LoadGraph("graph/wu.png");
+	word[21].graph = LoadGraph("graph/wv.png");
+	word[22].graph = LoadGraph("graph/ww.png");
+	word[23].graph = LoadGraph("graph/wx.png");
+	word[24].graph = LoadGraph("graph/wy.png");
+	word[25].graph = LoadGraph("graph/wz.png");
 }
