@@ -42,6 +42,7 @@ private:
 	int music_flag;
 	
 	bool str_keyflag;
+	bool str_keyflag_a;
 
 public:
 	systemm();

@@ -73,5 +73,6 @@ void systemm::first_p() {
 	score2 = 0;
 	music_flag = 0;
 	gameover = false;
-	str_keyflag = true;
+	str_keyflag = false;
+	str_keyflag_a = false;
 }

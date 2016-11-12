@@ -59,6 +59,8 @@ systemm::systemm() {
 	stop_count = 0;
 	gameover = false;
 	str_keyflag = false;
+	str_keyflag_a = false;
+
 
 	gage_color1 = GetColor(23, 96, 16);
 	gage_color2 = GetColor(59, 241, 41);
@@ -298,11 +300,15 @@ void systemm::save_score(unsigned int sco) {
 
 void systemm::stop_run() {
 	input_joypad = GetJoypadInputState(DX_INPUT_KEY_PAD1);
+	if (!(input_joypad & PAD_INPUT_4))	str_keyflag_a = true;
 	//Aƒ{ƒ^ƒ“
-	if (input_joypad & PAD_INPUT_4) {
-		state = 90;
-		arrowflag = 0;
-		str_keyflag = false;
+	if (str_keyflag_a) {
+		if (input_joypad & PAD_INPUT_4) {
+			state = 90;
+			arrowflag = 0;
+			str_keyflag = false;
+			str_keyflag_a = false;
+		}
 	}
 }
 
