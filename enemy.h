@@ -88,6 +88,8 @@ private:
 
 	int explosion_sound;
 
+	bool boss2flag;
+
 public:
 	bossenemy();
 	std::list<enemy_element> mobenemy;

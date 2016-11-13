@@ -180,6 +180,12 @@ void bossenemy::slide_move(std::list<enemy_element>::iterator itr) {
 	else if (itr->x < lowerlimit_joydispwidth) {
 		itr->x = lowerlimit_joydispwidth + 1;
 	}
+	if (boss2flag) {
+		if (itr->hp < 10) {
+			itr->hp = -1;
+			movestate = 19;
+		}
+	}
 }
 
 void bossenemy::allocation_enemymove(std::list<enemy_element>::iterator iterate) {

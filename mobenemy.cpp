@@ -368,10 +368,6 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 				iterate->bulletnum = 14;
 				iterate->bullettype = grassgreen_num;
 			}
-			if (iterate->hp < 10) {
-				iterate->hp = -1;
-				movestate = 18;
-			}
 			break;
 
 			//使わない
@@ -399,10 +395,6 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 				iterate->bulletnum = 15;
 				iterate->bullettype = lightblue_num;
 			}
-			if (iterate->hp < 10) {
-				iterate->hp = -1;
-				movestate = 18;
-			}
 			break;
 
 			//全周右
@@ -420,10 +412,6 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 			if (iterate->pass_time % 1000 == 600) {
 				iterate->bulletnum = 17;
 				iterate->bullettype = grassgreen_num;
-			}
-			if (iterate->hp < 10) {
-				iterate->hp = -1;
-				movestate = 18;
 			}
 			break;
 			//使わない
@@ -450,10 +438,6 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 			if (iterate->pass_time % 1000 == 0) {
 				iterate->bulletnum = 12;
 				iterate->bullettype = lightblue_num;
-			}
-			if (iterate->hp < 10) {
-				iterate->hp = -1;
-				movestate = 18;
 			}
 			break;
 		}

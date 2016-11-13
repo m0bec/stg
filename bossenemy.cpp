@@ -95,6 +95,7 @@ bossenemy::bossenemy() {
 	ebullethit = false;
 	str_point = 0;
 	addpoint_flag = true;
+	boss2flag = false;
 
 	set_explosion_gr();
 	mobenemy.push_back(enemy_element(0, 0, 0, 0, 99, 99, 99, 99, 99, 99, 0, 0, true, 0));
@@ -163,7 +164,7 @@ void bossenemy::set_enemyhp(int enemyhp) {
 
 void bossenemy::enemy_damage_counter() {
 	hp -= 1;
-	if (hp <= 0) {
+	if (hp == 0) {
 		movestate++;
 	}
 }
@@ -191,14 +192,14 @@ void bossenemy::move() {
 	control &controling = control::getinstance();
 	std::uniform_real_distribution<> rand2(0, 20);
 	switch (movestate) {
-	/*case 0:
+	case 0:
 		startmove();
 		set_enemyhp(bossenemy_hp1);
 		if (str_mflag) {
 			controling.pass_musicfla(1);
 			str_mflag = false;
 		}
-		break;*/
+		break;
 
 	case 1:
 		reset_ebullethit();
@@ -316,6 +317,7 @@ void bossenemy::move() {
 		bossenemy::preparation_case8(&mobenemy, dart_num, 6, upperlimit_joydispwidth + dartenemy.width , lowerlimit_joydispheight + 150, notaim_2way, straight_leftnum, big_yellowbul, 5, 120, static_cast<int>(DX_PI / 20), 20, normal_margine);
 		bossenemy::preparation_case8(&mobenemy, dart_num, 6, lowerlimit_joydispwidth - dartenemy.width, lowerlimit_joydispheight + 100, notaim_2way, straight_rightnum, big_yellowbul, 5, 120, static_cast<int>(DX_PI / 20), 20, normal_margine);
 		controling.pass_musicfla(2);
+		count = 0;
 		movestate = 9;
 		break;
 
@@ -402,13 +404,14 @@ void bossenemy::move() {
 		}
 		break;
 
-	case 0:
+	case 16:
 		reset_ebullethit();
 		controling.get_presenceflag(&get_presence);
 		bossenemy::preparation_case8(&mobenemy, boss2_num, 1, 500 - boss2.width / 2, lowerlimit_joydispheight - boss2.height, rota_sixteenway, app_straightnum, yel_bul, 900, 50, 0, 60, boss2_margine);
 		bossenemy::mobrun(&mobenemy);
 		bossenemy::mobenemy_alivecheck(&mobenemy);
 		count = 0;
+		boss2flag = true;
 		movestate = 17;
 		break;
 
@@ -420,6 +423,9 @@ void bossenemy::move() {
 		break;
 
 	case 18:
+		break;
+
+	case 19:
 		controling.finish();
 		break;
 	}		

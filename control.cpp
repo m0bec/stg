@@ -98,7 +98,6 @@ void control::run() {
 		boss->run();
 		player_lifecheck();
 		background->secondrun();
-		
 		get_graze();
 		get_bombflag();
 		get_ziki(&zanki);
@@ -107,8 +106,6 @@ void control::run() {
 		sys->grasedisp(graze);
 		sys->gage(graze_stock);
 		sys->zanki_disp(zanki);
-		sys->stop_run();
-		sys->music2();
 		sys->clear_graph();
 		state = sys->pass_state();
 		if (str_flag) {
