@@ -38,6 +38,8 @@ void bossenemy::first_set() {
 	center1.clear();
 	mobbullet1.clear();
 	effects.clear();
+	str_point = 0;
+	addpoint_flag = true;
 	mobenemy.push_back(enemy_element(upperlimit_joydispwidth + 200, upperlimit_joydispheight + 200, 0, 0, 99, 99, 99, 99, 99, 99, 0, 0, true, 0));
 }
 

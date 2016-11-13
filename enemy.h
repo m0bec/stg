@@ -69,6 +69,8 @@ private:
 	bool ebullethit;
 	bool get_presence;
 
+	unsigned int str_point;
+	bool addpoint_flag;
 	//mobenemy
 	
 	enemytype dartenemy;

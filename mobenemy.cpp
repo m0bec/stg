@@ -116,6 +116,7 @@ void bossenemy::mobenemy_alivecheck(std::list<enemy_element> *mob) {
 			if (itr->pre_flag) {
 				effects.push_back(effect(0, itr->x + itr->width / 2 - explosion_effect_width / 2, itr->y + itr->height / 2 - explosion_effect_height / 2));
 				PlaySoundMem(explosion_sound, DX_PLAYTYPE_BACK);
+				str_point += 150;
 				itr = mob->erase(itr);
 			}
 			else {
@@ -321,6 +322,7 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 
 			if (iterate->hp < 600) {
 				boss2_switch1(iterate);
+				str_point += 1500;
 			}
 			break;
 
@@ -336,6 +338,7 @@ void bossenemy::mobenemy_shottypecheck(std::list<enemy_element>::iterator iterat
 
 			if (iterate->hp < 300) {
 				boss2_switch2(iterate);
+				str_point += 1700;
 			}
 			break;
 

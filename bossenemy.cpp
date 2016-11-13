@@ -93,6 +93,8 @@ bossenemy::bossenemy() {
 	lasercount = 0;
 	bullet_directcount = 0;
 	ebullethit = false;
+	str_point = 0;
+	addpoint_flag = true;
 
 	set_explosion_gr();
 	mobenemy.push_back(enemy_element(0, 0, 0, 0, 99, 99, 99, 99, 99, 99, 0, 0, true, 0));
@@ -185,14 +187,14 @@ void bossenemy::move() {
 	control &controling = control::getinstance();
 	std::uniform_real_distribution<> rand2(0, 20);
 	switch (movestate) {
-	case 0:
+	/*case 0:
 		startmove();
 		set_enemyhp(bossenemy_hp1);
 		if (str_mflag) {
 			controling.pass_musicfla(1);
 			str_mflag = false;
 		}
-		break;
+		break;*/
 
 	case 1:
 		reset_ebullethit();
@@ -214,6 +216,10 @@ void bossenemy::move() {
 		count = 0;
 		memoryangle1 = 0.0;
 		memoryangle2 = 0.0;
+		if (addpoint_flag) {
+			str_point += 500;
+			addpoint_flag = false;
+		}
 		set_enemyhp(bossenemy_hp1);
 		break;
 		
@@ -230,6 +236,7 @@ void bossenemy::move() {
 			bossenemy::ebullethit_checker(&enemybullet2, yellow_bullet);
 			bossenemy::ebullethit_checker(&enemybullet3, greenbullet);
 		}
+		addpoint_flag = true;
 		break;
 
 	case 4:
@@ -242,6 +249,10 @@ void bossenemy::move() {
 		memoryangle3 = 0.0;
 		direct_pattern = 0;
 		movestate = 5;
+		if (addpoint_flag) {
+			str_point += 700;
+			addpoint_flag = false;
+		}
 		set_enemyhp(bossenemy_hp2);
 		break;
 
@@ -261,6 +272,10 @@ void bossenemy::move() {
 			bossenemy::espining_center_hitchecker(&center1, greenbullet);
 			//bossenemy::elaserthit_checker(&laserbeam1);
 		}
+		if (addpoint_flag) {
+			str_point += 1000;
+			addpoint_flag = false;
+		}
 		break;
 
 	case 6:
@@ -274,6 +289,7 @@ void bossenemy::move() {
 		bullet_directcount = 0;
 		bulletcount = 0;
 		memoryangle3 = 0.0;
+		addpoint_flag = true;
 		movestate = 7;
 		break;
 
@@ -382,7 +398,7 @@ void bossenemy::move() {
 		}
 		break;
 
-	case 16:
+	case 0:
 		reset_ebullethit();
 		controling.get_presenceflag(&get_presence);
 		bossenemy::preparation_case8(&mobenemy, boss2_num, 1, 500 - boss2.width / 2, lowerlimit_joydispheight - boss2.height, rota_sixteenway, app_straightnum, yel_bul, 900, 50, 0, 60, boss2_margine);
@@ -400,7 +416,7 @@ void bossenemy::move() {
 		break;
 
 	case 18:
-
+		controling.finish();
 		break;
 	}		
 }

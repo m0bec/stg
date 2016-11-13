@@ -41,7 +41,7 @@ systemm::systemm() {
 	GetGraphSize(scorenum[9].graph, &scorenum[9].width, &scorenum[9].height);
 	icon.graph = LoadGraph("graph/zanki.png");
 	GetGraphSize(icon.graph, &icon.width, &icon.width);
-	set_word();
+	//set_word();
 
 
 	kurame_music = LoadSoundMem("music/KURAME_NO_BGM.ogg");
@@ -221,7 +221,6 @@ void systemm::allscore_disp() {
 	for (int j = 0; j < 10; j++) {
 		str_high = str_scorenum[j];
 		drawx = upperlimit_width / 2 + scorenum[0].width * 10;
-		str_high = str_high / 10;
 		for (int i = 0; i < 10; i++) {
 			number = str_high % 10;
 			str_high = str_high / 10;
@@ -379,7 +378,7 @@ bool& systemm::set_str_keyflag() {
 int& systemm::set_state() {
 	return this->state;
 }
-
+/*
 void systemm::set_word() {
 	word[0].graph = LoadGraph("graph/wA.png");
 	GetGraphSize(word[0].graph, &word[0].width, &word[0].height);
@@ -409,3 +408,4 @@ void systemm::set_word() {
 	word[24].graph = LoadGraph("graph/wy.png");
 	word[25].graph = LoadGraph("graph/wz.png");
 }
+*/

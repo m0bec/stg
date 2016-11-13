@@ -17,6 +17,7 @@ private:
 	std::unique_ptr<systemm> sys;
 	int state;
 	unsigned int point;
+	unsigned int str_point;
 	unsigned int graze;
 	unsigned int graze_stock;
 	bool bomb_flag;
@@ -55,4 +56,5 @@ public:
 	void pass_bombflag(bool *flag);
 	void pass_bstate(int sta);
 	void pass_musicfla(int fla);
+	void finish();
 };

@@ -67,6 +67,7 @@ void control::run() {
 		state = sys->pass_state();
 		sys->disp_gameover();
 		if (str_flag) {
+
 			sys->save_score(point);
 			sys->stop_music();
 			str_flag = false;
@@ -450,4 +451,8 @@ bool control::laser_hitcheck(std::list<laser> *bullet) {
 
 void control::player_lifecheck() {
 	ziki1->lifecheck(boss->ebullethit_pass());
+}
+
+void control::finish() {
+	sys->set_state() = 2;
 }
