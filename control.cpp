@@ -89,7 +89,7 @@ void control::run() {
 
 	case 4:
 		state = sys->pass_state();
-		sys->allscore_disp();
+		sys->allscore_disp(point);
 		break;
 
 	case 80:

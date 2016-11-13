@@ -6,6 +6,8 @@
 systemm::systemm() {
 	stop_graph.graph = LoadGraph("graph/haikei.png");
 	score_backgraph.graph = LoadGraph("graph/haikei_score.png");
+	score_plate.graph = LoadGraph("graph/score.png");
+	GetGraphSize(score_plate.graph, &score_plate.width, &score_plate.height);
 	stop_continue.graph = LoadGraph("graph/continue.png");
 	GetGraphSize(stop_continue.graph, &stop_continue.width, &stop_continue.height);
 	stop_escape.graph = LoadGraph("graph/escape2.png");
@@ -212,7 +214,7 @@ void systemm::disp_highscore() {
 	}
 }
 
-void systemm::allscore_disp() {
+void systemm::allscore_disp(unsigned int sco) {
 	input_joypad = GetJoypadInputState(DX_INPUT_KEY_PAD1);
 	if (!(input_joypad & PAD_INPUT_1))	str_keyflag = true;
 	DrawGraph(0, 0, score_backgraph.graph, false);
@@ -220,8 +222,24 @@ void systemm::allscore_disp() {
 	unsigned int number;
 	unsigned int str_high;
 	int drawx;
+	str_high = sco;
+	drawx = upperlimit_width / 2 + scorenum[0].width * 10;
+	DrawGraph(upperlimit_width / 2 + scorenum[0].width * 10, scorenum[0].height, score_plate.graph, true);
+	for (int i = 0; i < 10; i++) {
+		number = str_high % 10;
+		str_high = str_high / 10;
+		DrawGraph(drawx, scorenum[0].height + 200, scorenum[number].graph, true);
+		drawx = drawx - scorenum[0].width;
+	}
 	for (int j = 0; j < 10; j++) {
 		str_high = str_scorenum[j];
+		if (j < 9) {
+			DrawGraph(upperlimit_joydispwidth / 2 - 100, scorenum[0].height * j + 20 + 300, scorenum[j+1].graph, true);
+		}
+		else {
+			DrawGraph(upperlimit_joydispwidth / 2 - 100, scorenum[0].height * j + 20 + 300, scorenum[1].graph, true);
+			DrawGraph(upperlimit_joydispwidth / 2 - 100 + scorenum[0].width, scorenum[0].height * j + 20 + 300, scorenum[0].graph, true);
+		}
 		drawx = upperlimit_width / 2 + scorenum[0].width * 10;
 		for (int i = 0; i < 10; i++) {
 			number = str_high % 10;
@@ -298,7 +316,6 @@ void systemm::save_score(unsigned int sco) {
 	errno_t error;
 	error = fopen_s(&fp, "score.dat", "wb");
 	if (error != 0)	return;
-	//std::ofstream ofs("score.txt", std::ios::out);
 	for (int i = 0; i < 10; i++) {
 		if (score1 > str_scorenum[i]) {
 			unsigned int str = str_scorenum[i];

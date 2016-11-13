@@ -16,6 +16,7 @@ private:
 	base stop_escape;
 	base score_backgraph;
 	base clear_word;
+	base score_plate;
 	std::array<base, 10> scorenum;
 	std::array<base, 26> word;
 	int arrowy;
@@ -66,7 +67,7 @@ public:
 	void instal_score();
 	void disp_highscore();
 	void disp_gameover();
-	void allscore_disp();
+	void allscore_disp(unsigned int sco);
 	void stop_music();
 	void stop_run();
 
