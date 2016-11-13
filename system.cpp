@@ -41,6 +41,8 @@ systemm::systemm() {
 	GetGraphSize(scorenum[9].graph, &scorenum[9].width, &scorenum[9].height);
 	icon.graph = LoadGraph("graph/zanki.png");
 	GetGraphSize(icon.graph, &icon.width, &icon.width);
+	clear_word.graph = LoadGraph("graph/clear.png");
+	GetGraphSize(clear_word.graph, &clear_word.width, &clear_word.height);
 	//set_word();
 
 
@@ -240,6 +242,18 @@ void systemm::allscore_disp() {
 	}
 	else {
 		++stop_count;
+	}
+}
+
+void systemm::clear_graph() {
+	input_joypad = GetJoypadInputState(DX_INPUT_KEY_PAD1);
+	if (!(input_joypad & PAD_INPUT_1))	str_keyflag = true;
+	DrawGraph(upperlimit_joydispwidth / 2 - clear_word.width / 2, upperlimit_joydispheight / 3, clear_word.graph, true);
+	if (str_keyflag) {
+		if (input_joypad & PAD_INPUT_1) {
+			str_keyflag = false;
+			state = 4;
+		}
 	}
 }
 

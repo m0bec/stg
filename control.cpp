@@ -91,6 +91,32 @@ void control::run() {
 		sys->allscore_disp();
 		break;
 
+	case 80:
+		background->firstrun();
+		ziki1->run();
+		boss->run();
+		player_lifecheck();
+		background->secondrun();
+		get_point();
+		get_graze();
+		get_bombflag();
+		get_ziki(&zanki);
+		sys->disp_highscore();
+		sys->scoredisp(point);
+		sys->grasedisp(graze);
+		sys->gage(graze_stock);
+		sys->zanki_disp(zanki);
+		sys->stop_run();
+		sys->music2();
+		sys->clear_graph();
+		state = sys->pass_state();
+		if (str_flag) {
+			sys->save_score(point);
+			sys->stop_music();
+			str_flag = false;
+		}
+		break;
+
 	case 90:
 		state = sys->pass_state();
 		sys->stop_menue();
@@ -454,5 +480,5 @@ void control::player_lifecheck() {
 }
 
 void control::finish() {
-	sys->set_state() = 2;
+	sys->set_state() = 80;
 }

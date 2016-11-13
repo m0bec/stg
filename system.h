@@ -15,6 +15,7 @@ private:
 	base stop_continue;
 	base stop_escape;
 	base score_backgraph;
+	base clear_word;
 	std::array<base, 10> scorenum;
 	std::array<base, 26> word;
 	int arrowy;
@@ -74,5 +75,6 @@ public:
 	int& set_state();
 
 	void set_word();
+	void clear_graph();
 };
 
