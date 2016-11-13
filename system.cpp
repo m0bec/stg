@@ -6,8 +6,18 @@
 systemm::systemm() {
 	stop_graph.graph = LoadGraph("graph/haikei.png");
 	score_backgraph.graph = LoadGraph("graph/haikei_score.png");
+	graze_w.graph = LoadGraph("graph/graze.png");
+	GetGraphSize(graze_w.graph, &graze_w.width, &graze_w.height);
 	score_plate.graph = LoadGraph("graph/score.png");
 	GetGraphSize(score_plate.graph, &score_plate.width, &score_plate.height);
+	enegy_w.graph = LoadGraph("graph/energy.png");
+	GetGraphSize(enegy_w.graph, &enegy_w.width, &enegy_w.height);
+	highscore_w.graph = LoadGraph("graph/highscore.png");
+	GetGraphSize(highscore_w.graph, &highscore_w.width, &highscore_w.height);
+	lifep_w.graph = LoadGraph("graph/lifep.png");
+	GetGraphSize(lifep_w.graph, &lifep_w.width, &lifep_w.height);
+	sco_w.graph = LoadGraph("graph/sco.png");
+	GetGraphSize(sco_w.graph, &sco_w.width, &sco_w.height);
 	stop_continue.graph = LoadGraph("graph/continue.png");
 	GetGraphSize(stop_continue.graph, &stop_continue.width, &stop_continue.height);
 	stop_escape.graph = LoadGraph("graph/escape2.png");
@@ -15,9 +25,9 @@ systemm::systemm() {
 	startdisp.graph = LoadGraph("graph/startdisp.png");
 	GetGraphSize(startdisp.graph, &startdisp.width, &startdisp.height);
 	gameoverdisp.graph = LoadGraph("graph/gameover.png");
-	startgr.graph = LoadGraph("graph/selectstart.png");
+	startgr.graph = LoadGraph("graph/play.png");
 	GetGraphSize(startgr.graph, &startgr.width, &startgr.height);
-	quitgr.graph = LoadGraph("graph/escape.png");
+	quitgr.graph = LoadGraph("graph/quit.png");
 	GetGraphSize(quitgr.graph, &quitgr.width, &quitgr.width);
 	arrow1.graph = LoadGraph("graph/yazi.png");
 	GetGraphSize(arrow1.graph, &arrow1.width, &arrow1.height);
@@ -191,25 +201,27 @@ void systemm::p_state(int pas) {
 }
 
 void systemm::scoredisp(unsigned int point) {
+	DrawGraph(upperlimit_width - sco_w.width / 2 - 100, sco_w.height + 20, sco_w.graph, true);
 	score1 = point;
 	int number;
 	int drawx = upperlimit_width - scorenum[0].width - 50;
 	for (int i = 0; i < 10; i++) {
 		number = score1 % 10;
 		score1 = score1 / 10;
-		DrawGraph(drawx,50, scorenum[number].graph, true);
+		DrawGraph(drawx, sco_w.height + 70, scorenum[number].graph, true);
 		drawx = drawx - scorenum[0].width;
 	}
 }
 
 void systemm::disp_highscore() {
+	DrawGraph(upperlimit_width - highscore_w.width / 2 - 100, sco_w.height + 120, highscore_w.graph, true);
 	unsigned int number;
 	unsigned int str_high = str_scorenum[0];
 	int drawx = upperlimit_width - scorenum[0].width - 50;
 	for (int i = 0; i < 10; i++) {
 		number = str_high % 10;
 		str_high = str_high / 10;
-		DrawGraph(drawx, 10, scorenum[number].graph, true);
+		DrawGraph(drawx, sco_w.height + 170, scorenum[number].graph, true);
 		drawx = drawx - scorenum[0].width;
 	}
 }
@@ -276,37 +288,37 @@ void systemm::clear_graph() {
 }
 
 void systemm::grasedisp(unsigned int gnum) {
+	DrawGraph(upperlimit_width - graze_w.width / 2 - 250, sco_w.height + 200, graze_w.graph, true);
 	grazen = gnum;
 	int number;
 	int drawx = upperlimit_width - scorenum[0].width - 50;
 	for (int i = 0; i < 10; i++) {
 		number = grazen % 10;
 		grazen = grazen / 10;
-		DrawGraph(drawx, 200, scorenum[number].graph, true);
+		DrawGraph(drawx, sco_w.height + 270, scorenum[number].graph, true);
 		drawx = drawx - scorenum[0].width;
 	}
 }
 
 void systemm::zanki_disp(int life) {
+	DrawGraph(upperlimit_width - lifep_w.width - 200, sco_w.height + 400, lifep_w.graph, true);
 	int zanki;
 	int drawx = upperlimit_width - scorenum[0].width - 50;
 	zanki = life - 1;
 	for (int i = 0; i < zanki; i++) {
-		DrawGraph(drawx, 400, icon.graph, true);
+		DrawGraph(drawx, sco_w.height + 490, icon.graph, true);
 		drawx -= icon.width;
 	}
-	
-
 }
 
 void systemm::gage(unsigned int stock) {
-	DrawBox(upperlimit_joydispwidth + 40, 290, upperlimit_joydispwidth + 260, 370, gage_color3, true);
-	DrawBox(upperlimit_joydispwidth + 50, 300, upperlimit_joydispwidth + 250, 360, gage_color4, true);
+	DrawBox(upperlimit_joydispwidth + 40, sco_w.height + 320, upperlimit_joydispwidth + 260, sco_w.height + 400, gage_color3, true);
+	DrawBox(upperlimit_joydispwidth + 50, sco_w.height + 330, upperlimit_joydispwidth + 250, sco_w.height + 390, gage_color4, true);
 	if (stock < 100) {
-		DrawBoxAA(upperlimit_joydispwidth + 50, 300, upperlimit_joydispwidth + 50 + 200 * static_cast<float>(stock) / 100, 360, gage_color1, true);
+		DrawBoxAA(upperlimit_joydispwidth + 50, sco_w.height + 330, upperlimit_joydispwidth + 50 + 200 * static_cast<float>(stock) / 100, sco_w.height + 390, gage_color1, true);
 	}
 	else {
-		DrawBoxAA(upperlimit_joydispwidth + 50, 300, upperlimit_joydispwidth + 250, 360, gage_color2, true);
+		DrawBoxAA(upperlimit_joydispwidth + 50, sco_w.height + 330, upperlimit_joydispwidth + 250, sco_w.height + 390, gage_color2, true);
 	}
 }
 

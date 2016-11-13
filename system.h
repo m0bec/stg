@@ -17,6 +17,11 @@ private:
 	base score_backgraph;
 	base clear_word;
 	base score_plate;
+	base enegy_w;
+	base graze_w;
+	base highscore_w;
+	base lifep_w;
+	base sco_w;
 	std::array<base, 10> scorenum;
 	std::array<base, 26> word;
 	int arrowy;
