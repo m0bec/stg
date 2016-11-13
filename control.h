@@ -57,4 +57,5 @@ public:
 	void pass_bstate(int sta);
 	void pass_musicfla(int fla);
 	void finish();		
+	void get_epoint();
 };

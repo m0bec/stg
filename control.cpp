@@ -27,6 +27,7 @@ int control::pass_state() {
 
 void control::get_point() {
 	point = ziki1->pass_point();
+	point += boss->pass_point();
 }
 
 void control::get_graze() {
@@ -97,7 +98,7 @@ void control::run() {
 		boss->run();
 		player_lifecheck();
 		background->secondrun();
-		get_point();
+		
 		get_graze();
 		get_bombflag();
 		get_ziki(&zanki);
@@ -111,6 +112,10 @@ void control::run() {
 		sys->clear_graph();
 		state = sys->pass_state();
 		if (str_flag) {
+			get_point();
+			if (zanki > 0) {
+				point += zanki * 2000;
+			}
 			sys->save_score(point);
 			sys->stop_music();
 			str_flag = false;

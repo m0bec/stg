@@ -132,6 +132,10 @@ void bossenemy::set_explosion_gr() {
 	GetGraphSize(explosion_gr[0], &explosion_effect_width, &explosion_effect_height);
 }
 
+unsigned int bossenemy::pass_point() {
+	return str_point;
+}
+
 void bossenemy::effect_cont() {
 	auto itr = effects.begin();
 	while (itr != effects.end()) {
@@ -159,7 +163,7 @@ void bossenemy::set_enemyhp(int enemyhp) {
 
 void bossenemy::enemy_damage_counter() {
 	hp -= 1;
-	if (hp == 0) {
+	if (hp <= 0) {
 		movestate++;
 	}
 }

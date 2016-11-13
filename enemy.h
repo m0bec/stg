@@ -163,6 +163,7 @@ public:
 	void body_hitcheck(std::list<enemy_element> *mobe);
 	void bullet_move();
 	void first_set();
+	unsigned int pass_point();
 };
 
 class mob {
